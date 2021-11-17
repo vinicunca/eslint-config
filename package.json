@@ -5,7 +5,7 @@
   "author": "praburangki<https://github.com/praburangki>",
   "version": "0.0.0-development",
   "scripts": {
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release --branches main"
   },
   "repository": {
     "type": "git",
