@@ -5,7 +5,7 @@
   "author": "praburangki<https://github.com/praburangki>",
   "version": "0.0.0-development",
   "scripts": {
-    "semantic-release": "semantic-release --branches main"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -40,5 +40,8 @@
     "stylelint-config-standard": "^24.0.0",
     "stylelint-prettier": "^2.0.0",
     "yaml-eslint-parser": "^0.5.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^18.0.0"
   }
 }
