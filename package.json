@@ -22,6 +22,7 @@
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsonc": "^2.2.1",
+    "eslint-plugin-markdown": "^2.2.1",
     "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
@@ -37,7 +38,6 @@
   },
   "devDependencies": {
     "bumpp": "^7.1.1",
-    "eslint": "^8.13.0",
-    "eslint-plugin-markdown": "^2.2.1"
+    "eslint": "^8.13.0"
   }
 }
