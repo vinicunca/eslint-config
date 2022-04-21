@@ -46,20 +46,7 @@ module.exports = defineConfig({
   },
 
   rules: {
-    'import/order': [
-      'error',
-      {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'type'],
-        pathGroups: [
-          {
-            pattern: '~/**',
-            group: 'internal',
-            position: 'after',
-          },
-        ],
-        pathGroupsExcludedImportTypes: ['types'],
-      },
-    ],
+    'import/order': ['error'],
     'import/first': 'error',
     'import/no-mutable-exports': 'error',
     'import/no-unresolved': 'off',
