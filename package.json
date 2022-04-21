@@ -3,7 +3,7 @@
   "description": "Shareable configurations for ESLint, Prettier & Stylelint",
   "license": "MIT",
   "author": "praburangki<https://github.com/praburangki>",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "release": "bumpp package.json --commit --push --tag && pnpm publish"
   },
