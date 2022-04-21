@@ -11,6 +11,7 @@ module.exports = defineConfig({
         parser: '@typescript-eslint/parser',
       },
       rules: {
+        'no-unused-vars': 'off',
         'no-undef': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
       },
@@ -21,6 +22,12 @@ module.exports = defineConfig({
     'vue/max-attributes-per-line': ['warn', { singleline: 5 }],
     'vue/html-self-closing': 'off',
     'vue/no-v-html': 'off',
+    'vue/require-prop-types': 'off',
     'vue/require-default-prop': 'off',
+    'vue/multi-word-component-names': 'off',
+
+    'vue/component-tags-order': ['error', {
+      order: ['script', 'template', 'style'],
+    }],
   },
 });

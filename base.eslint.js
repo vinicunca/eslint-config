@@ -10,12 +10,31 @@ module.exports = defineConfig({
   },
 
   extends: [
-    'standard',
+    './standard.eslint',
     'plugin:import/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:sonarjs/recommended',
     'plugin:jsonc/recommended-with-jsonc',
     'plugin:yml/standard',
+    'plugin:markdown/recommended',
+  ],
+
+  ignorePatterns: [
+    '*.min.*',
+    'CHANGELOG.md',
+    'dist',
+    'LICENSE*',
+    'output',
+    'coverage',
+    'public',
+    'temp',
+    'packages-lock.json',
+    'pnpm-lock.yaml',
+    'yarn.lock',
+    '__snapshots__',
+    '!.github',
+    '!.vitepress',
+    '!.vscode',
   ],
 
   plugins: ['html', 'unicorn', 'sonarjs'],
@@ -56,17 +75,18 @@ module.exports = defineConfig({
     'array-bracket-spacing': ['error', 'never'],
     'brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'block-spacing': ['error', 'always'],
-    'camelcase': 'error',
+    'camelcase': 'off',
     'comma-spacing': ['error', { before: false, after: true }],
     'comma-style': ['error', 'last'],
     'comma-dangle': ['error', 'always-multiline'],
     'no-constant-condition': 'warn',
     'no-debugger': 'error',
-    'no-console': 'error',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-cond-assign': ['error', 'always'],
     'no-tabs': 'error',
     'func-call-spacing': ['off', 'never'],
     'key-spacing': ['error', { beforeColon: false, afterColon: true }],
+    'indent': ['error', 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }],
     'no-restricted-syntax': [
       'error',
       'DebuggerStatement',
@@ -78,6 +98,7 @@ module.exports = defineConfig({
     'no-return-await': 'off',
     'space-before-function-paren': ['error', 'never'],
 
+    // es6
     'no-var': 'error',
     'prefer-const': [
       'error',
@@ -107,13 +128,28 @@ module.exports = defineConfig({
     'template-curly-spacing': 'error',
     'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
     'generator-star-spacing': 'off',
+    'spaced-comment': [
+      'error',
+      'always',
+      {
+        line: {
+          markers: ['/'],
+          exceptions: ['/', '#'],
+        },
+        block: {
+          markers: ['!'],
+          exceptions: ['*'],
+          balanced: true,
+        },
+      },
+    ],
 
     // best-practice
     'array-callback-return': 'error',
     'block-scoped-var': 'error',
     'consistent-return': 'off',
     'complexity': ['off', 11],
-    'eqeqeq': ['error', 'allow-null'],
+    'eqeqeq': ['error', 'smart'],
     'no-alert': 'warn',
     'no-case-declarations': 'error',
     'no-multi-spaces': 'error',
@@ -154,6 +190,23 @@ module.exports = defineConfig({
 
     'no-use-before-define': ['error', { functions: false, classes: false, variables: true }],
     'eslint-comments/disable-enable-pair': 'off',
+    'import/no-named-as-default-member': 'off',
+    'n/no-callback-literal': 'off',
+
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        allowSeparatedGroups: false,
+      },
+    ],
+
+    // yml
+    'yml/quotes': ['error', { prefer: 'single', avoidEscape: false }],
+    'yml/no-empty-document': 'off',
   },
 
   overrides: [
@@ -167,6 +220,13 @@ module.exports = defineConfig({
       },
     },
     {
+      files: ['*.yaml', '*.yml'],
+      parser: 'yaml-eslint-parser',
+      rules: {
+        'spaced-comment': 'off',
+      },
+    },
+    {
       files: ['package.json'],
       parser: 'jsonc-eslint-parser',
       rules: {
@@ -176,27 +236,33 @@ module.exports = defineConfig({
             pathPattern: '^$',
             order: [
               'name',
+              'type',
               'version',
+              'private',
+              'packageManager',
               'description',
               'keywords',
               'license',
+              'author',
               'repository',
               'funding',
-              'author',
-              'type',
-              'files',
-              'exports',
               'main',
               'module',
+              'types',
               'unpkg',
+              'jsdelivr',
+              'exports',
+              'files',
               'bin',
+              'sideEffects',
               'scripts',
-              'husky',
-              'lint-staged',
               'peerDependencies',
               'peerDependenciesMeta',
               'dependencies',
+              'optionalDependencies',
               'devDependencies',
+              'husky',
+              'lint-staged',
               'eslintConfig',
             ],
           },
@@ -205,6 +271,48 @@ module.exports = defineConfig({
             order: { type: 'asc' },
           },
         ],
+      },
+    },
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'import/no-duplicates': 'off',
+      },
+    },
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+    {
+      files: ['scripts/**/*.*', 'cli.*'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+    {
+      files: ['*.test.ts', '*.test.js', '*.spec.ts', '*.spec.js'],
+      rules: {
+        'no-unused-expressions': 'off',
+      },
+    },
+    {
+      // Code blocks in markdown file
+      files: ['**/*.md/*.*'],
+      rules: {
+        '@typescript-eslint/no-redeclare': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/comma-dangle': 'off',
+        'import/no-unresolved': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
+        'no-restricted-imports': 'off',
+        'no-undef': 'off',
+        'no-unused-expressions': 'off',
+        'no-unused-vars': 'off',
       },
     },
   ],
