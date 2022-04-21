@@ -1,6 +1,6 @@
 {
   "name": "@praburangki/eslint-config",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Shareable configurations for ESLint",
   "license": "MIT",
   "author": "praburangki<https://github.com/praburangki>",
