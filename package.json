@@ -3,9 +3,9 @@
   "description": "Shareable configurations for ESLint, Prettier & Stylelint",
   "license": "MIT",
   "author": "praburangki<https://github.com/praburangki>",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
-    "semantic-release": "semantic-release --branches main"
+    "release": "bumpp package.json --commit --push --tag"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,6 @@
     "eslint-plugin-vue": "^8.6.0",
     "eslint-plugin-yml": "^0.14.0",
     "jsonc-eslint-parser": "^2.1.0",
-    "semantic-release": "^19.0.2",
     "stylelint": "^14.7.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
@@ -42,6 +41,10 @@
     "yaml-eslint-parser": "^0.5.0"
   },
   "devDependencies": {
-    "semantic-release": "^19.0.2"
+    "bumpp": "^7.1.1"
+  },
+  "peerDependencies": {
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.3"
   }
 }
