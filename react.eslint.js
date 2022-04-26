@@ -14,5 +14,6 @@ module.exports = defineConfig({
     'react/react-in-jsx-scope': 'off',
     'react/display-name': 'off',
     'react/no-unknown-property': ['error', { ignore: ['class'] }],
+    'react/jsx-curly-spacing': ['error', { when: 'always', children: true }],
   },
 });
