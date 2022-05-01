@@ -26,8 +26,12 @@ module.exports = defineConfig({
     'vue/require-default-prop': 'off',
     'vue/multi-word-component-names': 'off',
 
-    'vue/component-tags-order': ['error', {
-      order: ['script', 'template', 'style'],
-    }],
+    'vue/component-tags-order': [
+      'error', {
+        order: [
+          'script', 'template', 'style',
+        ],
+      },
+    ],
   },
 });

@@ -37,11 +37,17 @@ module.exports = defineConfig({
     '!.vscode',
   ],
 
-  plugins: ['html', 'unicorn', 'sonarjs'],
+  plugins: [
+    'html', 'unicorn', 'sonarjs',
+  ],
 
   settings: {
     'import/resolver': {
-      node: { extensions: ['.js', '.mjs', '.ts', '.d.ts'] },
+      node: {
+        extensions: [
+          '.js', '.mjs', '.ts', '.d.ts',
+        ],
+      },
     },
   },
 
@@ -60,7 +66,9 @@ module.exports = defineConfig({
     'no-unused-vars': 'off',
     'no-param-reassign': 'off',
     'array-bracket-spacing': ['error', 'never'],
-    'brace-style': ['error', '1tbs', { allowSingleLine: true }],
+    'brace-style': [
+      'error', '1tbs', { allowSingleLine: true },
+    ],
     'block-spacing': ['error', 'always'],
     'camelcase': 'off',
     'comma-spacing': ['error', { before: false, after: true }],
@@ -73,7 +81,9 @@ module.exports = defineConfig({
     'no-tabs': 'error',
     'func-call-spacing': ['off', 'never'],
     'key-spacing': ['error', { beforeColon: false, afterColon: true }],
-    'indent': ['error', 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 }],
+    'indent': [
+      'error', 2, { SwitchCase: 1, VariableDeclarator: 1, outerIIFEBody: 1 },
+    ],
     'no-restricted-syntax': [
       'error',
       'DebuggerStatement',
@@ -83,7 +93,13 @@ module.exports = defineConfig({
     ],
     'object-curly-spacing': ['error', 'always'],
     'no-return-await': 'off',
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': [
+      'error', {
+        anonymous: 'never',
+        named: 'never',
+        asyncArrow: 'always',
+      },
+    ],
 
     // es6
     'no-var': 'error',
@@ -113,7 +129,9 @@ module.exports = defineConfig({
     'prefer-spread': 'error',
     'prefer-template': 'error',
     'template-curly-spacing': 'error',
-    'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
+    'arrow-parens': [
+      'error', 'as-needed', { requireForBlockBody: true },
+    ],
     'generator-star-spacing': 'off',
     'spaced-comment': [
       'error',
@@ -186,7 +204,9 @@ module.exports = defineConfig({
         ignoreCase: false,
         ignoreDeclarationSort: true,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+        memberSyntaxSortOrder: [
+          'none', 'all', 'multiple', 'single',
+        ],
         allowSeparatedGroups: false,
       },
     ],
@@ -279,7 +299,9 @@ module.exports = defineConfig({
       },
     },
     {
-      files: ['*.test.ts', '*.test.js', '*.spec.ts', '*.spec.js'],
+      files: [
+        '*.test.ts', '*.test.js', '*.spec.ts', '*.spec.js',
+      ],
       rules: {
         'no-unused-expressions': 'off',
       },
