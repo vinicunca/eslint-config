@@ -68,7 +68,7 @@ module.exports = defineConfig({
     ],
 
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }],
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
     'no-use-before-define': 'off',
@@ -77,9 +77,7 @@ module.exports = defineConfig({
       { functions: false, classes: false, variables: true },
     ],
     'brace-style': 'off',
-    '@typescript-eslint/brace-style': [
-      'error', 'stroustrup', { allowSingleLine: true },
-    ],
+    '@typescript-eslint/brace-style': ['error', '1tbs'],
     'comma-dangle': 'off',
     '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
     'object-curly-spacing': 'off',

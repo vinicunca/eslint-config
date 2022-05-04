@@ -66,9 +66,7 @@ module.exports = defineConfig({
     'no-unused-vars': 'off',
     'no-param-reassign': 'off',
     'array-bracket-spacing': ['error', 'never'],
-    'brace-style': [
-      'error', '1tbs', { allowSingleLine: true },
-    ],
+    'brace-style': ['error'],
     'block-spacing': ['error', 'always'],
     'camelcase': 'off',
     'comma-spacing': ['error', { before: false, after: true }],
@@ -129,9 +127,7 @@ module.exports = defineConfig({
     'prefer-spread': 'error',
     'prefer-template': 'error',
     'template-curly-spacing': 'error',
-    'arrow-parens': [
-      'error', 'as-needed', { requireForBlockBody: true },
-    ],
+    'arrow-parens': ['error', 'always'],
     'generator-star-spacing': 'off',
     'spaced-comment': [
       'error',
