@@ -65,6 +65,8 @@ module.exports = defineConfig({
     'quote-props': ['error', 'consistent-as-needed'],
     'no-unused-vars': 'off',
     'no-param-reassign': 'off',
+    'array-bracket-newline': ['error', 'consistent'],
+    'array-element-newline': ['error', 'consistent'],
     'array-bracket-spacing': ['error', 'never'],
     'brace-style': ['error'],
     'block-spacing': ['error', 'always'],
