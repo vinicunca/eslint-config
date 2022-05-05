@@ -1,4 +1,5 @@
 const { defineConfig } = require('eslint-define-config');
+
 const base = require('./base.eslint');
 
 module.exports = defineConfig({
@@ -12,6 +13,14 @@ module.exports = defineConfig({
 
   rules: {
     'import/named': 'off',
+    'import/order': [
+      'error', {
+        'groups': [
+          'type', 'builtin', 'external', 'internal', ['parent', 'sibling'], 'object', 'index',
+        ],
+        'newlines-between': 'always',
+      },
+    ],
 
     // TS
     '@typescript-eslint/semi': ['error', 'always'],
