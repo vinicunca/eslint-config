@@ -1,15 +1,15 @@
 {
-  "name": "@praburangki/eslint-config",
+  "name": "@vinicunca/eslint-config",
   "version": "1.2.6",
   "description": "Shareable configurations for ESLint & Stylelint",
   "license": "MIT",
   "author": "praburangki<https://github.com/praburangki>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/praburangki/eslint-config.git"
+    "url": "https://github.com/vinicunca/eslint-config.git"
   },
   "scripts": {
-    "release": "bumpp package.json --commit --push --tag && pnpm publish"
+    "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },
   "publishConfig": {
     "access": "public"
