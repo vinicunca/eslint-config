@@ -9,6 +9,8 @@ module.exports = defineConfig({
     node: true,
   },
 
+  reportUnusedDisableDirectives: true,
+
   extends: [
     './standard.eslint',
     'plugin:import/recommended',
@@ -38,16 +40,14 @@ module.exports = defineConfig({
   ],
 
   plugins: [
-    'html', 'unicorn', 'sonarjs',
+    'html',
+    'unicorn',
+    'sonarjs',
   ],
 
   settings: {
     'import/resolver': {
-      node: {
-        extensions: [
-          '.js', '.mjs', '.ts', '.d.ts',
-        ],
-      },
+      node: { extensions: ['.js', '.mjs'] },
     },
   },
 
@@ -101,6 +101,8 @@ module.exports = defineConfig({
       },
     ],
 
+    'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
+
     // es6
     'no-var': 'error',
     'prefer-const': [
@@ -125,6 +127,7 @@ module.exports = defineConfig({
         avoidQuotes: true,
       },
     ],
+    'prefer-exponentiation-operator': 'error',
     'prefer-rest-params': 'error',
     'prefer-spread': 'error',
     'prefer-template': 'error',
@@ -219,9 +222,15 @@ module.exports = defineConfig({
       files: ['*.json', '*.json5'],
       parser: 'jsonc-eslint-parser',
       rules: {
-        'quotes': ['error', 'double'],
-        'quote-props': ['error', 'always'],
-        'comma-dangle': ['error', 'never'],
+        'jsonc/array-bracket-spacing': ['error', 'never'],
+        'jsonc/comma-dangle': ['error', 'never'],
+        'jsonc/comma-style': ['error', 'last'],
+        'jsonc/indent': ['error', 2],
+        'jsonc/key-spacing': ['error', { beforeColon: false, afterColon: true }],
+        'jsonc/no-octal-escape': 'error',
+        'jsonc/object-curly-newline': ['error', { multiline: true, consistent: true }],
+        'jsonc/object-curly-spacing': ['error', 'always'],
+        'jsonc/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
       },
     },
     {
@@ -240,33 +249,47 @@ module.exports = defineConfig({
           {
             pathPattern: '^$',
             order: [
+              'publisher',
               'name',
+              'displayName',
               'type',
               'version',
               'private',
               'packageManager',
               'description',
-              'keywords',
-              'license',
               'author',
-              'repository',
+              'license',
               'funding',
+              'homepage',
+              'repository',
+              'bugs',
+              'keywords',
+              'categories',
+              'sideEffects',
+              'exports',
               'main',
               'module',
-              'types',
               'unpkg',
               'jsdelivr',
-              'exports',
-              'files',
+              'types',
+              'typesVersions',
               'bin',
-              'sideEffects',
+              'icon',
+              'files',
+              'engines',
+              'activationEvents',
+              'contributes',
               'scripts',
               'peerDependencies',
               'peerDependenciesMeta',
               'dependencies',
               'optionalDependencies',
               'devDependencies',
+              'pnpm',
+              'overrides',
+              'resolutions',
               'husky',
+              'simple-git-hooks',
               'lint-staged',
               'eslintConfig',
             ],
@@ -274,6 +297,14 @@ module.exports = defineConfig({
           {
             pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
             order: { type: 'asc' },
+          },
+          {
+            pathPattern: '^exports.*$',
+            order: [
+              'types',
+              'require',
+              'import',
+            ],
           },
         ],
       },

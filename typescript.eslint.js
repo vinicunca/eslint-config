@@ -9,6 +9,12 @@ module.exports = defineConfig({
     'plugin:@typescript-eslint/recommended',
   ],
 
+  settings: {
+    'import/resolver': {
+      node: { extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.d.ts'] },
+    },
+  },
+
   overrides: base.overrides,
 
   rules: {
