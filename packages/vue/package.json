@@ -1,0 +1,27 @@
+{
+  "name": "@vinicunca/eslint-config-vue",
+  "version": "2.0.0",
+  "description": "",
+  "author": "praburangki<https://github.com/praburangki>",
+  "license": "MIT",
+  "homepage": "https://github.com/vinicunca/eslint-config",
+  "keywords": [
+    "eslint-config"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "peerDependencies": {
+    "eslint": ">=7.4.0"
+  },
+  "dependencies": {
+    "@vinicunca/eslint-config-basic": "workspace:*",
+    "@vinicunca/eslint-config-ts": "workspace:*",
+    "eslint-plugin-vue": "^9.8.0",
+    "local-pkg": "^0.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0"
+  }
+}

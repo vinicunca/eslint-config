@@ -3,7 +3,6 @@
   "version": "1.5.0",
   "private": true,
   "packageManager": "pnpm@7.23.0",
-  "description": "Shareable configurations for ESLint & Stylelint",
   "author": "praburangki<https://github.com/praburangki>",
   "license": "MIT",
   "repository": {
@@ -19,9 +18,9 @@
   },
 
   "devDependencies": {
+    "@vinicunca/eslint-config": "*",
     "bumpp": "^8.2.1",
     "eslint": "^8.31.0",
-    "eslint-define-config": "^1.13.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.9.4"
   }
