@@ -1,6 +1,6 @@
 {
   "name": "@vinicunca/eslint-config-monorepo",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": true,
   "packageManager": "pnpm@7.23.0",
   "author": "praburangki<https://github.com/praburangki>",
@@ -9,14 +9,12 @@
     "type": "git",
     "url": "https://github.com/vinicunca/eslint-config.git"
   },
-
   "scripts": {
     "lint": "eslint .",
     "test": "pnpm -r run test",
     "prepare": "pnpm -r run stub",
     "release": "bumpp package.json packages/*/package.json --commit --push --tag --commit 'chore: release v'"
   },
-
   "devDependencies": {
     "@vinicunca/eslint-config": "*",
     "bumpp": "^8.2.1",
