@@ -171,6 +171,7 @@ module.exports = {
     // vinicunca
     'vinicunca/generic-spacing': 'error',
     'vinicunca/prefer-inline-type-import': 'error',
+    'vinicunca/top-level-function': 'error',
 
     // off
     '@typescript-eslint/consistent-indexed-object-style': 'off',
