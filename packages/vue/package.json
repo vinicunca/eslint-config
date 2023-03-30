@@ -18,10 +18,10 @@
   "dependencies": {
     "@vinicunca/eslint-config-basic": "workspace:*",
     "@vinicunca/eslint-config-ts": "workspace:*",
-    "eslint-plugin-vue": "^9.8.0",
-    "local-pkg": "^0.4.2"
+    "eslint-plugin-vue": "^9.10.0",
+    "local-pkg": "^0.4.3"
   },
   "devDependencies": {
-    "eslint": "^8.31.0"
+    "eslint": "^8.37.0"
   }
 }

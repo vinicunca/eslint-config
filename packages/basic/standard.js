@@ -27,14 +27,14 @@ module.exports = {
     'no-var': 'warn',
     'object-shorthand': ['warn', 'properties'],
 
-    'accessor-pairs': ['error', { 
-      setWithoutGet: true, 
-      enforceForClassMembers: true 
+    'accessor-pairs': ['error', {
+      setWithoutGet: true,
+      enforceForClassMembers: true,
     }],
     'array-bracket-spacing': ['error', 'never'],
-    'array-bracket-newline': ['error', { 
+    'array-bracket-newline': ['error', {
       multiline: true,
-      minItems: 3
+      minItems: 3,
     }],
     'array-callback-return': ['error', {
       allowImplicit: false,
@@ -42,7 +42,7 @@ module.exports = {
     }],
     'arrow-spacing': ['error', { before: true, after: true }],
     'block-spacing': ['error', 'always'],
-    'brace-style': ['error', '1tbs', { allowSingleLine: true },],
+    'brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'camelcase': ['error', {
       allow: ['^UNSAFE_'],
       properties: 'never',
