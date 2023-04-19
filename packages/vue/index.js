@@ -30,7 +30,7 @@ module.exports = {
       : '@vinicunca/eslint-config-basic',
   ],
   rules: {
-    'vue/max-attributes-per-line': 'off',
+    'vue/max-attributes-per-line': 'warn',
     'vue/no-v-html': 'off',
     'vue/require-prop-types': 'off',
     'vue/require-default-prop': 'off',
