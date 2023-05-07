@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-vinicunca",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "license": "MIT",
   "homepage": "https://github.com/vinicunca/eslint-config",
   "main": "./dist/index.cjs",

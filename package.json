@@ -1,6 +1,6 @@
 {
   "name": "@vinicunca/eslint-config-monorepo",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "private": true,
   "packageManager": "pnpm@7.23.0",
   "author": "praburangki<https://github.com/praburangki>",
