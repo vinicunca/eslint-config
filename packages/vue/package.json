@@ -13,7 +13,7 @@
     "index.js"
   ],
   "peerDependencies": {
-    "eslint": ">=8.40.0"
+    "eslint": ">=7.4.0"
   },
   "dependencies": {
     "@vinicunca/eslint-config-basic": "workspace:*",
@@ -22,6 +22,6 @@
     "local-pkg": "^0.4.3"
   },
   "devDependencies": {
-    "eslint": "^8.40.0"
+    "eslint": "^8.38.0"
   }
 }

@@ -16,11 +16,11 @@
     "release": "bumpp package.json packages/*/package.json --commit --push --tag --commit 'chore: release v'"
   },
   "devDependencies": {
-    "@vinicunca/eslint-config": "*",
+    "@vinicunca/eslint-config": "workspace:*",
     "bumpp": "^9.1.0",
-    "eslint": "^8.40.0",
-    "eslint-plugin-vinicunca": "workspace:*",
-    "rimraf": "^4.4.1",
+    "eslint": "^8.38.0",
+    "eslint-plugin-vinicunca": "link:./packages/eslint-plugin-vinicunca",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
   }
 }
