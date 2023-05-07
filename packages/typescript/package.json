@@ -13,16 +13,16 @@
     "index.js"
   ],
   "peerDependencies": {
-    "eslint": ">=7.4.0",
-    "typescript": ">=3.9"
+    "eslint": ">=8.40.0",
+    "typescript": ">=5.0.4"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
     "@vinicunca/eslint-config-basic": "workspace:*",
     "eslint-plugin-jest": "^27.2.1"
   },
   "devDependencies": {
-    "eslint": "^8.37.0"
+    "eslint": "^8.40.0"
   }
 }

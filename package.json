@@ -17,10 +17,10 @@
   },
   "devDependencies": {
     "@vinicunca/eslint-config": "*",
-    "bumpp": "^9.0.0",
-    "eslint": "^8.37.0",
+    "bumpp": "^9.1.0",
+    "eslint": "^8.40.0",
     "eslint-plugin-vinicunca": "workspace:*",
     "rimraf": "^4.4.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   }
 }
