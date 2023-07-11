@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { join } = require('path');
+const fs = require('node:fs');
+const { join } = require('node:path');
 
 const basic = require('@vinicunca/eslint-config-basic');
 
@@ -74,8 +74,6 @@ module.exports = {
     }],
 
     // TS
-    'semi': 'off',
-    '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
     '@typescript-eslint/member-delimiter-style': ['error'],
     '@typescript-eslint/type-annotation-spacing': ['error', {}],
@@ -130,6 +128,8 @@ module.exports = {
       destructuredArrayIgnorePattern: '^_',
       ignoreRestSiblings: true,
     }],
+    'no-invalid-this': 'off',
+    '@typescript-eslint/no-invalid-this': 'error',
     'no-redeclare': 'off',
     '@typescript-eslint/no-redeclare': 'error',
     'no-use-before-define': 'off',
@@ -140,6 +140,8 @@ module.exports = {
     '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
     'object-curly-spacing': 'off',
     '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+    'semi': 'off',
+    '@typescript-eslint/semi': ['error', 'always'],
     'quotes': 'off',
     '@typescript-eslint/quotes': ['error', 'single'],
     'space-before-blocks': 'off',
@@ -185,8 +187,6 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/triple-slash-reference': 'off',
   },
 };

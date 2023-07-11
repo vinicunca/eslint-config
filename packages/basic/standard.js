@@ -9,33 +9,30 @@ module.exports = {
     },
     sourceType: 'module',
   },
+
   env: {
     es2021: true,
     node: true,
   },
+
   plugins: [
     'import',
     'n',
     'promise',
   ],
+
   globals: {
     document: 'readonly',
     navigator: 'readonly',
     window: 'readonly',
   },
+
   rules: {
     'no-var': 'warn',
     'object-shorthand': ['warn', 'properties'],
 
-    'accessor-pairs': ['error', {
-      setWithoutGet: true,
-      enforceForClassMembers: true,
-    }],
+    'accessor-pairs': ['error', { setWithoutGet: true, enforceForClassMembers: true }],
     'array-bracket-spacing': ['error', 'never'],
-    'array-bracket-newline': ['error', {
-      multiline: true,
-      minItems: 3,
-    }],
     'array-callback-return': ['error', {
       allowImplicit: false,
       checkForEach: false,
@@ -57,9 +54,7 @@ module.exports = {
     }],
     'comma-spacing': ['error', { before: false, after: true }],
     'comma-style': ['error', 'last'],
-    'computed-property-spacing': [
-      'error', 'never', { enforceForClassMembers: true },
-    ],
+    'computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
     'constructor-super': 'error',
     'curly': ['error', 'multi-line'],
     'default-case-last': 'error',
@@ -82,25 +77,7 @@ module.exports = {
       ImportDeclaration: 1,
       flatTernaryExpressions: false,
       ignoreComments: false,
-      ignoredNodes: [
-        'TemplateLiteral *',
-        'JSXElement',
-        'JSXElement > *',
-        'JSXAttribute',
-        'JSXIdentifier',
-        'JSXNamespacedName',
-        'JSXMemberExpression',
-        'JSXSpreadAttribute',
-        'JSXExpressionContainer',
-        'JSXOpeningElement',
-        'JSXClosingElement',
-        'JSXFragment',
-        'JSXOpeningFragment',
-        'JSXClosingFragment',
-        'JSXText',
-        'JSXEmptyExpression',
-        'JSXSpreadChild',
-      ],
+      ignoredNodes: ['TemplateLiteral *', 'JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXFragment', 'JSXOpeningFragment', 'JSXClosingFragment', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
       offsetTernaryExpressions: true,
     }],
     'key-spacing': ['error', { beforeColon: false, afterColon: true }],
