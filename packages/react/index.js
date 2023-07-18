@@ -15,5 +15,20 @@ module.exports = {
       'prefer-double',
     ],
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-key': 'off',
+    'react/jsx-indent': ['error', 2],
+    'react/jsx-closing-bracket-location': ['error', 'tag-aligned'],
+    'react/jsx-closing-tag-location': 'error',
+    'react/jsx-equals-spacing': 'error',
+    'react/jsx-indent-props': ['error', 2],
+    'react/jsx-first-prop-new-line': ['error', 'multiline'],
+    'react/jsx-props-no-multi-spaces': 'error',
+    'react/jsx-curly-spacing': ['error', {
+      when: 'always',
+      spacing: {
+        objectLiterals: 'never',
+      },
+      children: true,
+    }],
   },
-}
+};

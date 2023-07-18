@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const { join } = require('node:path');
+const process = require('node:process');
 
 const basic = require('@vinicunca/eslint-config-basic');
 

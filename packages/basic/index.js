@@ -210,6 +210,7 @@ module.exports = {
         'no-undef': 'off',
         'no-unused-expressions': 'off',
         'no-unused-vars': 'off',
+        'n/prefer-global/process': 'off',
       },
     },
   ],
