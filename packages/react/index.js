@@ -30,5 +30,6 @@ module.exports = {
       },
       children: true,
     }],
+    'react/jsx-max-props-per-line': ['error'],
   },
 };
