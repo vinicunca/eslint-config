@@ -230,7 +230,7 @@ module.exports = {
     'quotes': ['error', 'single'],
     'quote-props': ['error', 'consistent-as-needed'],
 
-    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-imports': 'warn',
     'unused-imports/no-unused-vars': [
       'warn',
       {
