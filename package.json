@@ -50,17 +50,24 @@
     "url": "https://github.com/vinicunca/eslint-config.git"
   },
   "scripts": {
+    "test": "vitest",
     "lint": "eslint .",
-    "compile": "tsc",
+    "build": "rimraf lib && tsc",
     "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },
   "peerDependencies": {
     "eslint": "^8.0.0"
   },
   "devDependencies": {
+    "@types/eslint": "^8.44.2",
+    "@types/node": "^20.6.0",
+    "@typescript-eslint/rule-tester": "^6.7.0",
     "bumpp": "^9.2.0",
-    "tsconfigs": "5.0.0",
     "eslint": "^8.49.0",
-    "typescript": "^5.2.2"
+    "eslint-define-config": "^1.23.0",
+    "rimraf": "^5.0.1",
+    "tsconfigs": "5.0.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.4"
   }
 }
