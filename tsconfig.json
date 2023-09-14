@@ -1,14 +1,24 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es2020",
-    "module": "es2020",
-    "moduleResolution": "node"
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "newLine": "LF",
+    "noErrorTruncation": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "lib": ["ESNext"],
+    "module": "CommonJS",
+    "types": [
+      "node"
+    ],
+    "declaration": true,
+    "outDir": "lib"
   },
   "include": [
-    "./packages/**/*.ts"
-  ],
-  "exclude": [
-    "./fixtures/**/*.*"
+    "src/**/*.ts"
   ]
 }

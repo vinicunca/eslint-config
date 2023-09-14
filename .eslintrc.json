@@ -1,7 +1,0 @@
-{
-  "extends": "@vinicunca",
-
-  "rules": {
-    "sonarjs/cognitive-complexity": "off"
-  }
-}
