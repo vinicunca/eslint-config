@@ -27,42 +27,13 @@ watch(
   { immediate: true, flush: 'post' },
 );
 
-const { navPageFromPath } = useContentHelpers();
-const { navigation, page } = useContent();
-const route = useRoute();
-
-/**
-   * Current aside treeNav.
-  */
-const treeNav = computed(() => {
-  if (route.path === '/') {
-    return [];
-  }
-
-  let nav = navigation.value || [];
-
-  // No navigation found; try to resolve page url
-  if (nav.length === 0) {
-    nav = navPageFromPath(page.value?._path || '/', navigation.value || []);
-
-    if (!nav) {
-      return [];
-    }
-
-    if (!Array.isArray(nav)) {
-      nav = [nav];
-    }
-  }
-
-  console.log(`🚀 ~ treeNav ~ nav:`, nav);
-  return nav;
-});
+const { navigation } = useContent();
 </script>
 
 <template>
   <aside
     ref="navEl"
-    class="VDSidebar fixed inset-y-0 left-0 z-50 max-w-[320px] w-[calc(100vw-64px)] overflow-x-hidden overflow-y-auto overscroll-contain bg-$vd-sidebar-bg-color px-8 pb-24 pt-8 opacity-0 shadow-3 lg:(z-1 max-w-full w-$vd-sidebar-w translate-x-0 bg-$vd-sidebar-bg-color pb-32 pt-$vd-nav-height opacity-100 shadow-none) 2xl:(w-[calc((100%-(var(--vd-layout-max-w)-64px))/2+var(--vd-sidebar-w)-32px)] pl-[max(32px,calc((100%-(var(--vd-layout-max-w)-64px))/2))]) -translate-x-full dark:shadow-1"
+    class="VDSidebar fixed inset-y-0 left-0 z-50 max-w-[320px] w-[calc(100vw-64px)] overflow-x-hidden overflow-y-auto overscroll-contain bg-$vd-sidebar-bg-color px-8 py-8 opacity-0 shadow-3 lg:(z-1 max-w-full w-$vd-sidebar-w translate-x-0 pt-$vd-nav-height opacity-100 shadow-none) 2xl:(w-[calc((100%-(var(--vd-layout-max-w)-64px))/2+var(--vd-sidebar-w)-32px)] pl-[max(32px,calc((100%-(var(--vd-layout-max-w)-64px))/2))]) -translate-x-full dark:shadow-1"
     :class="[
       {
         'open opacity-100 translate-x-0': isOpen,
@@ -74,7 +45,7 @@ const treeNav = computed(() => {
     <div class="sticky left-0 z-1 mt-[calc(var(--vd-nav-height)*-1)] h-$vd-nav-height bg-$vd-sidebar-bg-color -top-16 -mx-8" />
     <nav
       id="VDSidebarNav"
-      class="nav"
+      class="h-full"
       aria-labelledby="sidebar-aria-label"
       tabindex="-1"
     >
@@ -85,7 +56,7 @@ const treeNav = computed(() => {
         Sidebar Navigation
       </span>
 
-      <LayoutSidebarTree :links="treeNav" />
+      <LayoutSidebarTree :links="navigation" />
     </nav>
   </aside>
 </template>

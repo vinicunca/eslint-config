@@ -133,6 +133,13 @@ export default defineConfig({
       }
     },
   ],
+
+  safelist: [
+    'i-logos:javascript',
+    'i-logos:typescript-icon',
+    'i-logos:vue',
+    'i-logos:react',
+  ],
 });
 
 function generateIcon(path: string) {

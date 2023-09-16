@@ -50,6 +50,10 @@ export default defineNuxtConfig({
         depth: 2,
       },
     },
+
+    navigation: {
+      fields: ['icon'],
+    },
   },
 
   postcss: {
