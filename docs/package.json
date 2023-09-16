@@ -1,0 +1,38 @@
+{
+  "name": "@vinicunca/eslint-config-docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "upgrade": "nuxi upgrade --force",
+    "clean": "nuxt cleanup",
+    "preview": "nuxt preview",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@docsearch/css": "^3.5.2",
+    "@docsearch/js": "^3.5.2",
+    "@vinicunca/perkakas": "^0.0.4",
+    "radix-vue": "^0.2.2"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.114",
+    "@nuxt/content": "^2.8.2",
+    "@nuxt/devtools": "^0.8.3",
+    "@nuxtjs/algolia": "^1.9.0",
+    "@nuxtjs/color-mode": "^3.3.0",
+    "@unocss/eslint-config": "^0.55.7",
+
+    "@unocss/nuxt": "^0.55.7",
+    "@vinicunca/eslint-config": "^1.10.1",
+    "@vueuse/core": "^10.4.1",
+    "nuxt": "^3.7.3",
+    "postcss-nested": "^6.0.1",
+    "typescript": "^5.2.2",
+    "unocss": "^0.55.7",
+    "vitest": "^0.34.4"
+  }
+}

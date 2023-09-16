@@ -1,73 +1,21 @@
 {
   "name": "@vinicunca/eslint-config-monorepo",
   "version": "2.0.0-alpha.0",
-  "packageManager": "pnpm@8.7.1",
-  "author": {
-    "name": "praburangki",
-    "email": "praburangki@gmail.com",
-    "url": "https://praburangki.dev"
-  },
-  "bugs": {
-    "url": "https://github.com/vinicunca/eslint-config/issues"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "files": [
-    "LICENSE",
-    "README.md",
-    "lib/index.d.ts",
-    "lib/index.js"
-  ],
-  "keywords": [
-    "JavaScript Linter",
-    "check",
-    "checker",
-    "code",
-    "code checker",
-    "code linter",
-    "code standards",
-    "code style",
-    "enforce",
-    "eslint",
-    "eslintconfig",
-    "hint",
-    "jscs",
-    "jshint",
-    "lint",
-    "policy",
-    "quality",
-    "simple",
-    "style",
-    "style checker",
-    "style linter"
-  ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vinicunca/eslint-config.git"
-  },
+  "private": true,
+  "packageManager": "pnpm@8.6.8",
+  "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
-    "test": "vitest",
     "lint": "eslint .",
-    "build": "rimraf lib && tsc",
-    "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
-  },
-  "peerDependencies": {
-    "eslint": "^8.0.0"
+    "test": "pnpm -r run test",
+    "prepare": "pnpm -r run stub",
+    "release": "bumpp package.json packages/*/package.json --commit --push --tag --commit 'chore: release v'"
   },
   "devDependencies": {
-    "@types/eslint": "^8.44.2",
     "@types/node": "^20.6.0",
-    "@typescript-eslint/rule-tester": "^6.7.0",
     "bumpp": "^9.2.0",
     "eslint": "^8.49.0",
     "eslint-define-config": "^1.23.0",
     "rimraf": "^5.0.1",
-    "tsconfigs": "5.0.0",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.4"
+    "typescript": "^5.2.2"
   }
 }

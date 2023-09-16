@@ -1,0 +1,243 @@
+.prose {
+  h1:hover .header-anchor,
+  h1 .header-anchor:focus,
+  h2:hover .header-anchor,
+  h2 .header-anchor:focus,
+  h3:hover .header-anchor,
+  h3 .header-anchor:focus,
+  h4:hover .header-anchor,
+  h4 .header-anchor:focus,
+  h5:hover .header-anchor,
+  h5 .header-anchor:focus,
+  h6:hover .header-anchor,
+  h6 .header-anchor:focus {
+    @apply opacity-100;
+  }
+
+  /**
+  * Code
+  * -------------------------------------------------------------------------- */
+
+  /* inline code */
+  :not(pre, h1, h2, h3, h4, h5, h6) > code {
+    @apply text-size-[0.875em] text-$vd-code-color;
+  }
+
+  :not(pre) > code {
+    @apply rounded-1 bg-$vd-code-bg;
+    padding: 3px 6px;
+    
+    transition: color 0.5s, background-color 0.5s;
+  }
+
+  a > code {
+    @apply text-$vd-code-link-color transition-color-250;
+  }
+
+  a:hover > code {
+    @apply text-$vd-code-link-hover-color;
+  }
+
+  h1 > code,
+  h2 > code,
+  h3 > code {
+    font-size: 0.9em;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      letter-spacing: -0.02em;
+      line-height: 40px;
+      font-size: 32px;
+    }
+  }
+
+  div[class*='language-'] {
+    @apply relative my-4 -mx-6 bg-$vd-code-block-bg overflow-x-auto sm:(rounded-2 mx-0);
+
+    transition: background-color 0.5s;
+
+    + div[class*='language-'], + div[class$='-api'] > div[class*='language-'] {
+      @apply -mt-2;
+    }
+
+    pre, code {
+      direction: ltr;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+
+      @apply text-left tab whitespace-pre hyphens-none;
+    }
+
+    pre {
+      @apply relative z-1 m-0 py-5 bg-transparent overflow-x-auto;
+    }
+
+    code {
+      @apply block px-6 min-w-full w-[fit-content] leading-[1.7] text-size-[0.875em] text-$vd-code-block-color;
+
+      .highlight {
+        @apply block bg-$vd-code-line-highlight-color -mx-6 px-6;
+
+        transition: background-color 0.5s;
+        width: calc(100% + 2 * 24px);
+
+        &.error {
+          @apply bg-$vd-code-line-error-color;
+        }
+
+        &.warning {
+          @apply bg-$vd-code-line-warning-color;
+        }
+      }
+
+      .diff {
+        @apply inline-block -my-6 py-6 before:(absolute left-[10px]);
+
+        transition: background-color 0.5s;
+        margin: 0 -24px;
+        padding: 0 24px;
+        width: calc(100% + 2 * 24px);
+
+        &.remove {
+          @apply opacity-70 bg-$vd-code-line-diff-remove-color before:(content-[quoted:-] text-$vd-code-line-diff-remove-symbol-color);
+        }
+
+        &.add {
+          @apply opacity-70 bg-$vd-code-line-diff-add-color before:(content-[quoted:+] text-$vd-code-line-diff-add-symbol-color);
+        }
+      }
+    }
+
+    .has-focused-lines {
+      .line:not(.has-focus) {
+        filter: blur(0.095rem);
+        opacity: 0.7;
+        transition: filter 0.35s, opacity 0.35s;
+      }
+    }
+
+    &:hover {
+      .has-focused-lines .line:not(.has-focus) {
+        filter: blur(0);
+        opacity: 1;
+      }
+    }
+
+    &.line-numbers-mode {
+      @apply pl-8;
+    }
+
+    @apply sm:my-4;
+  }
+
+  div[class$='-api'] + div[class*='language-'] {
+    @apply -mt-2;
+  }
+
+  .code-group {
+    div[class*='language-'] {
+      @apply mt-0 rounded-t-0;
+    }
+  }
+
+  .line-numbers-wrapper {
+    @apply absolute top-0 bottom-0 left-0 z-3 border-r border-r-$vd-code-block-divider-color pt-5 w-8 text-center leading-[1.7] text-size-[0.875em] text-$vd-code-line-number-color;
+
+    transition: border-color 0.5s, color 0.5s;
+  }
+
+  /* Custom Block */
+  .custom-block {
+    @apply text-$vd-c-text-2;
+
+    p {
+      @apply my-2 leading-6;
+
+      &:first-child {
+        @apply m-0;
+      }
+    }
+
+    a {
+      @apply text-inherit font-600 hover:underline;
+    }
+
+    code {
+      @apply text-size-$vd-custom-block-code-font-size font-700 text-inherit;
+    }
+
+    div[class*='language-'] {
+      @apply my-2 mx-0 rounded-2;
+
+      code {
+        @apply font-400 bg-transparent;
+      }
+    }
+
+    p + p {
+      @apply my-2;
+    }
+
+    summary {
+      @apply cursor-pointer font-700 mb-2;
+
+      + p {
+        @apply my-2;
+      }
+    }
+
+    &.details {
+      @apply border-$vd-custom-block-details-border bg-$vd-custom-block-details-bg text-$vd-custom-block-details-text;
+
+      code {
+        @apply bg-$vd-custom-block-details-code-bg;
+      }
+    }
+
+    &.info {
+      @apply border-$vd-custom-block-info-border bg-$vd-custom-block-info-bg text-$vd-custom-block-info-text;
+
+      code {
+        @apply bg-$vd-custom-block-info-code-bg;
+      }
+    }
+
+    &.tip {
+      @apply border-$vd-custom-block-tip-border bg-$vd-custom-block-tip-bg text-$vd-custom-block-tip-text;
+
+      code {
+        @apply bg-$vd-custom-block-tip-code-bg;
+      }
+    }
+
+    &.warning {
+      @apply border-$vd-custom-block-warning-border bg-$vd-custom-block-warning-bg text-$vd-custom-block-warning-text;
+
+      code {
+        @apply bg-$vd-custom-block-warning-code-bg;
+      }
+    }
+
+    &.danger {
+      @apply border-$vd-custom-block-danger-border bg-$vd-custom-block-danger-bg text-$vd-custom-block-danger-text;
+
+      code {
+        @apply bg-$vd-custom-block-danger-code-bg;
+      }
+    }
+
+    &.custom-block {
+      th, blockquote > p {
+        @apply text-inherit text-size-$vd-custom-block-font-size;
+      }
+    }
+  }
+
+  @media (max-width: 639px) {
+    li div[class*='language-'] {
+      border-radius: 8px 0 0 8px;
+    }
+  }
+}
