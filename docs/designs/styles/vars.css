@@ -254,7 +254,7 @@
   --vd-code-block-bg: #292b30;
   --vd-code-block-divider-color: var(--vd-c-gutter);
 
-  --vd-code-lang-color: var(--vd-c-text-3);
+  --vd-code-lang-color: rgba(235, 235, 245, 0.38);
 
   --vd-code-line-highlight-color: var(--vd-c-default-soft);
   --vd-code-line-number-color: var(--vd-c-text-3);

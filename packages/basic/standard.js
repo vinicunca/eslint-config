@@ -16,8 +16,8 @@ module.exports = {
   },
 
   plugins: [
-    'import',
     'n',
+    'import',
     'promise',
   ],
 

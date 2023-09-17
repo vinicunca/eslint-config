@@ -25,7 +25,6 @@
     "@nuxtjs/algolia": "^1.9.0",
     "@nuxtjs/color-mode": "^3.3.0",
     "@unocss/eslint-config": "^0.55.7",
-
     "@unocss/nuxt": "^0.55.7",
     "@vinicunca/eslint-config": "^1.10.1",
     "@vueuse/core": "^10.4.1",

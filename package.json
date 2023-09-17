@@ -16,6 +16,7 @@
     "eslint": "^8.49.0",
     "eslint-define-config": "^1.23.0",
     "rimraf": "^5.0.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0"
   }
 }

@@ -1,3 +1,4 @@
 packages:
   - eslint
   - docs
+  - fixtures

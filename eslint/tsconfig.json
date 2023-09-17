@@ -1,23 +1,19 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "target": "es2018",
+    "module": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "Bundler",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node",
-    "newLine": "LF",
-    "noErrorTruncation": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
     "strict": true,
-    "target": "esnext",
-    "lib": ["ESNext"],
-    "module": "CommonJS",
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
     "types": [
-      "node"
+      "node",
     ],
-    "declaration": true,
-    "outDir": "lib"
   },
   "include": [
     "src/**/*.ts"

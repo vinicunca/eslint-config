@@ -1,6 +1,9 @@
 import { type FlatESLintConfigItem } from 'eslint-define-config';
 import globals from 'globals'
 
+// @ts-expect-error missing type
+import pluginN from 'eslint-plugin-n';
+
 const basicConfig: FlatESLintConfigItem[] = [
   {
     languageOptions: {
@@ -20,6 +23,14 @@ const basicConfig: FlatESLintConfigItem[] = [
         window: 'readonly'
       },
     },
+
+    plugins: {
+      n: pluginN,
+    },
+
+    rules: {
+      'accessor-pairs': ['error', { setWithoutGet: true, enforceForClassMembers: true }],
+    }
   },
 ];
 

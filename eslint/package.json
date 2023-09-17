@@ -1,5 +1,5 @@
 {
-  "name": "@vinicunca/eslint-config-monorepo",
+  "name": "@vinicunca/eslint-config-alpha",
   "version": "2.0.0-alpha.0",
   "packageManager": "pnpm@8.7.1",
   "author": {
@@ -13,11 +13,16 @@
   "engines": {
     "node": ">=18.0.0"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "files": [
-    "LICENSE",
-    "README.md",
-    "lib/index.d.ts",
-    "lib/index.js"
+    "dist"
   ],
   "keywords": [
     "JavaScript Linter",
@@ -42,8 +47,7 @@
     "style checker",
     "style linter"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -52,10 +56,13 @@
   "scripts": {
     "test": "vitest",
     "lint": "eslint .",
-    "build": "rimraf lib && tsc",
+    "build": "unbuild",
     "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },
   "peerDependencies": {
     "eslint": "^8.0.0"
+  },
+  "dependencies": {
+    "eslint-plugin-n": "^16.1.0"
   }
 }

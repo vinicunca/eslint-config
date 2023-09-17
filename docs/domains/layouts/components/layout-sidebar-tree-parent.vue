@@ -10,8 +10,6 @@ const emit = defineEmits<{
   (event: 'toggle'): void;
 }>();
 
-const isOpen = ref(false);
-
 function onToggle() {
   emit('toggle');
 }
