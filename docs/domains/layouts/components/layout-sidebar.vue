@@ -8,8 +8,6 @@ const props = defineProps<{
   isOpen: boolean;
 }>();
 
-// const { treeNav } = useVinDocs();
-
 // a11y: focus Nav element when menu has opened
 const navEl = ref<HTMLElement | null>(null);
 const isLocked = useScrollLock(isBrowser ? document.body : null);
@@ -31,10 +29,11 @@ watch(
 <template>
   <aside
     ref="navEl"
-    class="VDSidebar fixed inset-y-0 left-0 z-50 max-w-[320px] w-[calc(100vw-64px)] overflow-x-hidden overflow-y-auto overscroll-contain bg-$vd-sidebar-bg-color px-8 py-8 opacity-0 shadow-3 lg:(z-1 max-w-full w-$vd-sidebar-w translate-x-0 pt-$vd-nav-height opacity-100 shadow-none) 2xl:(w-[calc((100%-(var(--vd-layout-max-w)-64px))/2+var(--vd-sidebar-w)-32px)] pl-[max(32px,calc((100%-(var(--vd-layout-max-w)-64px))/2))]) -translate-x-full dark:shadow-1"
+    class="VDSidebar bg-$vd-sidebar-bg-color z-50 fixed inset-y-0 left-0 max-w-[320px] w-[calc(100vw-64px)] overflow-x-hidden overflow-y-auto overscroll-contain  px-8 py-8 shadow-3 dark:shadow-1 lg:(z-1 max-w-full w-$vd-sidebar-w translate-x-0 pt-$vd-nav-height opacity-100 shadow-none) 2xl:(w-[calc((100%-(var(--vd-layout-max-w)-64px))/2+var(--vd-sidebar-w)-32px)] pl-[max(32px,calc((100%-(var(--vd-layout-max-w)-64px))/2))])"
     :class="[
       {
         'open opacity-100 translate-x-0': isOpen,
+        'opacity-0 -translate-x-full': !isOpen,
       },
     ]"
     @click.stop

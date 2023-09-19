@@ -1,9 +1,14 @@
 <script lang="ts" setup>
+// @ts-expect-error export typings
+import { parseMarkdown } from '@nuxtjs/mdc/runtime';
+
 const props = defineProps<{ id?: string }>();
 
 const sourceUrl = computed(() => `https://eslint.org/docs/latest/rules/${props.id}`);
 
 const { page } = useContent();
+
+const result = await parseMarkdown(page.value.description);
 </script>
 
 <template>
@@ -12,9 +17,7 @@ const { page } = useContent();
       <slot />
     </h1>
 
-    <p>
-      {{ page.description }}
-    </p>
+    <ContentRendererMarkdown :value="result" />
 
     <NuxtLink
       :href="sourceUrl"

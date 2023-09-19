@@ -39,7 +39,7 @@ const classes = computed(() => ({
       aria-controls="VDSidebarNav"
       @click="$emit('openSidebar')"
     >
-      <i class="i-docs-align-left mr-2 h-4 w-4" />
+      <i class="i-uil:align-left mr-2 h-4 w-4" />
 
       <span>
         Menu

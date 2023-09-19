@@ -16,8 +16,8 @@ const isDark = computed(() => colorMode.value === 'dark');
       :model-value="isDark"
       @update:model-value="toggleColorMode"
     >
-      <i class="i-docs-sun opacity-100 dark:opacity-0" />
-      <i class="i-docs-moon opacity-0 dark:opacity-100" />
+      <i class="i-radix-icons:sun opacity-100 dark:opacity-0" />
+      <i class="i-radix-icons:moon opacity-0 dark:opacity-100" />
     </CoreSwitch>
   </ColorScheme>
 </template>

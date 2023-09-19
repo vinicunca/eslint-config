@@ -1,5 +1,5 @@
 export function useNav() {
-  const isDrawerOpen = useState(() => false);
+  const isDrawerOpen = ref(false);
 
   function openDrawer() {
     isDrawerOpen.value = true;
@@ -15,7 +15,7 @@ export function useNav() {
     isDrawerOpen.value ? closeDrawer() : openDrawer();
   }
 
-  const isSidebarOpen = useState(() => false);
+  const isSidebarOpen = ref(false);
 
   function openSidebar() {
     isSidebarOpen.value = true;
