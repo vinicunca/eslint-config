@@ -26,8 +26,6 @@ watch(
   },
   { immediate: true, flush: 'post' },
 );
-
-const { navigation } = useContent();
 </script>
 
 <template>
@@ -45,7 +43,6 @@ const { navigation } = useContent();
     <div class="sticky left-0 z-1 mt-[calc(var(--vd-nav-height)*-1)] h-$vd-nav-height bg-$vd-sidebar-bg-color -top-16 -mx-8" />
     <nav
       id="VDSidebarNav"
-      class="h-full"
       aria-labelledby="sidebar-aria-label"
       tabindex="-1"
     >
@@ -56,7 +53,7 @@ const { navigation } = useContent();
         Sidebar Navigation
       </span>
 
-      <LayoutSidebarTree :links="navigation" />
+      <LayoutSidebarTree />
     </nav>
   </aside>
 </template>

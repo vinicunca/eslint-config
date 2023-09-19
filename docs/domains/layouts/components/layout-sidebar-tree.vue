@@ -1,57 +1,68 @@
 <script setup lang="ts">
-import { type PropType } from 'vue';
+import { groupBy, sleep } from '@vinicunca/perkakas';
 
-import LayoutSidebarTreeParent from './layout-sidebar-tree-parent.vue';
+import { type INavItem } from '~/typings';
+import CoreList from '~/domains/core/components/list/core-list.vue';
 
-const props = defineProps({
-  links: {
-    type: Array as PropType<any>,
-    default: () => [],
-  },
+const { navigation } = useContent();
+
+const opened = ref<string[]>([]);
+
+const navItems = computed(() => (navigation.value as INavItem[]).map((item) => {
+  const navItem = item._path === '/basic' ? groupBasicRules(item) : item;
+
+  return {
+    title: navItem.title,
+    value: item.title,
+    icon: navItem.icon,
+    children: navItem.children,
+    _path: navItem.children ? undefined : navItem._path,
+  };
+}));
+
+function groupBasicRules(navItem: INavItem) {
+  const groupByTypes = groupBy(navItem.children!, (child) => child.type);
+
+  const navChildren: INavItem[] = [];
+
+  Object.entries(groupByTypes).forEach(([title, children]) => {
+    if (title === 'Possible Problems') {
+      navChildren[0] = { title, children };
+    } else if (title === 'Suggestions') {
+      navChildren[1] = { title, children };
+    } else {
+      navChildren[2] = { title, children };
+    }
+  });
+
+  return {
+    ...navItem,
+    children: navChildren,
+  };
+}
+
+onMounted(async () => {
+  await sleep(1000);
+
+  const element = document.querySelector('#app-sidebar .router-link-active');
+
+  if (!element) {
+    return;
+  };
+
+  element.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'center',
+  });
 });
-
-const route = useRoute();
-
-const collapsedMap = useState('vin-docs-aside-collapse-map', () => {
-  return (props.links as any [])
-    .filter((link) => !!link.children)
-    .reduce((map, link) => {
-      map[link._path] = !route.path.startsWith(link._path);
-      return map;
-    }, {});
-});
-
-function isCollapsed(link: any) {
-  return collapsedMap.value[link._path];
-};
-
-function toggleCollapse(link: any) {
-  return collapsedMap.value[link._path] = !isCollapsed(link);
-};
 </script>
 
 <template>
-  <ul class="h-full flex flex-col">
-    <li
-      v-for="link in links"
-      :key="link._path"
-      class="next:(border-t border-$vd-c-divider)"
-    >
-      <LayoutSidebarTreeParent
-        v-if="link.children"
-        :link="link"
-        :is-collapsed="isCollapsed(link)"
-        @toggle="toggleCollapse(link)"
-      />
-
-      <NuxtLink
-        v-else
-        :to="link._path"
-        class="flex py-4 text-sm font-500 leading-6 transition-color-280 hover:text-$vd-c-brand-1"
-        active-class="text-$vd-c-brand-1"
-      >
-        {{ link?.navigation?.title || link.title || link._path }}
-      </NuxtLink>
-    </li>
-  </ul>
+  <CoreList
+    id="app-sidebar"
+    v-model:opened="opened"
+    class="mt-3"
+    :nav-items="navItems"
+  />
 </template>

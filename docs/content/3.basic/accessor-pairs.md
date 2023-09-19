@@ -1,7 +1,7 @@
 ---
 description: 'Enforce getter and setter pairs in objects and classes'
 navigation:
-  type: 'suggestions'
+  type: 'Suggestions'
 ---
 
 # `accessor-pairs`

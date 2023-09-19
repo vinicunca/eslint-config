@@ -241,3 +241,15 @@
     }
   }
 }
+
+.expand-transition-enter-active {
+  transition-duration: 0.3s !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.expand-transition-leave-active {
+  transition-duration: 0.3s !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.expand-transition-enter-active, .expand-transition-leave-active {
+  transition-property: height !important;
+}
