@@ -24,14 +24,14 @@
     "@nuxt/devtools": "^0.8.3",
     "@nuxtjs/algolia": "^1.9.0",
     "@nuxtjs/color-mode": "^3.3.0",
-    "@unocss/eslint-config": "^0.55.7",
-    "@unocss/nuxt": "^0.55.7",
+    "@unocss/eslint-config": "^0.56.0",
+    "@unocss/nuxt": "^0.56.0",
     "@vinicunca/eslint-config": "^1.10.1",
     "@vueuse/core": "^10.4.1",
     "nuxt": "^3.7.3",
     "postcss-nested": "^6.0.1",
     "typescript": "^5.2.2",
-    "unocss": "^0.55.7",
+    "unocss": "^0.56.0",
     "vitest": "^0.34.4"
   }
 }

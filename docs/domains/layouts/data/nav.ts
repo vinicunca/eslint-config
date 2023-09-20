@@ -1,9 +1,6 @@
-export interface NavItem {
-  title: string;
-  _path?: string;
-}
+import { type INavItem } from '~/typings';
 
-export const navItems: NavItem[] = [
+export const navItems: INavItem[] = [
   {
     title: 'Installation',
     _path: '/installation',

@@ -31,12 +31,6 @@ module.exports = {
     'no-var': 'warn',
     'object-shorthand': ['warn', 'properties'],
 
-    'accessor-pairs': ['error', { setWithoutGet: true, enforceForClassMembers: true }],
-    'array-bracket-spacing': ['error', 'never'],
-    'array-callback-return': ['error', {
-      allowImplicit: false,
-      checkForEach: false,
-    }],
     'arrow-spacing': ['error', { before: true, after: true }],
     'block-spacing': ['error', 'always'],
     'brace-style': ['error', '1tbs', { allowSingleLine: true }],
@@ -55,7 +49,7 @@ module.exports = {
     'comma-spacing': ['error', { before: false, after: true }],
     'comma-style': ['error', 'last'],
     'computed-property-spacing': ['error', 'never', { enforceForClassMembers: true }],
-    'constructor-super': 'error',
+    
     'curly': ['error', 'multi-line'],
     'default-case-last': 'error',
     'dot-location': ['error', 'property'],

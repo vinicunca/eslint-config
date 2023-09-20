@@ -29,7 +29,28 @@ const basicConfig: FlatESLintConfigItem[] = [
     },
 
     rules: {
+      /**
+       * --------- Possible Problems ---------
+       */
+      'array-callback-return': ['error', { checkForEach: true }],
+
+      'constructor-super': 'error',
+      
+      /**
+       * --------- Suggestions ---------
+       */
       'accessor-pairs': ['error', { setWithoutGet: true, enforceForClassMembers: true }],
+      
+      /**
+       * --------- Layout & Formatting ---------
+       */
+      'array-bracket-newline': ['error', 'consistent'],
+
+      'array-bracket-spacing': ['error', 'never'],
+
+      'array-element-newline': ['error', 'consistent'],
+
+      'arrow-parens': ['error', 'always'],
     }
   },
 ];

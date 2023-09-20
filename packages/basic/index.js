@@ -243,9 +243,6 @@ module.exports = {
     ],
 
     'no-param-reassign': 'off',
-    'array-bracket-newline': ['error', 'consistent'],
-    'array-element-newline': ['error', 'consistent'],
-    'array-bracket-spacing': ['error', 'never'],
     'brace-style': ['error'],
     'block-spacing': ['error', 'always'],
     'camelcase': 'off',
@@ -310,7 +307,6 @@ module.exports = {
     'prefer-spread': 'error',
     'prefer-template': 'error',
     'template-curly-spacing': 'error',
-    'arrow-parens': ['error', 'always'],
     'generator-star-spacing': 'off',
     'spaced-comment': ['error', 'always', {
       line: {
@@ -325,7 +321,6 @@ module.exports = {
     }],
 
     // personal preferences
-    'array-callback-return': 'error',
     'block-scoped-var': 'error',
     'consistent-return': 'off',
     'complexity': 'off',

@@ -7,8 +7,7 @@ import LayoutMobileNav from '~~/domains/layouts/components/layout-mobile-nav.vue
 import LayoutSidebar from '~~/domains/layouts/components/layout-sidebar.vue';
 import LayoutOutlineDropdown from '~~/domains/layouts/components/layout-outline-dropdown.vue';
 import LayoutAside from '~~/domains/layouts/components/layout-aside.vue';
-
-// import LayoutFooter from '~~/domains/layouts/components/layout-footer.vue';
+import LayoutFooter from '~~/domains/layouts/components/layout-footer.vue';
 
 const { isSidebarOpen, openSidebar, closeSidebar } = useNav();
 </script>
@@ -59,12 +58,12 @@ const { isSidebarOpen, openSidebar, closeSidebar } = useNav();
               <main class="prose">
                 <slot />
               </main>
+
+              <LayoutFooter />
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- <LayoutFooter /> -->
   </div>
 </template>

@@ -100,8 +100,6 @@ importers:
         specifier: ^16.1.0
         version: 16.1.0(eslint@8.49.0)
 
-  fixtures: {}
-
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
