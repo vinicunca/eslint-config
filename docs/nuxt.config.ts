@@ -1,3 +1,4 @@
+import process from 'node:process';
 import { createResolver } from '@nuxt/kit';
 
 const { resolve } = createResolver(import.meta.url);

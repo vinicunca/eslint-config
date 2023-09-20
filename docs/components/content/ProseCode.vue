@@ -31,7 +31,7 @@ defineProps({
     :class="[
       `language-${language}`,
       {
-        'line-numbers': !['sh','bash'].includes(language),
+        'line-numbers': !['sh', 'bash'].includes(language),
         'invalid': meta === 'invalid',
         'valid': meta === 'valid',
       },

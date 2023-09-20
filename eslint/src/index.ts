@@ -1,8 +1,8 @@
-import { defineFlatConfig } from 'eslint-define-config';
-import basicConfig from './basic';
+import { vinicuncaESLint } from './base';
 
-export const defineConfig = defineFlatConfig;
+export * from './base';
+export * from './configs';
+export * from './types';
+export * from './utils';
 
-export const vinicuncaESLint = [
-  ...basicConfig,
-]
+export default vinicuncaESLint;

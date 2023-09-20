@@ -1,0 +1,296 @@
+{
+  "array-callback-return": {
+    "description": "Enforce `return` statements in callbacks of array methods",
+    "url": "https://eslint.org/docs/latest/rules/array-callback-return",
+    "options": [
+      "error",
+      {
+        "checkForEach": true
+      }
+    ]
+  },
+  "constructor-super": {
+    "description": "Require `super()` calls in constructors",
+    "url": "https://eslint.org/docs/latest/rules/constructor-super",
+    "options": "error"
+  },
+  "for-direction": {
+    "description": "Enforce \"for\" loop update clause moving the counter in the right direction",
+    "url": "https://eslint.org/docs/latest/rules/for-direction",
+    "options": "error"
+  },
+  "no-async-promise-executor": {
+    "description": "Disallow using an async function as a Promise executor",
+    "url": "https://eslint.org/docs/latest/rules/no-async-promise-executor",
+    "options": "error"
+  },
+  "no-await-in-loop": {
+    "description": "Disallow `await` inside of loops",
+    "url": "https://eslint.org/docs/latest/rules/no-await-in-loop",
+    "options": "error"
+  },
+  "no-class-assign": {
+    "description": "Disallow reassigning class members",
+    "url": "https://eslint.org/docs/latest/rules/no-class-assign",
+    "options": "error"
+  },
+  "no-compare-neg-zero": {
+    "description": "Disallow comparing against -0",
+    "url": "https://eslint.org/docs/latest/rules/no-compare-neg-zero",
+    "options": "error"
+  },
+  "no-cond-assign": {
+    "description": "Disallow assignment operators in conditional expressions",
+    "url": "https://eslint.org/docs/latest/rules/no-cond-assign",
+    "options": [
+      "error",
+      "always"
+    ]
+  },
+  "no-const-assign": {
+    "description": "Disallow reassigning `const` variables",
+    "url": "https://eslint.org/docs/latest/rules/no-const-assign",
+    "options": "error"
+  },
+  "no-constant-binary-expression": {
+    "description": "Disallow expressions where the operation doesn't affect the value",
+    "url": "https://eslint.org/docs/latest/rules/no-constant-binary-expression",
+    "options": "error"
+  },
+  "no-constant-condition": {
+    "description": "Disallow constant expressions in conditions",
+    "url": "https://eslint.org/docs/latest/rules/no-constant-condition",
+    "options": [
+      "error",
+      {
+        "checkLoops": false
+      }
+    ]
+  },
+  "no-constructor-return": {
+    "description": "Disallow returning value from constructor",
+    "url": "https://eslint.org/docs/latest/rules/no-constructor-return",
+    "options": "error"
+  },
+  "no-control-regex": {
+    "description": "Disallow control characters in regular expressions",
+    "url": "https://eslint.org/docs/latest/rules/no-control-regex",
+    "options": "error"
+  },
+  "no-debugger": {
+    "description": "Disallow the use of `debugger`",
+    "url": "https://eslint.org/docs/latest/rules/no-debugger",
+    "options": "error"
+  },
+  "no-dupe-args": {
+    "description": "Disallow duplicate arguments in `function` definitions",
+    "url": "https://eslint.org/docs/latest/rules/no-dupe-args",
+    "options": "error"
+  },
+  "no-dupe-class-members": {
+    "description": "Disallow duplicate class members",
+    "url": "https://eslint.org/docs/latest/rules/no-dupe-class-members",
+    "options": "error"
+  },
+  "no-dupe-else-if": {
+    "description": "Disallow duplicate conditions in if-else-if chains",
+    "url": "https://eslint.org/docs/latest/rules/no-dupe-else-if",
+    "options": "error"
+  },
+  "no-dupe-keys": {
+    "description": "Disallow duplicate keys in object literals",
+    "url": "https://eslint.org/docs/latest/rules/no-dupe-keys",
+    "options": "error"
+  },
+  "no-duplicate-case": {
+    "description": "Disallow duplicate case labels",
+    "url": "https://eslint.org/docs/latest/rules/no-duplicate-case",
+    "options": "error"
+  },
+  "no-empty-character-class": {
+    "description": "Disallow empty character classes in regular expressions",
+    "url": "https://eslint.org/docs/latest/rules/no-empty-character-class",
+    "options": "error"
+  },
+  "no-empty-pattern": {
+    "description": "Disallow empty destructuring patterns",
+    "url": "https://eslint.org/docs/latest/rules/no-empty-pattern",
+    "options": "error"
+  },
+  "no-ex-assign": {
+    "description": "Disallow reassigning exceptions in `catch` clauses",
+    "url": "https://eslint.org/docs/latest/rules/no-ex-assign",
+    "options": "error"
+  },
+  "no-fallthrough": {
+    "description": "Disallow fallthrough of `case` statements",
+    "url": "https://eslint.org/docs/latest/rules/no-fallthrough",
+    "options": "error"
+  },
+  "no-func-assign": {
+    "description": "Disallow reassigning `function` declarations",
+    "url": "https://eslint.org/docs/latest/rules/no-func-assign",
+    "options": "error"
+  },
+  "no-import-assign": {
+    "description": "Disallow assigning to imported bindings",
+    "url": "https://eslint.org/docs/latest/rules/no-import-assign",
+    "options": "error"
+  },
+  "no-invalid-regexp": {
+    "description": "Disallow invalid regular expression strings in `RegExp` constructors",
+    "url": "https://eslint.org/docs/latest/rules/no-invalid-regexp",
+    "options": "error"
+  },
+  "no-irregular-whitespace": {
+    "description": "Disallow irregular whitespace",
+    "url": "https://eslint.org/docs/latest/rules/no-irregular-whitespace",
+    "options": "error"
+  },
+  "no-loss-of-precision": {
+    "description": "Disallow literal numbers that lose precision",
+    "url": "https://eslint.org/docs/latest/rules/no-loss-of-precision",
+    "options": "error"
+  },
+  "no-misleading-character-class": {
+    "description": "Disallow characters which are made with multiple code points in character class syntax",
+    "url": "https://eslint.org/docs/latest/rules/no-misleading-character-class",
+    "options": "error"
+  },
+  "no-new-symbol": {
+    "description": "Disallow `new` operators with the `Symbol` object",
+    "url": "https://eslint.org/docs/latest/rules/no-new-symbol",
+    "options": "error"
+  },
+  "no-obj-calls": {
+    "description": "Disallow calling global object properties as functions",
+    "url": "https://eslint.org/docs/latest/rules/no-obj-calls",
+    "options": "error"
+  },
+  "no-promise-executor-return": {
+    "description": "Disallow returning values from Promise executor functions",
+    "url": "https://eslint.org/docs/latest/rules/no-promise-executor-return",
+    "options": "error"
+  },
+  "no-prototype-builtins": {
+    "description": "Disallow calling some `Object.prototype` methods directly on objects",
+    "url": "https://eslint.org/docs/latest/rules/no-prototype-builtins",
+    "options": "error"
+  },
+  "no-self-assign": {
+    "description": "Disallow assignments where both sides are exactly the same",
+    "url": "https://eslint.org/docs/latest/rules/no-self-assign",
+    "options": [
+      "error",
+      {
+        "props": true
+      }
+    ]
+  },
+  "no-self-compare": {
+    "description": "Disallow comparisons where both sides are exactly the same",
+    "url": "https://eslint.org/docs/latest/rules/no-self-compare",
+    "options": "error"
+  },
+  "no-sparse-arrays": {
+    "description": "Disallow sparse arrays",
+    "url": "https://eslint.org/docs/latest/rules/no-sparse-arrays",
+    "options": "error"
+  },
+  "no-template-curly-in-string": {
+    "description": "Disallow template literal placeholder syntax in regular strings",
+    "url": "https://eslint.org/docs/latest/rules/no-template-curly-in-string",
+    "options": "error"
+  },
+  "no-this-before-super": {
+    "description": "Disallow `this`/`super` before calling `super()` in constructors",
+    "url": "https://eslint.org/docs/latest/rules/no-this-before-super",
+    "options": "error"
+  },
+  "no-undef": {
+    "description": "Disallow the use of undeclared variables unless mentioned in `/*global */` comments",
+    "url": "https://eslint.org/docs/latest/rules/no-undef",
+    "options": "error"
+  },
+  "no-unexpected-multiline": {
+    "description": "Disallow confusing multiline expressions",
+    "url": "https://eslint.org/docs/latest/rules/no-unexpected-multiline",
+    "options": "error"
+  },
+  "no-unmodified-loop-condition": {
+    "description": "Disallow unmodified loop conditions",
+    "url": "https://eslint.org/docs/latest/rules/no-unmodified-loop-condition",
+    "options": "error"
+  },
+  "no-unreachable": {
+    "description": "Disallow unreachable code after `return`, `throw`, `continue`, and `break` statements",
+    "url": "https://eslint.org/docs/latest/rules/no-unreachable",
+    "options": "error"
+  },
+  "no-unreachable-loop": {
+    "description": "Disallow loops with a body that allows only one iteration",
+    "url": "https://eslint.org/docs/latest/rules/no-unreachable-loop",
+    "options": "error"
+  },
+  "no-unsafe-finally": {
+    "description": "Disallow control flow statements in `finally` blocks",
+    "url": "https://eslint.org/docs/latest/rules/no-unsafe-finally",
+    "options": "error"
+  },
+  "no-unsafe-negation": {
+    "description": "Disallow negating the left operand of relational operators",
+    "url": "https://eslint.org/docs/latest/rules/no-unsafe-negation",
+    "options": "error"
+  },
+  "no-unused-vars": {
+    "description": "Disallow unused variables",
+    "url": "https://eslint.org/docs/latest/rules/no-unused-vars",
+    "options": [
+      "error",
+      {
+        "args": "none",
+        "caughtErrors": "none",
+        "ignoreRestSiblings": true,
+        "vars": "all"
+      }
+    ]
+  },
+  "no-use-before-define": {
+    "description": "Disallow the use of variables before they are defined",
+    "url": "https://eslint.org/docs/latest/rules/no-use-before-define",
+    "options": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": true
+      }
+    ]
+  },
+  "no-useless-backreference": {
+    "description": "Disallow useless backreferences in regular expressions",
+    "url": "https://eslint.org/docs/latest/rules/no-useless-backreference",
+    "options": "error"
+  },
+  "use-isnan": {
+    "description": "Require calls to `isNaN()` when checking for `NaN`",
+    "url": "https://eslint.org/docs/latest/rules/use-isnan",
+    "options": [
+      "error",
+      {
+        "enforceForSwitchCase": true,
+        "enforceForIndexOf": true
+      }
+    ]
+  },
+  "valid-typeof": {
+    "description": "Enforce comparing `typeof` expressions against valid strings",
+    "url": "https://eslint.org/docs/latest/rules/valid-typeof",
+    "options": [
+      "error",
+      {
+        "requireStringLiterals": true
+      }
+    ]
+  }
+}

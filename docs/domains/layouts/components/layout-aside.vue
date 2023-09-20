@@ -3,7 +3,6 @@ import { useActiveAnchor } from '../composables/use-active-anchor';
 import LayoutOutlineItem from './layout-outline-item.vue';
 
 const { toc } = useContent();
-
 const tocLinks = computed(() => toc.value?.links ?? []);
 
 const container = ref();
@@ -17,7 +16,7 @@ useActiveAnchor(container, marker);
     ref="container"
   >
     <div
-      v-if="toc"
+      v-if="toc && toc.links.length > 0"
       class="relative border-l border-$vd-c-divider pl-4 text-size-[13px] font-500"
     >
       <div

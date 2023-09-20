@@ -55,7 +55,9 @@ export const expandTransitionFunctions = {
     el.style.height = `${el.offsetHeight}px`;
     void el.offsetHeight; // force reflow
 
-    requestAnimationFrame(() => (el.style.height = '0'));
+    requestAnimationFrame(() => {
+      el.style.height = '0';
+    });
   },
 
   onAfterLeave,

@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "lint": "eslint .",
     "generate": "nuxt generate",
     "upgrade": "nuxi upgrade --force",
     "clean": "nuxt cleanup",
@@ -26,12 +27,10 @@
     "@nuxtjs/color-mode": "^3.3.0",
     "@unocss/eslint-config": "^0.56.0",
     "@unocss/nuxt": "^0.56.0",
-    "@vinicunca/eslint-config": "^1.10.1",
     "@vueuse/core": "^10.4.1",
     "nuxt": "^3.7.3",
     "postcss-nested": "^6.0.1",
     "typescript": "^5.2.2",
-    "unocss": "^0.56.0",
-    "vitest": "^0.34.4"
+    "unocss": "^0.56.0"
   }
 }
