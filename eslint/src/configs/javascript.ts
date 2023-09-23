@@ -1,7 +1,7 @@
 import globals from 'globals';
 import type { FlatESLintConfigItem } from 'eslint-define-config';
+import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
 import { pluginUnusedImports } from '../plugins';
-
 import type { OptionsIsInEditor } from '../types';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 
@@ -382,7 +382,7 @@ export function javascript(options: OptionsIsInEditor = {}): FlatESLintConfigIte
       },
     },
     {
-      files: ['scripts/**/*.*', 'cli.*'],
+      files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
       rules: {
         'no-console': OFF,
       },
