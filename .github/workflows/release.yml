@@ -21,14 +21,15 @@ jobs:
       - name: Setup
         run: npm i -g pnpm
 
-      - run: pnpm dlx conventional-github-releaser -p angular
-        env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Generate Changelog
+        run: pnpm dlx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
       - name: Publish to NPM
-        run: pnpm -r publish --access public --no-git-checks
+        run: pnpm run registry
         env:
           NODE_AUTH_TOKEN: ${{ secrets.VINICUNCA_NPM_TOKEN }}
