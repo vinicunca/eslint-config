@@ -11,6 +11,7 @@
     "postinstall": "pnpm -r run stub",
     "build:lib": "pnpm -C eslint build",
     "prepublish": "pnpm run build:lib",
+    "release": "pnpm -C eslint release",
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
