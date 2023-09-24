@@ -1,6 +1,8 @@
 import process from 'node:process';
+import fs from 'node:fs';
 
 import { type FlatESLintConfigItem } from 'eslint-define-config';
+import gitignore from 'eslint-config-flat-gitignore';
 import { isPackageExists } from 'local-pkg';
 import { isBoolean } from '@vinicunca/perkakas';
 
@@ -42,8 +44,21 @@ export function vinicuncaESLint(
   const enableVue = options.vue ?? (isPackageExists('vue') || isPackageExists('nuxt') || isPackageExists('vitepress') || isPackageExists('@slidev/cli'));
   const enableTypeScript = options.typescript ?? (isPackageExists('typescript'));
   const enableStylistic = options.stylistic ?? true;
+  const enableGitignore = options.gitignore ?? true;
 
-  const configs = [
+  const configs: FlatESLintConfigItem[][] = [];
+
+  if (enableGitignore) {
+    if (typeof enableGitignore !== 'boolean') {
+      configs.push([gitignore(enableGitignore)]);
+    } else {
+      if (fs.existsSync('.gitignore')) {
+        configs.push([gitignore()]);
+      };
+    }
+  }
+
+  configs.push(
     ignores,
     javascript({ isInEditor }),
     comments,
@@ -51,7 +66,7 @@ export function vinicuncaESLint(
     jsdoc,
     imports,
     unicorn,
-  ];
+  );
 
   // In the future we may support more component extensions like Svelte or so
   const componentExts: string[] = [];
