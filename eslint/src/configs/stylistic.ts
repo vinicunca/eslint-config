@@ -118,6 +118,9 @@ export const javascriptStylistic: FlatESLintConfigItem[] = [
       'style/template-tag-spacing': [ERROR, NEVER],
 
       'style/yield-star-spacing': [ERROR, 'both'],
+
+      'vinicunca/consistent-list-newline': ERROR,
+      'vinicunca/if-newline': ERROR,
     },
   },
 ];

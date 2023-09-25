@@ -115,6 +115,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.7.2
         version: 6.7.2(eslint@8.50.0)(typescript@5.2.2)
+      '@vinicunca/eslint-plugin-vinicunca':
+        specifier: 1.0.0-beta.0
+        version: 1.0.0-beta.0(eslint@8.50.0)(typescript@5.2.2)
       eslint:
         specifier: ^8.50.0
         version: 8.50.0
@@ -2889,6 +2892,16 @@ packages:
       - encoding
       - supports-color
     dev: true
+
+  /@vinicunca/eslint-plugin-vinicunca@1.0.0-beta.0(eslint@8.50.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-xlF4a3uasUoslbg/QDlLeFOtdDgKigPegUtz5rIP6MZ5BiFngUZLjOa7ehXiSqsqDxSFgTtcnjBD4Krsw8/Ftw==}
+    dependencies:
+      '@typescript-eslint/utils': 6.7.2(eslint@8.50.0)(typescript@5.2.2)
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+      - typescript
+    dev: false
 
   /@vinicunca/perkakas@0.0.4:
     resolution: {integrity: sha512-dAbUcRWaSNWfA6zuIrJow+4A5HVai7/NW7PbhCWwi+Nh3SKhUJTBYuv2xuw1y+U3+5s8o4sB63kKW9NDKeKQ0Q==}

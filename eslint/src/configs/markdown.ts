@@ -39,8 +39,8 @@ export function markdown(options: OptionsComponentExts = {}): FlatESLintConfigIt
       rules: {
         ...pluginMarkdown.configs.recommended.overrides[1].rules,
 
-        // 'antfu/no-cjs-exports': OFF,
-        // 'antfu/no-ts-export-equal': OFF,
+        'vinicunca/no-cjs-exports': OFF,
+        'vinicunca/no-ts-export-equal': OFF,
 
         'import/no-unresolved': OFF,
 

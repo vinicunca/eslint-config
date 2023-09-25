@@ -1,7 +1,7 @@
 import globals from 'globals';
 import type { FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
-import { pluginUnusedImports } from '../plugins';
+import { pluginUnusedImports, pluginVinicunca } from '../plugins';
 import type { OptionsIsInEditor } from '../types';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 
@@ -332,6 +332,12 @@ const rulesLayout: FlatESLintConfigItem['rules'] = {
   'unicode-bom': [ERROR, NEVER],
 };
 
+const rulesVinicunca: FlatESLintConfigItem['rules'] = {
+  'vinicunca/import-dedupe': ERROR,
+  'vinicunca/no-import-node-modules-by-path': ERROR,
+  'vinicunca/top-level-function': ERROR,
+};
+
 export function javascript(options: OptionsIsInEditor = {}): FlatESLintConfigItem[] {
   const rulesUnusedImports: FlatESLintConfigItem['rules'] = {
     'unused-imports/no-unused-imports': options.isInEditor ? OFF : ERROR,
@@ -370,7 +376,7 @@ export function javascript(options: OptionsIsInEditor = {}): FlatESLintConfigIte
       },
 
       plugins: {
-        // 'antfu': pluginAntfu,
+        'vinicunca': pluginVinicunca,
         'unused-imports': pluginUnusedImports,
       },
 
@@ -379,6 +385,7 @@ export function javascript(options: OptionsIsInEditor = {}): FlatESLintConfigIte
         ...rulesSuggestions,
         ...rulesLayout,
         ...rulesUnusedImports,
+        ...rulesVinicunca,
       },
     },
     {

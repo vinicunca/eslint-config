@@ -1,7 +1,7 @@
 import process from 'node:process';
 import type { FlatESLintConfigItem } from 'eslint-define-config';
 import type { OptionsComponentExts, OptionsTypeScriptWithLanguageServer } from '../types';
-import { parserTs, pluginImport, pluginTs } from '../plugins';
+import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
 import { ERROR, OFF } from '../flags';
 import { GLOB_TS, GLOB_TSX } from '../globs';
@@ -27,7 +27,7 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
       },
 
       plugins: {
-        // antfu: pluginAntfu,
+        vinicunca: pluginVinicunca,
         import: pluginImport,
         ts: pluginTs as any,
       },
@@ -107,6 +107,13 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
         'ts/prefer-ts-expect-error': ERROR,
 
         'ts/triple-slash-reference': OFF,
+
+        'vinicunca/generic-spacing': ERROR,
+        'vinicunca/named-tuple-spacing': ERROR,
+        'vinicunca/no-cjs-exports': ERROR,
+        'vinicunca/no-const-enum': ERROR,
+        'vinicunca/no-ts-export-equal': ERROR,
+        'vinicunca/prefer-inline-type-import': ERROR,
       },
     },
     {
