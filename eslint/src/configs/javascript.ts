@@ -1,8 +1,8 @@
 import globals from 'globals';
-import type { FlatESLintConfigItem } from 'eslint-define-config';
+import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
 import { pluginUnusedImports, pluginVinicunca } from '../plugins';
-import type { OptionsIsInEditor } from '../types';
+import { type OptionsIsInEditor } from '../types';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 
 const rulesProblems: FlatESLintConfigItem['rules'] = {
@@ -322,10 +322,6 @@ const rulesLayout: FlatESLintConfigItem['rules'] = {
   'new-parens': ERROR,
 
   'no-extra-parens': [ERROR, 'functions'],
-
-  'quotes': [ERROR, 'single'],
-
-  'semi': [ERROR, ALWAYS],
 
   'wrap-iife': [ERROR, 'any', { functionPrototypeMethods: true }],
 

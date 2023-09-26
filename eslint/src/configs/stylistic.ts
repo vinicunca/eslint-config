@@ -1,19 +1,14 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config';
-import { packages } from '@eslint-stylistic/metadata';
-import { pluginStylisticJs, pluginStylisticTs, pluginTs } from '../plugins';
-import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
+import { type FlatESLintConfigItem } from 'eslint-define-config';
+import { pluginStylistic } from '../plugins';
+import { ALWAYS, CONSISTENT, ERROR, NEVER } from '../flags';
 
-const tsPackage = packages.find((i) => i.shortId === 'ts')!;
-
-export const javascriptStylistic: FlatESLintConfigItem[] = [
+export const stylistic: FlatESLintConfigItem[] = [
   {
     plugins: {
-      style: pluginStylisticJs,
+      style: pluginStylistic,
     },
 
     rules: {
-      'comma-dangle': [ERROR, 'always-multiline'],
-
       'style/array-bracket-newline': [ERROR, CONSISTENT],
 
       'style/array-bracket-spacing': [ERROR, NEVER],
@@ -59,6 +54,8 @@ export const javascriptStylistic: FlatESLintConfigItem[] = [
 
       'style/lines-between-class-members': [ERROR, ALWAYS, { exceptAfterSingleLine: true }],
 
+      'style/member-delimiter-style': [ERROR],
+
       'style/multiline-ternary': [ERROR, 'always-multiline'],
 
       'style/no-mixed-spaces-and-tabs': ERROR,
@@ -83,7 +80,11 @@ export const javascriptStylistic: FlatESLintConfigItem[] = [
 
       'style/padded-blocks': [ERROR, { blocks: NEVER, switches: NEVER, classes: NEVER }],
 
+      'style/quotes': [ERROR, 'single'],
+
       'style/rest-spread-spacing': [ERROR, NEVER],
+
+      'style/semi': [ERROR, ALWAYS],
 
       'style/semi-spacing': [ERROR, { before: false, after: true }],
 
@@ -117,6 +118,8 @@ export const javascriptStylistic: FlatESLintConfigItem[] = [
 
       'style/template-tag-spacing': [ERROR, NEVER],
 
+      'style/type-annotation-spacing': ['error', {}],
+
       'style/yield-star-spacing': [ERROR, 'both'],
 
       'vinicunca/consistent-list-newline': ERROR,
@@ -124,62 +127,3 @@ export const javascriptStylistic: FlatESLintConfigItem[] = [
     },
   },
 ];
-
-export const typescriptStylistic: FlatESLintConfigItem[] = [
-  {
-    plugins: {
-      'style-ts': pluginStylisticTs,
-      'ts': pluginTs as any,
-    },
-    rules: {
-      ...stylisticJsToTS(javascriptStylistic[0].rules!),
-
-      'comma-dangle': OFF,
-      'ts/comma-dangle': [ERROR, 'always-multiline'],
-
-      'quotes': OFF,
-      'ts/quotes': [ERROR, 'single'],
-
-      'semi': OFF,
-      'ts/semi': [ERROR, ALWAYS],
-
-      'style-ts/member-delimiter-style': [ERROR],
-      'style-ts/type-annotation-spacing': [ERROR, {}],
-
-    },
-  },
-];
-
-function stylisticJsToTS(input: Record<string, any>) {
-  return {
-    // turn off all stylistic rules from style
-    ...Object.fromEntries(
-      Object.entries(input)
-        .map(([key]) => {
-          if (!key.startsWith('style/')) {
-            return null!;
-          };
-          const basename = key.replace('style/', '');
-          if (tsPackage.rules.find((i) => i.name === basename)) {
-            return [key, OFF];
-          };
-          return null!;
-        })
-        .filter(Boolean),
-    ),
-    // rename all stylistic rules from style to style/ts
-    ...Object.fromEntries(
-      Object.entries(input)
-        .map(([key, value]) => {
-          if (!key.startsWith('style/')) {
-            return null!;
-          };
-          const basename = key.replace('style/', '');
-          return tsPackage.rules.find((i) => i.name === basename)
-            ? [`style-ts/${basename}`, value]
-            : null!;
-        })
-        .filter(Boolean),
-    ),
-  };
-}

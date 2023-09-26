@@ -13,7 +13,6 @@ import {
   comments,
   imports,
   javascript,
-  javascriptStylistic,
   jsdoc,
   jsonc,
   markdown,
@@ -23,9 +22,9 @@ import {
   // sonar,
   sortPackageJson,
   sortTsconfig,
+  stylistic,
   test,
   typescript,
-  typescriptStylistic,
   typescriptWithLanguageServer,
   unicorn,
   vue,
@@ -42,24 +41,21 @@ export function vinicuncaESLint(
   const isInEditor = options.isInEditor ?? !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI);
 
   const enableVue = options.vue ?? (isPackageExists('vue') || isPackageExists('nuxt') || isPackageExists('vitepress') || isPackageExists('@slidev/cli'));
-  const enableTypeScript = options.typescript ?? (isPackageExists('typescript'));
-  const enableStylistic = options.stylistic ?? true;
-  const enableGitignore = options.gitignore ?? true;
 
   const configs: FlatESLintConfigItem[][] = [];
+
+  const enableGitignore = options.gitignore ?? true;
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
       configs.push([gitignore(enableGitignore)]);
-    } else {
-      if (fs.existsSync('.gitignore')) {
-        configs.push([gitignore()]);
-      };
-    }
+    } else if (fs.existsSync('.gitignore')) {
+      configs.push([gitignore()]);
+    };
   }
 
   configs.push(
-    ignores,
+    ignores(options.ignores ?? {}),
     javascript({ isInEditor }),
     comments,
     node,
@@ -75,9 +71,7 @@ export function vinicuncaESLint(
     componentExts.push('vue');
   }
 
-  if (enableStylistic) {
-    configs.push(javascriptStylistic);
-  }
+  const enableTypeScript = options.typescript ?? (isPackageExists('typescript'));
 
   if (enableTypeScript) {
     configs.push(typescript({ componentExts }));
@@ -88,13 +82,17 @@ export function vinicuncaESLint(
         componentExts,
       }));
     }
-
-    if (enableStylistic) {
-      configs.push(typescriptStylistic);
-    };
   }
 
-  if (options.test ?? true) {
+  const enableStylistic = options.stylistic ?? true;
+
+  if (enableStylistic) {
+    configs.push(stylistic);
+  }
+
+  const enableTest = options.test ?? true;
+
+  if (enableTest) {
     configs.push(test({ isInEditor }));
   };
 
@@ -102,7 +100,9 @@ export function vinicuncaESLint(
     configs.push(vue({ typescript: !!enableTypeScript }));
   };
 
-  if (options.jsonc ?? true) {
+  const enableJsonc = options.jsonc ?? true;
+
+  if (enableJsonc) {
     configs.push(
       jsonc,
       sortPackageJson,
@@ -110,20 +110,27 @@ export function vinicuncaESLint(
     );
   }
 
-  if (options.yaml ?? true) {
+  const enableYaml = options.yaml ?? true;
+
+  if (enableYaml) {
     configs.push(yml);
   };
 
-  if (options.markdown ?? true) {
+  const enableMarkdown = options.markdown ?? true;
+
+  if (enableMarkdown) {
     configs.push(markdown({ componentExts }));
   };
 
   // TODO: Enable when this issue is resolved: https://github.com/SonarSource/eslint-plugin-sonarjs/issues/403
-  // if (options.sonar ?? true) {
+  // const enableSonar = options.sonar ?? true;
+  // if (enableSonar) {
   //   configs.push(sonar);
   // }
 
-  if (options.react) {
+  const enableReact = options.react ?? false;
+
+  if (enableReact) {
     configs.push(react);
   }
 

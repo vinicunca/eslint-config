@@ -1,6 +1,6 @@
 import process from 'node:process';
-import type { FlatESLintConfigItem } from 'eslint-define-config';
-import type { OptionsComponentExts, OptionsTypeScriptWithLanguageServer } from '../types';
+import { type FlatESLintConfigItem } from 'eslint-define-config';
+import { type OptionsComponentExts, type OptionsTypeScriptWithLanguageServer } from '../types';
 import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
 import { ERROR, OFF } from '../flags';
@@ -66,10 +66,6 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
         'no-useless-constructor': OFF,
 
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
-
-        'ts/ban-ts-ignore': OFF,
-
-        'ts/consistent-indexed-object-style': OFF,
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 

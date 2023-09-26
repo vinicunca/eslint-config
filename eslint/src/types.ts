@@ -1,6 +1,11 @@
-import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore';
+import { type FlatGitignoreOptions } from 'eslint-config-flat-gitignore';
 
 export interface OptionsConfig {
+  /**
+   * Additional options for the ignore rules.
+   */
+  ignores?: OptionsIgnores;
+
   /**
    * Enable gitignore support.
    *
@@ -86,6 +91,11 @@ export interface OptionsConfig {
 
 export interface OptionsIsInEditor {
   isInEditor?: boolean;
+}
+
+export interface OptionsIgnores {
+  items?: string[];
+  replace?: boolean;
 }
 
 export interface OptionsComponentExts {

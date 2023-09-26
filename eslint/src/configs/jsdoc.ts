@@ -1,6 +1,6 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config';
+import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { pluginJsdoc } from '../plugins';
-import { OFF } from '../flags';
+import { WARN } from '../flags';
 
 export const jsdoc: FlatESLintConfigItem[] = [
   {
@@ -8,19 +8,25 @@ export const jsdoc: FlatESLintConfigItem[] = [
       jsdoc: pluginJsdoc,
     },
     rules: {
-      ...pluginJsdoc.configs['flat/recommended-typescript'].rules,
-      'jsdoc/check-tag-names': OFF,
-      'jsdoc/check-values': OFF,
-      'jsdoc/no-undefined-types': OFF,
-      'jsdoc/require-jsdoc': OFF,
-      'jsdoc/require-param': OFF,
-      'jsdoc/require-param-description': OFF,
-      'jsdoc/require-param-type': OFF,
-      'jsdoc/require-returns': OFF,
-      'jsdoc/require-returns-type': OFF,
-      'jsdoc/require-throws': OFF,
-      'jsdoc/require-yields': OFF,
-      'jsdoc/tag-lines': OFF,
+      'jsdoc/check-access': WARN,
+      'jsdoc/check-alignment': WARN,
+      'jsdoc/check-param-names': WARN,
+      'jsdoc/check-property-names': WARN,
+      'jsdoc/check-types': WARN,
+      'jsdoc/empty-tags': WARN,
+      'jsdoc/implements-on-classes': WARN,
+      'jsdoc/multiline-blocks': WARN,
+      'jsdoc/no-defaults': WARN,
+      'jsdoc/no-multi-asterisks': WARN,
+      'jsdoc/no-types': WARN,
+      'jsdoc/require-param-name': WARN,
+      'jsdoc/require-property': WARN,
+      'jsdoc/require-property-description': WARN,
+      'jsdoc/require-property-name': WARN,
+      'jsdoc/require-returns-check': WARN,
+      'jsdoc/require-returns-description': WARN,
+      'jsdoc/require-yields-check': WARN,
+      'jsdoc/valid-types': WARN,
     },
   },
 ];
