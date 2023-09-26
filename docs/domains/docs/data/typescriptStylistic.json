@@ -1,0 +1,138 @@
+{
+  "style/block-spacing": "off",
+  "style/brace-style": "off",
+  "style/comma-spacing": "off",
+  "style/func-call-spacing": "off",
+  "style/indent": "off",
+  "style/key-spacing": "off",
+  "style/keyword-spacing": "off",
+  "style/lines-between-class-members": "off",
+  "style/object-curly-spacing": "off",
+  "style/space-before-blocks": "off",
+  "style/space-before-function-paren": "off",
+  "style/space-infix-ops": "off",
+  "style-ts/block-spacing": [
+    "error",
+    "always"
+  ],
+  "style-ts/brace-style": [
+    "error"
+  ],
+  "style-ts/comma-spacing": [
+    "error",
+    {
+      "before": false,
+      "after": true
+    }
+  ],
+  "style-ts/func-call-spacing": [
+    "error",
+    "never"
+  ],
+  "style-ts/indent": [
+    "error",
+    2,
+    {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": {
+        "parameters": 1,
+        "body": 1
+      },
+      "FunctionExpression": {
+        "parameters": 1,
+        "body": 1
+      },
+      "CallExpression": {
+        "arguments": 1
+      },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      "ignoreComments": false,
+      "ignoredNodes": [
+        "TemplateLiteral *",
+        "JSXElement",
+        "JSXElement > *",
+        "JSXAttribute",
+        "JSXIdentifier",
+        "JSXNamespacedName",
+        "JSXMemberExpression",
+        "JSXSpreadAttribute",
+        "JSXExpressionContainer",
+        "JSXOpeningElement",
+        "JSXClosingElement",
+        "JSXFragment",
+        "JSXOpeningFragment",
+        "JSXClosingFragment",
+        "JSXText",
+        "JSXEmptyExpression",
+        "JSXSpreadChild"
+      ],
+      "offsetTernaryExpressions": true
+    }
+  ],
+  "style-ts/key-spacing": [
+    "error",
+    {
+      "beforeColon": false,
+      "afterColon": true
+    }
+  ],
+  "style-ts/keyword-spacing": [
+    "error",
+    {
+      "before": true,
+      "after": true
+    }
+  ],
+  "style-ts/lines-between-class-members": [
+    "error",
+    "always",
+    {
+      "exceptAfterSingleLine": true
+    }
+  ],
+  "style-ts/object-curly-spacing": [
+    "error",
+    "always"
+  ],
+  "style-ts/space-before-blocks": [
+    "error",
+    "always"
+  ],
+  "style-ts/space-before-function-paren": [
+    "error",
+    {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }
+  ],
+  "style-ts/space-infix-ops": "error",
+  "comma-dangle": "off",
+  "ts/comma-dangle": [
+    "error",
+    "always-multiline"
+  ],
+  "quotes": "off",
+  "ts/quotes": [
+    "error",
+    "single"
+  ],
+  "semi": "off",
+  "ts/semi": [
+    "error",
+    "always"
+  ],
+  "style-ts/member-delimiter-style": [
+    "error"
+  ],
+  "style-ts/type-annotation-spacing": [
+    "error",
+    {}
+  ]
+}

@@ -65,6 +65,11 @@ export function useActiveAnchor(
   }
 
   function activateLink(hash: string | null) {
+    // If there's no toc then there's no marker ref
+    if (!marker.value) {
+      return;
+    }
+
     if (prevActiveLink) {
       prevActiveLink.classList.remove('active');
     }

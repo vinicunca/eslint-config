@@ -7,7 +7,7 @@ const props = defineProps<{
 
 const { data } = await useAsyncData(
   'rules',
-  async () => import(`../../data/${props.source}.json`).then((m) => m.default),
+  async () => import(`~~/data/${props.source}.json`).then((m) => m.default),
 );
 </script>
 

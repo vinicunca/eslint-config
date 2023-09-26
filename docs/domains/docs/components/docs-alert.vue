@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CoreContentCustomBlock from '~/domains/core/components/core-content-custom-block.vue';
+import CoreContentCustomBlock from '~~/domains/core/components/core-content-custom-block.vue';
 
 defineProps({
   type: {

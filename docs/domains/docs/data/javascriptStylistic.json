@@ -1,0 +1,241 @@
+{
+  "comma-dangle": [
+    "error",
+    "always-multiline"
+  ],
+  "style/array-bracket-newline": [
+    "error",
+    "consistent"
+  ],
+  "style/array-bracket-spacing": [
+    "error",
+    "never"
+  ],
+  "style/array-element-newline": [
+    "error",
+    "consistent"
+  ],
+  "style/arrow-spacing": [
+    "error",
+    {
+      "before": true,
+      "after": true
+    }
+  ],
+  "style/block-spacing": [
+    "error",
+    "always"
+  ],
+  "style/brace-style": [
+    "error"
+  ],
+  "style/comma-spacing": [
+    "error",
+    {
+      "before": false,
+      "after": true
+    }
+  ],
+  "style/comma-style": [
+    "error",
+    "last"
+  ],
+  "style/computed-property-spacing": [
+    "error",
+    "never",
+    {
+      "enforceForClassMembers": true
+    }
+  ],
+  "style/dot-location": [
+    "error",
+    "property"
+  ],
+  "style/func-call-spacing": [
+    "error",
+    "never"
+  ],
+  "style/indent": [
+    "error",
+    2,
+    {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      "MemberExpression": 1,
+      "FunctionDeclaration": {
+        "parameters": 1,
+        "body": 1
+      },
+      "FunctionExpression": {
+        "parameters": 1,
+        "body": 1
+      },
+      "CallExpression": {
+        "arguments": 1
+      },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      "ignoreComments": false,
+      "ignoredNodes": [
+        "TemplateLiteral *",
+        "JSXElement",
+        "JSXElement > *",
+        "JSXAttribute",
+        "JSXIdentifier",
+        "JSXNamespacedName",
+        "JSXMemberExpression",
+        "JSXSpreadAttribute",
+        "JSXExpressionContainer",
+        "JSXOpeningElement",
+        "JSXClosingElement",
+        "JSXFragment",
+        "JSXOpeningFragment",
+        "JSXClosingFragment",
+        "JSXText",
+        "JSXEmptyExpression",
+        "JSXSpreadChild"
+      ],
+      "offsetTernaryExpressions": true
+    }
+  ],
+  "style/key-spacing": [
+    "error",
+    {
+      "beforeColon": false,
+      "afterColon": true
+    }
+  ],
+  "style/keyword-spacing": [
+    "error",
+    {
+      "before": true,
+      "after": true
+    }
+  ],
+  "style/lines-between-class-members": [
+    "error",
+    "always",
+    {
+      "exceptAfterSingleLine": true
+    }
+  ],
+  "style/multiline-ternary": [
+    "error",
+    "always-multiline"
+  ],
+  "style/no-mixed-spaces-and-tabs": "error",
+  "style/no-multi-spaces": "error",
+  "style/no-multiple-empty-lines": [
+    "error",
+    {
+      "max": 1,
+      "maxBOF": 0,
+      "maxEOF": 1
+    }
+  ],
+  "style/no-tabs": "error",
+  "style/no-trailing-spaces": "error",
+  "style/no-whitespace-before-property": "error",
+  "style/object-curly-newline": [
+    "error",
+    {
+      "multiline": true,
+      "consistent": true
+    }
+  ],
+  "style/object-curly-spacing": [
+    "error",
+    "always"
+  ],
+  "style/object-property-newline": [
+    "error",
+    {
+      "allowMultiplePropertiesPerLine": true
+    }
+  ],
+  "style/operator-linebreak": [
+    "error",
+    "before"
+  ],
+  "style/padded-blocks": [
+    "error",
+    {
+      "blocks": "never",
+      "switches": "never",
+      "classes": "never"
+    }
+  ],
+  "style/rest-spread-spacing": [
+    "error",
+    "never"
+  ],
+  "style/semi-spacing": [
+    "error",
+    {
+      "before": false,
+      "after": true
+    }
+  ],
+  "style/space-before-blocks": [
+    "error",
+    "always"
+  ],
+  "style/space-before-function-paren": [
+    "error",
+    {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }
+  ],
+  "style/space-in-parens": [
+    "error",
+    "never"
+  ],
+  "style/space-infix-ops": "error",
+  "style/space-unary-ops": [
+    "error",
+    {
+      "words": true,
+      "nonwords": false
+    }
+  ],
+  "style/spaced-comment": [
+    "error",
+    "always",
+    {
+      "line": {
+        "markers": [
+          "/"
+        ],
+        "exceptions": [
+          "/",
+          "#"
+        ]
+      },
+      "block": {
+        "markers": [
+          "!"
+        ],
+        "exceptions": [
+          "*"
+        ],
+        "balanced": true
+      }
+    }
+  ],
+  "style/template-curly-spacing": "error",
+  "style/template-tag-spacing": [
+    "error",
+    "never"
+  ],
+  "style/yield-star-spacing": [
+    "error",
+    "both"
+  ],
+  "vinicunca/consistent-list-newline": "error",
+  "vinicunca/if-newline": "error"
+}

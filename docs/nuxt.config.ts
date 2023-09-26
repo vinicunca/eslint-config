@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     port: 3001,
   },
 
+  components: [
+    {
+      path: '~~/domains/docs/components',
+      pathPrefix: false,
+      global: true,
+    },
+  ],
+
   modules: [
     '@nuxt/devtools',
     '@nuxtjs/algolia',

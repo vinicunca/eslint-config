@@ -44,6 +44,10 @@ defineProps({
       {{ language }}
     </span>
 
+    <span v-if="filename" class="absolute right-2 bottom-[3px] text-xs font-medium leading-6">
+      {{ filename }}
+    </span>
+
     <CoreCopyButton
       :content="code"
       class="absolute right-3 top-3 z-3 opacity-0 transition-opacity-280 group-hover:opacity-100"
