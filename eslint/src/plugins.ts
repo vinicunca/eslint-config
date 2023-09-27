@@ -19,8 +19,8 @@ export { default as pluginUnusedImports } from 'eslint-plugin-unused-imports';
 export { default as pluginReact } from 'eslint-plugin-react';
 export { default as pluginReactHooks } from 'eslint-plugin-react-hooks';
 export { default as pluginVue } from 'eslint-plugin-vue';
-export { default as pluginYml } from 'eslint-plugin-yml';
+export { default as pluginYaml } from 'eslint-plugin-yml';
 export { default as parserJsonc } from 'jsonc-eslint-parser';
 export { default as parserVue } from 'vue-eslint-parser';
-export { default as parserYml } from 'yaml-eslint-parser';
+export { default as parserYaml } from 'yaml-eslint-parser';
 

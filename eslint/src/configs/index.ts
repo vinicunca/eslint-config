@@ -15,4 +15,4 @@ export * from './test';
 export * from './typescript';
 export * from './unicorn';
 export * from './vue';
-export * from './yml';
+export * from './yaml';

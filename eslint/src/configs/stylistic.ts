@@ -1,129 +1,138 @@
 import { type FlatESLintConfigItem } from 'eslint-define-config';
-import { pluginStylistic } from '../plugins';
+import { pluginStylistic, pluginVinicunca } from '../plugins';
 import { ALWAYS, CONSISTENT, ERROR, NEVER } from '../flags';
 
-export const stylistic: FlatESLintConfigItem[] = [
-  {
-    plugins: {
-      style: pluginStylistic,
+export function stylistic(): FlatESLintConfigItem[] {
+  return [
+    {
+      plugins: {
+        vinicunca: pluginVinicunca,
+        style: pluginStylistic,
+      },
     },
 
-    rules: {
-      'style/array-bracket-newline': [ERROR, CONSISTENT],
+    {
+      rules: {
+        'curly': [ERROR, 'all'],
 
-      'style/array-bracket-spacing': [ERROR, NEVER],
+        'style/array-bracket-newline': [ERROR, CONSISTENT],
 
-      'style/array-element-newline': [ERROR, CONSISTENT],
+        'style/array-bracket-spacing': [ERROR, NEVER],
 
-      'style/arrow-spacing': [ERROR, { before: true, after: true }],
+        'style/array-element-newline': [ERROR, CONSISTENT],
 
-      'style/block-spacing': [ERROR, ALWAYS],
+        'style/arrow-spacing': [ERROR, { before: true, after: true }],
 
-      'style/brace-style': [ERROR],
+        'style/block-spacing': [ERROR, ALWAYS],
 
-      'style/comma-spacing': [ERROR, { before: false, after: true }],
+        'style/brace-style': [ERROR],
 
-      'style/comma-style': [ERROR, 'last'],
+        'style/comma-spacing': [ERROR, { before: false, after: true }],
 
-      'style/computed-property-spacing': [ERROR, NEVER, { enforceForClassMembers: true }],
+        'style/comma-style': [ERROR, 'last'],
 
-      'style/dot-location': [ERROR, 'property'],
+        'style/computed-property-spacing': [ERROR, NEVER, { enforceForClassMembers: true }],
 
-      'style/func-call-spacing': [ERROR, NEVER],
+        'style/dot-location': [ERROR, 'property'],
 
-      'style/indent': [ERROR, 2, {
-        SwitchCase: 1,
-        VariableDeclarator: 1,
-        outerIIFEBody: 1,
-        MemberExpression: 1,
-        FunctionDeclaration: { parameters: 1, body: 1 },
-        FunctionExpression: { parameters: 1, body: 1 },
-        CallExpression: { arguments: 1 },
-        ArrayExpression: 1,
-        ObjectExpression: 1,
-        ImportDeclaration: 1,
-        flatTernaryExpressions: false,
-        ignoreComments: false,
-        ignoredNodes: ['TemplateLiteral *', 'JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXFragment', 'JSXOpeningFragment', 'JSXClosingFragment', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
-        offsetTernaryExpressions: true,
-      }],
+        'style/func-call-spacing': [ERROR, NEVER],
 
-      'style/key-spacing': [ERROR, { beforeColon: false, afterColon: true }],
+        'style/indent': [ERROR, 2, {
+          SwitchCase: 1,
+          VariableDeclarator: 1,
+          outerIIFEBody: 1,
+          MemberExpression: 1,
+          FunctionDeclaration: { parameters: 1, body: 1 },
+          FunctionExpression: { parameters: 1, body: 1 },
+          CallExpression: { arguments: 1 },
+          ArrayExpression: 1,
+          ObjectExpression: 1,
+          ImportDeclaration: 1,
+          flatTernaryExpressions: false,
+          ignoreComments: false,
+          ignoredNodes: ['TemplateLiteral *', 'JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXFragment', 'JSXOpeningFragment', 'JSXClosingFragment', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+          offsetTernaryExpressions: true,
+        }],
 
-      'style/keyword-spacing': [ERROR, { before: true, after: true }],
+        'style/key-spacing': [ERROR, { beforeColon: false, afterColon: true }],
 
-      'style/lines-between-class-members': [ERROR, ALWAYS, { exceptAfterSingleLine: true }],
+        'style/keyword-spacing': [ERROR, { before: true, after: true }],
 
-      'style/member-delimiter-style': [ERROR],
+        'style/lines-between-class-members': [ERROR, ALWAYS, { exceptAfterSingleLine: true }],
 
-      'style/multiline-ternary': [ERROR, 'always-multiline'],
+        'style/member-delimiter-style': [ERROR],
 
-      'style/no-mixed-spaces-and-tabs': ERROR,
+        'style/multiline-ternary': [ERROR, 'always-multiline'],
 
-      'style/no-multi-spaces': ERROR,
+        'style/no-mixed-spaces-and-tabs': ERROR,
 
-      'style/no-multiple-empty-lines': [ERROR, { max: 1, maxBOF: 0, maxEOF: 1 }],
+        'style/no-multi-spaces': ERROR,
 
-      'style/no-tabs': ERROR,
+        'style/no-multiple-empty-lines': [ERROR, { max: 1, maxBOF: 0, maxEOF: 1 }],
 
-      'style/no-trailing-spaces': ERROR,
+        'style/no-tabs': ERROR,
 
-      'style/no-whitespace-before-property': ERROR,
+        'style/no-trailing-spaces': ERROR,
 
-      'style/object-curly-newline': [ERROR, { multiline: true, consistent: true }],
+        'style/no-whitespace-before-property': ERROR,
 
-      'style/object-curly-spacing': [ERROR, ALWAYS],
+        'style/object-curly-newline': [ERROR, { multiline: true, consistent: true }],
 
-      'style/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
+        'style/object-curly-spacing': [ERROR, ALWAYS],
 
-      'style/operator-linebreak': [ERROR, 'before'],
+        'style/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
 
-      'style/padded-blocks': [ERROR, { blocks: NEVER, switches: NEVER, classes: NEVER }],
+        'style/operator-linebreak': [ERROR, 'before'],
 
-      'style/quotes': [ERROR, 'single'],
+        'style/padded-blocks': [ERROR, { blocks: NEVER, switches: NEVER, classes: NEVER }],
 
-      'style/rest-spread-spacing': [ERROR, NEVER],
+        'style/quotes': [ERROR, 'single'],
 
-      'style/semi': [ERROR, ALWAYS],
+        'style/rest-spread-spacing': [ERROR, NEVER],
 
-      'style/semi-spacing': [ERROR, { before: false, after: true }],
+        'style/semi': [ERROR, ALWAYS],
 
-      'style/space-before-blocks': [ERROR, ALWAYS],
+        'style/semi-spacing': [ERROR, { before: false, after: true }],
 
-      'style/space-before-function-paren': [ERROR, {
-        anonymous: NEVER,
-        named: NEVER,
-        asyncArrow: ALWAYS,
-      }],
+        'style/space-before-blocks': [ERROR, ALWAYS],
 
-      'style/space-in-parens': [ERROR, NEVER],
+        'style/space-before-function-paren': [ERROR, {
+          anonymous: NEVER,
+          named: NEVER,
+          asyncArrow: ALWAYS,
+        }],
 
-      'style/space-infix-ops': ERROR,
+        'style/space-in-parens': [ERROR, NEVER],
 
-      'style/space-unary-ops': [ERROR, { words: true, nonwords: false }],
+        'style/space-infix-ops': ERROR,
 
-      'style/spaced-comment': [ERROR, 'always', {
-        line: {
-          markers: ['/'],
-          exceptions: ['/', '#'],
-        },
-        block: {
-          markers: ['!'],
-          exceptions: ['*'],
-          balanced: true,
-        },
-      }],
+        'style/space-unary-ops': [ERROR, { words: true, nonwords: false }],
 
-      'style/template-curly-spacing': ERROR,
+        'style/spaced-comment': [ERROR, 'always', {
+          line: {
+            markers: ['/'],
+            exceptions: ['/', '#'],
+          },
+          block: {
+            markers: ['!'],
+            exceptions: ['*'],
+            balanced: true,
+          },
+        }],
 
-      'style/template-tag-spacing': [ERROR, NEVER],
+        'style/template-curly-spacing': ERROR,
 
-      'style/type-annotation-spacing': ['error', {}],
+        'style/template-tag-spacing': [ERROR, NEVER],
 
-      'style/yield-star-spacing': [ERROR, 'both'],
+        'style/type-annotation-spacing': [ERROR, {}],
 
-      'vinicunca/consistent-list-newline': ERROR,
-      'vinicunca/if-newline': ERROR,
+        'style/yield-star-spacing': [ERROR, 'both'],
+
+        'style/comma-dangle': [ERROR, 'always-multiline'],
+
+        'vinicunca/consistent-list-newline': ERROR,
+        'vinicunca/if-newline': ERROR,
+      },
     },
-  },
-];
+  ];
+}

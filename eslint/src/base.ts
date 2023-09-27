@@ -25,11 +25,18 @@ import {
   stylistic,
   test,
   typescript,
-  typescriptWithLanguageServer,
+  typescriptWithTypes,
   unicorn,
   vue,
-  yml,
+  yaml,
 } from './configs';
+
+const VuePackages = [
+  'vue',
+  'nuxt',
+  'vitepress',
+  '@slidev/cli',
+];
 
 export function vinicuncaESLint(
   { options = {}, userConfigs = [] }:
@@ -38,13 +45,21 @@ export function vinicuncaESLint(
     userConfigs: (FlatESLintConfigItem | FlatESLintConfigItem[])[];
   },
 ) {
-  const isInEditor = options.isInEditor ?? !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI);
-
-  const enableVue = options.vue ?? (isPackageExists('vue') || isPackageExists('nuxt') || isPackageExists('vitepress') || isPackageExists('@slidev/cli'));
+  const {
+    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
+    vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
+    typescript: enableTypeScript = isPackageExists('typescript'),
+    stylistic: enableStylistic = true,
+    gitignore: enableGitignore = true,
+    test: enableTest = true,
+    jsonc: enableJsonc = true,
+    yaml: enableYaml = true,
+    markdown: enableMarkdown = true,
+    react: enableReact = false,
+    overrides = {},
+  } = options;
 
   const configs: FlatESLintConfigItem[][] = [];
-
-  const enableGitignore = options.gitignore ?? true;
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
@@ -55,13 +70,16 @@ export function vinicuncaESLint(
   }
 
   configs.push(
-    ignores(options.ignores ?? {}),
-    javascript({ isInEditor }),
-    comments,
-    node,
-    jsdoc,
-    imports,
-    unicorn,
+    ignores(options.ignores),
+    javascript({
+      isInEditor,
+      overrides: overrides.javascript,
+    }),
+    comments(),
+    node(),
+    jsdoc(),
+    imports(),
+    unicorn(),
   );
 
   // In the future we may support more component extensions like Svelte or so
@@ -71,55 +89,58 @@ export function vinicuncaESLint(
     componentExts.push('vue');
   }
 
-  const enableTypeScript = options.typescript ?? (isPackageExists('typescript'));
-
   if (enableTypeScript) {
-    configs.push(typescript({ componentExts }));
+    configs.push(typescript({
+      componentExts,
+      overrides: overrides.typescript,
+    }));
 
     if (!isBoolean(enableTypeScript)) {
-      configs.push(typescriptWithLanguageServer({
+      configs.push(typescriptWithTypes({
         ...enableTypeScript,
         componentExts,
+        overrides: overrides.typescript,
       }));
     }
   }
 
-  const enableStylistic = options.stylistic ?? true;
-
   if (enableStylistic) {
-    configs.push(stylistic);
+    configs.push(stylistic());
   }
 
-  const enableTest = options.test ?? true;
-
   if (enableTest) {
-    configs.push(test({ isInEditor }));
+    configs.push(test({
+      isInEditor,
+      overrides: overrides.test,
+    }));
   };
 
   if (enableVue) {
-    configs.push(vue({ typescript: !!enableTypeScript }));
+    configs.push(vue({
+      typescript: !!enableTypeScript,
+      overrides: overrides.vue,
+    }));
   };
-
-  const enableJsonc = options.jsonc ?? true;
 
   if (enableJsonc) {
     configs.push(
-      jsonc,
-      sortPackageJson,
-      sortTsconfig,
+      jsonc(),
+      sortPackageJson(),
+      sortTsconfig(),
     );
   }
 
-  const enableYaml = options.yaml ?? true;
-
   if (enableYaml) {
-    configs.push(yml);
+    configs.push(yaml({
+      overrides: overrides.yaml,
+    }));
   };
 
-  const enableMarkdown = options.markdown ?? true;
-
   if (enableMarkdown) {
-    configs.push(markdown({ componentExts }));
+    configs.push(markdown({
+      componentExts,
+      overrides: overrides.markdown,
+    }));
   };
 
   // TODO: Enable when this issue is resolved: https://github.com/SonarSource/eslint-plugin-sonarjs/issues/403
@@ -128,10 +149,10 @@ export function vinicuncaESLint(
   //   configs.push(sonar);
   // }
 
-  const enableReact = options.react ?? false;
-
   if (enableReact) {
-    configs.push(react);
+    configs.push(react({
+      overrides: overrides.react,
+    }));
   }
 
   return combineConfigs(

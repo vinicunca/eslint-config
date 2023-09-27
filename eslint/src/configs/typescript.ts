@@ -1,17 +1,29 @@
 import process from 'node:process';
 import { type FlatESLintConfigItem } from 'eslint-define-config';
-import { type OptionsComponentExts, type OptionsTypeScriptWithLanguageServer } from '../types';
+import { type OptionsComponentExts, type OptionsOverrides, type OptionsTypeScriptWithTypes } from '../types';
 import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
 import { ERROR, OFF } from '../flags';
 import { GLOB_TS, GLOB_TSX } from '../globs';
 
-export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem[] {
+export function typescript(
+  options?: OptionsComponentExts & OptionsOverrides,
+): FlatESLintConfigItem[] {
   const {
     componentExts = [],
+    overrides = {},
   } = options ?? {};
 
   return [
+    {
+      // Install the plugins without globs, so they can be configured separately.
+      plugins: {
+        vinicunca: pluginVinicunca,
+        import: pluginImport,
+        ts: pluginTs as any,
+      },
+    },
+
     {
       files: [
         GLOB_TS,
@@ -24,12 +36,6 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
         parserOptions: {
           sourceType: 'module',
         },
-      },
-
-      plugins: {
-        vinicunca: pluginVinicunca,
-        import: pluginImport,
-        ts: pluginTs as any,
       },
 
       rules: {
@@ -110,6 +116,8 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
         'vinicunca/no-const-enum': ERROR,
         'vinicunca/no-ts-export-equal': ERROR,
         'vinicunca/prefer-inline-type-import': ERROR,
+
+        ...overrides,
       },
     },
     {
@@ -136,11 +144,14 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
   ];
 }
 
-export function typescriptWithLanguageServer(options: OptionsTypeScriptWithLanguageServer & OptionsComponentExts): FlatESLintConfigItem[] {
+export function typescriptWithTypes(
+  options: OptionsTypeScriptWithTypes & OptionsComponentExts & OptionsOverrides,
+): FlatESLintConfigItem[] {
   const {
     componentExts = [],
     tsconfigPath,
     tsconfigRootDir = process.cwd(),
+    overrides = {},
   } = options;
 
   return [
@@ -149,9 +160,8 @@ export function typescriptWithLanguageServer(options: OptionsTypeScriptWithLangu
         GLOB_TS,
         GLOB_TSX,
         ...componentExts.map((ext) => `**/*.${ext}`),
+        '!**/*.md/*.*',
       ],
-
-      ignores: ['**/*.md/*.*'],
 
       languageOptions: {
         parser: parserTs,
@@ -159,10 +169,6 @@ export function typescriptWithLanguageServer(options: OptionsTypeScriptWithLangu
           project: [tsconfigPath],
           tsconfigRootDir,
         },
-      },
-
-      plugins: {
-        ts: pluginTs as any,
       },
 
       rules: {
@@ -195,6 +201,7 @@ export function typescriptWithLanguageServer(options: OptionsTypeScriptWithLangu
         'ts/restrict-template-expressions': ERROR,
         'ts/unbound-method': ERROR,
 
+        ...overrides,
       },
     },
   ];

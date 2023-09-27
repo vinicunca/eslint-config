@@ -1,15 +1,23 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config';
+import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_VUE } from '../globs';
-import {
-  parserTs,
-  parserVue,
-  pluginVue,
-} from '../plugins';
+import { parserTs, parserVue, pluginVue } from '../plugins';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
-import type { OptionsHasTypeScript } from '../types';
+import { type OptionsHasTypeScript, type OptionsOverrides } from '../types';
 
-export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] {
+export function vue(
+  options: OptionsHasTypeScript & OptionsOverrides = {},
+): FlatESLintConfigItem[] {
+  const {
+    overrides = {},
+  } = options;
+
   return [
+    {
+      plugins: {
+        vue: pluginVue,
+      },
+    },
+
     {
       files: [GLOB_VUE],
 
@@ -19,22 +27,11 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
         parserOptions: {
           ecmaFeatures: {
             jsx: true,
-
           },
-
           extraFileExtensions: ['.vue'],
-
           parser: options.typescript ? parserTs as any : null,
-
           sourceType: 'module',
-
         },
-
-      },
-
-      plugins: {
-        vue: pluginVue,
-
       },
 
       processor: pluginVue.processors['.vue'],
@@ -48,95 +45,67 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
 
         ...pluginVue.configs['vue3-recommended'].rules as any,
 
-        'vue/array-bracket-spacing': [ERROR,
-          NEVER],
+        'node/prefer-global/process': OFF,
 
-        'vue/arrow-spacing': [ERROR,
-          {
-            after: true,
-            before: true,
-          }],
+        'vue/array-bracket-spacing': [ERROR, NEVER],
 
-        'vue/block-order': [ERROR,
-          {
-            order: ['script',
-              'template',
-              'style'],
+        'vue/arrow-spacing': [ERROR, {
+          after: true,
+          before: true,
+        }],
 
-          }],
+        'vue/block-order': [ERROR, {
+          order: ['script', 'template', 'style'],
+        }],
 
-        'vue/block-spacing': [ERROR,
-          ALWAYS],
+        'vue/block-spacing': [ERROR, ALWAYS],
 
-        'vue/block-tag-newline': [ERROR,
-          {
-            multiline: ALWAYS,
+        'vue/block-tag-newline': [ERROR, {
+          multiline: ALWAYS,
+          singleline: ALWAYS,
+        }],
 
-            singleline: ALWAYS,
+        'vue/brace-style': [ERROR, 'stroustrup', { allowSingleLine: true }],
 
-          }],
+        'vue/comma-dangle': [ERROR, 'always-multiline'],
 
-        'vue/brace-style': [ERROR,
-          'stroustrup',
-          { allowSingleLine: true }],
+        'vue/comma-spacing': [ERROR, {
+          after: true,
+          before: false,
+        }],
 
-        'vue/comma-dangle': [ERROR,
-          'always-multiline'],
+        'vue/comma-style': [ERROR, 'last'],
 
-        'vue/comma-spacing': [ERROR,
-          {
-            after: true,
-            before: false,
-          }],
+        'vue/component-name-in-template-casing': [ERROR, 'PascalCase'],
 
-        'vue/comma-style': [ERROR,
-          'last'],
+        'vue/component-options-name-casing': [ERROR, 'PascalCase'],
 
-        'vue/component-name-in-template-casing': [ERROR,
-          'PascalCase'],
+        'vue/custom-event-name-casing': [ERROR, 'camelCase'],
 
-        'vue/component-options-name-casing': [ERROR,
-          'PascalCase'],
+        'vue/define-macros-order': [ERROR, {
+          order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
 
-        'vue/custom-event-name-casing': [ERROR,
-          'camelCase'],
+        }],
 
-        'vue/define-macros-order': [ERROR,
-          {
-            order: ['defineOptions',
-              'defineProps',
-              'defineEmits',
-              'defineSlots'],
+        'vue/dot-location': [ERROR, 'property'],
 
-          }],
+        'vue/dot-notation': [ERROR, { allowKeywords: true }],
 
-        'vue/dot-location': [ERROR,
-          'property'],
+        'vue/eqeqeq': [ERROR, 'smart'],
 
-        'vue/dot-notation': [ERROR,
-          { allowKeywords: true }],
+        'vue/html-comment-content-spacing': [ERROR, ALWAYS, {
+          exceptions: ['-'],
+        }],
 
-        'vue/eqeqeq': [ERROR,
-          'smart'],
+        'vue/key-spacing': [ERROR, {
+          afterColon: true,
+          beforeColon: false,
+        }],
 
-        'vue/html-comment-content-spacing': [ERROR,
-          ALWAYS,
-          {
-            exceptions: ['-'],
-
-          }],
-
-        'vue/key-spacing': [ERROR,
-          {
-            afterColon: true,
-            beforeColon: false,
-          }],
-
-        'vue/keyword-spacing': [ERROR,
-          {
-            after: true,
-            before: true,
-          }],
+        'vue/keyword-spacing': [ERROR, {
+          after: true,
+          before: true,
+        }],
 
         'vue/max-attributes-per-line': OFF,
 
@@ -148,8 +117,7 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
 
         'vue/no-empty-pattern': ERROR,
 
-        'vue/no-extra-parens': [ERROR,
-          'functions'],
+        'vue/no-extra-parens': [ERROR, 'functions'],
 
         'vue/no-irregular-whitespace': ERROR,
 
@@ -157,17 +125,12 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
 
         'vue/no-restricted-syntax': [
           ERROR,
-
           'DebuggerStatement',
-
           'LabeledStatement',
-
           'WithStatement',
-
         ],
 
-        'vue/no-restricted-v-bind': [ERROR,
-          '/^v-/'],
+        'vue/no-restricted-v-bind': [ERROR, '/^v-/'],
 
         // reactivity transform
         'vue/no-setup-props-reactivity-loss': OFF,
@@ -184,31 +147,18 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
 
         'vue/object-curly-newline': [ERROR, { multiline: true, consistent: true }],
 
-        'vue/object-curly-spacing': [ERROR,
-          ALWAYS],
+        'vue/object-curly-spacing': [ERROR, ALWAYS],
 
-        'vue/object-property-newline': [ERROR,
-          { allowMultiplePropertiesPerLine: true }],
+        'vue/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
 
-        'vue/object-shorthand': [
-          ERROR,
+        'vue/object-shorthand': [ERROR, ALWAYS, {
+          avoidQuotes: true,
+          ignoreConstructors: false,
+        }],
 
-          ALWAYS,
+        'vue/operator-linebreak': [ERROR, 'before'],
 
-          {
-            avoidQuotes: true,
-
-            ignoreConstructors: false,
-
-          },
-
-        ],
-
-        'vue/operator-linebreak': [ERROR,
-          'before'],
-
-        'vue/padding-line-between-blocks': [ERROR,
-          ALWAYS],
+        'vue/padding-line-between-blocks': [ERROR, ALWAYS],
 
         'vue/prefer-import-from-vue': OFF,
 
@@ -216,28 +166,25 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
 
         'vue/prefer-template': ERROR,
 
-        'vue/quote-props': [ERROR,
-          'consistent-as-needed'],
+        'vue/quote-props': [ERROR, 'consistent-as-needed'],
 
         'vue/require-default-prop': OFF,
 
         'vue/require-prop-types': OFF,
 
-        'vue/space-in-parens': [ERROR,
-          NEVER],
+        'vue/space-in-parens': [ERROR, NEVER],
 
         'vue/space-infix-ops': ERROR,
 
-        'vue/space-unary-ops': [ERROR,
-          {
-            nonwords: false,
-            words: true,
-          }],
+        'vue/space-unary-ops': [ERROR, {
+          nonwords: false,
+          words: true,
+        }],
 
         'vue/template-curly-spacing': ERROR,
 
+        ...overrides,
       },
-
     },
   ];
 }

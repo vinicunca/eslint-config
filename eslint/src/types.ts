@@ -1,4 +1,5 @@
 import { type FlatGitignoreOptions } from 'eslint-config-flat-gitignore';
+import { type FlatESLintConfigItem } from 'eslint-define-config';
 
 export interface OptionsConfig {
   /**
@@ -23,7 +24,7 @@ export interface OptionsConfig {
    *
    * @default auto-detect based on the dependencies
    */
-  typescript?: boolean | OptionsTypeScriptWithLanguageServer;
+  typescript?: boolean | OptionsTypeScriptWithTypes;
 
   /**
    * Enable test support.
@@ -87,6 +88,25 @@ export interface OptionsConfig {
    * @default auto-detect based on the process.env
    */
   isInEditor?: boolean;
+
+  /**
+   * Provide overrides for rules for each integration.
+   */
+  overrides?: {
+    javascript?: FlatESLintConfigItem['rules'];
+    typescript?: FlatESLintConfigItem['rules'];
+    typescriptWithTypes?: FlatESLintConfigItem['rules'];
+    test?: FlatESLintConfigItem['rules'];
+    vue?: FlatESLintConfigItem['rules'];
+    jsonc?: FlatESLintConfigItem['rules'];
+    markdown?: FlatESLintConfigItem['rules'];
+    yaml?: FlatESLintConfigItem['rules'];
+    react?: FlatESLintConfigItem['rules'];
+  };
+}
+
+export interface OptionsOverrides {
+  overrides?: FlatESLintConfigItem['rules'];
 }
 
 export interface OptionsIsInEditor {
@@ -108,7 +128,7 @@ export interface OptionsComponentExts {
   componentExts?: string[];
 }
 
-export interface OptionsTypeScriptWithLanguageServer {
+export interface OptionsTypeScriptWithTypes {
   tsconfigPath: string;
   tsconfigRootDir?: string;
 }
