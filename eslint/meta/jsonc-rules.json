@@ -1,0 +1,178 @@
+{
+  "jsonc/array-bracket-newline": {
+    "description": "enforce line breaks after opening and before closing array brackets",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html"
+  },
+  "jsonc/array-bracket-spacing": {
+    "description": "disallow or enforce spaces inside of brackets",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-spacing.html"
+  },
+  "jsonc/array-element-newline": {
+    "description": "enforce line breaks between array elements",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-element-newline.html"
+  },
+  "jsonc/auto": {
+    "description": "apply jsonc rules similar to your configured ESLint core rules",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/auto.html"
+  },
+  "jsonc/comma-dangle": {
+    "description": "require or disallow trailing commas",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/comma-dangle.html"
+  },
+  "jsonc/comma-style": {
+    "description": "enforce consistent comma style",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/comma-style.html"
+  },
+  "jsonc/indent": {
+    "description": "enforce consistent indentation",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/indent.html"
+  },
+  "jsonc/key-name-casing": {
+    "description": "enforce naming convention to property key names",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/key-name-casing.html"
+  },
+  "jsonc/key-spacing": {
+    "description": "enforce consistent spacing between keys and values in object literal properties",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/key-spacing.html"
+  },
+  "jsonc/no-bigint-literals": {
+    "description": "disallow BigInt literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-bigint-literals.html"
+  },
+  "jsonc/no-binary-expression": {
+    "description": "disallow binary expression",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-binary-expression.html"
+  },
+  "jsonc/no-binary-numeric-literals": {
+    "description": "disallow binary numeric literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-binary-numeric-literals.html"
+  },
+  "jsonc/no-comments": {
+    "description": "disallow comments",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-comments.html"
+  },
+  "jsonc/no-dupe-keys": {
+    "description": "disallow duplicate keys in object literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-dupe-keys.html"
+  },
+  "jsonc/no-escape-sequence-in-identifier": {
+    "description": "disallow escape sequences in identifiers.",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-escape-sequence-in-identifier.html"
+  },
+  "jsonc/no-floating-decimal": {
+    "description": "disallow leading or trailing decimal points in numeric literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-floating-decimal.html"
+  },
+  "jsonc/no-hexadecimal-numeric-literals": {
+    "description": "disallow hexadecimal numeric literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-hexadecimal-numeric-literals.html"
+  },
+  "jsonc/no-infinity": {
+    "description": "disallow Infinity",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-infinity.html"
+  },
+  "jsonc/no-irregular-whitespace": {
+    "description": "disallow irregular whitespace",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-irregular-whitespace.html"
+  },
+  "jsonc/no-multi-str": {
+    "description": "disallow multiline strings",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-multi-str.html"
+  },
+  "jsonc/no-nan": {
+    "description": "disallow NaN",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-nan.html"
+  },
+  "jsonc/no-number-props": {
+    "description": "disallow number property keys",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-number-props.html"
+  },
+  "jsonc/no-numeric-separators": {
+    "description": "disallow numeric separators",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-numeric-separators.html"
+  },
+  "jsonc/no-octal-escape": {
+    "description": "disallow octal escape sequences in string literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-octal-escape.html"
+  },
+  "jsonc/no-octal-numeric-literals": {
+    "description": "disallow octal numeric literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-octal-numeric-literals.html"
+  },
+  "jsonc/no-octal": {
+    "description": "disallow legacy octal literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-octal.html"
+  },
+  "jsonc/no-parenthesized": {
+    "description": "disallow parentheses around the expression",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-parenthesized.html"
+  },
+  "jsonc/no-plus-sign": {
+    "description": "disallow plus sign",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-plus-sign.html"
+  },
+  "jsonc/no-regexp-literals": {
+    "description": "disallow RegExp literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-regexp-literals.html"
+  },
+  "jsonc/no-sparse-arrays": {
+    "description": "disallow sparse arrays",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-sparse-arrays.html"
+  },
+  "jsonc/no-template-literals": {
+    "description": "disallow template literals",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-template-literals.html"
+  },
+  "jsonc/no-undefined-value": {
+    "description": "disallow `undefined`",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-undefined-value.html"
+  },
+  "jsonc/no-unicode-codepoint-escapes": {
+    "description": "disallow Unicode code point escape sequences.",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-unicode-codepoint-escapes.html"
+  },
+  "jsonc/no-useless-escape": {
+    "description": "disallow unnecessary escape usage",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-useless-escape.html"
+  },
+  "jsonc/object-curly-newline": {
+    "description": "enforce consistent line breaks inside braces",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/object-curly-newline.html"
+  },
+  "jsonc/object-curly-spacing": {
+    "description": "enforce consistent spacing inside braces",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/object-curly-spacing.html"
+  },
+  "jsonc/object-property-newline": {
+    "description": "enforce placing object properties on separate lines",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/object-property-newline.html"
+  },
+  "jsonc/quote-props": {
+    "description": "require quotes around object literal property names",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/quote-props.html"
+  },
+  "jsonc/quotes": {
+    "description": "enforce use of double or single quotes",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/quotes.html"
+  },
+  "jsonc/sort-array-values": {
+    "description": "require array values to be sorted",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-array-values.html"
+  },
+  "jsonc/sort-keys": {
+    "description": "require object keys to be sorted",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-keys.html"
+  },
+  "jsonc/space-unary-ops": {
+    "description": "disallow spaces after unary operators",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/space-unary-ops.html"
+  },
+  "jsonc/valid-json-number": {
+    "description": "disallow invalid number for JSON",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/valid-json-number.html"
+  },
+  "jsonc/vue-custom-block/no-parsing-error": {
+    "description": "disallow parsing errors in Vue custom blocks",
+    "url": "https://ota-meshi.github.io/eslint-plugin-jsonc/rules/vue-custom-block/no-parsing-error.html"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "ts/ban-ts-comment": {
+    "description": "description: 'Disallow `@ts-<directive>` comments or require descriptions after directives.'",
+    "url": "https://typescript-eslint.io/rules/ban-ts-comment/",
+    "options": [
+      "error",
+      {
+        "ts-ignore": "allow-with-description"
+      }
+    ]
+  },
+  "ts/ban-types": {
+    "description": "description: 'Disallow certain types.'",
+    "url": "https://typescript-eslint.io/rules/ban-types/",
+    "options": "error"
+  },
+  "ts/no-array-constructor": {
+    "description": "description: 'Disallow generic `Array` constructors.'",
+    "url": "https://typescript-eslint.io/rules/no-array-constructor/",
+    "options": "error"
+  },
+  "ts/no-duplicate-enum-values": {
+    "description": "description: 'Disallow duplicate enum member values.'",
+    "url": "https://typescript-eslint.io/rules/no-duplicate-enum-values/",
+    "options": "error"
+  },
+  "ts/no-dynamic-delete": {
+    "description": "description: 'Disallow using the `delete` operator on computed key expressions.'",
+    "url": "https://typescript-eslint.io/rules/no-dynamic-delete/",
+    "options": "error"
+  },
+  "ts/no-extra-non-null-assertion": {
+    "description": "description: 'Disallow extra non-null assertions.'",
+    "url": "https://typescript-eslint.io/rules/no-extra-non-null-assertion/",
+    "options": "error"
+  },
+  "ts/no-extraneous-class": {
+    "description": "description: 'Disallow classes used as namespaces.'",
+    "url": "https://typescript-eslint.io/rules/no-extraneous-class/",
+    "options": "error"
+  },
+  "ts/no-loss-of-precision": {
+    "description": "description: 'Disallow literal numbers that lose precision.'",
+    "url": "https://typescript-eslint.io/rules/no-loss-of-precision/",
+    "options": "error"
+  },
+  "ts/no-misused-new": {
+    "description": "description: 'Enforce valid definition of `new` and `constructor`.'",
+    "url": "https://typescript-eslint.io/rules/no-misused-new/",
+    "options": "error"
+  },
+  "ts/no-namespace": {
+    "description": "description: 'Disallow TypeScript namespaces.'",
+    "url": "https://typescript-eslint.io/rules/no-namespace/",
+    "options": "error"
+  },
+  "ts/no-non-null-asserted-nullish-coalescing": {
+    "description": "description: 'Disallow non-null assertions in the left operand of a nullish coalescing operator.'",
+    "url": "https://typescript-eslint.io/rules/no-non-null-asserted-nullish-coalescing/",
+    "options": "error"
+  },
+  "ts/no-non-null-asserted-optional-chain": {
+    "description": "description: 'Disallow non-null assertions after an optional chain expression.'",
+    "url": "https://typescript-eslint.io/rules/no-non-null-asserted-optional-chain/",
+    "options": "error"
+  },
+  "ts/no-this-alias": {
+    "description": "description: 'Disallow aliasing `this`.'",
+    "url": "https://typescript-eslint.io/rules/no-this-alias/",
+    "options": "error"
+  },
+  "ts/no-unnecessary-type-constraint": {
+    "description": "description: 'Disallow unnecessary constraints on generic types.'",
+    "url": "https://typescript-eslint.io/rules/no-unnecessary-type-constraint/",
+    "options": "error"
+  },
+  "ts/no-unsafe-declaration-merging": {
+    "description": "description: 'Disallow unsafe declaration merging.'",
+    "url": "https://typescript-eslint.io/rules/no-unsafe-declaration-merging/",
+    "options": "error"
+  },
+  "ts/no-unused-vars": {
+    "description": "description: 'Disallow unused variables.'",
+    "url": "https://typescript-eslint.io/rules/no-unused-vars/",
+    "options": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ]
+  },
+  "ts/no-useless-constructor": {
+    "description": "description: 'Disallow unnecessary constructors.'",
+    "url": "https://typescript-eslint.io/rules/no-useless-constructor/",
+    "options": "error"
+  },
+  "ts/no-var-requires": {
+    "description": "description: 'Disallow `require` statements except in import statements.'",
+    "url": "https://typescript-eslint.io/rules/no-var-requires/",
+    "options": "error"
+  },
+  "ts/prefer-as-const": {
+    "description": "description: 'Enforce the use of `as const` over literal type.'",
+    "url": "https://typescript-eslint.io/rules/prefer-as-const/",
+    "options": "error"
+  },
+  "ts/prefer-literal-enum-member": {
+    "description": "description: 'Require all enum members to be literal values.'",
+    "url": "https://typescript-eslint.io/rules/prefer-literal-enum-member/",
+    "options": "error"
+  },
+  "ts/prefer-ts-expect-error": {
+    "description": "description: 'Enforce using `@ts-expect-error` over `@ts-ignore`.'",
+    "url": "https://typescript-eslint.io/rules/prefer-ts-expect-error/",
+    "options": "error"
+  },
+  "ts/unified-signatures": {
+    "description": "description: 'Disallow two overloads that could be unified into one with a union or an optional/rest parameter.'",
+    "url": "https://typescript-eslint.io/rules/unified-signatures/",
+    "options": "error"
+  },
+  "ts/no-dupe-class-members": {
+    "description": "description: 'Disallow duplicate class members.'",
+    "url": "https://typescript-eslint.io/rules/no-dupe-class-members/",
+    "options": "error"
+  },
+  "ts/no-extra-parens": {
+    "description": "description: 'Disallow unnecessary parentheses.'",
+    "url": "https://typescript-eslint.io/rules/no-extra-parens/",
+    "options": [
+      "error",
+      "functions"
+    ]
+  },
+  "ts/no-invalid-this": {
+    "description": "description: 'Disallow `this` keywords outside of classes or class-like objects.'",
+    "url": "https://typescript-eslint.io/rules/no-invalid-this/",
+    "options": "error"
+  },
+  "ts/no-redeclare": {
+    "description": "description: 'Disallow variable redeclaration.'",
+    "url": "https://typescript-eslint.io/rules/no-redeclare/",
+    "options": "error"
+  },
+  "ts/no-use-before-define": {
+    "description": "description: 'Disallow the use of variables before they are defined.'",
+    "url": "https://typescript-eslint.io/rules/no-use-before-define/",
+    "options": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": true
+      }
+    ]
+  },
+  "ts/consistent-type-definitions": {
+    "description": "description: 'Enforce type definitions to consistently use either `interface` or `type`.'",
+    "url": "https://typescript-eslint.io/rules/consistent-type-definitions/",
+    "options": [
+      "error",
+      "interface"
+    ]
+  },
+  "ts/consistent-type-imports": {
+    "description": "description: 'Enforce consistent usage of type imports.'",
+    "url": "https://typescript-eslint.io/rules/consistent-type-imports/",
+    "options": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "disallowTypeAnnotations": false
+      }
+    ]
+  },
+  "ts/no-require-imports": {
+    "description": "description: 'Disallow invocation of `require()`.'",
+    "url": "https://typescript-eslint.io/rules/no-require-imports/",
+    "options": "error"
+  }
+}

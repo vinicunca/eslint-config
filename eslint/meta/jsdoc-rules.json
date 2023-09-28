@@ -1,0 +1,74 @@
+{
+  "jsdoc/check-access": {
+    "description": "Enforces valid `@access` tags",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md"
+  },
+  "jsdoc/check-alignment": {
+    "description": "Enforces alignment of JSDoc block asterisks",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-alignment.md"
+  },
+  "jsdoc/check-param-names": {
+    "description": "Checks for dupe `@param` names, that nested param names have roots, and that parameter names in function declarations match jsdoc param names.",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-param-names.md"
+  },
+  "jsdoc/check-property-names": {
+    "description": "Checks for dupe `@property` names, that nested property names have roots",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-property-names.md"
+  },
+  "jsdoc/check-types": {
+    "description": "Reports types deemed invalid (customizable and with defaults, for preventing and/or recommending replacements)",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-types.md"
+  },
+  "jsdoc/empty-tags": {
+    "description": "Checks tags that are expected to be empty (e.g., `@abstract` or `@async`), reporting if they have content",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/empty-tags.md"
+  },
+  "jsdoc/implements-on-classes": {
+    "description": "Prohibits use of `@implements` on non-constructor functions (to enforce the tag only being used on classes/constructors)",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/implements-on-classes.md"
+  },
+  "jsdoc/multiline-blocks": {
+    "description": "Controls how and whether jsdoc blocks can be expressed as single or multiple line blocks",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/multiline-blocks.md"
+  },
+  "jsdoc/no-defaults": {
+    "description": "This rule reports defaults being used on the relevant portion of `@param` or `@default`",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-defaults.md"
+  },
+  "jsdoc/no-multi-asterisks": {
+    "description": "Prevents use of multiple asterisks at the beginning of lines",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-multi-asterisks.md"
+  },
+  "jsdoc/require-param-name": {
+    "description": "Requires that all `@param` tags have names.",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-name.md"
+  },
+  "jsdoc/require-property": {
+    "description": "Requires that all `@typedef` and `@namespace` tags have `@property` tags when their type is a plain `object`, `Object`, or `PlainObject`.",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property.md"
+  },
+  "jsdoc/require-property-description": {
+    "description": "Requires that each `@property` tag has a `description` value.",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-description.md"
+  },
+  "jsdoc/require-property-name": {
+    "description": "Requires that all `@property` tags have names.",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-name.md"
+  },
+  "jsdoc/require-returns-check": {
+    "description": "Requires a return statement be present in a function body if a `@returns` tag is specified in the jsdoc comment block (and reports if multiple `@returns` tags are present).",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-check.md"
+  },
+  "jsdoc/require-returns-description": {
+    "description": "Requires that the `@returns` tag has a `description` value (not including `void`/`undefined` type returns).",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-description.md"
+  },
+  "jsdoc/require-yields-check": {
+    "description": "Ensures that if a `@yields` is present that a `yield` (or `yield` with a value) is present in the function body (or that if a `@next` is present that there is a `yield` with a return value present)",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-yields-check.md"
+  },
+  "jsdoc/valid-types": {
+    "description": "Requires all types/namepaths to be valid JSDoc, Closure compiler, or TypeScript types (configurable in settings)",
+    "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/valid-types.md"
+  }
+}

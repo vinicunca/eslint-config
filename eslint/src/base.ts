@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import { type FlatESLintConfigItem } from 'eslint-define-config';
 import gitignore from 'eslint-config-flat-gitignore';
 import { isPackageExists } from 'local-pkg';
-import { isBoolean } from '@vinicunca/perkakas';
 
+import { isBoolean } from '@vinicunca/perkakas';
 import { type OptionsConfig } from './types';
 import { ignores } from './configs/ignores';
 import { combineConfigs } from './utils';
@@ -25,7 +25,6 @@ import {
   stylistic,
   test,
   typescript,
-  typescriptWithTypes,
   unicorn,
   vue,
   yaml,
@@ -57,6 +56,7 @@ export function vinicuncaESLint(
     markdown: enableMarkdown = true,
     react: enableReact = false,
     overrides = {},
+    componentExts = [],
   } = options;
 
   const configs: FlatESLintConfigItem[][] = [];
@@ -82,26 +82,18 @@ export function vinicuncaESLint(
     unicorn(),
   );
 
-  // In the future we may support more component extensions like Svelte or so
-  const componentExts: string[] = [];
-
   if (enableVue) {
     componentExts.push('vue');
   }
 
   if (enableTypeScript) {
     configs.push(typescript({
+      ...!isBoolean(enableTypeScript)
+        ? enableTypeScript
+        : {},
       componentExts,
       overrides: overrides.typescript,
     }));
-
-    if (!isBoolean(enableTypeScript)) {
-      configs.push(typescriptWithTypes({
-        ...enableTypeScript,
-        componentExts,
-        overrides: overrides.typescript,
-      }));
-    }
   }
 
   if (enableStylistic) {

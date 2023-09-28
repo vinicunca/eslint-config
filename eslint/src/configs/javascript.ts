@@ -412,10 +412,6 @@ export function javascript(
 
         'yoda': [ERROR, NEVER],
 
-        'vinicunca/import-dedupe': ERROR,
-
-        'vinicunca/no-import-node-modules-by-path': ERROR,
-
         'vinicunca/top-level-function': ERROR,
 
         'unused-imports/no-unused-imports': isInEditor ? OFF : ERROR,

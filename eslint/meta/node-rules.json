@@ -1,0 +1,56 @@
+{
+  "node/handle-callback-err": {
+    "description": "Require error handling in callbacks",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/handle-callback-err.md",
+    "options": [
+      "error",
+      "^(err|error)$"
+    ]
+  },
+  "node/no-callback-literal": {
+    "description": "Enforce Node.js-style error-first callback pattern is followed",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-callback-literal.md",
+    "options": "off"
+  },
+  "node/no-deprecated-api": {
+    "description": "Disallow deprecated APIs",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-deprecated-api.md",
+    "options": "error"
+  },
+  "node/no-exports-assign": {
+    "description": "Disallow the assignment to exports",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-exports-assign.md",
+    "options": "error"
+  },
+  "node/no-new-require": {
+    "description": "Disallow new operators with calls to require",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-new-require.md",
+    "options": "error"
+  },
+  "node/no-path-concat": {
+    "description": "Disallow string concatenation with __dirname and __filename",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-path-concat.md",
+    "options": "error"
+  },
+  "node/prefer-global/buffer": {
+    "description": "Enforce either Buffer or require(\"buffer\").Buffer",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/prefer-global/buffer.md",
+    "options": [
+      "error",
+      "never"
+    ]
+  },
+  "node/prefer-global/process": {
+    "description": "Enforce either process or require(\"process\")",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/prefer-global/process.md",
+    "options": [
+      "error",
+      "never"
+    ]
+  },
+  "node/process-exit-as-throw": {
+    "description": "Require that process.exit() expressions use the same code path as throw",
+    "url": "https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/process-exit-as-throw.md",
+    "options": "error"
+  }
+}

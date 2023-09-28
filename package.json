@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.6.8",
+  "packageManager": "pnpm@8.8.0",
   "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
     "lint": "eslint .",
@@ -15,14 +15,14 @@
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.7.1",
     "@vinicunca/eslint-config": "workspace:*",
     "@vinicunca/perkakas": "^0.0.4",
     "bumpp": "^9.2.0",
     "eslint": "^8.50.0",
     "eslint-define-config": "^1.23.0",
-    "rimraf": "^5.0.1",
-    "tsx": "^3.12.10",
+    "rimraf": "^5.0.5",
+    "tsx": "^3.13.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.5"
   },
