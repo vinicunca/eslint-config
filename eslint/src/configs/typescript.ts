@@ -4,7 +4,7 @@ import { type OptionsComponentExts, type OptionsOverrides, type OptionsTypeScrip
 import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
 import { ERROR, OFF } from '../flags';
-import { GLOB_TS, GLOB_TSX } from '../globs';
+import { GLOB_SRC } from '../globs';
 
 export function typescript(
   options?: OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions,
@@ -50,8 +50,7 @@ export function typescript(
 
     {
       files: [
-        GLOB_TS,
-        GLOB_TSX,
+        GLOB_SRC,
         ...componentExts.map((ext) => `**/*.${ext}`),
       ],
 
@@ -103,6 +102,8 @@ export function typescript(
         'no-useless-constructor': OFF,
 
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
+
+        'ts/ban-types': ['error', { types: { Function: false } }],
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 

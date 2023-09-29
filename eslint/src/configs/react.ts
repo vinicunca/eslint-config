@@ -1,6 +1,6 @@
 import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { type OptionsOverrides } from 'src';
-import { ERROR, NEVER } from '../flags';
+import { ERROR, NEVER, OFF } from '../flags';
 import { pluginReact, pluginReactHooks } from '../plugins';
 
 export function react(
@@ -55,9 +55,6 @@ export function react(
           children: true,
         }],
 
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
-        'react/react-in-jsx-scope': 'off',
-
         // Validate props indentation in JSX
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
         'react/jsx-indent-props': [ERROR, 2],
@@ -65,7 +62,7 @@ export function react(
         // Validate JSX has key prop when in array or iterator
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
         // Turned off because it has too many false positives
-        'react/jsx-key': 'off',
+        'react/jsx-key': OFF,
 
         // Limit maximum of props on a single line in JSX
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-props-per-line.md
@@ -77,11 +74,7 @@ export function react(
 
         // Prevent usage of unwrapped JSX strings
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
-        'react/jsx-no-literals': ['off', { noStrings: true }],
-
-        // Disallow undeclared variables in JSX
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md
-        'react/jsx-no-undef': ERROR,
+        'react/jsx-no-literals': [OFF, { noStrings: true }],
 
         // Enforce PascalCase for user-defined JSX components
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
@@ -92,7 +85,7 @@ export function react(
 
         // Enforce props alphabetical sorting
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md
-        'react/jsx-sort-props': ['off', {
+        'react/jsx-sort-props': [OFF, {
           ignoreCase: true,
           callbacksLast: false,
           shorthandFirst: false,
@@ -103,7 +96,7 @@ export function react(
 
         // Enforce defaultProps declarations alphabetical sorting
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/jsx-sort-default-props.md
-        'react/jsx-sort-default-props': ['off', {
+        'react/jsx-sort-default-props': [OFF, {
           ignoreCase: true,
         }],
 
@@ -154,7 +147,7 @@ export function react(
 
         // Enforces consistent naming for boolean props
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/boolean-prop-naming.md
-        'react/boolean-prop-naming': ['off', {
+        'react/boolean-prop-naming': [OFF, {
           propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
           rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
           message: '',
@@ -173,11 +166,11 @@ export function react(
         'react/destructuring-assignment': [ERROR, 'always'],
 
         // Ensures inline tags are not rendered without spaces between them
-        'react/jsx-child-element-spacing': 'off',
+        'react/jsx-child-element-spacing': OFF,
 
         // Validate JSX maximum depth
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/abe8381c0d6748047224c430ce47f02e40160ed0/docs/rules/jsx-max-depth.md
-        'react/jsx-max-depth': 'off',
+        'react/jsx-max-depth': OFF,
 
         // Disallow multiple spaces between inline JSX props
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/ac102885765be5ff37847a871f239c6703e1c7cc/docs/rules/jsx-props-no-multi-spaces.md

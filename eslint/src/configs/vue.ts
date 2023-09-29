@@ -143,7 +143,7 @@ export function vue(
 
         'vue/no-v-html': OFF,
 
-        'vue/no-v-text-v-html-on-component': 'off',
+        'vue/no-v-text-v-html-on-component': OFF,
 
         'vue/object-curly-newline': [ERROR, { multiline: true, consistent: true }],
 
