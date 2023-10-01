@@ -110,9 +110,9 @@ export interface OptionsIsInEditor {
 }
 
 export interface OptionsIgnores {
+  enableGitignore?: boolean;
   items?: string[];
   replace?: boolean;
-  enableGitignore?: boolean;
 }
 
 export interface OptionsComponentExts {

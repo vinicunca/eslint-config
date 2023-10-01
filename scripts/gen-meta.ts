@@ -1,6 +1,8 @@
 import process from 'node:process';
-import JITI from 'jiti';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import fs from 'fs-extra';
+import JITI from 'jiti';
 import { type FlatESLintConfigItem } from 'eslint-define-config';
 
 async function generateJsonRules() {
@@ -40,7 +42,13 @@ async function generateJsonRules() {
     }
   }
 
-  const configs = rawConfigs.map((rawConfig): FlatESLintConfigItem => {
+  const OUTPUT: any = {};
+
+  for (const rawConfig of rawConfigs) {
+    const [, configName] = rawConfig.name.split(':');
+
+    OUTPUT[configName] = OUTPUT[configName] || [];
+
     let rules;
 
     if (rawConfig.rules) {
@@ -52,23 +60,37 @@ async function generateJsonRules() {
         rules[rule] = {
           ...meta.docs,
           options: rawConfig.rules![rule],
-        }
+        };
       });
     }
 
-    return {
+    const outputMeta = {
       ...rawConfig,
       rules,
       plugins: rawConfig.plugins
-          ? Object.fromEntries(Object.entries(rawConfig.plugins ?? {}).map(([prefix]) => [prefix, {}]))
-          : undefined,
+        ? Object.fromEntries(Object.entries(rawConfig.plugins ?? {}).map(([prefix]) => [prefix, {}]))
+        : undefined,
       processor: undefined,
       languageOptions: undefined,
     };
-  });
-  console.log(`🚀 ~ configs ~ configs:`, configs);
 
-  // console.log(`🚀 ~ configs ~ configs:`, configs);
+    if (rawConfig.rules || rawConfig.ignores) {
+      OUTPUT[configName].push(outputMeta);
+    }
+  }
+
+  writeJson(OUTPUT);
 }
 
 generateJsonRules();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+function writeJson(content: any) {
+  const docsDataDir = path.resolve(__dirname, '../docs');
+
+  const filePath = path.resolve(__dirname, docsDataDir, 'metadata.json');
+
+  return fs.writeJSON(filePath, content, { spaces: 2, EOL: '\n' });
+}

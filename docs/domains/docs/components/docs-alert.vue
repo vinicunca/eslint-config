@@ -18,6 +18,7 @@ defineProps({
         '!pt-2': !title,
       },
     ]"
+    class="mt-4"
   >
     <p
       v-if="title"

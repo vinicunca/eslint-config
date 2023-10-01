@@ -55,14 +55,14 @@ export function vinicuncaESLint(
     componentExts = [],
   } = options;
 
-  const configs2: FlatESLintConfigItem[][] = [];
+  // const configs2: FlatESLintConfigItem[][] = [];
 
-  configs2.push(ignores(options.ignores));
+  // configs2.push(ignores(options.ignores));
 
-  configs2.push(javascript({
-    isInEditor,
-    overrides: overrides.javascript,
-  }));
+  // configs2.push(javascript({
+  //   isInEditor,
+  //   overrides: overrides.javascript,
+  // }));
 
   const configs: FlatESLintConfigItem[][] = [];
 
@@ -144,12 +144,8 @@ export function vinicuncaESLint(
     }));
   }
 
-  // return combineConfigs(
-  //   ...configs,
-  //   ...userConfigs,
-  // );
   return combineConfigs(
-    ...configs2,
+    ...configs,
     ...userConfigs,
   );
 }

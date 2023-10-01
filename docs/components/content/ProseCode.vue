@@ -44,7 +44,7 @@ defineProps({
       {{ language }}
     </span>
 
-    <span v-if="filename" class="absolute right-2 bottom-[3px] text-xs font-medium leading-6">
+    <span v-if="filename" class="absolute right-2 bottom-[3px] text-xs font-medium leading-6 text-white">
       {{ filename }}
     </span>
 
