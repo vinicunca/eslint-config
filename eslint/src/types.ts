@@ -1,22 +1,18 @@
-import { type FlatGitignoreOptions } from 'eslint-config-flat-gitignore';
-import { type FlatESLintConfigItem } from 'eslint-define-config';
+import { type FlatESLintConfigItem as OriFlatESLintConfigItem } from 'eslint-define-config';
 import { type ParserOptions } from '@typescript-eslint/parser';
+
+export interface FlatESLintConfigItem extends OriFlatESLintConfigItem {
+  /**
+   * The name of the configuration object.
+   */
+  name?: string;
+}
 
 export interface OptionsConfig extends OptionsComponentExts {
   /**
    * Additional options for the ignore rules.
    */
   ignores?: OptionsIgnores;
-
-  /**
-   * Enable gitignore support.
-   *
-   * Passing an object to configure the options.
-   *
-   * @see https://github.com/antfu/eslint-config-flat-gitignore
-   * @default true
-   */
-  gitignore?: boolean | FlatGitignoreOptions;
 
   /**
    * Enable TypeScript support.
@@ -116,6 +112,7 @@ export interface OptionsIsInEditor {
 export interface OptionsIgnores {
   items?: string[];
   replace?: boolean;
+  enableGitignore?: boolean;
 }
 
 export interface OptionsComponentExts {

@@ -8,9 +8,11 @@ export function useRulesMetadata() {
       async () => {
         const dataSource = await import(`../data/${source}.json`).then((d) => d.default);
 
-        const parsed = await parseRuleIgnore(dataSource);
+        if (source === 'ignores') {
+          return parseRuleIgnore(dataSource);
+        }
 
-        return parsed;
+        return dataSource;
       },
     );
 

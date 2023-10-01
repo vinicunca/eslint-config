@@ -1,16 +1,16 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { pluginJsdoc } from '../plugins';
 import { WARN } from '../flags';
+import { type FlatESLintConfigItem } from '../types';
 
 export function jsdoc(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:jsdoc',
+
       plugins: {
         jsdoc: pluginJsdoc,
       },
-    },
 
-    {
       rules: {
         'jsdoc/check-access': WARN,
 

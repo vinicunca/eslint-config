@@ -4,8 +4,7 @@ import { TabsContent, TabsList, TabsRoot, TabsTrigger } from 'radix-vue';
 const slots = useSlots();
 
 const slotTabs = computed(() =>
-  (slots.default?.() ?? []).map((slot) => slot.props?.filename),
-);
+  (slots.default?.() ?? []).map((slot) => slot.props?.filename));
 
 function SlotContent({ idx }: { idx: number }) {
   const defaultSlots = slots.default?.() ?? [];

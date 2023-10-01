@@ -1,8 +1,7 @@
 import globals from 'globals';
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
 import { pluginUnusedImports, pluginVinicunca } from '../plugins';
-import { type OptionsIsInEditor, type OptionsOverrides } from '../types';
+import { type FlatESLintConfigItem, type OptionsIsInEditor, type OptionsOverrides } from '../types';
 import {
   ALWAYS,
   ERROR,
@@ -21,6 +20,8 @@ export function javascript(
 
   return [
     {
+      name: 'vinicunca:javascript',
+
       languageOptions: {
         ecmaVersion: 2022,
 
@@ -70,13 +71,9 @@ export function javascript(
 
         'dot-notation': [ERROR, { allowKeywords: true }],
 
-        'eol-last': ERROR,
-
         'eqeqeq': [ERROR, 'smart'],
 
         'for-direction': ERROR,
-
-        'max-statements-per-line': [ERROR, { max: 1 }],
 
         'new-cap': [ERROR, {
           capIsNew: false,
@@ -149,11 +146,7 @@ export function javascript(
 
         'no-extra-boolean-cast': ERROR,
 
-        'no-extra-parens': [ERROR, 'functions'],
-
         'no-fallthrough': ERROR,
-
-        'no-floating-decimal': ERROR,
 
         'no-func-assign': ERROR,
 
@@ -179,15 +172,6 @@ export function javascript(
 
         'no-misleading-character-class': ERROR,
 
-        'no-mixed-operators': [ERROR, {
-          groups: [
-            ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
-            ['&&', '||'],
-            ['in', 'instanceof'],
-          ],
-          allowSamePrecedence: true,
-        }],
-
         'no-multi-str': ERROR,
 
         'no-nested-ternary': ERROR,
@@ -207,8 +191,6 @@ export function javascript(
         'no-octal': ERROR,
 
         'no-octal-escape': ERROR,
-
-        'new-parens': ERROR,
 
         'no-promise-executor-return': ERROR,
 
@@ -375,8 +357,6 @@ export function javascript(
 
         'prefer-template': ERROR,
 
-        'quote-props': [ERROR, 'consistent-as-needed'],
-
         'sort-imports': [ERROR, {
           ignoreCase: false,
           ignoreDeclarationSort: true,
@@ -406,13 +386,7 @@ export function javascript(
 
         'vars-on-top': ERROR,
 
-        'wrap-iife': [ERROR, 'any', {
-          functionPrototypeMethods: true,
-        }],
-
         'yoda': [ERROR, NEVER],
-
-        'vinicunca/top-level-function': ERROR,
 
         'unused-imports/no-unused-imports': isInEditor ? OFF : ERROR,
 
@@ -427,7 +401,10 @@ export function javascript(
         ...overrides,
       },
     },
+
     {
+      name: 'vinicunca:javascript:overrides',
+
       files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
 
       rules: {

@@ -1,17 +1,21 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs';
 import { parserJsonc, pluginJsonc } from '../plugins';
 import { ERROR, NEVER } from '../flags';
+import { type FlatESLintConfigItem } from '../types';
 
 export function jsonc(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:jsonc:setup',
+
       plugins: {
         jsonc: pluginJsonc as any,
       },
     },
 
     {
+      name: 'vinicunca:jsonc:rules',
+
       files: [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
 
       languageOptions: {

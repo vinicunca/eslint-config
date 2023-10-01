@@ -1,16 +1,16 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { pluginNode } from '../plugins';
 import { ERROR, NEVER, OFF } from '../flags';
+import { type FlatESLintConfigItem } from '../types';
 
 export function node(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:node',
+
       plugins: {
         node: pluginNode,
       },
-    },
 
-    {
       rules: {
         'node/handle-callback-err': [ERROR, '^(err|error)$'],
 

@@ -1,8 +1,7 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_YAML } from '../globs';
 import { parserYaml, pluginYaml } from '../plugins';
 import { ERROR, OFF } from '../flags';
-import { type OptionsOverrides } from '../types';
+import { type FlatESLintConfigItem, type OptionsOverrides } from '../types';
 
 export function yaml(
   options: OptionsOverrides = {},
@@ -13,11 +12,15 @@ export function yaml(
 
   return [
     {
+      name: 'vinicunca:yaml:setup',
+
       plugins: {
         yaml: pluginYaml as any,
       },
     },
     {
+      name: 'vinicunca:yaml:rules',
+
       files: [GLOB_YAML],
 
       languageOptions: {

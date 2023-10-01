@@ -1,10 +1,12 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { pluginImport, pluginVinicunca } from '../plugins';
 import { ERROR } from '../flags';
+import { type FlatESLintConfigItem } from '../types';
 
 export function imports(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:imports',
+
       plugins: {
         import: pluginImport,
         vinicunca: pluginVinicunca,

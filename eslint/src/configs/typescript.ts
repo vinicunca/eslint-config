@@ -1,6 +1,5 @@
 import process from 'node:process';
-import { type FlatESLintConfigItem } from 'eslint-define-config';
-import { type OptionsComponentExts, type OptionsOverrides, type OptionsTypeScriptParserOptions, type OptionsTypeScriptWithTypes } from '../types';
+import { type FlatESLintConfigItem, type OptionsComponentExts, type OptionsOverrides, type OptionsTypeScriptParserOptions, type OptionsTypeScriptWithTypes } from '../types';
 import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
 import { ERROR, OFF } from '../flags';
@@ -41,6 +40,8 @@ export function typescript(
   return [
     {
       // Install the plugins without globs, so they can be configured separately.
+      name: 'vinicunca:typescript:setup',
+
       plugins: {
         vinicunca: pluginVinicunca,
         import: pluginImport,
@@ -49,6 +50,8 @@ export function typescript(
     },
 
     {
+      name: 'vinicunca:typescript:rules',
+
       files: [
         GLOB_SRC,
         ...componentExts.map((ext) => `**/*.${ext}`),
@@ -83,9 +86,6 @@ export function typescript(
 
         'no-dupe-class-members': OFF,
         'ts/no-dupe-class-members': ERROR,
-
-        'no-extra-parens': OFF,
-        'ts/no-extra-parens': [ERROR, 'functions'],
 
         'no-invalid-this': OFF,
         'ts/no-invalid-this': ERROR,
@@ -155,7 +155,10 @@ export function typescript(
       },
     },
     {
+      name: 'vinicunca:typescript:dts-overrides',
+
       files: ['**/*.d.ts'],
+
       rules: {
         'eslint-comments/no-unlimited-disable': OFF,
         'import/no-duplicates': OFF,
@@ -163,13 +166,19 @@ export function typescript(
       },
     },
     {
+      name: 'vinicunca:typescript:tests-overrides',
+
       files: ['**/*.{test,spec}.ts?(x)'],
+
       rules: {
         'no-unused-expressions': OFF,
       },
     },
     {
+      name: 'vinicunca:typescript:javascript-overrides',
+
       files: ['**/*.js', '**/*.cjs'],
+
       rules: {
         'ts/no-require-imports': OFF,
         'ts/no-var-requires': OFF,

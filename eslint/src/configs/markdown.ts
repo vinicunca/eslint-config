@@ -1,8 +1,7 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE } from '../globs';
 import { pluginMarkdown } from '../plugins';
 import { OFF } from '../flags';
-import { type OptionsComponentExts, type OptionsOverrides } from '../types';
+import { type FlatESLintConfigItem, type OptionsComponentExts, type OptionsOverrides } from '../types';
 
 export function markdown(
   options: OptionsComponentExts & OptionsOverrides = {},
@@ -14,17 +13,22 @@ export function markdown(
 
   return [
     {
+      name: 'vinicunca:markdown:setup',
+
       plugins: {
         markdown: pluginMarkdown,
       },
     },
 
     {
+      name: 'vinicunca:markdown:processor',
       files: [GLOB_MARKDOWN],
       processor: 'markdown/markdown',
     },
 
     {
+      name: 'vinicunca:markdown:rules',
+
       files: [
         GLOB_MARKDOWN_CODE,
         ...componentExts.map((ext) => `${GLOB_MARKDOWN}/**/*.${ext}`),
@@ -39,11 +43,6 @@ export function markdown(
       },
 
       rules: {
-        'vinicunca/no-cjs-exports': OFF,
-        'vinicunca/no-ts-export-equal': OFF,
-
-        'eol-last': OFF,
-
         'no-alert': OFF,
         'no-console': OFF,
         'no-undef': OFF,
@@ -53,6 +52,8 @@ export function markdown(
         'node/prefer-global/process': OFF,
 
         'style/comma-dangle': OFF,
+
+        'style/eol-last': OFF,
 
         'ts/consistent-type-imports': OFF,
         'ts/no-namespace': OFF,
@@ -85,6 +86,9 @@ export function markdown(
           'ts/restrict-template-expressions': OFF,
           'ts/unbound-method': OFF,
         },
+
+        'vinicunca/no-cjs-exports': OFF,
+        'vinicunca/no-ts-export-equal': OFF,
 
         ...overrides,
       },

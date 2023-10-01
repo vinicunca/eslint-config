@@ -1,12 +1,9 @@
 import process from 'node:process';
-import fs from 'node:fs';
 
-import { type FlatESLintConfigItem } from 'eslint-define-config';
-import gitignore from 'eslint-config-flat-gitignore';
 import { isPackageExists } from 'local-pkg';
 
 import { isBoolean } from '@vinicunca/perkakas';
-import { type OptionsConfig } from './types';
+import { type FlatESLintConfigItem, type OptionsConfig } from './types';
 import { ignores } from './configs/ignores';
 import { combineConfigs } from './utils';
 import {
@@ -49,7 +46,6 @@ export function vinicuncaESLint(
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
     typescript: enableTypeScript = isPackageExists('typescript'),
     stylistic: enableStylistic = true,
-    gitignore: enableGitignore = true,
     test: enableTest = true,
     jsonc: enableJsonc = true,
     yaml: enableYaml = true,
@@ -59,15 +55,16 @@ export function vinicuncaESLint(
     componentExts = [],
   } = options;
 
-  const configs: FlatESLintConfigItem[][] = [];
+  const configs2: FlatESLintConfigItem[][] = [];
 
-  if (enableGitignore) {
-    if (typeof enableGitignore !== 'boolean') {
-      configs.push([gitignore(enableGitignore)]);
-    } else if (fs.existsSync('.gitignore')) {
-      configs.push([gitignore()]);
-    };
-  }
+  configs2.push(ignores(options.ignores));
+
+  configs2.push(javascript({
+    isInEditor,
+    overrides: overrides.javascript,
+  }));
+
+  const configs: FlatESLintConfigItem[][] = [];
 
   configs.push(
     ignores(options.ignores),
@@ -147,8 +144,12 @@ export function vinicuncaESLint(
     }));
   }
 
+  // return combineConfigs(
+  //   ...configs,
+  //   ...userConfigs,
+  // );
   return combineConfigs(
-    ...configs,
+    ...configs2,
     ...userConfigs,
   );
 }

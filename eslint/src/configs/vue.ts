@@ -1,8 +1,7 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { GLOB_VUE } from '../globs';
 import { parserTs, parserVue, pluginVue } from '../plugins';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
-import { type OptionsHasTypeScript, type OptionsOverrides } from '../types';
+import { type FlatESLintConfigItem, type OptionsHasTypeScript, type OptionsOverrides } from '../types';
 
 export function vue(
   options: OptionsHasTypeScript & OptionsOverrides = {},
@@ -13,12 +12,16 @@ export function vue(
 
   return [
     {
+      name: 'vinicunca:vue:setup',
+
       plugins: {
         vue: pluginVue,
       },
     },
 
     {
+      name: 'vinicunca:vue:rules',
+
       files: [GLOB_VUE],
 
       languageOptions: {

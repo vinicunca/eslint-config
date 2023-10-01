@@ -1,5 +1,4 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
-import { type OptionsOverrides } from '../types';
+import { type FlatESLintConfigItem, type OptionsOverrides } from '../types';
 import { pluginUnicorn } from '../plugins';
 import { ERROR } from '../flags';
 
@@ -12,12 +11,12 @@ export function unicorn(
 
   return [
     {
+      name: 'vinicunca:unicorn',
+
       plugins: {
         unicorn: pluginUnicorn,
       },
-    },
 
-    {
       rules: {
         'unicorn/error-message': ERROR,
 

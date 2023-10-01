@@ -1,5 +1,4 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
-import { type OptionsOverrides } from 'src';
+import { type FlatESLintConfigItem, type OptionsOverrides } from 'src';
 import { ERROR, NEVER, OFF } from '../flags';
 import { pluginReact, pluginReactHooks } from '../plugins';
 
@@ -12,6 +11,8 @@ export function react(
 
   return [
     {
+      name: 'vinicunca:react:setup',
+
       plugins: {
         'react': pluginReact,
         'react-hooks': pluginReactHooks,
@@ -19,6 +20,8 @@ export function react(
     },
 
     {
+      name: 'vinicunca:react:rules',
+
       settings: {
         react: {
           version: 'detect',

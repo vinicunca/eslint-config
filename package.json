@@ -12,6 +12,7 @@
     "build:lib": "pnpm -C eslint build",
     "prepublish": "pnpm run build:lib",
     "release": "pnpm -C eslint release",
+    "gen:meta": "tsx scripts/gen-meta.ts",
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {

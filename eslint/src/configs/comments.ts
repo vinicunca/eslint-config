@@ -1,15 +1,16 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { ERROR } from '../flags';
 import { pluginComments } from '../plugins';
+import { type FlatESLintConfigItem } from '../types';
 
 export function comments(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:eslint-comments',
+
       plugins: {
         'eslint-comments': pluginComments,
       },
-    },
-    {
+
       rules: {
         'eslint-comments/no-aggregating-enable': ERROR,
 

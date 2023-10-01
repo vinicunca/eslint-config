@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import { isString } from '@vinicunca/perkakas';
+import { useRulesMetadata } from '../composables/use-rules-metadata';
 
 const props = defineProps<{
   source: string;
 }>();
 
-const { data } = await useAsyncData(
-  'rules',
-  async () => import(`~~/data/${props.source}.json`).then((m) => m.default),
-);
+const { getMetadata } = useRulesMetadata();
+
+const { ruleData } = await getMetadata(props.source);
 </script>
 
 <template>
   <div class="mt-8 grid grid-flow-row gap-2">
     <div
-      v-for="(rule, ruleName) in data"
+      v-for="(rule, ruleName) in ruleData"
       :key="ruleName"
       class="p-4 bg-$vd-c-bg-soft text-sm rounded-2"
     >
@@ -32,7 +32,7 @@ const { data } = await useAsyncData(
 
         <p
           v-if="!isString(rule.options)"
-          class="mt-1 flex flex-col"
+          class="mt-2 flex flex-col"
         >
           <span class="font-700">Options</span>
 

@@ -61,18 +61,16 @@
     "test": "vitest",
     "build:ori": "pnpm run gen-meta && tsup src/index.ts --format esm --clean --dts",
     "build": "tsup src/index.ts --format esm,cjs --clean --dts",
-    "gen:meta": "tsx meta/gen-meta.ts",
     "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },
   "peerDependencies": {
     "eslint": ">=8.50.0"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "0.0.5",
+    "@stylistic/eslint-plugin": "0.0.6",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
-    "@vinicunca/eslint-plugin-vinicunca": "1.0.0-beta.2",
-    "eslint-config-flat-gitignore": "^0.1.0",
+    "@vinicunca/eslint-plugin-vinicunca": "^1.0.0-beta.4",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-i": "^2.28.1",
     "eslint-plugin-jsdoc": "^46.8.2",
@@ -90,11 +88,12 @@
     "globals": "^13.22.0",
     "jsonc-eslint-parser": "^2.3.0",
     "local-pkg": "^0.4.3",
+    "parse-gitignore": "^2.0.0",
     "vue-eslint-parser": "^9.3.1",
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "@eslint-stylistic/metadata": "^0.0.5",
+    "@eslint-stylistic/metadata": "^0.0.6",
     "@types/fs-extra": "^11.0.2",
     "fs-extra": "^11.1.1",
     "react": "^18.2.0",

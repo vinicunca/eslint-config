@@ -1,5 +1,5 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
 import { ERROR } from '../flags';
+import { type FlatESLintConfigItem } from '../types';
 
 /**
  * Sort package.json
@@ -9,6 +9,8 @@ import { ERROR } from '../flags';
 export function sortPackageJson(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:sort-package-json',
+
       files: ['**/package.json'],
       rules: {
         'jsonc/sort-array-values': [
@@ -103,6 +105,8 @@ export function sortPackageJson(): FlatESLintConfigItem[] {
 export function sortTsconfig(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'vinicunca:sort-tsconfig',
+
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],
       rules: {
         'jsonc/sort-keys': [

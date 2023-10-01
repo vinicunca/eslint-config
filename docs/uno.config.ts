@@ -127,5 +127,6 @@ export default defineConfig({
     'i-logos:typescript-icon',
     'i-logos:vue',
     'i-logos:react',
+    'i-fa-regular:comments',
   ],
 });
