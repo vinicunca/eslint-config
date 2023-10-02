@@ -30,13 +30,13 @@ const ignoreList = [
 <template>
   <DocsConfigBox>
     <div class="flex flex-wrap gap-2">
-      <div
+      <DocsConfigItem
         v-for="ignore in ignoreList"
         :key="ignore"
-        class="rounded-1 border border-$vd-c-gray-2 bg-$vd-c-gray-soft px2 font-mono opacity-75"
+        class="rounded-1 border border-$vd-c-gray-2 bg-$vd-c-gray-soft px-2 font-mono opacity-75"
       >
         {{ ignore }}
-      </div>
+      </DocsConfigItem>
     </div>
   </DocsConfigBox>
 </template>

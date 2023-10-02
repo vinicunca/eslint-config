@@ -3,7 +3,17 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
 import JITI from 'jiti';
-import { type FlatESLintConfigItem } from 'eslint-define-config';
+import { type FlatESLintConfigItem, type RuleConfig } from 'eslint-define-config';
+
+const pluginUrlMap = {
+  'ts': 'https://typescript-eslint.io/',
+  'vue': 'https://eslint.vuejs.org/',
+  'node': 'https://github.com/eslint-community/eslint-plugin-n',
+  'import': 'https://github.com/un-es/eslint-plugin-i',
+  'unused-imports': 'https://github.com/sweepline/eslint-plugin-unused-imports',
+  'style': 'https://eslint.style/',
+  'vinicunca': 'https://eslint.vinicunca.dev/vinicunca',
+} as Record<string, string>;
 
 async function generateJsonRules() {
   const cwd = process.cwd();
@@ -56,19 +66,32 @@ async function generateJsonRules() {
 
       Object.keys(rawConfig.rules).forEach((rule) => {
         const meta = rulesMap.get(rule);
+        const userConfig = rawConfig.rules![rule];
+
+        const level = getRuleLevel(userConfig);
+        const options = getRuleOptions(userConfig);
 
         rules[rule] = {
-          ...meta.docs,
-          options: rawConfig.rules![rule],
+          ...meta,
+          level,
+          options,
         };
       });
     }
+
+    const transformedPlugins = Object.fromEntries(
+      Object.entries(rawConfig.plugins ?? {}).map(
+        ([prefix]) => [prefix, {
+          url: pluginUrlMap[prefix],
+        }],
+      ),
+    );
 
     const outputMeta = {
       ...rawConfig,
       rules,
       plugins: rawConfig.plugins
-        ? Object.fromEntries(Object.entries(rawConfig.plugins ?? {}).map(([prefix]) => [prefix, {}]))
+        ? transformedPlugins
         : undefined,
       processor: undefined,
       languageOptions: undefined,
@@ -82,7 +105,28 @@ async function generateJsonRules() {
   writeJson(OUTPUT);
 }
 
-generateJsonRules();
+generateJsonRules(); ;
+
+export function getRuleLevel(level: RuleConfig | undefined) {
+  const first = Array.isArray(level) ? level[0] : level;
+  switch (first) {
+    case 0:
+    case 'off':
+      return 'off';
+    case 1:
+    case 'warn':
+      return 'warn';
+    case 2:
+    case 'error':
+      return 'error';
+  }
+}
+
+export function getRuleOptions<T extends any[]>(level: RuleConfig<T> | undefined): T | undefined {
+  if (Array.isArray(level)) {
+    return level.slice(1) as T;
+  };
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

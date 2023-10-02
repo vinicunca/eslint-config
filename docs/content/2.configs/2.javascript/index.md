@@ -1,10 +1,10 @@
-# Javascript Rules
+# Javascript
 
 List of rules that are related to JavaScript.
 
 ## Basic
 
-:docs-rules-list{ source="javascript" }
+:docs-configs{ config="javascript" }
 
 ## Plugins
 

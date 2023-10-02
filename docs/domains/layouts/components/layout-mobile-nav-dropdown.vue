@@ -45,7 +45,7 @@ watch(() => route.hash, () => {
     <PopoverPortal>
       <PopoverContent
         :style="{ '--vd-vh': `${vh}px` }"
-        class="z-10 mr-4 max-h-[calc(var(--vd-vh,100vh)-86px)] w-[calc(var(--radix-popper-available-width)-32px)] overflow-x-hidden overflow-y-auto border border-$vd-c-divider rounded-2 bg-$vd-c-bg px-[10px] px-[10px] pb-4 pt-1 shadow-3 outline-none will-change-opacity,transform data-[side=bottom]:animate-slide-up-and-fade data-[side=left]:animate-slide-right-and-fade data-[side=right]:animate-slide-left-and-fade data-[side=top]:animate-slide-down-and-fade"
+        class="z-10 mr-4 max-h-[calc(var(--vd-vh,100vh)-86px)] w-[calc(var(--radix-popper-available-width)-32px)] overflow-x-hidden overflow-y-auto border border-$vd-c-divider rounded-2 bg-$vd-c-bg px-[10px] pb-4 pt-1 shadow-3 outline-none will-change-opacity,transform data-[side=bottom]:animate-slide-up-and-fade data-[side=left]:animate-slide-right-and-fade data-[side=right]:animate-slide-left-and-fade data-[side=top]:animate-slide-down-and-fade"
         :side-offset="16"
       >
         <div class="flex flex-col">

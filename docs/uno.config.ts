@@ -102,6 +102,7 @@ export default defineConfig({
         'display': 'inline-block',
         'vertical-align': 'middle',
       },
+      scale: 1.25,
     }),
     presetTypography(),
     presetUno(),

@@ -1,4 +1,4 @@
-# Ignored Files & Directories
+# Ignores
 
 List of ignored files and directories.
 

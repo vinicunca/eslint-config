@@ -13,6 +13,6 @@ export default defineEventHandler((event) => {
   const rawConfigs = jiti(metadataPath).default;
 
   return {
-    config: rawConfigs[query.config as string],
+    configs: rawConfigs[query.config as string],
   };
 });

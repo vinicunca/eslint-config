@@ -20,7 +20,7 @@
 
   /* inline code */
   :not(pre, h1, h2, h3, h4, h5, h6) > code {
-    @apply text-size-[0.875em] text-$vd-code-color;
+    @apply text-size-[0.875em] text-$vd-code-color font-mono;
   }
 
   :not(pre) > code {

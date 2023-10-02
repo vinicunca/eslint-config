@@ -110,7 +110,7 @@ export function vue(
           before: true,
         }],
 
-        'vue/max-attributes-per-line': OFF,
+        'vue/max-attributes-per-line': [ERROR],
 
         'vue/multi-word-component-names': OFF,
 

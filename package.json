@@ -33,6 +33,9 @@
   "pnpm": {
     "overrides": {
       "eslint": "^8.50.0"
+    },
+    "patchedDependencies": {
+      "eslint-define-config@1.23.0": "patches/eslint-define-config@1.23.0.patch"
     }
   }
 }
