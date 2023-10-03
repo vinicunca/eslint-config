@@ -55,15 +55,6 @@ export function vinicuncaESLint(
     componentExts = [],
   } = options;
 
-  // const configs2: FlatESLintConfigItem[][] = [];
-
-  // configs2.push(ignores(options.ignores));
-
-  // configs2.push(javascript({
-  //   isInEditor,
-  //   overrides: overrides.javascript,
-  // }));
-
   const configs: FlatESLintConfigItem[][] = [];
 
   configs.push(

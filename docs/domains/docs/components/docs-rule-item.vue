@@ -42,9 +42,8 @@ const levelClasses = computed(() => {
 
     <PopoverPortal>
       <PopoverContent
-        side="bottom"
         :side-offset="4"
-        class="shadow-3 bg-$vd-c-bg border-$vd-c-divider border rounded-1 data-[state=open]:animate-scale-in will-change-transform,opacity min-w-100"
+        class="shadow-3 bg-$vd-c-bg border-$vd-c-divider border rounded-1 data-[state=open]:animate-scale-in will-change-transform,opacity max-h-[calc(var(--radix-popover-content-available-height)-16px)] w-[calc(var(--radix-popper-available-width)-32px)] sm:w-auto ml-4 overflow-auto z-20"
       >
         <div class="p-3 flex items-center justify-center">
           <NuxtLink

@@ -103,6 +103,16 @@ export default defineConfig({
         'vertical-align': 'middle',
       },
       scale: 1.25,
+
+      collections: {
+        vin: async (iconName) => {
+          if (iconName === 'eslint-style') {
+            return await fetch('https://eslint.style/logo.svg').then((res) => res.text());
+          } else if (iconName === 'yaml') {
+            return await fetch('https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/main/icons/yaml.svg').then((res) => res.text());
+          }
+        },
+      },
     }),
     presetTypography(),
     presetUno(),
@@ -130,5 +140,16 @@ export default defineConfig({
     'i-logos:react',
     'i-simple-icons:eslint',
     'i-fa-regular:comments',
+    'i-logos:nodejs-icon',
+    'i-logos:nodejs-icon-alt',
+    'i-simple-line-icons:docs',
+    'i-carbon:document-import',
+    'i-openmoji:unicorn',
+    'i-vin:eslint-style',
+    'i-vin:yaml',
+    'i-vscode-icons:file-type-tsconfig',
+    'i-file-icons:test-generic',
+    'i-carbon:json',
+    'i-simple-icons:markdown',
   ],
 });

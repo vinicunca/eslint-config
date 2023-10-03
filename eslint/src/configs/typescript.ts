@@ -154,6 +154,7 @@ export function typescript(
         ...overrides,
       },
     },
+
     {
       name: 'vinicunca:typescript:dts-overrides',
 
@@ -165,6 +166,7 @@ export function typescript(
         'unused-imports/no-unused-vars': OFF,
       },
     },
+
     {
       name: 'vinicunca:typescript:tests-overrides',
 
@@ -174,6 +176,7 @@ export function typescript(
         'no-unused-expressions': OFF,
       },
     },
+
     {
       name: 'vinicunca:typescript:javascript-overrides',
 

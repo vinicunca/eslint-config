@@ -15,6 +15,17 @@ defineEmits<{
 }>();
 
 const { y } = useWindowScroll();
+
+const yValue = ref(0);
+
+// There's a weird behavior when the user is on a middle of a page and refresh the page the class won't apply
+onMounted(() => {
+  yValue.value = y.value;
+});
+
+watch(y, (value) => {
+  yValue.value = value;
+});
 </script>
 
 <template>
@@ -44,7 +55,7 @@ const { y } = useWindowScroll();
           class="h-$vd-nav-height flex items-center justify-end grid-gap-x-2"
           :class="[
             {
-              'lg:(relative bg-$vd-nav-bg-color)': y > 0,
+              'lg:bg-$vd-nav-bg-color': yValue > 0,
             },
           ]"
         >

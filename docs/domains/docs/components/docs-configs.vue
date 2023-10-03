@@ -1,37 +1,48 @@
 <script lang="ts" setup>
 import { type ConfigItem } from '../types';
 import { getPluginColor } from '../utils/plugin-colors';
+import CoreTooltip from '~/domains/core/components/core-tooltip.vue';
 
-const props = defineProps<{
-  config: string;
-}>();
-
-const { data } = useFetch<{
-  configs: ConfigItem[];
-}>('/api/meta',
+const props = withDefaults(
+  defineProps<{
+    config: string;
+    index?: number;
+  }>(),
   {
-    query: {
-      config: props.config,
-    },
+    index: 0,
+  },
+);
+
+const { data: config } = useAsyncData<ConfigItem>(
+  `${props.config}-${props.index}`,
+  async () => {
+    const res = await $fetch<{
+      configs: ConfigItem[];
+    }>('/api/meta',
+      {
+        query: { config: props.config },
+      },
+    );
+
+    const index = props.index ?? 0;
+
+    return res.configs[index];
   },
 );
 </script>
 
 <template>
   <div class="flex flex-col gap-4">
-    <DocsConfigBox
-      v-for="configItem in data!.configs"
-      :key="configItem.name"
-    >
+    <DocsConfigBox v-if="config">
       <div class="flex flex-col gap-4">
         <!-- File pattern matching -->
         <DocsConfigHeading
-          v-if="configItem.files"
+          v-if="config.files"
           icon="i-carbon-batch-job"
           label="Applies to files matching"
         >
           <code
-            v-for="(glob, idx) of configItem.files"
+            v-for="(glob, idx) of config.files"
             :key="idx"
             class="plain-color"
           >
@@ -40,19 +51,19 @@ const { data } = useFetch<{
         </DocsConfigHeading>
 
         <DocsConfigHeading
-          v-else-if="configItem.rules"
+          v-else-if="config.rules"
           icon="i-carbon-categories"
           label="Generally applies to all files"
         />
 
         <!-- Plugins -->
         <DocsConfigHeading
-          v-if="configItem.plugins"
+          v-if="config.plugins"
           icon="i-carbon-plug"
           label="Plugins"
         >
           <NuxtLink
-            v-for="(pluginItem, name) of configItem.plugins"
+            v-for="(pluginItem, name) of config.plugins"
             :key="name"
             target="_blank"
             :to="pluginItem.url"
@@ -65,13 +76,13 @@ const { data } = useFetch<{
 
         <!-- Rules -->
         <DocsConfigHeading
-          v-if="configItem.rules"
+          v-if="config.rules"
           icon="i-carbon-list-checked"
           label="Rules"
         >
           <div class="mt-2 grid grid-flow-row gap-4">
             <div
-              v-for="rule in configItem.rules"
+              v-for="rule in config.rules"
               :key="rule.name"
               class="not-last:(pb-3 border-b-1 border-$vd-c-divider)"
             >
@@ -79,6 +90,13 @@ const { data } = useFetch<{
                 <DocsRuleName :rule="rule" />
 
                 <DocsRuleItem :rule="rule" />
+
+                <CoreTooltip
+                  v-if="rule.fixable"
+                  label="Fixable"
+                >
+                  <i class="i-carbon-ibm-toolchain opacity-50" />
+                </CoreTooltip>
               </div>
 
               <div class="not-prose">

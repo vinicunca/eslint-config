@@ -6,10 +6,14 @@ import JITI from 'jiti';
 import { type FlatESLintConfigItem, type RuleConfig } from 'eslint-define-config';
 
 const pluginUrlMap = {
+  'eslint-comments': 'https://mysticatea.github.io/eslint-plugin-eslint-comments/',
+  'node': 'https://github.com/eslint-community/eslint-plugin-n',
+  'jsdoc': 'https://github.com/gajus/eslint-plugin-jsdoc',
+  'import': 'https://github.com/un-es/eslint-plugin-i',
+  'unicorn': 'https://github.com/sindresorhus/eslint-plugin-unicorn',
   'ts': 'https://typescript-eslint.io/',
   'vue': 'https://eslint.vuejs.org/',
-  'node': 'https://github.com/eslint-community/eslint-plugin-n',
-  'import': 'https://github.com/un-es/eslint-plugin-i',
+  'jsonc': 'https://ota-meshi.github.io/eslint-plugin-jsonc/',
   'unused-imports': 'https://github.com/sweepline/eslint-plugin-unused-imports',
   'style': 'https://eslint.style/',
   'vinicunca': 'https://eslint.vinicunca.dev/vinicunca',
@@ -97,9 +101,7 @@ async function generateJsonRules() {
       languageOptions: undefined,
     };
 
-    if (rawConfig.rules || rawConfig.ignores) {
-      OUTPUT[configName].push(outputMeta);
-    }
+    OUTPUT[configName].push(outputMeta);
   }
 
   writeJson(OUTPUT);

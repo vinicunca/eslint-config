@@ -7,7 +7,7 @@ const pluginColorMap = {
   vinicunca: '#66BB6A',
 } as Record<string, string>;
 
-function getHashColorFromString(name: string, saturation = 65, lightness = 60, opacity: number | string = 1) {
+function getHashColorFromString(name: string, saturation = 65, lightness = 40, opacity: number | string = 1) {
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
     hash = name.charCodeAt(i) + ((hash << 5) - hash);

@@ -28,8 +28,6 @@ export function unicorn(
 
         'unicorn/no-new-buffer': ERROR,
 
-        'unicorn/no-unsafe-regex': ERROR,
-
         'unicorn/number-literal-case': ERROR,
 
         'unicorn/prefer-includes': ERROR,
@@ -40,7 +38,7 @@ export function unicorn(
 
         'unicorn/prefer-string-starts-ends-with': ERROR,
 
-        'unicorn/prefer-text-content': ERROR,
+        'unicorn/prefer-dom-node-text-content': ERROR,
 
         'unicorn/prefer-type-error': ERROR,
 

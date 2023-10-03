@@ -18,6 +18,7 @@ export function yaml(
         yaml: pluginYaml as any,
       },
     },
+
     {
       name: 'vinicunca:yaml:rules',
 
