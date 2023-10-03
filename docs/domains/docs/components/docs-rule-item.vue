@@ -7,14 +7,23 @@ const props = defineProps<{
   rule: RuleInfo;
 }>();
 
-const levelIconClasses = computed(() => {
+const levelClasses = computed(() => {
   switch (props.rule.level) {
     case 'error':
-      return 'i-carbon-warning-filled text-green';
+      return {
+        icon: 'i-carbon-warning-filled ',
+        color: 'text-green',
+      };
     case 'warn':
-      return 'i-clarity:warning-standard-solid text-yellow';
+      return {
+        icon: 'i-clarity:warning-standard-solid ',
+        color: 'text-yellow',
+      };
     default:
-      return 'i-carbon-error-outline text-gray';
+      return {
+        icon: 'i-carbon-error-outline ',
+        color: 'text-gray',
+      };
   }
 });
 </script>
@@ -27,16 +36,63 @@ const levelIconClasses = computed(() => {
     >
       <i
         class="opacity-80"
-        :class="[levelIconClasses]"
+        :class="[levelClasses.icon, levelClasses.color]"
       />
     </PopoverTrigger>
 
     <PopoverPortal>
       <PopoverContent
         side="bottom"
-        :side-offset="5"
+        :side-offset="4"
+        class="shadow-3 bg-$vd-c-bg border-$vd-c-divider border rounded-1 data-[state=open]:animate-scale-in will-change-transform,opacity min-w-100"
       >
-        xixixi
+        <div class="p-3 flex items-center justify-center">
+          <NuxtLink
+            class="border border-$vd-c-divider rounded-1 flex gap-2 items-center px2 py1 text-sm opacity-75 hover:opacity-100 hover:bg-$vd-c-gray-soft transition-colors-280"
+            :to="rule.docs?.url"
+            target="_blank"
+            title="Documentations"
+          >
+            Documentations
+
+            <i class="i-carbon-launch" />
+          </NuxtLink>
+        </div>
+
+        <div class="flex flex-col gap-2 p-4 border-t border-$vd-c-divider">
+          <div class="flex items-center gap-1">
+            <i
+              :class="[levelClasses.icon, levelClasses.color]"
+            />
+
+            <span class="ml-1 ">
+              Set to
+            </span>
+
+            <span
+              class="font-mono"
+              :class="[levelClasses.color]"
+            >
+              {{ rule.level }}
+            </span>
+          </div>
+
+          <template v-if="rule.options?.length">
+            <div class="flex gap-2 items-center">
+              <div
+                class="i-carbon-settings my-1 flex-none"
+              />
+
+              <div class="">
+                Rule options
+              </div>
+            </div>
+
+            <pre
+              class="rounded bg-secondary p-2 text-sm bg-$vd-code-bg"
+            >{{ rule.options }}</pre>
+          </template>
+        </div>
       </PopoverContent>
     </PopoverPortal>
   </PopoverRoot>

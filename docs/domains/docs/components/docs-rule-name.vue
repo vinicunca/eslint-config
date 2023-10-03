@@ -37,11 +37,11 @@ const parsed = computed(() => {
 </script>
 
 <template>
-  <code>
+  <span class="flex items-center font-mono text-size-[0.875em] px-[6px] py-[3px] bg-$vd-code-bg rounded-1 leading-[17.5px] text-$vd-code-color">
     <span
       v-if="parsed.scope"
       :style="{ color: getPluginColor(parsed.scope) }"
     >{{ parsed.scope }}/</span>
     <span class="opacity-75">{{ parsed.name }}</span>
-  </code>
+  </span>
 </template>

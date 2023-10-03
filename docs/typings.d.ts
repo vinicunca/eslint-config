@@ -1,4 +1,4 @@
-import type { NavItem } from '@nuxt/content/dist/runtime/types';
+import { type NavItem } from '@nuxt/content/dist/runtime/types';
 
 export interface INavItem extends NavItem {
   icon?: string;

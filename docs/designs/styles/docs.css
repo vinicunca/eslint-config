@@ -21,6 +21,11 @@
   /* inline code */
   :not(pre, h1, h2, h3, h4, h5, h6) > code {
     @apply text-size-[0.875em] text-$vd-code-color font-mono;
+
+    &.plain-color {
+      color: unset;
+      opacity: 0.75;
+    }
   }
 
   :not(pre) > code {

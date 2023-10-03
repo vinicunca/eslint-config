@@ -128,6 +128,7 @@ export default defineConfig({
     'i-logos:typescript-icon',
     'i-logos:vue',
     'i-logos:react',
+    'i-simple-icons:eslint',
     'i-fa-regular:comments',
   ],
 });

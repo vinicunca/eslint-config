@@ -34,7 +34,7 @@ export function react(
 
         // Specify whether double or single quotes should be used in JSX attributes
         // https://eslint.org/docs/rules/jsx-quotes
-        'jsx-quotes': [ERROR, 'prefer-double'],
+        'style/jsx-quotes': [ERROR, 'prefer-double'],
 
         // Enforce boolean attributes notation in JSX
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
