@@ -104,7 +104,9 @@ export function vinicuncaESLint(
 
   if (enableJsonc) {
     configs.push(
-      jsonc(),
+      jsonc({
+        overrides: overrides.jsonc,
+      }),
       sortPackageJson(),
       sortTsconfig(),
     );

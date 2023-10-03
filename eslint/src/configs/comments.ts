@@ -19,7 +19,6 @@ export function comments(): FlatESLintConfigItem[] {
         'eslint-comments/no-unlimited-disable': ERROR,
 
         'eslint-comments/no-unused-enable': ERROR,
-
       },
     },
   ];

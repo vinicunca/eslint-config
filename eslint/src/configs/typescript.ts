@@ -19,22 +19,22 @@ export function typescript(
     'dot-notation': OFF,
     'no-implied-eval': OFF,
     'no-throw-literal': OFF,
-    'ts/await-thenable': 'error',
-    'ts/dot-notation': ['error', { allowKeywords: true }],
-    'ts/no-floating-promises': 'error',
-    'ts/no-for-in-array': 'error',
-    'ts/no-implied-eval': 'error',
-    'ts/no-misused-promises': 'error',
-    'ts/no-throw-literal': 'error',
-    'ts/no-unnecessary-type-assertion': 'error',
-    'ts/no-unsafe-argument': 'error',
-    'ts/no-unsafe-assignment': 'error',
-    'ts/no-unsafe-call': 'error',
-    'ts/no-unsafe-member-access': 'error',
-    'ts/no-unsafe-return': 'error',
-    'ts/restrict-plus-operands': 'error',
-    'ts/restrict-template-expressions': 'error',
-    'ts/unbound-method': 'error',
+    'ts/await-thenable': ERROR,
+    'ts/dot-notation': [ERROR, { allowKeywords: true }],
+    'ts/no-floating-promises': ERROR,
+    'ts/no-for-in-array': ERROR,
+    'ts/no-implied-eval': ERROR,
+    'ts/no-misused-promises': ERROR,
+    'ts/no-throw-literal': ERROR,
+    'ts/no-unnecessary-type-assertion': ERROR,
+    'ts/no-unsafe-argument': ERROR,
+    'ts/no-unsafe-assignment': ERROR,
+    'ts/no-unsafe-call': ERROR,
+    'ts/no-unsafe-member-access': ERROR,
+    'ts/no-unsafe-return': ERROR,
+    'ts/restrict-plus-operands': ERROR,
+    'ts/restrict-template-expressions': ERROR,
+    'ts/unbound-method': ERROR,
   };
 
   return [
@@ -103,7 +103,7 @@ export function typescript(
 
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
 
-        'ts/ban-types': ['error', { types: { Function: false } }],
+        'ts/ban-types': [ERROR, { types: { Function: false } }],
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 

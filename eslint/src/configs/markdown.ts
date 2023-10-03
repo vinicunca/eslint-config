@@ -68,6 +68,7 @@ export function markdown(
         'unused-imports/no-unused-imports': OFF,
         'unused-imports/no-unused-vars': OFF,
 
+        // Type aware rules
         ...{
           'ts/await-thenable': OFF,
           'ts/dot-notation': OFF,

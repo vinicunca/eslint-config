@@ -1,9 +1,13 @@
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs';
 import { parserJsonc, pluginJsonc } from '../plugins';
 import { ERROR, NEVER } from '../flags';
-import { type FlatESLintConfigItem } from '../types';
+import { type FlatESLintConfigItem, type OptionsOverrides } from '../types';
 
-export function jsonc(): FlatESLintConfigItem[] {
+export function jsonc(options: OptionsOverrides = {}): FlatESLintConfigItem[] {
+  const {
+    overrides = {},
+  } = options;
+
   return [
     {
       name: 'vinicunca:jsonc:setup',
@@ -94,6 +98,8 @@ export function jsonc(): FlatESLintConfigItem[] {
         'jsonc/valid-json-number': ERROR,
 
         'jsonc/vue-custom-block/no-parsing-error': ERROR,
+
+        ...overrides,
       },
     },
   ];

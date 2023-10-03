@@ -1,5 +1,5 @@
 import { type FlatESLintConfigItem, type OptionsOverrides } from 'src';
-import { ERROR, NEVER, OFF } from '../flags';
+import { ERROR, NEVER, OFF, WARN } from '../flags';
 import { pluginReact, pluginReactHooks } from '../plugins';
 
 export function react(
@@ -76,7 +76,7 @@ export function react(
           ignoreCase: true,
         }],
 
-        'react/no-danger': 'warn',
+        'react/no-danger': WARN,
 
         'react/self-closing-comp': ERROR,
 
