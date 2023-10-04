@@ -26,6 +26,9 @@ const levelClasses = computed(() => {
       };
   }
 });
+
+// remove so we use internal links
+const docsUrl = computed(() => props.rule.docs?.url?.replace('https://eslint.vinicunca.dev', ''));
 </script>
 
 <template>
@@ -48,7 +51,7 @@ const levelClasses = computed(() => {
         <div class="p-3 flex items-center justify-center">
           <NuxtLink
             class="border border-$vd-c-divider rounded-1 flex gap-2 items-center px2 py1 text-sm opacity-75 hover:opacity-100 hover:bg-$vd-c-gray-soft transition-colors-280"
-            :to="rule.docs?.url"
+            :to="docsUrl"
             target="_blank"
             title="Documentations"
           >
@@ -88,7 +91,7 @@ const levelClasses = computed(() => {
             </div>
 
             <pre
-              class="rounded bg-secondary p-2 text-sm bg-$vd-code-bg"
+              class="rounded p-2 text-sm bg-$vd-code-bg"
             >{{ rule.options }}</pre>
           </template>
         </div>

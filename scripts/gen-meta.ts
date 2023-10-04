@@ -16,7 +16,7 @@ const pluginUrlMap = {
   'jsonc': 'https://ota-meshi.github.io/eslint-plugin-jsonc/',
   'unused-imports': 'https://github.com/sweepline/eslint-plugin-unused-imports',
   'style': 'https://eslint.style/',
-  'vinicunca': 'https://eslint.vinicunca.dev/vinicunca',
+  'vinicunca': '/plugin-vinicunca',
 } as Record<string, string>;
 
 async function generateJsonRules() {
