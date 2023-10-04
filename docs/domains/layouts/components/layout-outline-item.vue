@@ -36,3 +36,9 @@ function onClick({ target: el }: Event) {
     </li>
   </ul>
 </template>
+
+<style lang="postcss" scoped>
+.outline-link.active {
+  color: var(--vd-c-text-1);
+}
+</style>

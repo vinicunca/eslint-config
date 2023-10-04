@@ -1,30 +1,7 @@
 <script lang="ts" setup>
-import { navItems } from '../data/nav';
+import { useNavItems } from '../composables/use-nav-items';
 
-// const { navigation } = useContent();
-
-// const navItems = computed(() => navigation.value.filter((item: any) => item.navHeader).map((item: any) => {
-//   const leaf = getLeaf(item);
-
-//   return ({
-//     ...item,
-//     _path: leaf._path,
-//   });
-// }));
-
-// function getLeaf(item: any) {
-//   if (!item.children) {
-//     return item;
-//   }
-
-//   return getLeaf(item.children[0]);
-// }
-
-const route = useRoute();
-
-function isActive(link: any) {
-  return route.fullPath.startsWith(link._path);
-}
+const { navItems, isActive } = useNavItems();
 </script>
 
 <template>

@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { navItems } from '../data/nav';
+import { useNavItems } from '../composables/use-nav-items';
+
+const { navItems, isActive } = useNavItems();
 </script>
 
 <template>
@@ -10,7 +12,10 @@ import { navItems } from '../data/nav';
     >
       <NuxtLink
         :to="navItem._path"
-        class="block border-b border-$vd-c-divider py-3 text-sm font-500 text-$vd-c-text-1 transition-color-280 hover:text-$vd-c-brand-1"
+        class="block border-b border-$vd-c-divider py-3 text-sm font-500 transition-color-280 hover:text-$vd-c-brand-1"
+        :class="[
+          isActive(navItem) ? 'text-$vd-c-brand-1' : 'text-$vd-c-text-1',
+        ]"
       >
         {{ navItem.title }}
       </NuxtLink>

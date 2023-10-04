@@ -145,6 +145,10 @@
     div[class*='language-'] {
       @apply mt-0 rounded-t-0;
     }
+
+    .file-name {
+      @apply hidden;
+    }
   }
 
   .line-numbers-wrapper {
