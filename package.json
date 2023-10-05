@@ -11,7 +11,7 @@
     "postinstall": "pnpm -r run stub",
     "build:lib": "pnpm -C eslint build",
     "prepublish": "pnpm run build:lib",
-    "postpublish": "pnpm run gen:meta && pnpm -C docs generate",
+    "deploy:docs": "pnpm run gen:meta && pnpm -C docs generate",
     "release": "pnpm -C eslint release",
     "gen:meta": "tsx scripts/gen-meta.ts",
     "registry": "pnpm publish --access public --no-git-checks"
