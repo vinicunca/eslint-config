@@ -59,7 +59,6 @@
     "stub": "tsup src/index.ts --format esm",
     "lint": "pnpm run stub && eslint .",
     "test": "vitest",
-    "build:ori": "pnpm run gen-meta && tsup src/index.ts --format esm --clean --dts",
     "build": "tsup src/index.ts --format esm,cjs --clean --dts",
     "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },

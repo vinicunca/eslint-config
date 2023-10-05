@@ -32,11 +32,16 @@ export default defineNuxtConfig({
   ],
 
   algolia: {
-    apiKey: process.env.ALGOLIA_API_KEY,
+    apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
     applicationId: process.env.ALGOLIA_APPLICATION_ID,
     // DocSearch key is used to configure DocSearch extension.
     docSearch: {
       indexName: 'eslint-vinicunca',
+    },
+
+    crawler: {
+      indexName: 'eslint-vinicunca',
+      apiKey: process.env.ALGOLIA_CRAWLER_API_KEY,
     },
   },
 
