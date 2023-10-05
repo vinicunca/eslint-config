@@ -7,5 +7,7 @@ export default vinicuncaESLint({
         '**/fixtures',
       ],
     },
+
+    react: true,
   },
 });
