@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     applicationId: process.env.ALGOLIA_APPLICATION_ID,
     // DocSearch key is used to configure DocSearch extension.
     docSearch: {
-      indexName: 'vinicunca-docs',
+      indexName: 'eslint-vinicunca',
     },
   },
 

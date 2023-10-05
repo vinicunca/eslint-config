@@ -24,7 +24,10 @@ const editLinkUrl = computed(() => {
 </script>
 
 <template>
-  <footer class="mt-16">
+  <footer
+    v-if="page"
+    class="mt-16"
+  >
     <div class="pb-4.5 sm:(flex items-center justify-between pb-3)">
       <NuxtLink
         :href="editLinkUrl"
