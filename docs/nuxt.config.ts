@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/content',
     '@unocss/nuxt',
+    'nuxt-gtag',
     resolve('./app/content-post-process'),
   ],
 
@@ -68,6 +69,10 @@ export default defineNuxtConfig({
     navigation: {
       fields: ['icon'],
     },
+  },
+
+  gtag: {
+    id: 'G-38W7J3MEER',
   },
 
   postcss: {
