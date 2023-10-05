@@ -100,9 +100,10 @@ const { data: config } = useAsyncData<ConfigItem>(
               </div>
 
               <div class="not-prose">
-                <MDC
+                <MDCRenderer
+                  :prose="false"
                   class="mt-2"
-                  :value="rule.docs?.description"
+                  :body="rule.docs?.description"
                 />
               </div>
             </div>
