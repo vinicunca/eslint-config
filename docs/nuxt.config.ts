@@ -52,7 +52,9 @@ export default defineNuxtConfig({
   },
 
   content: {
-    documentDriven: true,
+    documentDriven: {
+      injectPage: false,
+    },
 
     highlight: {
       theme: 'one-dark-pro',

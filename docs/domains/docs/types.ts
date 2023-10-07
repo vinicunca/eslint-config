@@ -6,7 +6,7 @@ export interface ConfigItem extends Omit<FlatESLintConfigItem, 'plugins' | 'rule
   plugins: Record<string, {
     url: string;
   }>;
-  rules: Record<string, RuleInfo>;
+  rules: RuleInfo[];
 }
 
 export interface RuleInfo extends RuleMetaData<any> {

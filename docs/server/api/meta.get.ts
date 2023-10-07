@@ -14,39 +14,45 @@ export default defineEventHandler(async (event) => {
 
   const jiti = JITI(cwd);
 
-  const rawConfigs = jiti(metadataPath).default;
+  const [parentPath, configPath] = query.config as string[];
 
-  const selectedConfig = rawConfigs[query.config as string];
-
-  const promises: any[] = [];
-
-  for (const rawConfig of rawConfigs[query.config as string]) {
-    if (rawConfig.rules) {
-      for (const [name, rule] of Object.entries<any>(rawConfig.rules)) {
-        const docs = parseMarkdown(rule.docs.description).then((parsed: any) => {
-          return [
-            name,
-            {
-              ...rule,
-              docs: {
-                ...rule.docs,
-                description: parsed.body,
-              },
-            },
-          ];
-        });
-
-        promises.push(docs);
-      }
-    }
+  if (parentPath !== 'configs') {
+    return {
+      configs: [],
+    };
   }
 
-  const renderedRules = await Promise.all(promises);
+  const rawConfigs = jiti(metadataPath).default;
 
-  const configs = selectedConfig.map((config: any) => ({
-    ...config,
-    rules: Object.fromEntries(renderedRules),
-  }));
+  const selectedConfig = rawConfigs[configPath];
+
+  const configs: any[] = [];
+
+  for (let index = 0; index < selectedConfig.length; index++) {
+    const rawConfig = selectedConfig[index];
+
+    const renderedRules: any[] = [];
+
+    if (rawConfig.rules) {
+      for (const [_, rule] of Object.entries<any>(rawConfig.rules)) {
+        // eslint-disable-next-line no-await-in-loop
+        const docs = await parseMarkdown(rule.docs.description);
+
+        renderedRules.push({
+          ...rule,
+          docs: {
+            ...rule.docs,
+            description: docs.body,
+          },
+        });
+      }
+    }
+
+    configs[index] = {
+      ...rawConfig,
+      rules: renderedRules,
+    };
+  }
 
   return {
     configs,

@@ -5,7 +5,7 @@ import CoreTooltip from '~/domains/core/components/core-tooltip.vue';
 
 const props = withDefaults(
   defineProps<{
-    config: string;
+    configs: ConfigItem[];
     index?: number;
   }>(),
   {
@@ -13,22 +13,7 @@ const props = withDefaults(
   },
 );
 
-const { data: config } = useAsyncData<ConfigItem>(
-  `${props.config}-${props.index}`,
-  async () => {
-    const res = await $fetch<{
-      configs: ConfigItem[];
-    }>('/api/meta',
-      {
-        query: { config: props.config },
-      },
-    );
-
-    const index = props.index ?? 0;
-
-    return res.configs[index];
-  },
-);
+const config = computed(() => props.configs[props.index]);
 </script>
 
 <template>
@@ -76,7 +61,7 @@ const { data: config } = useAsyncData<ConfigItem>(
 
         <!-- Rules -->
         <DocsConfigHeading
-          v-if="config.rules"
+          v-if="config.rules.length > 0"
           icon="i-carbon-list-checked"
           label="Rules"
         >
