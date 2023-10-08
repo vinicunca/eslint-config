@@ -405,7 +405,7 @@ export function javascript(
     {
       name: 'vinicunca:javascript:overrides',
 
-      files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
+      files: [`**/scripts/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
 
       rules: {
         'no-console': OFF,

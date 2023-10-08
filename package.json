@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "pnpm -r run test",
-    "postinstall": "pnpm -r run stub",
+    "postinstall": "is-ci || pnpm -r run stub",
     "build:lib": "pnpm -C eslint build",
     "prepublish": "pnpm run build:lib",
     "deploy:docs": "pnpm run gen:meta && pnpm -C docs generate",
@@ -17,23 +17,24 @@
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@types/node": "^20.7.1",
+    "@types/node": "^20.8.3",
     "@vinicunca/eslint-config": "workspace:*",
     "@vinicunca/perkakas": "^0.0.4",
     "bumpp": "^9.2.0",
-    "eslint": "^8.50.0",
+    "eslint": "^8.51.0",
     "eslint-define-config": "^1.23.0",
+    "is-ci": "^3.0.1",
     "rimraf": "^5.0.5",
     "tsx": "^3.13.0",
     "typescript": "^5.2.2",
-    "vitest": "^0.34.5"
+    "vitest": "^0.34.6"
   },
   "publishConfig": {
     "directory": "eslint"
   },
   "pnpm": {
     "overrides": {
-      "eslint": "^8.50.0"
+      "eslint": "^8.51.0"
     },
     "patchedDependencies": {
       "eslint-define-config@1.23.0": "patches/eslint-define-config@1.23.0.patch"

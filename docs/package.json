@@ -12,7 +12,7 @@
     "clean": "nuxt cleanup",
     "preview": "nuxt preview",
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "nuxt prepare"
+    "postinstall": "is-ci || nuxt prepare"
   },
   "dependencies": {
     "@docsearch/css": "^3.5.2",
@@ -21,14 +21,14 @@
     "radix-vue": "^0.4.1"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.123",
+    "@iconify/json": "^2.2.125",
     "@nuxt/content": "^2.8.5",
     "@nuxt/devtools": "^1.0.0-beta.0",
     "@nuxtjs/algolia": "^1.9.0",
     "@nuxtjs/color-mode": "^3.3.0",
     "@typescript-eslint/utils": "^6.7.4",
     "@unocss/nuxt": "^0.56.5",
-    "@vueuse/core": "^10.4.1",
+    "@vueuse/core": "^10.5.0",
     "mdast-util-to-string": "^4.0.0",
     "nuxt": "^3.7.4",
     "nuxt-gtag": "^1.1.1",
