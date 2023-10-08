@@ -38,8 +38,8 @@ export function vinicuncaESLint(
   { options = {}, userConfigs = [] }:
   {
     options?: OptionsConfig;
-    userConfigs: (FlatESLintConfigItem | FlatESLintConfigItem[])[];
-  },
+    userConfigs?: (FlatESLintConfigItem | FlatESLintConfigItem[])[];
+  } = {},
 ) {
   const {
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
