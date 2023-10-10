@@ -2,7 +2,7 @@
 import CoreListGroup from './core-list-group.vue';
 import CoreListItem from './core-list-item.vue';
 
-import { type INavItem } from '~/typings';
+import type { INavItem } from '~~/typings';
 
 defineProps<{
   items: INavItem[];

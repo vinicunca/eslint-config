@@ -1,11 +1,11 @@
 import { GLOB_YAML } from '../globs';
 import { parserYaml, pluginYaml } from '../plugins';
 import { ERROR, OFF } from '../flags';
-import { type FlatESLintConfigItem, type OptionsOverrides } from '../types';
+import type { ConfigItem, OptionsOverrides } from '../types';
 
 export function yaml(
   options: OptionsOverrides = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     overrides = {},
   } = options;

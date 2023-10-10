@@ -1,8 +1,9 @@
-import { type EffectScope, type WatchSource } from 'vue';
+import type { EffectScope, WatchSource } from 'vue';
 import { effectScope, onScopeDispose, watch } from 'vue';
 
 export function useToggleScope(
-  source: WatchSource<boolean>, fn: (reset: () => void) => void,
+  source: WatchSource<boolean>,
+  fn: (reset: () => void) => void,
 ) {
   let scope: EffectScope | undefined;
   function start() {

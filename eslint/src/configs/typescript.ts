@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { type FlatESLintConfigItem, type OptionsComponentExts, type OptionsOverrides, type OptionsTypeScriptParserOptions, type OptionsTypeScriptWithTypes } from '../types';
+import type { ConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
 import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
 import { ERROR, OFF } from '../flags';
@@ -7,7 +7,7 @@ import { GLOB_SRC } from '../globs';
 
 export function typescript(
   options?: OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions,
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     componentExts = [],
     overrides = {},
@@ -15,7 +15,7 @@ export function typescript(
     tsconfigPath,
   } = options ?? {};
 
-  const typeAwareRules: FlatESLintConfigItem['rules'] = {
+  const typeAwareRules: ConfigItem['rules'] = {
     'dot-notation': OFF,
     'no-implied-eval': OFF,
     'no-throw-literal': OFF,
@@ -123,6 +123,8 @@ export function typescript(
 
         'ts/no-explicit-any': OFF,
 
+        'ts/no-import-type-side-effects': ERROR,
+
         'ts/no-invalid-void-type': OFF,
 
         'ts/no-non-null-assertion': OFF,
@@ -145,9 +147,7 @@ export function typescript(
         'vinicunca/generic-spacing': ERROR,
         'vinicunca/named-tuple-spacing': ERROR,
         'vinicunca/no-cjs-exports': ERROR,
-        'vinicunca/no-const-enum': ERROR,
         'vinicunca/no-ts-export-equal': ERROR,
-        'vinicunca/prefer-inline-type-import': ERROR,
 
         ...tsconfigPath ? typeAwareRules : {},
 

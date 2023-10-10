@@ -1,12 +1,12 @@
 import { ERROR } from '../flags';
-import { type FlatESLintConfigItem } from '../types';
+import type { ConfigItem } from '../types';
 
 /**
  * Sort package.json
  *
  * Requires `jsonc` config
  */
-export function sortPackageJson(): FlatESLintConfigItem[] {
+export function sortPackageJson(): ConfigItem[] {
   return [
     {
       name: 'vinicunca:sort-package-json',
@@ -102,7 +102,7 @@ export function sortPackageJson(): FlatESLintConfigItem[] {
  *
  * Requires `jsonc` config
  */
-export function sortTsconfig(): FlatESLintConfigItem[] {
+export function sortTsconfig(): ConfigItem[] {
   return [
     {
       name: 'vinicunca:sort-tsconfig',

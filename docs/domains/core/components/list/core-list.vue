@@ -2,7 +2,7 @@
 import CoreListChildren from './core-list-children.vue';
 import { useNested } from './use-nested';
 
-import { type INavItem } from '~/typings';
+import type { INavItem } from '~~/typings';
 
 const props = defineProps<{
   navItems: INavItem[];

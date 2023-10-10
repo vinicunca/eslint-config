@@ -1,10 +1,10 @@
-import { type FlatESLintConfigItem, type OptionsOverrides } from 'src';
+import type { ConfigItem, OptionsOverrides } from 'src';
 import { ERROR, NEVER, OFF, WARN } from '../flags';
 import { pluginReact, pluginReactHooks } from '../plugins';
 
 export function react(
   options: OptionsOverrides = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     overrides = {},
   } = options;

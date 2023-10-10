@@ -1,5 +1,5 @@
 import { computed, getCurrentInstance, ref, toRaw, watch } from 'vue';
-import { type Ref } from 'vue';
+import type { Ref } from 'vue';
 
 import { useToggleScope } from './use-toggle-scope';
 
@@ -20,6 +20,7 @@ export function useProxiedModel<
   const internal = ref(props[prop] !== undefined ? props[prop] : defaultValue) as Ref<Props[Prop]>;
 
   const isControlled = computed(() => {
+    // eslint-disable-next-line no-void
     void props[prop];
     // eslint-disable-next-line no-prototype-builtins
     return !!(vm!.vnode.props?.hasOwnProperty(prop) && vm!.vnode.props?.hasOwnProperty(`onUpdate:${prop}`));

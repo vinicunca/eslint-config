@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/content',
     '@unocss/nuxt',
-    'nuxt-gtag',
+    // 'nuxt-gtag',
     resolve('./app/content-post-process'),
   ],
 
@@ -73,9 +73,9 @@ export default defineNuxtConfig({
     },
   },
 
-  gtag: {
-    id: 'G-38W7J3MEER',
-  },
+  // gtag: {
+  //   id: 'G-38W7J3MEER',
+  // },
 
   postcss: {
     plugins: {

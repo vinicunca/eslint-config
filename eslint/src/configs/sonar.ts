@@ -1,8 +1,8 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
+import type { ConfigItem } from '../types';
 
 // import { pluginSonar } from '../plugins';
 
-export const sonar: FlatESLintConfigItem[] = [
+export const sonar: ConfigItem[] = [
   {
     plugins: {
       // sonar: pluginSonar,

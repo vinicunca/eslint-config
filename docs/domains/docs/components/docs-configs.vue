@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { type ConfigItem } from '../types';
+import type { ConfigItem } from '../types';
 import { getPluginColor } from '../utils/plugin-colors';
-import CoreTooltip from '~/domains/core/components/core-tooltip.vue';
+import CoreTooltip from '~~/domains/core/components/core-tooltip.vue';
 
 const props = withDefaults(
   defineProps<{

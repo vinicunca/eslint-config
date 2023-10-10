@@ -1,11 +1,11 @@
 import { GLOB_VUE } from '../globs';
 import { parserTs, parserVue, pluginVue } from '../plugins';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
-import { type FlatESLintConfigItem, type OptionsHasTypeScript, type OptionsOverrides } from '../types';
+import type { ConfigItem, OptionsHasTypeScript, OptionsOverrides } from '../types';
 
 export function vue(
   options: OptionsHasTypeScript & OptionsOverrides = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     overrides = {},
   } = options;

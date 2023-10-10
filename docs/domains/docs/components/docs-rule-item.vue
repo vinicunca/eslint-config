@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { PopoverContent, PopoverPortal, PopoverRoot, PopoverTrigger } from 'radix-vue';
 
-import { type RuleInfo } from '../types';
+import type { RuleInfo } from '../types';
 
 const props = defineProps<{
   rule: RuleInfo;

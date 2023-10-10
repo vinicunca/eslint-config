@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useNestedItem } from './use-nested';
 
-import { type INavItem } from '~/typings';
+import type { INavItem } from '~~/typings';
 
 const props = defineProps<{
   item: INavItem;

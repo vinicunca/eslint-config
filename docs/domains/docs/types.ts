@@ -1,5 +1,5 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
-import { type RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
+import type { FlatESLintConfigItem } from '@antfu/eslint-define-config';
+import type { RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
 
 export interface ConfigItem extends Omit<FlatESLintConfigItem, 'plugins' | 'rules'> {
   name: string;

@@ -32,7 +32,11 @@ export function useNested(props: NestedProps) {
   const parents = ref(new Map<unknown, unknown>());
 
   const opened = useProxiedModel(
-    props, 'opened', props.opened, (v) => new Set(v), (v) => [...v.values()],
+    props,
+    'opened',
+    props.opened,
+    (v) => new Set(v),
+    (v) => [...v.values()],
   );
 
   onBeforeUnmount(() => {

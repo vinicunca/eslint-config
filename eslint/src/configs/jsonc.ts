@@ -1,9 +1,9 @@
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs';
 import { parserJsonc, pluginJsonc } from '../plugins';
 import { ERROR, NEVER } from '../flags';
-import { type FlatESLintConfigItem, type OptionsOverrides } from '../types';
+import type { ConfigItem, OptionsOverrides } from '../types';
 
-export function jsonc(options: OptionsOverrides = {}): FlatESLintConfigItem[] {
+export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
   const {
     overrides = {},
   } = options;

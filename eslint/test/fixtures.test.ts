@@ -25,6 +25,12 @@ runWithConfig('all', {
   },
 });
 
+runWithConfig('no-style', {
+  options: {
+    stylistic: false,
+  },
+});
+
 function runWithConfig(name: string, configs: { options: OptionsConfig }) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
@@ -45,7 +51,7 @@ export default vinicuncaESLint(${JSON.stringify(configs)})
 
     await execa('npx', ['eslint', '.', '--fix'], {
       cwd: target,
-      stdio: 'inherit',
+      stdio: 'pipe',
     });
 
     const files = await fg('**/*', {

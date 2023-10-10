@@ -1,8 +1,8 @@
 import { pluginNode } from '../plugins';
 import { ERROR, NEVER, OFF } from '../flags';
-import { type FlatESLintConfigItem } from '../types';
+import type { ConfigItem } from '../types';
 
-export function node(): FlatESLintConfigItem[] {
+export function node(): ConfigItem[] {
   return [
     {
       name: 'vinicunca:node',

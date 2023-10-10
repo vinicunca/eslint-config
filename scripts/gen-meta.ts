@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
 import JITI from 'jiti';
-import { type FlatESLintConfigItem, type RuleConfig } from 'eslint-define-config';
+import type { FlatESLintConfigItem, RuleConfig } from '@antfu/eslint-define-config';
 
 const pluginUrlMap = {
   'eslint-comments': 'https://mysticatea.github.io/eslint-plugin-eslint-comments/',
@@ -29,7 +29,7 @@ async function generateJsonRules() {
 
   const eslintRules = await import('eslint/use-at-your-own-risk').then((r) => r.default.builtinRules);
 
-  const rawConfigs = jiti(configPath).default as FlatESLintConfigItem[];
+  const rawConfigs = jiti(configPath).default as Array<FlatESLintConfigItem & { name?: string }>;
 
   const rulesMap = new Map<string, any>();
 
@@ -59,49 +59,51 @@ async function generateJsonRules() {
   const OUTPUT: any = {};
 
   for (const rawConfig of rawConfigs) {
-    const [, configName] = rawConfig.name.split(':');
+    if (rawConfig.name) {
+      const [, configName] = rawConfig.name.split(':');
 
-    OUTPUT[configName] = OUTPUT[configName] || [];
+      OUTPUT[configName] = OUTPUT[configName] || [];
 
-    let rules;
+      let rules;
 
-    if (rawConfig.rules) {
-      rules = {};
+      if (rawConfig.rules) {
+        rules = {};
 
-      Object.keys(rawConfig.rules).forEach((rule) => {
-        const meta = rulesMap.get(rule);
-        const userConfig = rawConfig.rules![rule];
+        Object.keys(rawConfig.rules).forEach((rule) => {
+          const meta = rulesMap.get(rule);
+          const userConfig = rawConfig.rules![rule];
 
-        const level = getRuleLevel(userConfig);
-        const options = getRuleOptions(userConfig);
+          const level = getRuleLevel(userConfig);
+          const options = getRuleOptions(userConfig);
 
-        rules[rule] = {
-          ...meta,
-          level,
-          options,
-        };
-      });
+          rules[rule] = {
+            ...meta,
+            level,
+            options,
+          };
+        });
+      }
+
+      const transformedPlugins = Object.fromEntries(
+        Object.entries(rawConfig.plugins ?? {}).map(
+          ([prefix]) => [prefix, {
+            url: pluginUrlMap[prefix],
+          }],
+        ),
+      );
+
+      const outputMeta = {
+        ...rawConfig,
+        rules,
+        plugins: rawConfig.plugins
+          ? transformedPlugins
+          : undefined,
+        processor: undefined,
+        languageOptions: undefined,
+      };
+
+      OUTPUT[configName].push(outputMeta);
     }
-
-    const transformedPlugins = Object.fromEntries(
-      Object.entries(rawConfig.plugins ?? {}).map(
-        ([prefix]) => [prefix, {
-          url: pluginUrlMap[prefix],
-        }],
-      ),
-    );
-
-    const outputMeta = {
-      ...rawConfig,
-      rules,
-      plugins: rawConfig.plugins
-        ? transformedPlugins
-        : undefined,
-      processor: undefined,
-      languageOptions: undefined,
-    };
-
-    OUTPUT[configName].push(outputMeta);
   }
 
   writeJson(OUTPUT);

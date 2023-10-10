@@ -1,9 +1,9 @@
-import { type FlatESLintConfigItem } from 'eslint-define-config';
+import type { ConfigItem } from './types';
 
 /**
  * Combine array and non-array configs into a single array.
  */
-export function combineConfigs(...configs: (FlatESLintConfigItem | FlatESLintConfigItem[])[]): FlatESLintConfigItem[] {
+export function combineConfigs(...configs: (ConfigItem | ConfigItem[])[]): ConfigItem[] {
   return configs.flatMap((config) => Array.isArray(config) ? config : [config]);
 }
 

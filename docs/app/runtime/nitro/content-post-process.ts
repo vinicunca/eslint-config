@@ -1,4 +1,4 @@
-import { type MarkdownNode, type ParsedContent } from '@nuxt/content/dist/runtime/types';
+import type { MarkdownNode, ParsedContent } from '@nuxt/content/dist/runtime/types';
 import { visit } from 'unist-util-visit';
 
 export default defineNitroPlugin((nitroApp) => {

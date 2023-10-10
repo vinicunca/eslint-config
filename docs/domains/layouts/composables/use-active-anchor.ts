@@ -1,4 +1,4 @@
-import { throttleAndDebounce } from '~/domains/core/utils/throttle-and-debounce';
+import { throttleAndDebounce } from '~~/domains/core/utils/throttle-and-debounce';
 
 // magic number to avoid repeated retrieval
 const PAGE_OFFSET = 71;

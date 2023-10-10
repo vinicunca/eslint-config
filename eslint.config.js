@@ -8,6 +8,6 @@ export default vinicuncaESLint({
       ],
     },
 
-    react: true,
+    // react: true,
   },
 });

@@ -28,6 +28,7 @@ export const expandTransitionFunctions = {
 
     el.style.height = '0';
 
+    // eslint-disable-next-line no-void
     void el.offsetHeight; // force reflow
 
     el.style.transition = initialStyle.transition;
@@ -53,6 +54,7 @@ export const expandTransitionFunctions = {
 
     el.style.overflow = 'hidden';
     el.style.height = `${el.offsetHeight}px`;
+    // eslint-disable-next-line no-void
     void el.offsetHeight; // force reflow
 
     requestAnimationFrame(() => {

@@ -1,5 +1,5 @@
-import { type Theme } from '@unocss/preset-mini';
-import { type CSSObject, type Preset } from '@unocss/core';
+import type { Theme } from '@unocss/preset-mini';
+import type { CSSObject, Preset } from '@unocss/core';
 import { toEscapedSelector } from '@unocss/core';
 
 import { getPreflights } from './preflights';

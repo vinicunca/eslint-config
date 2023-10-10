@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useContent, useRequestEvent, useSeoMeta } from '#imports';
-import { type ConfigItem } from '~~/domains/docs/types';
+import type { ConfigItem } from '~~/domains/docs/types';
 
 const { page, layout } = useContent();
 

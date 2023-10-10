@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { sleep } from '@vinicunca/perkakas';
 
-import { type INavItem } from '~/typings';
-import CoreList from '~/domains/core/components/list/core-list.vue';
+import type { INavItem } from '~~/typings';
+import CoreList from '~~/domains/core/components/list/core-list.vue';
 
 const { navigation } = useContent();
 

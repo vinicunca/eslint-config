@@ -1,13 +1,10 @@
 import process from 'node:process';
-
 import { isPackageExists } from 'local-pkg';
-
 import { isBoolean } from '@vinicunca/perkakas';
-import { type FlatESLintConfigItem, type OptionsConfig } from './types';
-import { ignores } from './configs/ignores';
-import { combineConfigs } from './utils';
+import type { ConfigItem, OptionsConfig } from './types';
 import {
   comments,
+  ignores,
   imports,
   javascript,
   jsdoc,
@@ -26,6 +23,7 @@ import {
   vue,
   yaml,
 } from './configs';
+import { combineConfigs } from './utils';
 
 const VuePackages = [
   'vue',
@@ -35,11 +33,7 @@ const VuePackages = [
 ];
 
 export function vinicuncaESLint(
-  { options = {}, userConfigs = [] }:
-  {
-    options?: OptionsConfig;
-    userConfigs?: (FlatESLintConfigItem | FlatESLintConfigItem[])[];
-  } = {},
+  { options = {}, userConfigs = [] }: { options?: OptionsConfig & ConfigItem; userConfigs?: (ConfigItem | ConfigItem[])[] } = {},
 ) {
   const {
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
@@ -55,10 +49,10 @@ export function vinicuncaESLint(
     componentExts = [],
   } = options;
 
-  const configs: FlatESLintConfigItem[][] = [];
+  const configs: ConfigItem[][] = [];
 
+  // ignores(options.ignores),
   configs.push(
-    ignores(options.ignores),
     javascript({
       isInEditor,
       overrides: overrides.javascript,
@@ -136,6 +130,8 @@ export function vinicuncaESLint(
       overrides: overrides.react,
     }));
   }
+
+  configs.push(ignores(options.ignores));
 
   return combineConfigs(
     ...configs,

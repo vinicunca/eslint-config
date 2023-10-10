@@ -137,6 +137,7 @@
         "**/temp",
         "**/.vitepress/cache",
         "**/.nuxt",
+        "**/.next",
         "**/.vercel",
         "**/.changeset",
         "**/.idea",
@@ -1071,7 +1072,9 @@
             "DebuggerStatement",
             "ForInStatement",
             "LabeledStatement",
-            "WithStatement"
+            "WithStatement",
+            "TSEnumDeclaration[const=true]",
+            "TSExportAssignment"
           ]
         },
         "no-return-assign": {
@@ -1752,8 +1755,8 @@
     {
       "name": "vinicunca:javascript:overrides",
       "files": [
-        "scripts/**/*.?([cm])[jt]s?(x)",
-        "cli.?([cm])[jt]s?(x)"
+        "**/scripts/**/*.?([cm])[jt]s?(x)",
+        "**/cli.?([cm])[jt]s?(x)"
       ],
       "rules": {
         "no-console": {
@@ -3239,16 +3242,6 @@
           "name": "vinicunca/no-cjs-exports",
           "level": "error"
         },
-        "vinicunca/no-const-enum": {
-          "type": "problem",
-          "docs": {
-            "description": "Disallow using `const enum` expression",
-            "recommended": "recommended",
-            "url": "https://eslint.vinicunca.dev/plugin-vinicunca/no-const-enum"
-          },
-          "name": "vinicunca/no-const-enum",
-          "level": "error"
-        },
         "vinicunca/no-ts-export-equal": {
           "type": "problem",
           "docs": {
@@ -3574,24 +3567,23 @@
           "options": [
             2,
             {
-              "SwitchCase": 1,
-              "VariableDeclarator": 1,
-              "outerIIFEBody": 1,
-              "MemberExpression": 1,
-              "FunctionDeclaration": {
-                "parameters": 1,
-                "body": 1
-              },
-              "FunctionExpression": {
-                "parameters": 1,
-                "body": 1
-              },
+              "ArrayExpression": 1,
               "CallExpression": {
                 "arguments": 1
               },
-              "ArrayExpression": 1,
-              "ObjectExpression": 1,
+              "FunctionDeclaration": {
+                "body": 1,
+                "parameters": 1
+              },
+              "FunctionExpression": {
+                "body": 1,
+                "parameters": 1
+              },
               "ImportDeclaration": 1,
+              "MemberExpression": 1,
+              "ObjectExpression": 1,
+              "SwitchCase": 1,
+              "VariableDeclarator": 1,
               "flatTernaryExpressions": false,
               "ignoreComments": false,
               "ignoredNodes": [
@@ -3611,9 +3603,14 @@
                 "JSXClosingFragment",
                 "JSXText",
                 "JSXEmptyExpression",
-                "JSXSpreadChild"
+                "JSXSpreadChild",
+                "TSTypeParameterInstantiation",
+                "FunctionExpression > .params[decorators.length > 0]",
+                "FunctionExpression > .params > :matches(Decorator, :not(:first-child))",
+                "ClassBody.body > PropertyDefinition[decorators.length > 0] > .key"
               ],
-              "offsetTernaryExpressions": true
+              "offsetTernaryExpressions": true,
+              "outerIIFEBody": 1
             }
           ]
         },

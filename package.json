@@ -13,19 +13,19 @@
     "prepublish": "pnpm run build:lib",
     "deploy:docs": "pnpm run gen:meta && pnpm -C docs generate",
     "release": "pnpm -C eslint release",
-    "gen:meta": "tsx scripts/gen-meta.ts",
+    "gen:meta": "bun scripts/gen-meta.ts",
+    "gen:types": "bun scripts/types.ts",
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@types/node": "^20.8.3",
+    "@types/node": "^20.8.4",
     "@vinicunca/eslint-config": "workspace:*",
     "@vinicunca/perkakas": "^0.0.4",
     "bumpp": "^9.2.0",
+    "bun": "^1.0.4",
     "eslint": "^8.51.0",
-    "eslint-define-config": "^1.23.0",
     "is-ci": "^3.0.1",
     "rimraf": "^5.0.5",
-    "tsx": "^3.13.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   },
@@ -35,9 +35,6 @@
   "pnpm": {
     "overrides": {
       "eslint": "^8.51.0"
-    },
-    "patchedDependencies": {
-      "eslint-define-config@1.23.0": "patches/eslint-define-config@1.23.0.patch"
     }
   }
 }

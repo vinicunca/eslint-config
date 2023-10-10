@@ -1,12 +1,55 @@
-import { type FlatESLintConfigItem as OriFlatESLintConfigItem } from 'eslint-define-config';
-import { type ParserOptions } from '@typescript-eslint/parser';
+import type {
+  EslintCommentsRules,
+  EslintRules,
+  FlatESLintConfigItem,
+  ImportRules,
+  JsoncRules,
+  MergeIntersection,
+  NRules,
+  Prefix,
+  RenamePrefix,
+  RuleConfig,
+  TypeScriptRules,
+  UnicornRules,
+  VitestRules,
+  VueRules,
+  YmlRules,
+} from '@antfu/eslint-define-config';
+import type { ParserOptions } from '@typescript-eslint/parser';
+import type { Rules as VinicuncaRules } from '@vinicunca/eslint-plugin-vinicunca';
+import type { StylisticRules } from './generated/stylistic';
 
-export interface FlatESLintConfigItem extends OriFlatESLintConfigItem {
+export type Rules = MergeIntersection<
+RenamePrefix<TypeScriptRules, '@typescript-eslint/', 'ts/'> &
+RenamePrefix<VitestRules, 'vitest/', 'test/'> &
+RenamePrefix<YmlRules, 'yml/', 'yaml/'> &
+RenamePrefix<NRules, 'n/', 'node/'> &
+Prefix<StylisticRules, 'style/'> &
+Prefix<VinicuncaRules, 'vinicunca/'> &
+ImportRules &
+EslintRules &
+JsoncRules &
+VueRules &
+UnicornRules &
+EslintCommentsRules &
+{
+  'test/no-only-tests': RuleConfig<[]>;
+}
+>;
+
+export type ConfigItem = Omit<FlatESLintConfigItem<Rules, false>, 'plugins'> & {
   /**
    * The name of the configuration object.
    */
   name?: string;
-}
+
+  /**
+   * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
+   *
+   * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
+   */
+  plugins?: Record<string, any>;
+};
 
 export interface OptionsConfig extends OptionsComponentExts {
   /**
@@ -22,6 +65,15 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the dependencies
    */
   typescript?: boolean | OptionsTypeScriptWithTypes;
+
+  /**
+   * Enable JSX related rules.
+   *
+   * Currently only stylistic rules are included.
+   *
+   * @default true
+   */
+  jsx?: boolean;
 
   /**
    * Enable test support.
@@ -90,19 +142,19 @@ export interface OptionsConfig extends OptionsComponentExts {
    * Provide overrides for rules for each integration.
    */
   overrides?: {
-    javascript?: FlatESLintConfigItem['rules'];
-    typescript?: FlatESLintConfigItem['rules'];
-    test?: FlatESLintConfigItem['rules'];
-    vue?: FlatESLintConfigItem['rules'];
-    jsonc?: FlatESLintConfigItem['rules'];
-    markdown?: FlatESLintConfigItem['rules'];
-    yaml?: FlatESLintConfigItem['rules'];
-    react?: FlatESLintConfigItem['rules'];
+    javascript?: ConfigItem['rules'];
+    typescript?: ConfigItem['rules'];
+    test?: ConfigItem['rules'];
+    vue?: ConfigItem['rules'];
+    jsonc?: ConfigItem['rules'];
+    markdown?: ConfigItem['rules'];
+    yaml?: ConfigItem['rules'];
+    react?: ConfigItem['rules'];
   };
 }
 
 export interface OptionsOverrides {
-  overrides?: FlatESLintConfigItem['rules'];
+  overrides?: ConfigItem['rules'];
 }
 
 export interface OptionsIsInEditor {

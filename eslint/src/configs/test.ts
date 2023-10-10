@@ -1,11 +1,11 @@
 import { pluginNoOnlyTests, pluginVitest } from '../plugins';
 import { GLOB_TESTS } from '../globs';
 import { ERROR, OFF } from '../flags';
-import { type FlatESLintConfigItem, type OptionsIsInEditor, type OptionsOverrides } from '../types';
+import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
 
 export function test(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     isInEditor = false,
     overrides = {},

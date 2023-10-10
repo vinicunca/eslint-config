@@ -1,8 +1,8 @@
 import { pluginStylistic, pluginVinicunca } from '../plugins';
 import { ALWAYS, CONSISTENT, ERROR, NEVER } from '../flags';
-import { type FlatESLintConfigItem } from '../types';
+import type { ConfigItem } from '../types';
 
-export function stylistic(): FlatESLintConfigItem[] {
+export function stylistic(): ConfigItem[] {
   return [
     {
       name: 'vinicunca:stylistic',
@@ -40,20 +40,42 @@ export function stylistic(): FlatESLintConfigItem[] {
         'style/func-call-spacing': [ERROR, NEVER],
 
         'style/indent': [ERROR, 2, {
+          ArrayExpression: 1,
+          CallExpression: { arguments: 1 },
+          FunctionDeclaration: { body: 1, parameters: 1 },
+          FunctionExpression: { body: 1, parameters: 1 },
+          ImportDeclaration: 1,
+          MemberExpression: 1,
+          ObjectExpression: 1,
           SwitchCase: 1,
           VariableDeclarator: 1,
-          outerIIFEBody: 1,
-          MemberExpression: 1,
-          FunctionDeclaration: { parameters: 1, body: 1 },
-          FunctionExpression: { parameters: 1, body: 1 },
-          CallExpression: { arguments: 1 },
-          ArrayExpression: 1,
-          ObjectExpression: 1,
-          ImportDeclaration: 1,
           flatTernaryExpressions: false,
           ignoreComments: false,
-          ignoredNodes: ['TemplateLiteral *', 'JSXElement', 'JSXElement > *', 'JSXAttribute', 'JSXIdentifier', 'JSXNamespacedName', 'JSXMemberExpression', 'JSXSpreadAttribute', 'JSXExpressionContainer', 'JSXOpeningElement', 'JSXClosingElement', 'JSXFragment', 'JSXOpeningFragment', 'JSXClosingFragment', 'JSXText', 'JSXEmptyExpression', 'JSXSpreadChild'],
+          ignoredNodes: [
+            'TemplateLiteral *',
+            'JSXElement',
+            'JSXElement > *',
+            'JSXAttribute',
+            'JSXIdentifier',
+            'JSXNamespacedName',
+            'JSXMemberExpression',
+            'JSXSpreadAttribute',
+            'JSXExpressionContainer',
+            'JSXOpeningElement',
+            'JSXClosingElement',
+            'JSXFragment',
+            'JSXOpeningFragment',
+            'JSXClosingFragment',
+            'JSXText',
+            'JSXEmptyExpression',
+            'JSXSpreadChild',
+            'TSTypeParameterInstantiation',
+            'FunctionExpression > .params[decorators.length > 0]',
+            'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
+            'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
+          ],
           offsetTernaryExpressions: true,
+          outerIIFEBody: 1,
         }],
 
         'style/key-spacing': [ERROR, { beforeColon: false, afterColon: true }],

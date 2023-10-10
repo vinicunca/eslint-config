@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import CoreCopyButton from '~/domains/core/components/core-copy-button.vue';
+import CoreCopyButton from '~~/domains/core/components/core-copy-button.vue';
 
 defineProps({
   code: {

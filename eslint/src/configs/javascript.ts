@@ -1,7 +1,7 @@
 import globals from 'globals';
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
 import { pluginUnusedImports, pluginVinicunca } from '../plugins';
-import { type FlatESLintConfigItem, type OptionsIsInEditor, type OptionsOverrides } from '../types';
+import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
 import {
   ALWAYS,
   ERROR,
@@ -12,7 +12,7 @@ import {
 
 export function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     isInEditor = false,
     overrides = {},
@@ -40,6 +40,10 @@ export function javascript(
         },
 
         sourceType: 'module',
+      },
+
+      linterOptions: {
+        reportUnusedDisableDirectives: true,
       },
 
       plugins: {
@@ -246,6 +250,8 @@ export function javascript(
           'ForInStatement',
           'LabeledStatement',
           'WithStatement',
+          'TSEnumDeclaration[const=true]',
+          'TSExportAssignment',
         ],
 
         'no-return-assign': [ERROR, ALWAYS],

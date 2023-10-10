@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import parseGitignore from 'parse-gitignore';
 import { uniq } from '@vinicunca/perkakas';
 import { GLOB_EXCLUDE } from '../globs';
-import { type FlatESLintConfigItem, type OptionsIgnores } from '../types';
+import type { ConfigItem, OptionsIgnores } from '../types';
 
 export function ignores(
   {
@@ -12,7 +12,7 @@ export function ignores(
     items = [],
     replace = false,
   }: OptionsIgnores = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const ignoreList: string[] = [];
 
   if (enableGitignore) {
@@ -39,8 +39,6 @@ export function ignores(
 
   return [
     {
-      name: 'vinicunca:ignores',
-
       ignores: uniq(ignoreList),
     },
   ];

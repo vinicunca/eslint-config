@@ -1,8 +1,8 @@
 import { pluginJsdoc } from '../plugins';
 import { WARN } from '../flags';
-import { type FlatESLintConfigItem } from '../types';
+import type { ConfigItem } from '../types';
 
-export function jsdoc(): FlatESLintConfigItem[] {
+export function jsdoc(): ConfigItem[] {
   return [
     {
       name: 'vinicunca:jsdoc',

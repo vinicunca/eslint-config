@@ -1,11 +1,11 @@
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE } from '../globs';
 import { pluginMarkdown } from '../plugins';
 import { OFF } from '../flags';
-import { type FlatESLintConfigItem, type OptionsComponentExts, type OptionsOverrides } from '../types';
+import type { ConfigItem, OptionsComponentExts, OptionsOverrides } from '../types';
 
 export function markdown(
   options: OptionsComponentExts & OptionsOverrides = {},
-): FlatESLintConfigItem[] {
+): ConfigItem[] {
   const {
     componentExts = [],
     overrides = {},

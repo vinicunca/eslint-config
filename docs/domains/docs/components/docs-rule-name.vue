@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type RuleInfo } from '../types';
+import type { RuleInfo } from '../types';
 import { getPluginColor } from '../utils/plugin-colors';
 
 const props = defineProps<{
