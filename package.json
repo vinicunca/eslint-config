@@ -25,6 +25,7 @@
     "bun": "^1.0.4",
     "eslint": "^8.51.0",
     "is-ci": "^3.0.1",
+    "nuxt-og-image": "^2.1.2",
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"

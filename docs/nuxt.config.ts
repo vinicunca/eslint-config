@@ -3,6 +3,8 @@ import { createResolver } from '@nuxt/kit';
 
 const { resolve } = createResolver(import.meta.url);
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export default defineNuxtConfig({
   devServer: {
     port: 3001,
@@ -22,7 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/content',
     '@unocss/nuxt',
-    // 'nuxt-gtag',
+    'nuxt-gtag',
     resolve('./app/content-post-process'),
   ],
 
@@ -73,9 +75,9 @@ export default defineNuxtConfig({
     },
   },
 
-  // gtag: {
-  //   id: 'G-38W7J3MEER',
-  // },
+  gtag: {
+    id: isDev ? undefined : 'G-38W7J3MEER',
+  },
 
   postcss: {
     plugins: {

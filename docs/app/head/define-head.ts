@@ -2,11 +2,7 @@ const TITLE = 'ESLint Vinicunca';
 
 // @unocss-include
 export function defineHead() {
-  // TODO: maybe use this approach: https://content.nuxtjs.org/api/composables/use-content-head
-  const page = ref<any>({});
-
-  const socialCardLarge = ref('');
-  const description = computed(() => page.value.description);
+  const { page } = useContent();
 
   const route = useRoute();
 
@@ -46,29 +42,39 @@ export function defineHead() {
       },
 
       {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
         name: 'twitter:site',
         content: '@praburangki',
-      },
-      {
-        name: 'twitter:description',
-        content: description.value,
-      },
-      {
-        name: 'twitter:image',
-        content: 'socialCardLarge',
       },
       {
         name: 'twitter:creator',
         content: '@praburangki',
       },
       {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:description',
+        content: page.value.description,
+      },
+      {
+        name: 'twitter:image',
+        content: 'https://eslint.vinicunca.dev/images/og.png',
+      },
+      {
         key: 'og:url',
         property: 'og:url',
         content: `https://eslint.vinicunca.dev${route.path}`,
+      },
+      {
+        key: 'og:title',
+        property: 'og:title',
+        content: page.value.title,
+      },
+      {
+        key: 'og:description',
+        property: 'og:description',
+        content: page.value.description,
       },
       {
         key: 'og:type',
@@ -78,7 +84,7 @@ export function defineHead() {
       {
         key: 'og:image',
         property: 'og:image',
-        content: `https://eslint.vinicunca.dev${socialCardLarge.value}`,
+        content: 'https://eslint.vinicunca.dev/images/og.png',
       },
     ],
 
