@@ -23,10 +23,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install
-        env:
-          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
-          ALGOLIA_SEARCH_API_KEY: ${{ secrets.ALGOLIA_SEARCH_API_KEY }}
-          ALGOLIA_CRAWLER_API_KEY: ${{ secrets.ALGOLIA_CRAWLER_API_KEY }}
 
       - name: Generate Changelog
         run: pnpm dlx changelogithub
@@ -48,5 +44,5 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VINICUNCA_ESLINT }}'
-          channelId: live
           projectId: vinicunca-eslint
+          channelId: live
