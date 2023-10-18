@@ -12,8 +12,6 @@ export * as pluginJsonc from 'eslint-plugin-jsonc';
 export { default as pluginMarkdown } from 'eslint-plugin-markdown';
 export { default as pluginNode } from 'eslint-plugin-n';
 export { default as pluginNoOnlyTests } from 'eslint-plugin-no-only-tests';
-// TODO: Enable when this issue is resolved: https://github.com/SonarSource/eslint-plugin-sonarjs/issues/403
-// export { default as pluginSonar } from 'eslint-plugin-sonarjs';
 export { default as pluginUnicorn } from 'eslint-plugin-unicorn';
 export { default as pluginUnusedImports } from 'eslint-plugin-unused-imports';
 export { default as pluginReact } from 'eslint-plugin-react';

@@ -12,8 +12,6 @@ import {
   markdown,
   node,
   react,
-  // TODO: Enable when this issue is resolved: https://github.com/SonarSource/eslint-plugin-sonarjs/issues/403
-  // sonar,
   sortPackageJson,
   sortTsconfig,
   stylistic,
@@ -118,12 +116,6 @@ export function vinicuncaESLint(
       overrides: overrides.markdown,
     }));
   };
-
-  // TODO: Enable when this issue is resolved: https://github.com/SonarSource/eslint-plugin-sonarjs/issues/403
-  // const enableSonar = options.sonar ?? true;
-  // if (enableSonar) {
-  //   configs.push(sonar);
-  // }
 
   if (enableReact) {
     configs.push(react({

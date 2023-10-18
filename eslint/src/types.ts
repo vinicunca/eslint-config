@@ -118,13 +118,6 @@ export interface OptionsConfig extends OptionsComponentExts {
   stylistic?: boolean;
 
   /**
-   * Enable sonarjs rules.
-   *
-   * @default true
-   */
-  sonar?: boolean;
-
-  /**
    * Enable react support.
    * In This plugin, react is not supported as a first class citizen. 😎
    *

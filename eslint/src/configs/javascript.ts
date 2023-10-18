@@ -404,6 +404,8 @@ export function javascript(
           ignoreRestSiblings: true,
         }],
 
+        ...pluginVinicunca.configs.recommended.rules,
+
         ...overrides,
       },
     },
