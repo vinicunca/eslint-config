@@ -2,7 +2,7 @@
 
 Enforce top-level function to be declared using `function` instead of arrow function. With auto-fix.
 
-## Rule Details
+## Invalid
 
 <!-- eslint-skip -->
 ```ts invalid
@@ -13,7 +13,8 @@ export const square = (a: number, b: number): number => {
 };
 ```
 
-<!-- eslint-skip -->
+## Valid
+
 ```ts valid
 export function square(a: number, b: number): number {
   const a2 = a * a;
@@ -26,7 +27,6 @@ export function square(a: number, b: number): number {
 
 When the variable is assigned with types, the rule will ignore it.
 
-<!-- eslint-skip -->
 ```ts valid
 export const square: MyFunction = (a: number, b: number): number => {
   const a2 = a * a;

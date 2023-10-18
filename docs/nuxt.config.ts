@@ -10,6 +10,27 @@ export default defineNuxtConfig({
     port: 3001,
   },
 
+  routeRules: {
+    '/user-guide': {
+      redirect: {
+        to: '/user-guide/installation',
+        statusCode: 302,
+      },
+    },
+    '/configs': {
+      redirect: {
+        to: '/configs/ignores',
+        statusCode: 302,
+      },
+    },
+    '/plugin-vinicunca': {
+      redirect: {
+        to: '/plugin-vinicunca/cognitive-complexity',
+        statusCode: 302,
+      },
+    },
+  },
+
   components: [
     {
       path: '~~/domains/docs/components',
