@@ -49,7 +49,6 @@ export function vinicuncaESLint(
 
   const configs: ConfigItem[][] = [];
 
-  // ignores(options.ignores),
   configs.push(
     javascript({
       isInEditor,

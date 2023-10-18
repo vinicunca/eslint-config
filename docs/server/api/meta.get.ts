@@ -24,34 +24,36 @@ export default defineEventHandler(async (event) => {
 
   const rawConfigs = jiti(metadataPath).default;
 
-  const selectedConfig = rawConfigs[configPath];
-
   const configs: any[] = [];
 
-  for (let index = 0; index < selectedConfig.length; index++) {
-    const rawConfig = selectedConfig[index];
+  const selectedConfig = rawConfigs[configPath];
 
-    const renderedRules: any[] = [];
+  if (selectedConfig) {
+    for (let index = 0; index < selectedConfig.length; index++) {
+      const rawConfig = selectedConfig[index];
 
-    if (rawConfig.rules) {
-      for (const [_, rule] of Object.entries<any>(rawConfig.rules)) {
-        // eslint-disable-next-line no-await-in-loop
-        const docs = await parseMarkdown(rule.docs.description);
+      const renderedRules: any[] = [];
 
-        renderedRules.push({
-          ...rule,
-          docs: {
-            ...rule.docs,
-            description: docs.body,
-          },
-        });
+      if (rawConfig.rules) {
+        for (const [_, rule] of Object.entries<any>(rawConfig.rules)) {
+          // eslint-disable-next-line no-await-in-loop
+          const docs = await parseMarkdown(rule.docs.description);
+
+          renderedRules.push({
+            ...rule,
+            docs: {
+              ...rule.docs,
+              description: docs.body,
+            },
+          });
+        }
       }
-    }
 
-    configs[index] = {
-      ...rawConfig,
-      rules: renderedRules,
-    };
+      configs[index] = {
+        ...rawConfig,
+        rules: renderedRules,
+      };
+    }
   }
 
   return {
