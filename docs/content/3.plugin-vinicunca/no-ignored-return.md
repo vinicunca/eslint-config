@@ -4,9 +4,10 @@ When the call to a function doesn’t have any side effects, what is the point o
 
 To prevent generating any false-positives, this rule triggers an issues only on a predefined list of known objects &amp; functions.
 
-::docs-alert{type="danger" title="WIP"}
+::docs-alert{type="danger" title="Type Aware"}
 
-This rule is not available yet and is still a work in progress.
+You need to enable type aware configuration to use this rule.
+Please visit the [Typescript configuration](/configs/typescript#configuration) page for more information.
 
 ::
 

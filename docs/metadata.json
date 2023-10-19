@@ -3282,6 +3282,161 @@
           },
           "name": "vinicunca/no-ts-export-equal",
           "level": "error"
+        },
+        "dot-notation": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce dot notation whenever possible",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/dot-notation"
+          },
+          "fixable": "code",
+          "name": "dot-notation",
+          "plugin": "eslint",
+          "level": "off"
+        },
+        "no-implied-eval": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Disallow the use of `eval()`-like methods",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/no-implied-eval"
+          },
+          "name": "no-implied-eval",
+          "plugin": "eslint",
+          "level": "off"
+        },
+        "no-throw-literal": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Disallow throwing literals as exceptions",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/no-throw-literal"
+          },
+          "name": "no-throw-literal",
+          "plugin": "eslint",
+          "level": "off"
+        },
+        "ts/await-thenable": {
+          "docs": {
+            "description": "Disallow awaiting a value that is not a Thenable",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/await-thenable"
+          },
+          "hasSuggestions": true,
+          "type": "problem",
+          "name": "ts/await-thenable",
+          "level": "error"
+        },
+        "ts/dot-notation": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce dot notation whenever possible",
+            "recommended": "stylistic",
+            "extendsBaseRule": true,
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/dot-notation"
+          },
+          "fixable": "code",
+          "name": "ts/dot-notation",
+          "level": "error",
+          "options": [
+            {
+              "allowKeywords": true
+            }
+          ]
+        },
+        "ts/no-floating-promises": {
+          "docs": {
+            "description": "Require Promise-like statements to be handled appropriately",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-floating-promises"
+          },
+          "hasSuggestions": true,
+          "type": "problem",
+          "name": "ts/no-floating-promises",
+          "level": "error"
+        },
+        "ts/no-for-in-array": {
+          "docs": {
+            "description": "Disallow iterating over an array with a for-in loop",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-for-in-array"
+          },
+          "type": "problem",
+          "name": "ts/no-for-in-array",
+          "level": "error"
+        },
+        "ts/no-implied-eval": {
+          "docs": {
+            "description": "Disallow the use of `eval()`-like methods",
+            "recommended": "recommended",
+            "extendsBaseRule": true,
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-implied-eval"
+          },
+          "type": "suggestion",
+          "name": "ts/no-implied-eval",
+          "level": "error"
+        },
+        "ts/no-misused-promises": {
+          "docs": {
+            "description": "Disallow Promises in places not designed to handle them",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-misused-promises"
+          },
+          "type": "problem",
+          "name": "ts/no-misused-promises",
+          "level": "error"
+        },
+        "ts/no-throw-literal": {
+          "type": "problem",
+          "docs": {
+            "description": "Disallow throwing literals as exceptions",
+            "recommended": "strict",
+            "extendsBaseRule": true,
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-throw-literal"
+          },
+          "name": "ts/no-throw-literal",
+          "level": "error"
+        },
+        "ts/restrict-plus-operands": {
+          "type": "problem",
+          "docs": {
+            "description": "Require both operands of addition to be the same type and be `bigint`, `number`, or `string`",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/restrict-plus-operands"
+          },
+          "name": "ts/restrict-plus-operands",
+          "level": "error"
+        },
+        "ts/restrict-template-expressions": {
+          "type": "problem",
+          "docs": {
+            "description": "Enforce template literal expressions to be of `string` type",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/restrict-template-expressions"
+          },
+          "name": "ts/restrict-template-expressions",
+          "level": "error"
+        },
+        "ts/unbound-method": {
+          "docs": {
+            "description": "Enforce unbound methods are called with their expected scope",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/unbound-method"
+          },
+          "type": "problem",
+          "name": "ts/unbound-method",
+          "level": "error"
         }
       }
     },

@@ -1,6 +1,5 @@
 import process from 'node:process';
 import { isPackageExists } from 'local-pkg';
-import { isBoolean } from '@vinicunca/perkakas';
 import type { ConfigItem, OptionsConfig } from './types';
 import {
   comments,
@@ -36,7 +35,7 @@ export function vinicuncaESLint(
   const {
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
-    typescript: enableTypeScript = isPackageExists('typescript'),
+    typescript: tsOptions = {},
     stylistic: enableStylistic = true,
     test: enableTest = true,
     jsonc: enableJsonc = true,
@@ -65,11 +64,14 @@ export function vinicuncaESLint(
     componentExts.push('vue');
   }
 
-  if (enableTypeScript) {
+  const {
+    enabled: tsEnabled = isPackageExists('typescript'),
+    ...tsParams
+  } = tsOptions;
+
+  if (tsEnabled) {
     configs.push(typescript({
-      ...!isBoolean(enableTypeScript)
-        ? enableTypeScript
-        : {},
+      ...tsParams,
       componentExts,
       overrides: overrides.typescript,
     }));
@@ -88,7 +90,10 @@ export function vinicuncaESLint(
 
   if (enableVue) {
     configs.push(vue({
-      typescript: !!enableTypeScript,
+      typescript: {
+        enabled: tsEnabled,
+        ...tsParams,
+      },
       overrides: overrides.vue,
     }));
   };

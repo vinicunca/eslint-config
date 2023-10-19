@@ -64,7 +64,9 @@ export interface OptionsConfig extends OptionsComponentExts {
    *
    * @default auto-detect based on the dependencies
    */
-  typescript?: boolean | OptionsTypeScriptWithTypes;
+  typescript?: OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions & {
+    enabled?: boolean;
+  };
 
   /**
    * Enable JSX related rules.
@@ -182,9 +184,9 @@ export interface OptionsTypeScriptWithTypes {
    * When this options is provided, type aware rules will be enabled.
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
-  tsconfigPath?: string;
+  tsconfigPath?: string[];
 }
 
 export interface OptionsHasTypeScript {
-  typescript?: boolean;
+  typescript?: OptionsConfig['typescript'];
 }

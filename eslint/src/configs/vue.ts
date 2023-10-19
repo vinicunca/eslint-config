@@ -1,3 +1,5 @@
+import process from 'node:process';
+import { isEmpty } from '@vinicunca/perkakas';
 import { GLOB_VUE } from '../globs';
 import { parserTs, parserVue, pluginVue } from '../plugins';
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
@@ -7,8 +9,20 @@ export function vue(
   options: OptionsHasTypeScript & OptionsOverrides = {},
 ): ConfigItem[] {
   const {
+    typescript = {},
     overrides = {},
   } = options;
+
+  let tsConfigOptions = {};
+
+  const tsconfigPath = typescript.tsconfigPath ?? [];
+
+  if (!isEmpty(tsconfigPath)) {
+    tsConfigOptions = {
+      project: tsconfigPath,
+      tsconfigRootDir: process.cwd(),
+    };
+  }
 
   return [
     {
@@ -32,8 +46,9 @@ export function vue(
             jsx: true,
           },
           extraFileExtensions: ['.vue'],
-          parser: options.typescript ? parserTs as any : null,
+          parser: typescript.enabled ? parserTs as any : undefined,
           sourceType: 'module',
+          ...tsConfigOptions,
         },
       },
 

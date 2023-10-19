@@ -1,4 +1,5 @@
 import process from 'node:process';
+import { isEmpty } from '@vinicunca/perkakas';
 import type { ConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
 import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
 import { renameRules } from '../utils';
@@ -12,7 +13,7 @@ export function typescript(
     componentExts = [],
     overrides = {},
     parserOptions = {},
-    tsconfigPath,
+    tsconfigPath = [],
   } = options ?? {};
 
   const typeAwareRules: ConfigItem['rules'] = {
@@ -26,16 +27,22 @@ export function typescript(
     'ts/no-implied-eval': ERROR,
     'ts/no-misused-promises': ERROR,
     'ts/no-throw-literal': ERROR,
-    'ts/no-unnecessary-type-assertion': ERROR,
-    'ts/no-unsafe-argument': ERROR,
-    'ts/no-unsafe-assignment': ERROR,
-    'ts/no-unsafe-call': ERROR,
-    'ts/no-unsafe-member-access': ERROR,
-    'ts/no-unsafe-return': ERROR,
     'ts/restrict-plus-operands': ERROR,
     'ts/restrict-template-expressions': ERROR,
     'ts/unbound-method': ERROR,
   };
+
+  let tsConfigOptions = {};
+  let additionalTypeAwareRules: ConfigItem['rules'] = {};
+
+  if (!isEmpty(tsconfigPath)) {
+    tsConfigOptions = {
+      project: tsconfigPath,
+      tsconfigRootDir: process.cwd(),
+    };
+
+    additionalTypeAwareRules = typeAwareRules;
+  }
 
   return [
     {
@@ -61,12 +68,7 @@ export function typescript(
         parser: parserTs,
         parserOptions: {
           sourceType: 'module',
-          ...tsconfigPath
-            ? {
-                project: [tsconfigPath],
-                tsconfigRootDir: process.cwd(),
-              }
-            : {},
+          ...tsConfigOptions,
           ...parserOptions as any,
         },
       },
@@ -149,7 +151,7 @@ export function typescript(
         'vinicunca/no-cjs-exports': ERROR,
         'vinicunca/no-ts-export-equal': ERROR,
 
-        ...tsconfigPath ? typeAwareRules : {},
+        ...additionalTypeAwareRules,
 
         ...overrides,
       },

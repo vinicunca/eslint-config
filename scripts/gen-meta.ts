@@ -21,7 +21,7 @@ const pluginUrlMap = {
 
 async function generateJsonRules() {
   const cwd = process.cwd();
-  const configPath = path.resolve(cwd, 'eslint.config.js');
+  const configPath = path.resolve(cwd, 'scripts', 'eslint-config.js');
 
   const jiti = JITI(cwd, {
     cache: false,
