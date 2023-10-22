@@ -130,6 +130,8 @@ export function react(
 
         'react/jsx-newline': ERROR,
 
+        'react/react-in-jsx-scope': OFF,
+
         ...overrides,
       },
     },
