@@ -1,7 +1,7 @@
 import { pluginStylistic, pluginVinicunca } from '../plugins';
 import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
 import type { ConfigItem } from '../types';
-import { GLOB_JSX, GLOB_TSX } from 'dist';
+import { GLOB_JSX, GLOB_TSX } from '../globs';
 
 export function stylistic(): ConfigItem[] {
   return [
@@ -190,8 +190,8 @@ export function stylistic(): ConfigItem[] {
       files: [GLOB_JSX, GLOB_TSX],
 
       rules: {
-        'vinicunca/consistent-list-newline': OFF
-      }
-    }
+        'vinicunca/consistent-list-newline': OFF,
+      },
+    },
   ];
 }
