@@ -64,7 +64,7 @@ export function useActiveAnchor(
     }
   }
 
-  function activateLink(hash: string | null) {
+  function activateLink(hash: null | string) {
     // If there's no toc then there's no marker ref
     if (!marker.value) {
       return;
@@ -101,7 +101,7 @@ function isAnchorActive(
   index: number,
   anchor: HTMLAnchorElement,
   nextAnchor: HTMLAnchorElement | undefined,
-): [boolean, string | null] {
+): [boolean, null | string] {
   const scrollTop = window.scrollY;
 
   if (index === 0 && scrollTop === 0) {

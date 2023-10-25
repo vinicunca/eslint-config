@@ -1,5 +1,6 @@
-import type { Theme } from '@unocss/preset-mini';
 import type { CSSObject, Preset } from '@unocss/core';
+import type { Theme } from '@unocss/preset-mini';
+
 import { toEscapedSelector } from '@unocss/core';
 
 import { getPreflights } from './preflights';
@@ -42,9 +43,19 @@ export function presetTypography(options?: TypographyOptions): Preset<Theme> {
   const cssExtend = options?.cssExtend;
 
   return {
-    name: '@vinicunca/unocss-preset-typography',
     enforce: 'post',
     layers: { typography: -20 },
+    name: '@vinicunca/unocss-preset-typography',
+    preflights: [
+      {
+        getCSS: () => {
+          if (escapedSelectors.size > 0) {
+            return getPreflights({ cssExtend, escapedSelectors, selectorName });
+          }
+        },
+        layer: 'typography',
+      },
+    ],
     rules: [
       [
         selectorNameRE,
@@ -54,16 +65,6 @@ export function presetTypography(options?: TypographyOptions): Preset<Theme> {
         },
         { layer: 'typography' },
       ],
-    ],
-    preflights: [
-      {
-        layer: 'typography',
-        getCSS: () => {
-          if (escapedSelectors.size > 0) {
-            return getPreflights({ escapedSelectors, selectorName, cssExtend });
-          }
-        },
-      },
     ],
   };
 }

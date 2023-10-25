@@ -1,28 +1,27 @@
+import { useProxiedModel } from '~~/domains/core/composables/use-proxied-model';
+import { getUid } from '~~/domains/core/utils/get-uid';
 import { getCurrentInstance } from 'vue';
 
 import { listOpenStrategy } from './open-strategies';
-
-import { getUid } from '~~/domains/core/utils/get-uid';
-import { useProxiedModel } from '~~/domains/core/composables/use-proxied-model';
 
 interface NestedProvide {
   id: Ref<unknown>;
   isGroupActivator?: boolean;
   root: {
     children: Ref<Map<unknown, unknown[]>>;
-    parents: Ref<Map<unknown, unknown>>;
+    open: (id: unknown, value: boolean, event?: Event) => void;
     opened: Ref<Set<unknown>>;
+    parents: Ref<Map<unknown, unknown>>;
     register: (id: unknown, parentId: unknown, isGroup?: boolean) => void;
     unregister: (id: unknown) => void;
-    open: (id: unknown, value: boolean, event?: Event) => void;
   };
 };
 
 export const UseNestedSymbol: InjectionKey<NestedProvide> = Symbol.for('use-nested');
 
 interface NestedProps {
-  opened: readonly unknown[] | undefined;
   'onUpdate:opened': ((val: unknown[]) => void) | undefined;
+  opened: readonly unknown[] | undefined;
 }
 
 export function useNested(props: NestedProps) {
@@ -60,7 +59,23 @@ export function useNested(props: NestedProps) {
   const nested: NestedProvide = {
     id: shallowRef(),
     root: {
+      children,
+      open: (id, value, event) => {
+        vm!.emit('click:open', { event, id, path: getPath(id), value });
+
+        const newOpened = listOpenStrategy.open({
+          children: children.value,
+          event,
+          id,
+          opened: new Set(opened.value),
+          parents: parents.value,
+          value,
+        });
+
+        newOpened && (opened.value = newOpened);
+      },
       opened,
+      parents,
       register: (id, parentId, isGroup) => {
         parentId && id !== parentId && parents.value.set(id, parentId);
 
@@ -84,22 +99,6 @@ export function useNested(props: NestedProps) {
         parents.value.delete(id);
         opened.value.delete(id);
       },
-      open: (id, value, event) => {
-        vm!.emit('click:open', { id, value, path: getPath(id), event });
-
-        const newOpened = listOpenStrategy.open({
-          id,
-          value,
-          opened: new Set(opened.value),
-          children: children.value,
-          parents: parents.value,
-          event,
-        });
-
-        newOpened && (opened.value = newOpened);
-      },
-      children,
-      parents,
     },
   };
 
@@ -109,12 +108,12 @@ export function useNested(props: NestedProps) {
 export const emptyNested: NestedProvide = {
   id: shallowRef(),
   root: {
-    register: () => null,
-    unregister: () => null,
-    parents: ref(new Map()),
     children: ref(new Map()),
     open: () => null,
     opened: ref(new Set()),
+    parents: ref(new Map()),
+    register: () => null,
+    unregister: () => null,
   },
 };
 
@@ -127,10 +126,10 @@ export function useNestedItem(id: Ref<unknown>, isGroup: boolean) {
   const item = {
     ...parent,
     id: computedId,
-    open: (open: boolean, e: Event) => parent.root.open(computedId.value, open, e),
-    isOpen: computed(() => parent.root.opened.value.has(computedId.value)),
-    parent: computed(() => parent.root.parents.value.get(computedId.value)),
     isGroupActivator: parent.isGroupActivator,
+    isOpen: computed(() => parent.root.opened.value.has(computedId.value)),
+    open: (open: boolean, e: Event) => parent.root.open(computedId.value, open, e),
+    parent: computed(() => parent.root.parents.value.get(computedId.value)),
   };
 
   !parent.isGroupActivator && parent.root.register(computedId.value, parent.id.value, isGroup);

@@ -20,7 +20,7 @@ watch(isOpen, () => {
 
 function scrollToTop() {
   isOpen.value = false;
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  window.scrollTo({ behavior: 'smooth', left: 0, top: 0 });
 }
 
 const route = useRoute();

@@ -1,15 +1,15 @@
 <script lang="ts" setup>
+import LayoutAside from '~~/domains/layouts/components/layout-aside.vue';
+import LayoutFooter from '~~/domains/layouts/components/layout-footer.vue';
+import LayoutHeader from '~~/domains/layouts/components/layout-header.vue';
+import LayoutMobileNav from '~~/domains/layouts/components/layout-mobile-nav.vue';
+import LayoutOutlineDropdown from '~~/domains/layouts/components/layout-outline-dropdown.vue';
+import LayoutSidebar from '~~/domains/layouts/components/layout-sidebar.vue';
+
 import { useNav } from '../composables/use-nav';
 import LayoutBackdrop from './layout-backdrop.vue';
 
-import LayoutHeader from '~~/domains/layouts/components/layout-header.vue';
-import LayoutMobileNav from '~~/domains/layouts/components/layout-mobile-nav.vue';
-import LayoutSidebar from '~~/domains/layouts/components/layout-sidebar.vue';
-import LayoutOutlineDropdown from '~~/domains/layouts/components/layout-outline-dropdown.vue';
-import LayoutAside from '~~/domains/layouts/components/layout-aside.vue';
-import LayoutFooter from '~~/domains/layouts/components/layout-footer.vue';
-
-const { isSidebarOpen, openSidebar, closeSidebar } = useNav();
+const { closeSidebar, isSidebarOpen, openSidebar } = useNav();
 </script>
 
 <template>

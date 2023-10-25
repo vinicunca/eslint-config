@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { useNestedItem } from './use-nested';
-
 import type { INavItem } from '~~/typings';
 
+import { useNestedItem } from './use-nested';
+
 const props = defineProps<{
-  item: INavItem;
   isOpen?: boolean;
+  item: INavItem;
 }>();
 
 const emit = defineEmits<{
@@ -13,7 +13,7 @@ const emit = defineEmits<{
 }>();
 
 const id = computed(() => props.item.value === undefined ? props.item._path : props.item.value);
-const { isGroupActivator, root, parent } = useNestedItem(id, false);
+const { isGroupActivator, parent, root } = useNestedItem(id, false);
 
 const Tag = computed(() => {
   if (props.item._path) {

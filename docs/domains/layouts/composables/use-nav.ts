@@ -47,14 +47,14 @@ export function useNav() {
   watch(() => route.path, closeDrawerAndSidebar);
 
   return {
-    isDrawerOpen,
-    openDrawer,
     closeDrawer,
-    toggleDrawer,
-
-    isSidebarOpen,
-    openSidebar,
     closeSidebar,
+    isDrawerOpen,
+    isSidebarOpen,
+
+    openDrawer,
+    openSidebar,
+    toggleDrawer,
     toggleSidebar,
   };
 }

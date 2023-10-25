@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useScrollLock } from '@vueuse/core';
 import { isBrowser } from '@vinicunca/perkakas';
+import { useScrollLock } from '@vueuse/core';
 
 import LayoutSidebarTree from './layout-sidebar-tree.vue';
 
@@ -22,7 +22,7 @@ watch(
       isLocked.value = false;
     };
   },
-  { immediate: true, flush: 'post' },
+  { flush: 'post', immediate: true },
 );
 </script>
 

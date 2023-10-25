@@ -1,7 +1,8 @@
-import { pluginStylistic, pluginVinicunca } from '../plugins';
-import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
 import type { ConfigItem } from '../types';
+
+import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
 import { GLOB_JSX, GLOB_TSX } from '../globs';
+import { pluginStylistic, pluginVinicunca } from '../plugins';
 
 export function stylistic(): ConfigItem[] {
   return [
@@ -9,8 +10,8 @@ export function stylistic(): ConfigItem[] {
       name: 'vinicunca:stylistic',
 
       plugins: {
-        vinicunca: pluginVinicunca,
         style: pluginStylistic,
+        vinicunca: pluginVinicunca,
       },
 
       rules: {
@@ -22,13 +23,15 @@ export function stylistic(): ConfigItem[] {
 
         'style/array-element-newline': [ERROR, CONSISTENT],
 
-        'style/arrow-spacing': [ERROR, { before: true, after: true }],
+        'style/arrow-spacing': [ERROR, { after: true, before: true }],
 
         'style/block-spacing': [ERROR, ALWAYS],
 
         'style/brace-style': [ERROR],
 
-        'style/comma-spacing': [ERROR, { before: false, after: true }],
+        'style/comma-dangle': [ERROR, 'always-multiline'],
+
+        'style/comma-spacing': [ERROR, { after: true, before: false }],
 
         'style/comma-style': [ERROR, 'last'],
 
@@ -79,9 +82,9 @@ export function stylistic(): ConfigItem[] {
           outerIIFEBody: 1,
         }],
 
-        'style/key-spacing': [ERROR, { beforeColon: false, afterColon: true }],
+        'style/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],
 
-        'style/keyword-spacing': [ERROR, { before: true, after: true }],
+        'style/keyword-spacing': [ERROR, { after: true, before: true }],
 
         'style/lines-between-class-members': [ERROR, ALWAYS, { exceptAfterSingleLine: true }],
 
@@ -98,12 +101,12 @@ export function stylistic(): ConfigItem[] {
         'style/no-floating-decimal': ERROR,
 
         'style/no-mixed-operators': [ERROR, {
+          allowSamePrecedence: true,
           groups: [
             ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
             ['&&', '||'],
             ['in', 'instanceof'],
           ],
-          allowSamePrecedence: true,
         }],
 
         'style/no-mixed-spaces-and-tabs': ERROR,
@@ -118,7 +121,7 @@ export function stylistic(): ConfigItem[] {
 
         'style/no-whitespace-before-property': ERROR,
 
-        'style/object-curly-newline': [ERROR, { multiline: true, consistent: true }],
+        'style/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
 
         'style/object-curly-spacing': [ERROR, ALWAYS],
 
@@ -126,7 +129,7 @@ export function stylistic(): ConfigItem[] {
 
         'style/operator-linebreak': [ERROR, 'before'],
 
-        'style/padded-blocks': [ERROR, { blocks: NEVER, switches: NEVER, classes: NEVER }],
+        'style/padded-blocks': [ERROR, { blocks: NEVER, classes: NEVER, switches: NEVER }],
 
         'style/quote-props': [ERROR, 'consistent-as-needed'],
 
@@ -136,31 +139,31 @@ export function stylistic(): ConfigItem[] {
 
         'style/semi': [ERROR, ALWAYS],
 
-        'style/semi-spacing': [ERROR, { before: false, after: true }],
+        'style/semi-spacing': [ERROR, { after: true, before: false }],
 
         'style/space-before-blocks': [ERROR, ALWAYS],
 
         'style/space-before-function-paren': [ERROR, {
           anonymous: NEVER,
-          named: NEVER,
           asyncArrow: ALWAYS,
+          named: NEVER,
         }],
 
         'style/space-in-parens': [ERROR, NEVER],
 
         'style/space-infix-ops': ERROR,
 
-        'style/space-unary-ops': [ERROR, { words: true, nonwords: false }],
+        'style/space-unary-ops': [ERROR, { nonwords: false, words: true }],
 
         'style/spaced-comment': [ERROR, 'always', {
-          line: {
-            markers: ['/'],
-            exceptions: ['/', '#'],
-          },
           block: {
-            markers: ['!'],
-            exceptions: ['*'],
             balanced: true,
+            exceptions: ['*'],
+            markers: ['!'],
+          },
+          line: {
+            exceptions: ['/', '#'],
+            markers: ['/'],
           },
         }],
 
@@ -175,8 +178,6 @@ export function stylistic(): ConfigItem[] {
         }],
 
         'style/yield-star-spacing': [ERROR, 'both'],
-
-        'style/comma-dangle': [ERROR, 'always-multiline'],
 
         'vinicunca/consistent-list-newline': ERROR,
 

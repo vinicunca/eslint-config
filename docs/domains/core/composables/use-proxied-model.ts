@@ -1,5 +1,6 @@
-import { computed, getCurrentInstance, ref, toRaw, watch } from 'vue';
 import type { Ref } from 'vue';
+
+import { computed, getCurrentInstance, ref, toRaw, watch } from 'vue';
 
 import { useToggleScope } from './use-toggle-scope';
 

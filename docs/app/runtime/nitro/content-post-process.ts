@@ -1,4 +1,5 @@
 import type { MarkdownNode, ParsedContent } from '@nuxt/content/dist/runtime/types';
+
 import { visit } from 'unist-util-visit';
 
 export default defineNitroPlugin((nitroApp) => {
@@ -45,9 +46,9 @@ function parseUl(element: any) {
             returnChildren.push(chunk[0]);
           } else {
             returnChildren.push({
-              type: 'element',
-              tag: 'span',
               children: chunk,
+              tag: 'span',
+              type: 'element',
             });
           }
         });
@@ -68,13 +69,13 @@ function parseAnchorLinks(element: any) {
       .reduce((acc, t) => acc + t.value, '');
 
     const linkEl = {
-      type: 'element',
-      tag: 'a',
       props: Object.assign({}, node.props, {
-        'className': 'header-anchor',
         'aria-label': `Permalink to "${title}"`,
+        'className': 'header-anchor',
         'href': `#${node.props?.id}`,
       }),
+      tag: 'a',
+      type: 'element',
     };
     node.children?.push(linkEl);
   });

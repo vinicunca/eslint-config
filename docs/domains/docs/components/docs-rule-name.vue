@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { RuleInfo } from '../types';
+
 import { getPluginColor } from '../utils/plugin-colors';
 
 const props = defineProps<{
@@ -10,13 +11,13 @@ const parsed = computed(() => {
   if (props.rule.plugin) {
     if (props.rule.name.startsWith(props.rule.plugin)) {
       return {
-        scope: props.rule.plugin,
         name: props.rule.name.slice(props.rule.plugin.length).replace(/^\/+/, ''),
+        scope: props.rule.plugin,
       };
     } else {
       return {
-        scope: undefined,
         name: props.rule.name,
+        scope: undefined,
       };
     }
   }
@@ -25,13 +26,13 @@ const parsed = computed(() => {
 
   if (parts.length === 1) {
     return {
-      scope: undefined,
       name: parts[0],
+      scope: undefined,
     };
   }
   return {
-    scope: parts[0],
     name: parts.slice(1).join('/'),
+    scope: parts[0],
   };
 });
 </script>

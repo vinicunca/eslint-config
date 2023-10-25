@@ -3,8 +3,8 @@ import { useClipboard } from '@vueuse/core';
 
 const props = defineProps({
   content: {
-    type: String,
     default: '',
+    type: String,
   },
 });
 

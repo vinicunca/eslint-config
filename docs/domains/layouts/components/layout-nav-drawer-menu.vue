@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useNavItems } from '../composables/use-nav-items';
 
-const { navItems, isActive } = useNavItems();
+const { isActive, navItems } = useNavItems();
 </script>
 
 <template>

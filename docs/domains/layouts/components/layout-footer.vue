@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { toUpperFirst } from '@vinicunca/perkakas';
 
-const { prev, next, navigation, page } = useContent();
+const { navigation, next, page, prev } = useContent();
 const { navDirFromPath } = useContentHelpers();
 
 function directory(link: any) {

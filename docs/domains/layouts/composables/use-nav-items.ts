@@ -1,14 +1,14 @@
 export function useNavItems() {
   const navItems = [
     {
-      title: 'User Guide',
-      parentPath: '/user-guide',
       _path: '/user-guide/installation',
+      parentPath: '/user-guide',
+      title: 'User Guide',
     },
     {
-      title: 'Configs',
       _path: '/configs/ignores',
       parentPath: '/configs',
+      title: 'Configs',
     },
   ];
 
@@ -19,7 +19,7 @@ export function useNavItems() {
   }
 
   return {
-    navItems,
     isActive,
+    navItems,
   };
 }

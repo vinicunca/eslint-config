@@ -10,10 +10,10 @@ export interface ConfigItem extends Omit<FlatESLintConfigItem, 'plugins' | 'rule
 }
 
 export interface RuleInfo extends RuleMetaData<any> {
-  name: string;
-  plugin: string;
   level: RuleLevel;
+  name: string;
   options?: any[];
+  plugin: string;
 }
 
-export type RuleLevel = 'off' | 'warn' | 'error';
+export type RuleLevel = 'error' | 'off' | 'warn';

@@ -1,10 +1,10 @@
 const pluginColorMap = {
-  ts: '#2b7489',
-  vue: '#41b883',
-  node: '#026e00',
   import: '#e36209',
+  node: '#026e00',
   style: '#ffac45',
+  ts: '#2b7489',
   vinicunca: '#66BB6A',
+  vue: '#41b883',
 } as Record<string, string>;
 
 function getHashColorFromString(name: string, saturation = 65, lightness = 40, opacity: number | string = 1) {

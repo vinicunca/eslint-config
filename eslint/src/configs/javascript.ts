@@ -1,7 +1,7 @@
 import globals from 'globals';
-import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
-import { pluginUnusedImports, pluginVinicunca } from '../plugins';
+
 import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
+
 import {
   ALWAYS,
   ERROR,
@@ -9,6 +9,18 @@ import {
   OFF,
   WARN,
 } from '../flags';
+import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
+import { pluginPerfectionist, pluginUnusedImports, pluginVinicunca } from '../plugins';
+
+// if ([
+//   'maintainer',
+//   'admin',
+//   'developer',
+//   'owner',
+//   'observer'
+// ].includes(user.role)) {
+//   return response.json({ allowed: true })
+// }
 
 export function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
@@ -20,8 +32,6 @@ export function javascript(
 
   return [
     {
-      name: 'vinicunca:javascript',
-
       languageOptions: {
         ecmaVersion: 2022,
 
@@ -46,15 +56,18 @@ export function javascript(
         reportUnusedDisableDirectives: true,
       },
 
+      name: 'vinicunca:javascript',
+
       plugins: {
-        'vinicunca': pluginVinicunca,
+        'perfectionist': pluginPerfectionist,
         'unused-imports': pluginUnusedImports,
+        'vinicunca': pluginVinicunca,
       },
 
       rules: {
         'accessor-pairs': [ERROR, {
-          setWithoutGet: true,
           enforceForClassMembers: true,
+          setWithoutGet: true,
         }],
 
         'array-callback-return': [ERROR, { checkForEach: true }],
@@ -65,8 +78,8 @@ export function javascript(
 
         'camelcase': [ERROR, {
           allow: ['^UNSAFE_'],
-          properties: NEVER,
           ignoreGlobals: true,
+          properties: NEVER,
         }],
 
         'constructor-super': ERROR,
@@ -100,11 +113,11 @@ export function javascript(
 
         'no-compare-neg-zero': ERROR,
 
+        'no-cond-assign': [ERROR, ALWAYS],
+
         'no-console': [ERROR, {
           allow: [WARN, ERROR],
         }],
-
-        'no-cond-assign': [ERROR, ALWAYS],
 
         'no-const-assign': ERROR,
 
@@ -160,9 +173,9 @@ export function javascript(
 
         'no-import-assign': ERROR,
 
-        'no-invalid-this': ERROR,
-
         'no-invalid-regexp': ERROR,
+
+        'no-invalid-this': ERROR,
 
         'no-irregular-whitespace': ERROR,
 
@@ -211,36 +224,36 @@ export function javascript(
         'no-restricted-globals': [
           ERROR,
           {
-            name: 'global',
             message: 'Use `globalThis` instead.',
+            name: 'global',
           },
           {
-            name: 'self',
             message: 'Use `globalThis` instead.',
+            name: 'self',
           },
         ],
 
         'no-restricted-properties': [
           ERROR,
           {
-            property: '__proto__',
             message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
+            property: '__proto__',
           },
           {
+            message: 'Use `Object.defineProperty` instead.',
             property: '__defineGetter__',
-            message: 'Use `Object.defineProperty` instead.',
           },
           {
+            message: 'Use `Object.defineProperty` instead.',
             property: '__defineSetter__',
-            message: 'Use `Object.defineProperty` instead.',
           },
           {
+            message: 'Use `Object.getOwnPropertyDescriptor` instead.',
             property: '__lookupGetter__',
-            message: 'Use `Object.getOwnPropertyDescriptor` instead.',
           },
           {
-            property: '__lookupSetter__',
             message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+            property: '__lookupSetter__',
           },
         ],
 
@@ -296,8 +309,8 @@ export function javascript(
 
         'no-unused-expressions': [ERROR, {
           allowShortCircuit: true,
-          allowTernary: true,
           allowTaggedTemplates: true,
+          allowTernary: true,
         }],
 
         'no-unused-vars': [ERROR, {
@@ -308,8 +321,8 @@ export function javascript(
         }],
 
         'no-use-before-define': [ERROR, {
-          functions: false,
           classes: false,
+          functions: false,
           variables: true,
         }],
 
@@ -334,8 +347,8 @@ export function javascript(
         'no-with': ERROR,
 
         'object-shorthand': [ERROR, ALWAYS, {
-          ignoreConstructors: false,
           avoidQuotes: true,
+          ignoreConstructors: false,
         }],
 
         'one-var': [ERROR, {
@@ -363,27 +376,26 @@ export function javascript(
 
         'prefer-template': ERROR,
 
-        'sort-imports': [ERROR, {
-          ignoreCase: false,
-          ignoreDeclarationSort: true,
-          ignoreMemberSort: false,
-          memberSyntaxSortOrder: [
-            'none',
-            'all',
-            'multiple',
-            'single',
-          ],
-
-          allowSeparatedGroups: false,
-        }],
+        // Turned off to avoid conflicts with Perfectionist. https://eslint-plugin-perfectionist.azat.io/rules/sort-imports
+        'sort-imports': [OFF],
 
         'symbol-description': ERROR,
 
         'unicode-bom': [ERROR, NEVER],
 
+        'unused-imports/no-unused-imports': isInEditor ? OFF : ERROR,
+
+        'unused-imports/no-unused-vars': [WARN, {
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+          vars: 'all',
+          varsIgnorePattern: '^_',
+        }],
+
         'use-isnan': [ERROR, {
-          enforceForSwitchCase: true,
           enforceForIndexOf: true,
+          enforceForSwitchCase: true,
         }],
 
         'valid-typeof': [ERROR, {
@@ -394,26 +406,20 @@ export function javascript(
 
         'yoda': [ERROR, NEVER],
 
-        'unused-imports/no-unused-imports': isInEditor ? OFF : ERROR,
-
-        'unused-imports/no-unused-vars': [WARN, {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
-          argsIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        }],
-
         ...pluginVinicunca.configs.recommended.rules,
+
+        ...pluginPerfectionist.configs['recommended-natural'].rules,
+
+        'perfectionist/sort-vue-attributes': [OFF],
 
         ...overrides,
       },
     },
 
     {
-      name: 'vinicunca:javascript:overrides',
-
       files: [`**/scripts/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
+
+      name: 'vinicunca:javascript:overrides',
 
       rules: {
         'no-console': OFF,

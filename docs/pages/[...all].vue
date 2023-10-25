@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { useContent, useRequestEvent, useSeoMeta } from '#imports';
 import type { ConfigItem } from '~~/domains/docs/types';
 
-const { page, layout } = useContent();
+import { useContent, useRequestEvent, useSeoMeta } from '#imports';
+
+const { layout, page } = useContent();
 
 // Page not found, set correct status code on SSR
 if (!(page as any).value && process.server) {
@@ -11,8 +12,8 @@ if (!(page as any).value && process.server) {
 }
 
 useSeoMeta({
-  title: () => page.value?.title,
   description: () => page.value?.description,
+  title: () => page.value?.title,
 });
 
 const route = useRoute();

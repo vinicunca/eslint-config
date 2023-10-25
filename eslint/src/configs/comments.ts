@@ -1,6 +1,7 @@
+import type { ConfigItem } from '../types';
+
 import { ERROR } from '../flags';
 import { pluginComments } from '../plugins';
-import type { ConfigItem } from '../types';
 
 export function comments(): ConfigItem[] {
   return [

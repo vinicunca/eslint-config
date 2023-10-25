@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
-  tocLinks: any[];
   root?: boolean;
+  tocLinks: any[];
 }>();
 
 function onClick({ target: el }: Event) {

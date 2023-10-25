@@ -1,23 +1,26 @@
 interface HTMLExpandElement extends HTMLElement {
-  _parent?: (Node & ParentNode & HTMLElement) | null;
   _initialStyle?: {
-    transition: string;
+    height?: null | string;
     overflow: string;
-    height?: string | null;
-    width?: string | null;
+    transition: string;
+    width?: null | string;
   };
+  _parent?: (Node & ParentNode & HTMLElement) | null;
 }
 
 export const expandTransitionFunctions = {
+  onAfterEnter: resetStyles,
+
+  onAfterLeave,
+
   onBeforeEnter(el: HTMLExpandElement) {
     el._parent = el.parentNode as (Node & ParentNode & HTMLElement) | null;
     el._initialStyle = {
-      transition: el.style.transition,
-      overflow: el.style.overflow,
       height: el.style.height,
+      overflow: el.style.overflow,
+      transition: el.style.transition,
     };
   },
-
   onEnter(el: HTMLExpandElement) {
     const initialStyle = el._initialStyle!;
 
@@ -42,14 +45,13 @@ export const expandTransitionFunctions = {
     });
   },
 
-  onAfterEnter: resetStyles,
   onEnterCancelled: resetStyles,
 
   onLeave(el: HTMLExpandElement) {
     el._initialStyle = {
-      transition: '',
-      overflow: el.style.overflow,
       height: el.style.height,
+      overflow: el.style.overflow,
+      transition: '',
     };
 
     el.style.overflow = 'hidden';
@@ -61,8 +63,6 @@ export const expandTransitionFunctions = {
       el.style.height = '0';
     });
   },
-
-  onAfterLeave,
   onLeaveCancelled: onAfterLeave,
 };
 

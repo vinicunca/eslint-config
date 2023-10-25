@@ -1,10 +1,8 @@
-import process from 'node:process';
-import { resolve } from 'pathe';
-
 // @ts-expect-error missing types
 import { parseMarkdown } from '@nuxtjs/mdc/runtime';
-
 import JITI from 'jiti';
+import process from 'node:process';
+import { resolve } from 'pathe';
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);

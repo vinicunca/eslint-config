@@ -1,6 +1,7 @@
-import { pluginJsdoc } from '../plugins';
-import { WARN } from '../flags';
 import type { ConfigItem } from '../types';
+
+import { WARN } from '../flags';
+import { pluginJsdoc } from '../plugins';
 
 export function jsdoc(): ConfigItem[] {
   return [

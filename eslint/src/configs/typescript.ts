@@ -1,10 +1,12 @@
-import process from 'node:process';
 import { isEmpty } from '@vinicunca/perkakas';
+import process from 'node:process';
+
 import type { ConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
-import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
-import { renameRules } from '../utils';
+
 import { ERROR, OFF } from '../flags';
 import { GLOB_SRC } from '../globs';
+import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
+import { renameRules } from '../utils';
 
 export function typescript(
   options?: OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions,
@@ -25,11 +27,11 @@ export function typescript(
     'ts/no-floating-promises': ERROR,
     'ts/no-for-in-array': ERROR,
     'ts/no-implied-eval': ERROR,
-    'ts/no-misused-promises': ERROR,
+    // Temporary turning it off due to performance
+    'ts/no-misused-promises': OFF,
     'ts/no-throw-literal': ERROR,
     'ts/restrict-plus-operands': ERROR,
     'ts/restrict-template-expressions': ERROR,
-    'ts/unbound-method': ERROR,
   };
 
   let tsConfigOptions = {};
@@ -50,15 +52,13 @@ export function typescript(
       name: 'vinicunca:typescript:setup',
 
       plugins: {
-        vinicunca: pluginVinicunca,
         import: pluginImport,
         ts: pluginTs as any,
+        vinicunca: pluginVinicunca,
       },
     },
 
     {
-      name: 'vinicunca:typescript:rules',
-
       files: [
         GLOB_SRC,
         ...componentExts.map((ext) => `**/*.${ext}`),
@@ -67,11 +67,14 @@ export function typescript(
       languageOptions: {
         parser: parserTs,
         parserOptions: {
+          extraFileExtensions: componentExts.map((ext) => `.${ext}`),
           sourceType: 'module',
           ...tsConfigOptions,
           ...parserOptions as any,
         },
       },
+
+      name: 'vinicunca:typescript:rules',
 
       rules: {
         ...renameRules(
@@ -87,29 +90,21 @@ export function typescript(
         ),
 
         'no-dupe-class-members': OFF,
-        'ts/no-dupe-class-members': ERROR,
-
         'no-invalid-this': OFF,
-        'ts/no-invalid-this': ERROR,
 
         'no-loss-of-precision': OFF,
-        'ts/no-loss-of-precision': ERROR,
-
         'no-redeclare': OFF,
-        'ts/no-redeclare': ERROR,
 
+        'no-unused-vars': OFF,
         'no-use-before-define': OFF,
-        'ts/no-use-before-define': [ERROR, { functions: false, classes: false, variables: true }],
 
         'no-useless-constructor': OFF,
-
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
 
         'ts/ban-types': [ERROR, { types: { Function: false } }],
-
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 
-        'ts/consistent-type-imports': [ERROR, { prefer: 'type-imports', disallowTypeAnnotations: false }],
+        'ts/consistent-type-imports': [ERROR, { disallowTypeAnnotations: false, prefer: 'type-imports' }],
 
         'ts/explicit-function-return-type': OFF,
 
@@ -119,6 +114,8 @@ export function typescript(
 
         'ts/naming-convention': OFF,
 
+        'ts/no-dupe-class-members': ERROR,
+
         'ts/no-empty-function': OFF,
 
         'ts/no-empty-interface': OFF,
@@ -127,18 +124,24 @@ export function typescript(
 
         'ts/no-import-type-side-effects': ERROR,
 
+        'ts/no-invalid-this': ERROR,
+
         'ts/no-invalid-void-type': OFF,
+
+        'ts/no-loss-of-precision': ERROR,
 
         'ts/no-non-null-assertion': OFF,
 
+        'ts/no-redeclare': ERROR,
+
         'ts/no-require-imports': ERROR,
 
-        'no-unused-vars': OFF,
         'ts/no-unused-vars': [ERROR, {
           argsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
           ignoreRestSiblings: true,
         }],
+        'ts/no-use-before-define': [ERROR, { classes: false, functions: false, variables: true }],
 
         'ts/parameter-properties': OFF,
 
@@ -158,9 +161,9 @@ export function typescript(
     },
 
     {
-      name: 'vinicunca:typescript:dts-overrides',
-
       files: ['**/*.d.ts'],
+
+      name: 'vinicunca:typescript:dts-overrides',
 
       rules: {
         'eslint-comments/no-unlimited-disable': OFF,
@@ -170,9 +173,9 @@ export function typescript(
     },
 
     {
-      name: 'vinicunca:typescript:tests-overrides',
-
       files: ['**/*.{test,spec}.ts?(x)'],
+
+      name: 'vinicunca:typescript:tests-overrides',
 
       rules: {
         'no-unused-expressions': OFF,
@@ -180,9 +183,9 @@ export function typescript(
     },
 
     {
-      name: 'vinicunca:typescript:javascript-overrides',
-
       files: ['**/*.js', '**/*.cjs'],
+
+      name: 'vinicunca:typescript:javascript-overrides',
 
       rules: {
         'ts/no-require-imports': OFF,

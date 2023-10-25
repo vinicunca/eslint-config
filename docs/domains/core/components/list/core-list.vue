@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import type { INavItem } from '~~/typings';
+
 import CoreListChildren from './core-list-children.vue';
 import { useNested } from './use-nested';
-
-import type { INavItem } from '~~/typings';
 
 const props = defineProps<{
   navItems: INavItem[];
@@ -51,13 +51,13 @@ function onKeydown(event: KeyboardEvent) {
   event.preventDefault();
 }
 
-function focus(location?: 'next' | 'prev' | 'first' | 'last') {
+function focus(location?: 'first' | 'last' | 'next' | 'prev') {
   if (contentRef.value) {
     return focusChild(contentRef.value, location);
   }
 }
 
-function focusChild(el: Element, location?: 'next' | 'prev' | 'first' | 'last' | number) {
+function focusChild(el: Element, location?: 'first' | 'last' | 'next' | 'prev' | number) {
   const focusable = focusableChildren(el);
 
   if (!location) {

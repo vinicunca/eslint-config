@@ -1,22 +1,25 @@
-import { join, resolve } from 'node:path';
-import { afterAll, beforeAll, it } from 'vitest';
-import fs from 'fs-extra';
 import { execa } from 'execa';
 import fg from 'fast-glob';
+import fs from 'fs-extra';
+import { join, resolve } from 'node:path';
+import { afterAll, beforeAll, it } from 'vitest';
+
 import type { OptionsConfig } from '../src/types';
 
 beforeAll(async () => {
-  await fs.rm('_fixtures', { recursive: true, force: true });
+  await fs.rm('_fixtures', { force: true, recursive: true });
 });
 afterAll(async () => {
-  await fs.rm('_fixtures', { recursive: true, force: true });
+  await fs.rm('_fixtures', { force: true, recursive: true });
 });
 
 runWithConfig('js', {
   options: {
-    typescript: false,
-    vue: false,
     react: true,
+    typescript: {
+      enabled: false,
+    },
+    vue: false,
   },
 });
 runWithConfig('all', {
@@ -55,15 +58,19 @@ export default vinicuncaESLint(${JSON.stringify(configs)})
     });
 
     const files = await fg('**/*', {
+      cwd: target,
       ignore: [
         'node_modules',
         'eslint.config.js',
       ],
-      cwd: target,
     });
 
     await Promise.all(files.map(async (file) => {
-      const content = await fs.readFile(join(target, file), 'utf-8');
+      let content = await fs.readFile(join(target, file), 'utf-8');
+      const source = await fs.readFile(join(from, file), 'utf-8');
+      if (content === source) {
+        content = '// unchanged\n';
+      };
       await expect.soft(content).toMatchFileSnapshot(join(output, file));
     }));
   }, 30_000);

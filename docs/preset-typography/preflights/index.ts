@@ -5,13 +5,13 @@ import { DEFAULT } from './default';
 function getCSS(
   options: {
     escapedSelector: string[];
-    selectorName: string;
     preflights: object;
+    selectorName: string;
   },
 ): string {
   let css = '';
 
-  const { escapedSelector, selectorName, preflights } = options;
+  const { escapedSelector, preflights, selectorName } = options;
 
   // eslint-disable-next-line no-restricted-syntax
   for (const selector in preflights) {
@@ -65,12 +65,12 @@ function getCSS(
 
 export function getPreflights(
   options: {
+    cssExtend?: object | undefined;
     escapedSelectors: Set<string>;
     selectorName: string;
-    cssExtend?: object | undefined;
   },
 ): string {
-  const { escapedSelectors, selectorName, cssExtend } = options;
+  const { cssExtend, escapedSelectors, selectorName } = options;
   let escapedSelector = Array.from(escapedSelectors);
 
   // attribute mode -> add class selector with `:is()` pseudo-class function
@@ -79,8 +79,8 @@ export function getPreflights(
   }
 
   if (cssExtend) {
-    return getCSS({ escapedSelector, selectorName, preflights: mergeDeep(DEFAULT, cssExtend) });
+    return getCSS({ escapedSelector, preflights: mergeDeep(DEFAULT, cssExtend), selectorName });
   }
 
-  return getCSS({ escapedSelector, selectorName, preflights: DEFAULT });
+  return getCSS({ escapedSelector, preflights: DEFAULT, selectorName });
 }

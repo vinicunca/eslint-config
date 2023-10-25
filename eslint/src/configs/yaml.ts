@@ -1,7 +1,8 @@
+import type { ConfigItem, OptionsOverrides } from '../types';
+
+import { ERROR, OFF } from '../flags';
 import { GLOB_YAML } from '../globs';
 import { parserYaml, pluginYaml } from '../plugins';
-import { ERROR, OFF } from '../flags';
-import type { ConfigItem, OptionsOverrides } from '../types';
 
 export function yaml(
   options: OptionsOverrides = {},
@@ -20,13 +21,13 @@ export function yaml(
     },
 
     {
-      name: 'vinicunca:yaml:rules',
-
       files: [GLOB_YAML],
 
       languageOptions: {
         parser: parserYaml,
       },
+
+      name: 'vinicunca:yaml:rules',
 
       rules: {
         'style/spaced-comment': OFF,

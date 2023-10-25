@@ -2,8 +2,8 @@
 import { isBrowser } from '@vinicunca/perkakas';
 import { useScrollLock } from '@vueuse/core';
 
-import LayoutSwitchTheme from './layout-switch-theme.vue';
 import LayoutNavDrawerMenu from './layout-nav-drawer-menu.vue';
+import LayoutSwitchTheme from './layout-switch-theme.vue';
 
 defineProps<{
   isOpen: boolean;

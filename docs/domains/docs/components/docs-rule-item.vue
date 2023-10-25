@@ -11,18 +11,18 @@ const levelClasses = computed(() => {
   switch (props.rule.level) {
     case 'error':
       return {
-        icon: 'i-carbon-warning-filled ',
         color: 'text-green',
+        icon: 'i-carbon-warning-filled ',
       };
     case 'warn':
       return {
-        icon: 'i-clarity:warning-standard-solid ',
         color: 'text-yellow',
+        icon: 'i-clarity:warning-standard-solid ',
       };
     default:
       return {
-        icon: 'i-carbon-error-outline ',
         color: 'text-gray',
+        icon: 'i-carbon-error-outline ',
       };
   }
 });

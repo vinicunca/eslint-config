@@ -7,113 +7,113 @@ export function defineHead() {
   const route = useRoute();
 
   useHead({
-    titleTemplate: (titleChunk) => {
-      return titleChunk ? `${titleChunk} - ${TITLE}` : TITLE;
+    bodyAttrs: {
+      class: 'antialiased font-sans w-full min-h-screen text-$vd-c-text-1 bg-$vd-c-bg',
     },
 
     htmlAttrs: {
       lang: 'en',
     },
 
-    bodyAttrs: {
-      class: 'antialiased font-sans w-full min-h-screen text-$vd-c-text-1 bg-$vd-c-bg',
-    },
+    link: [
+      {
+        href: '/favicons/apple-touch-icon.png',
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+      },
+      {
+        href: '/favicons/favicon-32x32.png',
+        rel: 'icon',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        href: '/favicons/favicon-16x16.png',
+        rel: 'icon',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+      {
+        href: '/favicons/site.webmanifest',
+        rel: 'manifest',
+      },
+      {
+        href: '/favicons/favicon.ico',
+        rel: 'shortcut icon',
+      },
+    ],
 
     meta: [
       {
+        content: TITLE,
         name: 'apple-mobile-web-app-title',
-        content: TITLE,
       },
       {
+        content: TITLE,
         name: 'application-name',
-        content: TITLE,
       },
       {
-        name: 'msapplication-config',
         content: '/favicons/browserconfig.xml',
+        name: 'msapplication-config',
       },
       {
-        name: 'msapplication-TileColor',
         content: '#da532c',
+        name: 'msapplication-TileColor',
       },
       {
-        name: 'theme-color',
         content: '#ffffff',
+        name: 'theme-color',
       },
 
       {
+        content: '@praburangki',
         name: 'twitter:site',
-        content: '@praburangki',
       },
       {
+        content: '@praburangki',
         name: 'twitter:creator',
-        content: '@praburangki',
       },
       {
-        name: 'twitter:card',
         content: 'summary_large_image',
+        name: 'twitter:card',
       },
       {
-        name: 'twitter:description',
         content: page.value.description,
+        name: 'twitter:description',
       },
       {
-        name: 'twitter:image',
         content: 'https://eslint.vinicunca.dev/images/og.png',
+        name: 'twitter:image',
       },
       {
+        content: `https://eslint.vinicunca.dev${route.path}`,
         key: 'og:url',
         property: 'og:url',
-        content: `https://eslint.vinicunca.dev${route.path}`,
       },
       {
+        content: page.value.title,
         key: 'og:title',
         property: 'og:title',
-        content: page.value.title,
       },
       {
+        content: page.value.description,
         key: 'og:description',
         property: 'og:description',
-        content: page.value.description,
       },
       {
+        content: 'article',
         key: 'og:type',
         property: 'og:type',
-        content: 'article',
       },
       {
+        content: 'https://eslint.vinicunca.dev/images/og.png',
         key: 'og:image',
         property: 'og:image',
-        content: 'https://eslint.vinicunca.dev/images/og.png',
       },
     ],
 
-    link: [
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/favicons/apple-touch-icon.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/favicons/favicon-32x32.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/favicons/favicon-16x16.png',
-      },
-      {
-        rel: 'manifest',
-        href: '/favicons/site.webmanifest',
-      },
-      {
-        rel: 'shortcut icon',
-        href: '/favicons/favicon.ico',
-      },
-    ],
+    titleTemplate: (titleChunk) => {
+      return titleChunk ? `${titleChunk} - ${TITLE}` : TITLE;
+    },
   });
 }

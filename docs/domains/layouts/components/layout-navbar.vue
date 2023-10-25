@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core';
 
-import LayoutNavbarMenu from './layout-navbar-menu.vue';
-import LayoutSwitchTheme from './layout-switch-theme.vue';
 import LayoutHamburger from './layout-hamburger.vue';
+import LayoutNavbarMenu from './layout-navbar-menu.vue';
 import LayoutNavbarSearch from './layout-navbar-search.vue';
+import LayoutSwitchTheme from './layout-switch-theme.vue';
 
 defineProps<{
   isDrawerOpen: boolean;

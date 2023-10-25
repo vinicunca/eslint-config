@@ -2,13 +2,13 @@ import { addServerPlugin, createResolver, defineNuxtModule } from '@nuxt/kit';
 
 export default defineNuxtModule({
   meta: {
-    name: 'vindocs',
-    version: '3.0.0',
     compatibility: {
-      nuxt: '^3.0.0',
       bridge: false,
+      nuxt: '^3.0.0',
     },
     configKey: 'vindocs',
+    name: 'vindocs',
+    version: '3.0.0',
   },
 
   setup(_) {

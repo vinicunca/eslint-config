@@ -1,5 +1,6 @@
-import { ERROR } from '../flags';
 import type { ConfigItem } from '../types';
+
+import { ERROR } from '../flags';
 
 /**
  * Sort package.json
@@ -9,9 +10,9 @@ import type { ConfigItem } from '../types';
 export function sortPackageJson(): ConfigItem[] {
   return [
     {
-      name: 'vinicunca:sort-package-json',
-
       files: ['**/package.json'],
+
+      name: 'vinicunca:sort-package-json',
       rules: {
         'jsonc/sort-array-values': [
           ERROR,
@@ -105,9 +106,9 @@ export function sortPackageJson(): ConfigItem[] {
 export function sortTsconfig(): ConfigItem[] {
   return [
     {
-      name: 'vinicunca:sort-tsconfig',
-
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],
+
+      name: 'vinicunca:sort-tsconfig',
       rules: {
         'jsonc/sort-keys': [
           ERROR,

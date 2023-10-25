@@ -1,7 +1,8 @@
-import { pluginNoOnlyTests, pluginVitest } from '../plugins';
-import { GLOB_TESTS } from '../globs';
-import { ERROR, OFF } from '../flags';
 import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
+
+import { ERROR, OFF } from '../flags';
+import { GLOB_TESTS } from '../globs';
+import { pluginNoOnlyTests, pluginVitest } from '../plugins';
 
 export function test(
   options: OptionsIsInEditor & OptionsOverrides = {},
@@ -28,9 +29,9 @@ export function test(
     },
 
     {
-      name: 'vinicunca:test:rules',
-
       files: GLOB_TESTS,
+
+      name: 'vinicunca:test:rules',
 
       rules: {
         'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],

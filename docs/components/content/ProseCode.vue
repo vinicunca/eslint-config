@@ -3,24 +3,24 @@ import CoreCopyButton from '~~/domains/core/components/core-copy-button.vue';
 
 defineProps({
   code: {
-    type: String,
     default: '',
-  },
-  language: {
     type: String,
-    default: null,
   },
   filename: {
-    type: String,
     default: null,
+    type: String,
   },
   highlights: {
-    type: Array as () => number[],
     default: () => [],
+    type: Array as () => number[],
+  },
+  language: {
+    default: null,
+    type: String,
   },
   meta: {
-    type: String,
     default: null,
+    type: String,
   },
 });
 </script>

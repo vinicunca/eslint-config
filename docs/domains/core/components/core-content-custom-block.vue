@@ -1,19 +1,19 @@
 <script lang="ts" setup>
 const props = defineProps({
   tag: {
-    type: String,
     default: 'div',
+    type: String,
   },
   type: String,
 });
 
 const classes = computed(() => [
   {
+    danger: props.type === 'danger',
     details: props.tag === 'details',
     info: props.type === 'info',
     tip: props.type === 'tip',
     warning: props.type === 'warning',
-    danger: props.type === 'danger',
   },
 ]);
 </script>

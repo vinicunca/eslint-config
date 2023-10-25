@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useNav } from '../composables/use-nav';
-import LayoutNavbar from './layout-navbar.vue';
 import LayoutNavDrawer from './layout-nav-drawer.vue';
+import LayoutNavbar from './layout-navbar.vue';
 
 const { isDrawerOpen, toggleDrawer } = useNav();
 </script>

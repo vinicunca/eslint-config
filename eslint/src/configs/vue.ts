@@ -1,16 +1,18 @@
-import process from 'node:process';
 import { isEmpty } from '@vinicunca/perkakas';
+import process from 'node:process';
+
+import type { ConfigItem, OptionsHasTypeScript, OptionsOverrides } from '../types';
+
+import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 import { GLOB_VUE } from '../globs';
 import { parserTs, parserVue, pluginVue } from '../plugins';
-import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
-import type { ConfigItem, OptionsHasTypeScript, OptionsOverrides } from '../types';
 
 export function vue(
   options: OptionsHasTypeScript & OptionsOverrides = {},
 ): ConfigItem[] {
   const {
-    typescript = {},
     overrides = {},
+    typescript = {},
   } = options;
 
   let tsConfigOptions = {};
@@ -34,8 +36,6 @@ export function vue(
     },
 
     {
-      name: 'vinicunca:vue:rules',
-
       files: [GLOB_VUE],
 
       languageOptions: {
@@ -51,6 +51,8 @@ export function vue(
           ...tsConfigOptions,
         },
       },
+
+      name: 'vinicunca:vue:rules',
 
       processor: pluginVue.processors['.vue'],
 
@@ -163,7 +165,7 @@ export function vue(
 
         'vue/no-v-text-v-html-on-component': OFF,
 
-        'vue/object-curly-newline': [ERROR, { multiline: true, consistent: true }],
+        'vue/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
 
         'vue/object-curly-spacing': [ERROR, ALWAYS],
 

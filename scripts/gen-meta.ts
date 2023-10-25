@@ -1,22 +1,23 @@
-import process from 'node:process';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import type { FlatESLintConfigItem, RuleConfig } from '@antfu/eslint-define-config';
+
 import fs from 'fs-extra';
 import JITI from 'jiti';
-import type { FlatESLintConfigItem, RuleConfig } from '@antfu/eslint-define-config';
+import path from 'node:path';
+import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
 const pluginUrlMap = {
   'eslint-comments': 'https://mysticatea.github.io/eslint-plugin-eslint-comments/',
-  'node': 'https://github.com/eslint-community/eslint-plugin-n',
-  'jsdoc': 'https://github.com/gajus/eslint-plugin-jsdoc',
   'import': 'https://github.com/un-es/eslint-plugin-i',
-  'unicorn': 'https://github.com/sindresorhus/eslint-plugin-unicorn',
-  'ts': 'https://typescript-eslint.io/',
-  'vue': 'https://eslint.vuejs.org/',
+  'jsdoc': 'https://github.com/gajus/eslint-plugin-jsdoc',
   'jsonc': 'https://ota-meshi.github.io/eslint-plugin-jsonc/',
-  'unused-imports': 'https://github.com/sweepline/eslint-plugin-unused-imports',
+  'node': 'https://github.com/eslint-community/eslint-plugin-n',
   'style': 'https://eslint.style/',
+  'ts': 'https://typescript-eslint.io/',
+  'unicorn': 'https://github.com/sindresorhus/eslint-plugin-unicorn',
+  'unused-imports': 'https://github.com/sweepline/eslint-plugin-unused-imports',
   'vinicunca': '/plugin-vinicunca',
+  'vue': 'https://eslint.vuejs.org/',
 } as Record<string, string>;
 
 async function generateJsonRules() {
@@ -36,10 +37,10 @@ async function generateJsonRules() {
   for (const [name, rule] of eslintRules.entries()) {
     rulesMap.set(name, {
       ...(rule as any).meta as any,
+      messages: undefined,
       name,
       plugin: 'eslint',
       schema: undefined,
-      messages: undefined,
     });
   }
 
@@ -48,9 +49,9 @@ async function generateJsonRules() {
       for (const [name, rule] of Object.entries(plugin.rules ?? {})) {
         rulesMap.set(`${prefix}/${name}`, {
           ...(rule as any).meta as any,
+          messages: undefined,
           name: `${prefix}/${name}`,
           schema: undefined,
-          messages: undefined,
         });
       }
     }
@@ -94,12 +95,12 @@ async function generateJsonRules() {
 
       const outputMeta = {
         ...rawConfig,
-        rules,
+        languageOptions: undefined,
         plugins: rawConfig.plugins
           ? transformedPlugins
           : undefined,
         processor: undefined,
-        languageOptions: undefined,
+        rules,
       };
 
       OUTPUT[configName].push(outputMeta);
@@ -109,7 +110,7 @@ async function generateJsonRules() {
   writeJson(OUTPUT);
 }
 
-generateJsonRules(); ;
+generateJsonRules();
 
 export function getRuleLevel(level: RuleConfig | undefined) {
   const first = Array.isArray(level) ? level[0] : level;
@@ -140,5 +141,5 @@ function writeJson(content: any) {
 
   const filePath = path.resolve(__dirname, docsDataDir, 'metadata.json');
 
-  return fs.writeJSON(filePath, content, { spaces: 2, EOL: '\n' });
+  return fs.writeJSON(filePath, content, { EOL: '\n', spaces: 2 });
 }

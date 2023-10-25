@@ -1,4 +1,5 @@
 import type { EffectScope, WatchSource } from 'vue';
+
 import { effectScope, onScopeDispose, watch } from 'vue';
 
 export function useToggleScope(

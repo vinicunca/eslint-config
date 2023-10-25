@@ -1,6 +1,8 @@
-import process from 'node:process';
 import { isPackageExists } from 'local-pkg';
+import process from 'node:process';
+
 import type { ConfigItem, OptionsConfig } from './types';
+
 import {
   comments,
   ignores,
@@ -33,17 +35,17 @@ export function vinicuncaESLint(
   { options = {}, userConfigs = [] }: { options?: OptionsConfig & ConfigItem; userConfigs?: (ConfigItem | ConfigItem[])[] } = {},
 ) {
   const {
+    componentExts = [],
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
-    vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
-    typescript: tsOptions = {},
+    jsonc: enableJsonc = true,
+    markdown: enableMarkdown = true,
+    overrides = {},
+    react: enableReact = false,
     stylistic: enableStylistic = true,
     test: enableTest = true,
-    jsonc: enableJsonc = true,
+    typescript: tsOptions = {},
+    vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
     yaml: enableYaml = true,
-    markdown: enableMarkdown = true,
-    react: enableReact = false,
-    overrides = {},
-    componentExts = [],
   } = options;
 
   const configs: ConfigItem[][] = [];
@@ -90,11 +92,11 @@ export function vinicuncaESLint(
 
   if (enableVue) {
     configs.push(vue({
+      overrides: overrides.vue,
       typescript: {
         enabled: tsEnabled,
         ...tsParams,
       },
-      overrides: overrides.vue,
     }));
   };
 

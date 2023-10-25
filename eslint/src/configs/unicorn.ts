@@ -1,6 +1,7 @@
 import type { ConfigItem, OptionsOverrides } from '../types';
-import { pluginUnicorn } from '../plugins';
+
 import { ERROR } from '../flags';
+import { pluginUnicorn } from '../plugins';
 
 export function unicorn(
   options: OptionsOverrides = {},
@@ -30,6 +31,8 @@ export function unicorn(
 
         'unicorn/number-literal-case': ERROR,
 
+        'unicorn/prefer-dom-node-text-content': ERROR,
+
         'unicorn/prefer-includes': ERROR,
 
         'unicorn/prefer-node-protocol': ERROR,
@@ -37,8 +40,6 @@ export function unicorn(
         'unicorn/prefer-number-properties': ERROR,
 
         'unicorn/prefer-string-starts-ends-with': ERROR,
-
-        'unicorn/prefer-dom-node-text-content': ERROR,
 
         'unicorn/prefer-type-error': ERROR,
 

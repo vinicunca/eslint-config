@@ -1,6 +1,7 @@
-import { pluginNode } from '../plugins';
-import { ERROR, NEVER, OFF } from '../flags';
 import type { ConfigItem } from '../types';
+
+import { ERROR, NEVER, OFF } from '../flags';
+import { pluginNode } from '../plugins';
 
 export function node(): ConfigItem[] {
   return [

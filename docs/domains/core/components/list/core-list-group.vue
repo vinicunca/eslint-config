@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useNestedGroupActivator, useNestedItem } from './use-nested';
 import { expandTransitionFunctions } from './expand-transition';
+import { useNestedGroupActivator, useNestedItem } from './use-nested';
 
 const props = defineProps<{
   value?: string;
 }>();
 
-const { isOpen, open, id: _id } = useNestedItem(toRef(props, 'value'), true);
+const { id: _id, isOpen, open } = useNestedItem(toRef(props, 'value'), true);
 const id = computed(() => `list-group--id-${String(_id.value)}`);
 
 function onClick(event: Event) {
@@ -14,9 +14,9 @@ function onClick(event: Event) {
 }
 
 const activatorProps = computed(() => ({
-  onClick,
   class: 'list-group__header',
   id: id.value,
+  onClick,
 }));
 
 const CoreListGroupActivator = defineComponent({

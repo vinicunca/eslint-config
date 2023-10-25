@@ -2,11 +2,11 @@
 import CoreContentCustomBlock from '~~/domains/core/components/core-content-custom-block.vue';
 
 defineProps({
-  type: {
-    type: String,
-    default: 'tip',
-  },
   title: String,
+  type: {
+    default: 'tip',
+    type: String,
+  },
 });
 </script>
 

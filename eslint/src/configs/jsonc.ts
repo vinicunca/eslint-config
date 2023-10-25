@@ -1,7 +1,8 @@
+import type { ConfigItem, OptionsOverrides } from '../types';
+
+import { ERROR, NEVER } from '../flags';
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs';
 import { parserJsonc, pluginJsonc } from '../plugins';
-import { ERROR, NEVER } from '../flags';
-import type { ConfigItem, OptionsOverrides } from '../types';
 
 export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
   const {
@@ -18,13 +19,13 @@ export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
     },
 
     {
-      name: 'vinicunca:jsonc:rules',
-
       files: [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
 
       languageOptions: {
         parser: parserJsonc,
       },
+
+      name: 'vinicunca:jsonc:rules',
 
       rules: {
         'jsonc/array-bracket-spacing': [ERROR, NEVER],

@@ -1,7 +1,8 @@
+import type { ConfigItem, OptionsComponentExts, OptionsOverrides } from '../types';
+
+import { OFF } from '../flags';
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE } from '../globs';
 import { pluginMarkdown } from '../plugins';
-import { OFF } from '../flags';
-import type { ConfigItem, OptionsComponentExts, OptionsOverrides } from '../types';
 
 export function markdown(
   options: OptionsComponentExts & OptionsOverrides = {},
@@ -21,14 +22,12 @@ export function markdown(
     },
 
     {
-      name: 'vinicunca:markdown:processor',
       files: [GLOB_MARKDOWN],
+      name: 'vinicunca:markdown:processor',
       processor: 'markdown/markdown',
     },
 
     {
-      name: 'vinicunca:markdown:rules',
-
       files: [
         GLOB_MARKDOWN_CODE,
         ...componentExts.map((ext) => `${GLOB_MARKDOWN}/**/*.${ext}`),
@@ -41,6 +40,8 @@ export function markdown(
           },
         },
       },
+
+      name: 'vinicunca:markdown:rules',
 
       rules: {
         'no-alert': OFF,

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { SwitchRoot, SwitchThumb } from 'radix-vue';
 import { useVModel } from '@vueuse/core';
+import { SwitchRoot, SwitchThumb } from 'radix-vue';
 
 const props = defineProps<{
   modelValue: boolean;

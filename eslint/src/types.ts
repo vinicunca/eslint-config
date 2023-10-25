@@ -17,6 +17,7 @@ import type {
 } from '@antfu/eslint-define-config';
 import type { ParserOptions } from '@typescript-eslint/parser';
 import type { Rules as VinicuncaRules } from '@vinicunca/eslint-plugin-vinicunca';
+
 import type { StylisticRules } from './generated/stylistic';
 
 export type Rules = MergeIntersection<
@@ -58,15 +59,17 @@ export interface OptionsConfig extends OptionsComponentExts {
   ignores?: OptionsIgnores;
 
   /**
-   * Enable TypeScript support.
-   *
-   * Passing an object to enable TypeScript Language Server support.
-   *
-   * @default auto-detect based on the dependencies
+   * Control to disable some rules in editors.
+   * @default auto-detect based on the process.env
    */
-  typescript?: OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions & {
-    enabled?: boolean;
-  };
+  isInEditor?: boolean;
+
+  /**
+   * Enable JSONC support.
+   *
+   * @default true
+   */
+  jsonc?: boolean;
 
   /**
    * Enable JSX related rules.
@@ -78,34 +81,6 @@ export interface OptionsConfig extends OptionsComponentExts {
   jsx?: boolean;
 
   /**
-   * Enable test support.
-   *
-   * @default true
-   */
-  test?: boolean;
-
-  /**
-   * Enable Vue support.
-   *
-   * @default auto-detect based on the dependencies
-   */
-  vue?: boolean;
-
-  /**
-   * Enable JSONC support.
-   *
-   * @default true
-   */
-  jsonc?: boolean;
-
-  /**
-   * Enable YAML support.
-   *
-   * @default true
-   */
-  yaml?: boolean;
-
-  /**
    * Enable Markdown support.
    *
    * @default true
@@ -113,11 +88,18 @@ export interface OptionsConfig extends OptionsComponentExts {
   markdown?: boolean;
 
   /**
-   * Enable stylistic rules.
-   *
-   * @default true
+   * Provide overrides for rules for each integration.
    */
-  stylistic?: boolean;
+  overrides?: {
+    javascript?: ConfigItem['rules'];
+    jsonc?: ConfigItem['rules'];
+    markdown?: ConfigItem['rules'];
+    react?: ConfigItem['rules'];
+    test?: ConfigItem['rules'];
+    typescript?: ConfigItem['rules'];
+    vue?: ConfigItem['rules'];
+    yaml?: ConfigItem['rules'];
+  };
 
   /**
    * Enable react support.
@@ -128,24 +110,43 @@ export interface OptionsConfig extends OptionsComponentExts {
   react?: boolean;
 
   /**
-   * Control to disable some rules in editors.
-   * @default auto-detect based on the process.env
+   * Enable stylistic rules.
+   *
+   * @default true
    */
-  isInEditor?: boolean;
+  stylistic?: boolean;
 
   /**
-   * Provide overrides for rules for each integration.
+   * Enable test support.
+   *
+   * @default true
    */
-  overrides?: {
-    javascript?: ConfigItem['rules'];
-    typescript?: ConfigItem['rules'];
-    test?: ConfigItem['rules'];
-    vue?: ConfigItem['rules'];
-    jsonc?: ConfigItem['rules'];
-    markdown?: ConfigItem['rules'];
-    yaml?: ConfigItem['rules'];
-    react?: ConfigItem['rules'];
+  test?: boolean;
+
+  /**
+   * Enable TypeScript support.
+   *
+   * Passing an object to enable TypeScript Language Server support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  typescript?: OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions & {
+    enabled?: boolean;
   };
+
+  /**
+   * Enable Vue support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  vue?: boolean;
+
+  /**
+   * Enable YAML support.
+   *
+   * @default true
+   */
+  yaml?: boolean;
 }
 
 export interface OptionsOverrides {

@@ -9,8 +9,8 @@ export default <RouterConfig> {
 
     if (history.state.smooth) {
       return {
-        el: history.state.smooth,
         behavior: 'smooth',
+        el: history.state.smooth,
       };
     }
 
@@ -28,8 +28,8 @@ export default <RouterConfig> {
       const offset = el.offsetTop + marginTopValue;
 
       return {
-        top: offset,
         behavior: 'smooth',
+        top: offset,
       };
     }
 

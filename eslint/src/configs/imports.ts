@@ -1,6 +1,7 @@
-import { pluginImport, pluginVinicunca } from '../plugins';
-import { ERROR } from '../flags';
 import type { ConfigItem } from '../types';
+
+import { ERROR, OFF } from '../flags';
+import { pluginImport, pluginVinicunca } from '../plugins';
 
 export function imports(): ConfigItem[] {
   return [
@@ -17,7 +18,7 @@ export function imports(): ConfigItem[] {
 
         'import/first': ERROR,
 
-        'import/newline-after-import': [ERROR, {
+        'import/newline-after-import': [OFF, {
           considerComments: true,
           count: 1,
         }],
@@ -32,7 +33,8 @@ export function imports(): ConfigItem[] {
 
         'import/no-webpack-loader-syntax': ERROR,
 
-        'import/order': ERROR,
+        // Turned off to avoid conflicts with Perfectionist. https://eslint-plugin-perfectionist.azat.io/rules/sort-imports
+        'import/order': OFF,
 
         'vinicunca/import-dedupe': ERROR,
 
