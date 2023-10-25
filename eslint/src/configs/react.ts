@@ -115,6 +115,8 @@ export function react(
 
         'react/no-danger': WARN,
 
+        'react/prop-types': OFF,
+
         'react/react-in-jsx-scope': OFF,
 
         'react/self-closing-comp': ERROR,
