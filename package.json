@@ -6,7 +6,7 @@
   "packageManager": "pnpm@8.9.0",
   "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "TIMING=1 eslint .",
     "test": "pnpm -r run test",
     "postinstall": "is-ci || pnpm -r run stub",
     "build:lib": "pnpm -C eslint build",
@@ -22,8 +22,8 @@
     "@vinicunca/eslint-config": "workspace:*",
     "@vinicunca/perkakas": "^0.0.10",
     "bumpp": "^9.2.0",
-    "bun": "^1.0.4",
-    "eslint": "^8.51.0",
+    "bun": "^1.0.7",
+    "eslint": "^8.52.0",
     "is-ci": "^3.0.1",
     "nuxt-og-image": "^2.1.3",
     "rimraf": "^5.0.5",
@@ -35,7 +35,7 @@
   },
   "pnpm": {
     "overrides": {
-      "eslint": "^8.51.0"
+      "eslint": "^8.52.0"
     }
   }
 }
