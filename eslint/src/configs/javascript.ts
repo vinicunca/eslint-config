@@ -408,6 +408,29 @@ export function javascript(
 
         ...pluginPerfectionist.configs['recommended-natural'].rules,
 
+        'perfectionist/sort-imports': [
+          ERROR,
+          {
+            'groups': [
+              'type',
+              ['builtin', 'external'],
+              'internal-type',
+              'internal',
+              ['parent-type', 'sibling-type', 'index-type'],
+              ['parent', 'sibling', 'index'],
+              'object',
+              'unknown',
+            ],
+            'internal-pattern': [
+              '~/**',
+              '~~/**',
+            ],
+            'newlines-between': 'always',
+            'order': 'asc',
+            'type': 'natural',
+          },
+        ],
+
         'perfectionist/sort-vue-attributes': [OFF],
 
         ...overrides,
