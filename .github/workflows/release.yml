@@ -8,18 +8,21 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.8.0]
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set node
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 20.8.0
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Setup
-        run: npm i -g pnpm
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
       - name: Install Dependencies
         run: pnpm install
