@@ -342,8 +342,6 @@ export function javascript(
 
         'no-var': ERROR,
 
-        'no-void': ERROR,
-
         'no-with': ERROR,
 
         'object-shorthand': [ERROR, ALWAYS, {
