@@ -15,7 +15,7 @@
     "release": "pnpm -C eslint release",
     "gen:meta": "bun scripts/gen-meta.ts",
     "gen:types": "bun scripts/types.ts",
-    "registry": "pnpm publish --access public --no-git-checks"
+    "registry": "pnpm publish --access public"
   },
   "devDependencies": {
     "@types/node": "^20.8.4",
