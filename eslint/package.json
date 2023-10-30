@@ -62,10 +62,10 @@
     "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },
   "peerDependencies": {
-    "eslint": ">=8.52.0"
+    "eslint": ">=8.51.0"
   },
   "dependencies": {
-    "@antfu/eslint-define-config": "^1.23.0-1",
+    "@antfu/eslint-define-config": "1.23.0-2",
     "@stylistic/eslint-plugin": "^0.1.2",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",

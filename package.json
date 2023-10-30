@@ -18,13 +18,14 @@
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@types/node": "^20.8.4",
+    "@types/node": "^20.8.9",
     "@vinicunca/eslint-config": "workspace:*",
     "@vinicunca/perkakas": "^0.0.10",
     "bumpp": "^9.2.0",
     "bun": "^1.0.7",
     "eslint": "^8.52.0",
     "is-ci": "^3.0.1",
+
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
