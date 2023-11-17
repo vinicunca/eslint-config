@@ -69,7 +69,7 @@
     "@stylistic/eslint-plugin": "^1.3.1",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
-    "@vinicunca/eslint-plugin-vinicunca": "^1.0.4",
+    "@vinicunca/eslint-plugin-vinicunca": "^1.0.5",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-i": "^2.29.0",
     "eslint-plugin-jsdoc": "^46.9.0",
