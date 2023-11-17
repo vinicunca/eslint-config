@@ -116,8 +116,8 @@ importers:
         specifier: ^6.9.0
         version: 6.9.0(eslint@8.52.0)(typescript@5.2.2)
       '@vinicunca/eslint-plugin-vinicunca':
-        specifier: ^1.0.0
-        version: 1.0.0(eslint@8.52.0)(typescript@5.2.2)
+        specifier: ^1.0.4
+        version: 1.0.4(eslint@8.52.0)
       eslint:
         specifier: ^8.52.0
         version: 8.52.0
@@ -2903,16 +2903,12 @@ packages:
       - supports-color
     dev: true
 
-  /@vinicunca/eslint-plugin-vinicunca@1.0.0(eslint@8.52.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-wNl9AZ/IN3q0z5a0TMFHcz3mJPJH84s+JoIw1A0BUpHwQRVX2kxNY4HdBHKZMuwsRSy754pEWSQnmYsZmbQKAQ==}
+  /@vinicunca/eslint-plugin-vinicunca@1.0.4(eslint@8.52.0):
+    resolution: {integrity: sha512-tCVMfb7+QKP1eeUnpylL6La2wojYjw/0UfmeiMytkGWIphqPkdTwupd7g7M89lJvflAadsqMtgxeNDFIttQveA==}
     peerDependencies:
       eslint: ^8.52.0
     dependencies:
-      '@typescript-eslint/utils': 6.9.0(eslint@8.52.0)(typescript@5.2.2)
       eslint: 8.52.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
     dev: false
 
   /@vinicunca/perkakas@0.0.10:

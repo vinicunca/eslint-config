@@ -62,27 +62,27 @@
     "release": "bumpp package.json --commit --push --tag --commit 'chore: release v'"
   },
   "peerDependencies": {
-    "eslint": ">=8.51.0"
+    "eslint": ">=8.53.0"
   },
   "dependencies": {
     "@antfu/eslint-define-config": "1.23.0-2",
-    "@stylistic/eslint-plugin": "^0.1.2",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
-    "@vinicunca/eslint-plugin-vinicunca": "^1.0.0",
+    "@stylistic/eslint-plugin": "^1.3.1",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@vinicunca/eslint-plugin-vinicunca": "^1.0.4",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-i": "^2.29.0",
-    "eslint-plugin-jsdoc": "^46.8.2",
+    "eslint-plugin-jsdoc": "^46.9.0",
     "eslint-plugin-jsonc": "^2.10.0",
     "eslint-plugin-markdown": "^3.0.1",
-    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-no-only-tests": "^3.1.0",
-    "eslint-plugin-perfectionist": "^2.2.0",
+    "eslint-plugin-perfectionist": "^2.4.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unicorn": "^49.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "eslint-plugin-vitest": "^0.3.8",
+    "eslint-plugin-vitest": "^0.3.9",
     "eslint-plugin-vue": "^9.18.1",
     "eslint-plugin-yml": "^1.10.0",
     "globals": "^13.23.0",
@@ -93,10 +93,10 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "@eslint-stylistic/metadata": "^0.1.2",
-    "@types/fs-extra": "^11.0.3",
+    "@eslint-stylistic/metadata": "^1.3.1",
+    "@types/fs-extra": "^11.0.4",
     "fs-extra": "^11.1.1",
     "react": "^18.2.0",
-    "tsup": "^7.2.0"
+    "tsup": "^7.3.0"
   }
 }
