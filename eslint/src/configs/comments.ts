@@ -1,9 +1,9 @@
-import type { ConfigItem } from '../types';
+import type { FlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
 import { pluginComments } from '../plugins';
 
-export function comments(): ConfigItem[] {
+export async function comments(): Promise<FlatConfigItem[]> {
   return [
     {
       name: 'vinicunca:eslint-comments',

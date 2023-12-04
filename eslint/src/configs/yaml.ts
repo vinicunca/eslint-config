@@ -1,15 +1,32 @@
-import type { ConfigItem, OptionsOverrides } from '../types';
+import { isBoolean } from '@vinicunca/perkakas';
+
+import type { FlatConfigItem, OptionsFiles, OptionsOverrides, OptionsStylistic } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_YAML } from '../globs';
-import { parserYaml, pluginYaml } from '../plugins';
+import { interopDefault } from '../utils';
 
-export function yaml(
-  options: OptionsOverrides = {},
-): ConfigItem[] {
+export async function yaml(
+  options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+): Promise<FlatConfigItem[]> {
   const {
+    files = [GLOB_YAML],
     overrides = {},
+    stylistic = true,
   } = options;
+
+  const {
+    indent = 2,
+    quotes = 'single',
+  } = isBoolean(stylistic) ? {} : stylistic;
+
+  const [
+    pluginYaml,
+    parserYaml,
+  ] = await Promise.all([
+    interopDefault(import('eslint-plugin-yml')),
+    interopDefault(import('yaml-eslint-parser')),
+  ] as const);
 
   return [
     {
@@ -21,7 +38,7 @@ export function yaml(
     },
 
     {
-      files: [GLOB_YAML],
+      files,
 
       languageOptions: {
         parser: parserYaml,
@@ -40,7 +57,7 @@ export function yaml(
         'yaml/flow-mapping-curly-spacing': ERROR,
         'yaml/flow-sequence-bracket-newline': ERROR,
         'yaml/flow-sequence-bracket-spacing': ERROR,
-        'yaml/indent': [ERROR, 2],
+        'yaml/indent': [ERROR, indent === 'tab' ? 2 : indent],
         'yaml/key-spacing': ERROR,
         'yaml/no-empty-key': ERROR,
         'yaml/no-empty-sequence-entry': ERROR,
@@ -48,7 +65,7 @@ export function yaml(
         'yaml/no-tab-indent': ERROR,
         'yaml/plain-scalar': ERROR,
 
-        'yaml/quotes': [ERROR, { avoidEscape: false, prefer: 'single' }],
+        'yaml/quotes': [ERROR, { avoidEscape: false, prefer: quotes }],
         'yaml/spaced-comment': ERROR,
 
         'yaml/vue-custom-block/no-parsing-error': ERROR,

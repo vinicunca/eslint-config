@@ -1,14 +1,15 @@
-import type { ConfigItem, OptionsComponentExts, OptionsOverrides } from '../types';
+import type { FlatConfigItem, OptionsComponentExts, OptionsFiles, OptionsOverrides } from '../types';
 
 import { OFF } from '../flags';
-import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE } from '../globs';
-import { pluginMarkdown } from '../plugins';
+import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs';
+import { interopDefault } from '../utils';
 
-export function markdown(
-  options: OptionsComponentExts & OptionsOverrides = {},
-): ConfigItem[] {
+export async function markdown(
+  options: OptionsFiles & OptionsComponentExts & OptionsOverrides = {},
+): Promise<FlatConfigItem[]> {
   const {
     componentExts = [],
+    files = [GLOB_MARKDOWN],
     overrides = {},
   } = options;
 
@@ -17,8 +18,16 @@ export function markdown(
       name: 'vinicunca:markdown:setup',
 
       plugins: {
-        markdown: pluginMarkdown,
+        // @ts-expect-error missing types
+        markdown: await interopDefault(import('eslint-plugin-markdown')),
       },
+    },
+
+    {
+      files,
+      ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
+      name: 'vinicunca:markdown:processor',
+      processor: 'markdown/markdown',
     },
 
     {
@@ -41,9 +50,11 @@ export function markdown(
         },
       },
 
-      name: 'vinicunca:markdown:rules',
+      name: 'vinicunca:markdown:disables',
 
       rules: {
+        'import/newline-after-import': OFF,
+
         'no-alert': OFF,
         'no-console': OFF,
         'no-undef': OFF,

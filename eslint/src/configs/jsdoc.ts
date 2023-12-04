@@ -1,15 +1,16 @@
-import type { ConfigItem } from '../types';
+import type { FlatConfigItem } from '../types';
 
 import { WARN } from '../flags';
-import { pluginJsdoc } from '../plugins';
+import { interopDefault } from '../utils';
 
-export function jsdoc(): ConfigItem[] {
+export async function jsdoc(): Promise<FlatConfigItem[]> {
   return [
     {
       name: 'vinicunca:jsdoc',
 
       plugins: {
-        jsdoc: pluginJsdoc,
+        // @ts-expect-error missing types
+        jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),
       },
 
       rules: {

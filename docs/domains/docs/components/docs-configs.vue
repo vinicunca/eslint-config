@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import CoreTooltip from '~~/domains/core/components/core-tooltip.vue';
 
-import type { ConfigItem } from '../types';
+import type { FlatConfigItem } from '../types';
 
 import { getPluginColor } from '../utils/plugin-colors';
 
 const props = withDefaults(
   defineProps<{
-    configs: ConfigItem[];
+    configs: FlatConfigItem[];
     index?: number;
   }>(),
   {

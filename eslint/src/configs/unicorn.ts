@@ -1,11 +1,11 @@
-import type { ConfigItem, OptionsOverrides } from '../types';
+import type { FlatConfigItem, OptionsOverrides } from '../types';
 
 import { ERROR } from '../flags';
 import { pluginUnicorn } from '../plugins';
 
-export function unicorn(
+export async function unicorn(
   options: OptionsOverrides = {},
-): ConfigItem[] {
+): Promise<FlatConfigItem[]> {
   const {
     overrides = {},
   } = options;

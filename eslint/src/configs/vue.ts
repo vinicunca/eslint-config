@@ -1,19 +1,25 @@
-import { isEmpty } from '@vinicunca/perkakas';
+import { isBoolean, isEmpty } from '@vinicunca/perkakas';
 import process from 'node:process';
 
-import type { ConfigItem, OptionsHasTypeScript, OptionsOverrides } from '../types';
+import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types';
 
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 import { GLOB_VUE } from '../globs';
-import { parserTs, parserVue, pluginVue } from '../plugins';
+import { interopDefault } from '../utils';
 
-export function vue(
-  options: OptionsHasTypeScript & OptionsOverrides = {},
-): ConfigItem[] {
+export async function vue(
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+): Promise<FlatConfigItem[]> {
   const {
+    files = [GLOB_VUE],
     overrides = {},
+    stylistic = true,
     typescript = {},
   } = options;
+
+  const {
+    indent = 2,
+  } = isBoolean(stylistic) ? {} : stylistic;
 
   let tsConfigOptions = {};
 
@@ -26,6 +32,15 @@ export function vue(
     };
   }
 
+  const [
+    pluginVue,
+    parserVue,
+  ] = await Promise.all([
+    // @ts-expect-error missing types
+    interopDefault(import('eslint-plugin-vue')),
+    interopDefault(import('vue-eslint-parser')),
+  ] as const);
+
   return [
     {
       name: 'vinicunca:vue:setup',
@@ -36,7 +51,7 @@ export function vue(
     },
 
     {
-      files: [GLOB_VUE],
+      files,
 
       languageOptions: {
         parser: parserVue,
@@ -46,7 +61,9 @@ export function vue(
             jsx: true,
           },
           extraFileExtensions: ['.vue'],
-          parser: typescript.enabled ? parserTs as any : undefined,
+          parser: typescript.enabled
+            ? await interopDefault(import('@typescript-eslint/parser')) as any
+            : null,
           sourceType: 'module',
           ...tsConfigOptions,
         },
@@ -116,6 +133,8 @@ export function vue(
         'vue/html-comment-content-spacing': [ERROR, ALWAYS, {
           exceptions: ['-'],
         }],
+
+        'vue/html-indent': [ERROR, indent],
 
         'vue/key-spacing': [ERROR, {
           afterColon: true,

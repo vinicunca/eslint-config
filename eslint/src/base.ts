@@ -1,7 +1,8 @@
+import { isBoolean, isObject } from '@vinicunca/perkakas';
 import { isPackageExists } from 'local-pkg';
 import process from 'node:process';
 
-import type { ConfigItem, OptionsConfig } from './types';
+import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic } from './types';
 
 import {
   comments,
@@ -19,6 +20,7 @@ import {
   test,
   typescript,
   unicorn,
+  unocss,
   vue,
   yaml,
 } from './configs';
@@ -31,9 +33,14 @@ const VuePackages = [
   '@slidev/cli',
 ];
 
-export function vinicuncaESLint(
-  { options = {}, userConfigs = [] }: { options?: OptionsConfig & ConfigItem; userConfigs?: (ConfigItem | ConfigItem[])[] } = {},
-) {
+// eslint-disable-next-line vinicunca/cognitive-complexity
+export async function vinicuncaESLint(
+  { options = {}, userConfigs = [] }:
+  {
+    options?: OptionsConfig & FlatConfigItem;
+    userConfigs?: Awaitable<FlatConfigItem | FlatConfigItem[]>[];
+  } = {},
+): Promise<FlatConfigItem[]> {
   const {
     componentExts = [],
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
@@ -41,16 +48,28 @@ export function vinicuncaESLint(
     markdown: enableMarkdown = true,
     overrides = {},
     react: enableReact = false,
-    stylistic: enableStylistic = true,
     test: enableTest = true,
     typescript: tsOptions = {},
+    unocss: enableUnoCSS = false,
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
     yaml: enableYaml = true,
   } = options;
 
-  const configs: ConfigItem[][] = [];
+  let stylisticOptions: OptionsStylistic['stylistic'] = true;
+
+  if (options.stylistic === false) {
+    stylisticOptions = false;
+  } else if (isObject(options.stylistic)) {
+    stylisticOptions = {
+      ...options.stylistic,
+      jsx: options.jsx ?? true,
+    };
+  }
+
+  const configs: Awaitable<FlatConfigItem[]>[] = [];
 
   configs.push(
+    ignores(options.ignores),
     javascript({
       isInEditor,
       overrides: overrides.javascript,
@@ -79,7 +98,7 @@ export function vinicuncaESLint(
     }));
   }
 
-  if (enableStylistic) {
+  if (stylisticOptions) {
     configs.push(stylistic());
   }
 
@@ -100,10 +119,23 @@ export function vinicuncaESLint(
     }));
   };
 
+  if (enableReact) {
+    configs.push(react({
+      overrides: overrides.react,
+    }));
+  }
+
+  if (enableUnoCSS) {
+    configs.push(unocss(
+      isBoolean(enableUnoCSS) ? {} : enableUnoCSS,
+    ));
+  }
+
   if (enableJsonc) {
     configs.push(
       jsonc({
         overrides: overrides.jsonc,
+        stylistic: stylisticOptions,
       }),
       sortPackageJson(),
       sortTsconfig(),
@@ -113,6 +145,7 @@ export function vinicuncaESLint(
   if (enableYaml) {
     configs.push(yaml({
       overrides: overrides.yaml,
+      stylistic: stylisticOptions,
     }));
   };
 
@@ -122,12 +155,6 @@ export function vinicuncaESLint(
       overrides: overrides.markdown,
     }));
   };
-
-  if (enableReact) {
-    configs.push(react({
-      overrides: overrides.react,
-    }));
-  }
 
   configs.push(ignores(options.ignores));
 

@@ -1,16 +1,28 @@
-import type { ConfigItem, OptionsOverrides } from 'src';
+import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides } from '../types';
 
 import { ERROR, NEVER, OFF, WARN } from '../flags';
-import { pluginReact, pluginReactHooks } from '../plugins';
+import { GLOB_JSX, GLOB_TSX } from '../globs';
+import { interopDefault } from '../utils';
 
 const STR_PARENS_NEW_LINE = 'parens-new-line';
 
-export function react(
-  options: OptionsOverrides = {},
-): ConfigItem[] {
+export async function react(
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
+): Promise<FlatConfigItem[]> {
   const {
+    files = [GLOB_JSX, GLOB_TSX],
     overrides = {},
   } = options;
+
+  const [
+    pluginReact,
+    pluginReactHooks,
+  ] = await Promise.all([
+    // @ts-expect-error missing types
+    interopDefault(import('eslint-plugin-react')),
+    // @ts-expect-error missing types
+    interopDefault(import('eslint-plugin-react-hooks')),
+  ] as const);
 
   return [
     {
@@ -20,9 +32,25 @@ export function react(
         'react': pluginReact,
         'react-hooks': pluginReactHooks,
       },
+
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
     },
 
     {
+      files,
+
+      languageOptions: {
+        parserOptions: {
+          ecmaFeatures: {
+            jsx: true,
+          },
+        },
+      },
+
       name: 'vinicunca:react:rules',
 
       rules: {
@@ -115,6 +143,8 @@ export function react(
 
         'react/no-danger': WARN,
 
+        'react/no-unescaped-entities': OFF,
+
         'react/prop-types': OFF,
 
         'react/react-in-jsx-scope': OFF,
@@ -123,15 +153,7 @@ export function react(
 
         'react/style-prop-object': ERROR,
 
-        'style/jsx-quotes': [ERROR, 'prefer-double'],
-
         ...overrides,
-      },
-
-      settings: {
-        react: {
-          version: 'detect',
-        },
       },
     },
   ];

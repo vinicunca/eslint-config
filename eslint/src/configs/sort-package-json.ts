@@ -1,4 +1,4 @@
-import type { ConfigItem } from '../types';
+import type { FlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
 
@@ -7,7 +7,7 @@ import { ERROR } from '../flags';
  *
  * Requires `jsonc` config
  */
-export function sortPackageJson(): ConfigItem[] {
+export async function sortPackageJson(): Promise<FlatConfigItem[]> {
   return [
     {
       files: ['**/package.json'],
@@ -103,7 +103,7 @@ export function sortPackageJson(): ConfigItem[] {
  *
  * Requires `jsonc` config
  */
-export function sortTsconfig(): ConfigItem[] {
+export function sortTsconfig(): FlatConfigItem[] {
   return [
     {
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],

@@ -1,6 +1,6 @@
 import globals from 'globals';
 
-import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
+import type { FlatConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
 
 import {
   ALWAYS,
@@ -12,19 +12,9 @@ import {
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
 import { pluginPerfectionist, pluginUnusedImports, pluginVinicunca } from '../plugins';
 
-// if ([
-//   'maintainer',
-//   'admin',
-//   'developer',
-//   'owner',
-//   'observer'
-// ].includes(user.role)) {
-//   return response.json({ allowed: true })
-// }
-
-export function javascript(
+export async function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): ConfigItem[] {
+): Promise<FlatConfigItem[]> {
   const {
     isInEditor = false,
     overrides = {},
@@ -44,7 +34,9 @@ export function javascript(
         },
 
         parserOptions: {
-          ecmaFeatures: { jsx: true },
+          ecmaFeatures: {
+            jsx: true,
+          },
           ecmaVersion: 2022,
           sourceType: 'module',
         },
@@ -71,8 +63,6 @@ export function javascript(
         }],
 
         'array-callback-return': [ERROR, { checkForEach: true }],
-
-        'arrow-parens': [ERROR, ALWAYS],
 
         'block-scoped-var': ERROR,
 

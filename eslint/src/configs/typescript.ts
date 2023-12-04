@@ -1,16 +1,16 @@
 import { isEmpty } from '@vinicunca/perkakas';
 import process from 'node:process';
 
-import type { ConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
+import type { FlatConfigItem, OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_SRC } from '../globs';
-import { parserTs, pluginImport, pluginTs, pluginVinicunca } from '../plugins';
-import { renameRules } from '../utils';
+import { pluginImport, pluginVinicunca } from '../plugins';
+import { interopDefault, renameRules } from '../utils';
 
-export function typescript(
-  options?: OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions,
-): ConfigItem[] {
+export async function typescript(
+  options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
+): Promise<FlatConfigItem[]> {
   const {
     componentExts = [],
     overrides = {},
@@ -18,7 +18,12 @@ export function typescript(
     tsconfigPath = [],
   } = options ?? {};
 
-  const typeAwareRules: ConfigItem['rules'] = {
+  const files = options.files ?? [
+    GLOB_SRC,
+    ...componentExts.map((ext) => `**/*.${ext}`),
+  ];
+
+  const typeAwareRules: FlatConfigItem['rules'] = {
     'dot-notation': OFF,
     'no-implied-eval': OFF,
     'no-throw-literal': OFF,
@@ -35,7 +40,7 @@ export function typescript(
   };
 
   let tsConfigOptions = {};
-  let additionalTypeAwareRules: ConfigItem['rules'] = {};
+  let additionalTypeAwareRules: FlatConfigItem['rules'] = {};
 
   if (!isEmpty(tsconfigPath)) {
     tsConfigOptions = {
@@ -46,6 +51,16 @@ export function typescript(
     additionalTypeAwareRules = typeAwareRules;
   }
 
+  const [
+    pluginTs,
+    parserTs,
+    pluginStylistic,
+  ] = await Promise.all([
+    interopDefault(import('@typescript-eslint/eslint-plugin')),
+    interopDefault(import('@typescript-eslint/parser')),
+    interopDefault(import('@stylistic/eslint-plugin')),
+  ] as const);
+
   return [
     {
       // Install the plugins without globs, so they can be configured separately.
@@ -53,16 +68,14 @@ export function typescript(
 
       plugins: {
         import: pluginImport,
+        style: pluginStylistic,
         ts: pluginTs as any,
         vinicunca: pluginVinicunca,
       },
     },
 
     {
-      files: [
-        GLOB_SRC,
-        ...componentExts.map((ext) => `**/*.${ext}`),
-      ],
+      files,
 
       languageOptions: {
         parser: parserTs,
@@ -99,9 +112,14 @@ export function typescript(
         'no-use-before-define': OFF,
 
         'no-useless-constructor': OFF,
+
+        'style/type-generic-spacing': ERROR,
+        'style/type-named-tuple-spacing': ERROR,
+
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
 
         'ts/ban-types': [ERROR, { types: { Function: false } }],
+
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 
         'ts/consistent-type-imports': [ERROR, { disallowTypeAnnotations: false, prefer: 'type-imports' }],
@@ -133,7 +151,6 @@ export function typescript(
         'ts/no-non-null-assertion': OFF,
 
         'ts/no-redeclare': ERROR,
-
         'ts/no-require-imports': ERROR,
 
         'ts/no-unused-vars': [ERROR, {
@@ -141,6 +158,7 @@ export function typescript(
           destructuredArrayIgnorePattern: '^_',
           ignoreRestSiblings: true,
         }],
+
         'ts/no-use-before-define': [ERROR, { classes: false, functions: false, variables: true }],
 
         'ts/parameter-properties': OFF,
@@ -148,9 +166,6 @@ export function typescript(
         'ts/prefer-ts-expect-error': ERROR,
 
         'ts/triple-slash-reference': OFF,
-
-        'vinicunca/generic-spacing': ERROR,
-        'vinicunca/named-tuple-spacing': ERROR,
         'vinicunca/no-cjs-exports': ERROR,
         'vinicunca/no-ts-export-equal': ERROR,
 

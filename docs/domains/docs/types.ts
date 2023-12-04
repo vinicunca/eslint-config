@@ -1,7 +1,7 @@
 import type { FlatESLintConfigItem } from '@antfu/eslint-define-config';
 import type { RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
 
-export interface ConfigItem extends Omit<FlatESLintConfigItem, 'plugins' | 'rules'> {
+export interface FlatConfigItem extends Omit<FlatESLintConfigItem, 'plugins' | 'rules'> {
   name: string;
   plugins: Record<string, {
     url: string;

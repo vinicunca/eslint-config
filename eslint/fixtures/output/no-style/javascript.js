@@ -24,7 +24,7 @@ const people = [
 ];
 
 // Use the forEach method to iterate over the array
-people.forEach((person) => {
+people.forEach(person => {
   person.sayHello();
 });
 
@@ -35,7 +35,7 @@ const multilineString = `
 `;
 
 // Use destructuring assignment to extract values from an object
-const { name, age } = people[0];
+const { age, name } = people[0];
 log(`First person in the array is ${name} and they are ${age} years old.`, multilineString);
 
 // Use the spread operator to create a new array
@@ -52,7 +52,7 @@ try {
 }
 
 // Use a ternary conditional operator
-const isEven = (num) => num % 2 === 0;
+const isEven = num => num % 2 === 0;
 const number = 7;
 log(`${number} is ${isEven(number) ? 'even' : 'odd'}.`);
 
@@ -60,3 +60,13 @@ log(`${number} is ${isEven(number) ? 'even' : 'odd'}.`);
 setTimeout(() => {
   log('This code runs after a delay of 2 seconds.');
 }, 2000);
+
+let a, b, c,   d,   foo
+
+if (a 
+  || b 
+      || c || d
+        || (d && b)
+        ) {
+          foo()
+        }

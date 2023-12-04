@@ -3,17 +3,17 @@ import fs from 'node:fs';
 // @ts-expect-error missing types
 import parseGitignore from 'parse-gitignore';
 
-import type { ConfigItem, OptionsIgnores } from '../types';
+import type { FlatConfigItem, OptionsIgnores } from '../types';
 
 import { GLOB_EXCLUDE } from '../globs';
 
-export function ignores(
+export async function ignores(
   {
     enableGitignore = true,
     items = [],
     replace = false,
   }: OptionsIgnores = {},
-): ConfigItem[] {
+): Promise<FlatConfigItem[]> {
   const ignoreList: string[] = [];
 
   if (enableGitignore && fs.existsSync('.gitignore')) {

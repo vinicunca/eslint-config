@@ -7,38 +7,51 @@ import type {
   MergeIntersection,
   NRules,
   Prefix,
+  ReactHooksRules,
+  ReactRules,
   RenamePrefix,
   RuleConfig,
-  TypeScriptRules,
-  UnicornRules,
   VitestRules,
   VueRules,
   YmlRules,
 } from '@antfu/eslint-define-config';
+import type { RuleOptions as JSDocRules } from '@eslint-types/jsdoc/types';
+import type { RuleOptions as TypeScriptRules } from '@eslint-types/typescript-eslint/types';
+import type { RuleOptions as UnicornRules } from '@eslint-types/unicorn/types';
+import type { StylisticCustomizeOptions, UnprefixedRuleOptions as StylisticRules } from '@stylistic/eslint-plugin';
 import type { ParserOptions } from '@typescript-eslint/parser';
-import type { Rules as VinicuncaRules } from '@vinicunca/eslint-plugin-vinicunca';
+import type { Rules as VinicuncaRules } from '@vinicunca/eslint-plugin-vinicunca'; ;
 
-import type { StylisticRules } from './generated/stylistic';
+export type WrapRuleConfig<T extends { [key: string]: any }> = {
+  [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
+};
 
-export type Rules = MergeIntersection<
-RenamePrefix<TypeScriptRules, '@typescript-eslint/', 'ts/'> &
-RenamePrefix<VitestRules, 'vitest/', 'test/'> &
-RenamePrefix<YmlRules, 'yml/', 'yaml/'> &
-RenamePrefix<NRules, 'n/', 'node/'> &
-Prefix<StylisticRules, 'style/'> &
-Prefix<VinicuncaRules, 'vinicunca/'> &
-ImportRules &
-EslintRules &
-JsoncRules &
-VueRules &
-UnicornRules &
-EslintCommentsRules &
-{
-  'test/no-only-tests': RuleConfig<[]>;
-}
+export type Awaitable<T> = Promise<T> | T;
+
+export type Rules = WrapRuleConfig<
+  MergeIntersection<
+    RenamePrefix<TypeScriptRules, '@typescript-eslint/', 'ts/'> &
+    RenamePrefix<VitestRules, 'vitest/', 'test/'> &
+    RenamePrefix<YmlRules, 'yml/', 'yaml/'> &
+    RenamePrefix<NRules, 'n/', 'node/'> &
+    Prefix<StylisticRules, 'style/'> &
+    Prefix<VinicuncaRules, 'vinicunca/'> &
+    ReactHooksRules &
+    ReactRules &
+    JSDocRules &
+    ImportRules &
+    EslintRules &
+    JsoncRules &
+    VueRules &
+    UnicornRules &
+    EslintCommentsRules &
+    {
+      'test/no-only-tests': RuleConfig<[]>;
+    }
+  >
 >;
 
-export type ConfigItem = Omit<FlatESLintConfigItem<Rules, false>, 'plugins'> & {
+export type FlatConfigItem = Omit<FlatESLintConfigItem<Rules, false>, 'plugins'> & {
   /**
    * The name of the configuration object.
    */
@@ -51,6 +64,76 @@ export type ConfigItem = Omit<FlatESLintConfigItem<Rules, false>, 'plugins'> & {
    */
   plugins?: Record<string, any>;
 };
+
+export interface OptionsFiles {
+  /**
+   * Override the `files` option to provide custom globs.
+   */
+  files?: string[];
+}
+
+export interface OptionsComponentExts {
+  /**
+   * Additional extensions for components.
+   *
+   * @example ['vue']
+   * @default []
+   */
+  componentExts?: string[];
+}
+
+export interface OptionsTypeScriptParserOptions {
+  /**
+   * Additional parser options for TypeScript.
+   */
+  parserOptions?: Partial<ParserOptions>;
+}
+
+export interface OptionsHasTypeScript {
+  typescript?: OptionsConfig['typescript'];
+}
+
+export interface OptionsTypeScriptWithTypes {
+  /**
+   * When this options is provided, type aware rules will be enabled.
+   * @see https://typescript-eslint.io/linting/typed-linting/
+   */
+  tsconfigPath?: string[];
+}
+
+export interface OptionsStylistic {
+  stylistic?: StylisticConfig | boolean;
+}
+
+export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'jsx' | 'quotes' | 'semi'> {
+}
+
+export interface OptionsOverrides {
+  overrides?: FlatConfigItem['rules'];
+}
+
+export interface OptionsIsInEditor {
+  isInEditor?: boolean;
+}
+
+export interface OptionsUnoCSS {
+  /**
+   * Enable attributify support.
+   * @default true
+   */
+  attributify?: boolean;
+  /**
+   * Enable strict mode by throwing errors about blocklisted classes.
+   * @default false
+   */
+  strict?: boolean;
+}
+
+export interface OptionsIgnores {
+  enableGitignore?: boolean;
+  items?: string[];
+  replace?: boolean;
+}
 
 export interface OptionsConfig extends OptionsComponentExts {
   /**
@@ -91,14 +174,14 @@ export interface OptionsConfig extends OptionsComponentExts {
    * Provide overrides for rules for each integration.
    */
   overrides?: {
-    javascript?: ConfigItem['rules'];
-    jsonc?: ConfigItem['rules'];
-    markdown?: ConfigItem['rules'];
-    react?: ConfigItem['rules'];
-    test?: ConfigItem['rules'];
-    typescript?: ConfigItem['rules'];
-    vue?: ConfigItem['rules'];
-    yaml?: ConfigItem['rules'];
+    javascript?: FlatConfigItem['rules'];
+    jsonc?: FlatConfigItem['rules'];
+    markdown?: FlatConfigItem['rules'];
+    react?: FlatConfigItem['rules'];
+    test?: FlatConfigItem['rules'];
+    typescript?: FlatConfigItem['rules'];
+    vue?: FlatConfigItem['rules'];
+    yaml?: FlatConfigItem['rules'];
   };
 
   /**
@@ -114,7 +197,7 @@ export interface OptionsConfig extends OptionsComponentExts {
    *
    * @default true
    */
-  stylistic?: boolean;
+  stylistic?: StylisticConfig | boolean;
 
   /**
    * Enable test support.
@@ -135,6 +218,16 @@ export interface OptionsConfig extends OptionsComponentExts {
   };
 
   /**
+   * Enable unocss rules.
+   *
+   * Requires installing:
+   * - `@unocss/eslint-plugin`
+   *
+   * @default false
+   */
+  unocss?: OptionsUnoCSS | boolean;
+
+  /**
    * Enable Vue support.
    *
    * @default auto-detect based on the dependencies
@@ -149,45 +242,3 @@ export interface OptionsConfig extends OptionsComponentExts {
   yaml?: boolean;
 }
 
-export interface OptionsOverrides {
-  overrides?: ConfigItem['rules'];
-}
-
-export interface OptionsIsInEditor {
-  isInEditor?: boolean;
-}
-
-export interface OptionsIgnores {
-  enableGitignore?: boolean;
-  items?: string[];
-  replace?: boolean;
-}
-
-export interface OptionsComponentExts {
-  /**
-   * Additional extensions for components.
-   *
-   * @example ['vue']
-   * @default []
-   */
-  componentExts?: string[];
-}
-
-export interface OptionsTypeScriptParserOptions {
-  /**
-   * Additional parser options for TypeScript.
-   */
-  parserOptions?: Partial<ParserOptions>;
-}
-
-export interface OptionsTypeScriptWithTypes {
-  /**
-   * When this options is provided, type aware rules will be enabled.
-   * @see https://typescript-eslint.io/linting/typed-linting/
-   */
-  tsconfigPath?: string[];
-}
-
-export interface OptionsHasTypeScript {
-  typescript?: OptionsConfig['typescript'];
-}

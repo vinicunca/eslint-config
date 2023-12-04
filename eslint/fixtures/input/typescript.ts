@@ -1,6 +1,6 @@
 // Define a TypeScript interface
 interface Person { 
-  name: string; age: number;
+  age: number; name: string;
 }
 
 // Create an array of objects with the defined interface

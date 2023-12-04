@@ -1,13 +1,31 @@
-import type { ConfigItem, OptionsOverrides } from '../types';
+import { isBoolean } from '@vinicunca/perkakas';
+
+import type { FlatConfigItem, OptionsFiles, OptionsOverrides, OptionsStylistic } from '../types';
 
 import { ERROR, NEVER } from '../flags';
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs';
-import { parserJsonc, pluginJsonc } from '../plugins';
+import { interopDefault } from '../utils';
 
-export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
+export async function jsonc(
+  options: OptionsFiles & OptionsStylistic & OptionsOverrides = {},
+): Promise<FlatConfigItem[]> {
   const {
+    files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
     overrides = {},
+    stylistic = true,
   } = options;
+
+  const {
+    indent = 2,
+  } = isBoolean(stylistic) ? {} : stylistic;
+
+  const [
+    pluginJsonc,
+    parserJsonc,
+  ] = await Promise.all([
+    interopDefault(import('eslint-plugin-jsonc')),
+    interopDefault(import('jsonc-eslint-parser')),
+  ] as const);
 
   return [
     {
@@ -19,7 +37,7 @@ export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
     },
 
     {
-      files: [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
+      files,
 
       languageOptions: {
         parser: parserJsonc,
@@ -28,16 +46,6 @@ export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
       name: 'vinicunca:jsonc:rules',
 
       rules: {
-        'jsonc/array-bracket-spacing': [ERROR, NEVER],
-
-        'jsonc/comma-dangle': [ERROR, NEVER],
-
-        'jsonc/comma-style': [ERROR, 'last'],
-
-        'jsonc/indent': [ERROR, 2],
-
-        'jsonc/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],
-
         'jsonc/no-bigint-literals': ERROR,
 
         'jsonc/no-binary-expression': ERROR,
@@ -84,21 +92,35 @@ export function jsonc(options: OptionsOverrides = {}): ConfigItem[] {
 
         'jsonc/no-useless-escape': ERROR,
 
-        'jsonc/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
-
-        'jsonc/object-curly-spacing': [ERROR, 'always'],
-
-        'jsonc/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
-
-        'jsonc/quote-props': ERROR,
-
-        'jsonc/quotes': ERROR,
-
         'jsonc/space-unary-ops': ERROR,
 
         'jsonc/valid-json-number': ERROR,
 
         'jsonc/vue-custom-block/no-parsing-error': ERROR,
+
+        ...stylistic
+          ? {
+              'jsonc/array-bracket-spacing': [ERROR, NEVER],
+
+              'jsonc/comma-dangle': [ERROR, NEVER],
+
+              'jsonc/comma-style': [ERROR, 'last'],
+
+              'jsonc/indent': [ERROR, indent],
+
+              'jsonc/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],
+
+              'jsonc/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
+
+              'jsonc/object-curly-spacing': [ERROR, 'always'],
+
+              'jsonc/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
+
+              'jsonc/quote-props': ERROR,
+
+              'jsonc/quotes': ERROR,
+            }
+          : {},
 
         ...overrides,
       },

@@ -1,16 +1,26 @@
-import type { ConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
+import type { FlatConfigItem, OptionsFiles, OptionsIsInEditor, OptionsOverrides } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_TESTS } from '../globs';
-import { pluginNoOnlyTests, pluginVitest } from '../plugins';
+import { interopDefault } from '../utils';
 
-export function test(
-  options: OptionsIsInEditor & OptionsOverrides = {},
-): ConfigItem[] {
+export async function test(
+  options: OptionsFiles & OptionsIsInEditor & OptionsOverrides = {},
+): Promise<FlatConfigItem[]> {
   const {
+    files = GLOB_TESTS,
     isInEditor = false,
     overrides = {},
   } = options;
+
+  const [
+    pluginVitest,
+    pluginNoOnlyTests,
+  ] = await Promise.all([
+    interopDefault(import('eslint-plugin-vitest')),
+    // @ts-expect-error missing types
+    interopDefault(import('eslint-plugin-no-only-tests')),
+  ] as const);
 
   return [
     {
@@ -29,7 +39,7 @@ export function test(
     },
 
     {
-      files: GLOB_TESTS,
+      files,
 
       name: 'vinicunca:test:rules',
 

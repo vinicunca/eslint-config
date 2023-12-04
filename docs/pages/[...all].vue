@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { ConfigItem } from '~~/domains/docs/types';
-
 import { useContent, useRequestEvent, useSeoMeta } from '#imports';
+
+import type { FlatConfigItem } from '~~/domains/docs/types';
 
 const { layout, page } = useContent();
 
@@ -18,7 +18,7 @@ useSeoMeta({
 
 const route = useRoute();
 
-const { data, pending } = useFetch<{ configs: ConfigItem[] }>('/api/meta', {
+const { data, pending } = useFetch<{ configs: FlatConfigItem[] }>('/api/meta', {
   query: { config: route.params.all },
 });
 </script>

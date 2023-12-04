@@ -1,10 +1,29 @@
-import type { ConfigItem } from '../types';
+import type { FlatConfigItem, StylisticConfig } from '../types';
 
 import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
 import { GLOB_JSX, GLOB_TSX } from '../globs';
-import { pluginStylistic, pluginVinicunca } from '../plugins';
+import { pluginVinicunca } from '../plugins';
+import { interopDefault } from '../utils';
 
-export function stylistic(): ConfigItem[] {
+const STYLISTIC_CONFIG_DEFAULTS: StylisticConfig = {
+  indent: 2,
+  jsx: true,
+  quotes: 'single',
+  semi: true,
+};
+
+export async function stylistic(options: StylisticConfig = {}): Promise<FlatConfigItem[]> {
+  const {
+    indent,
+    quotes,
+    semi,
+  } = {
+    ...STYLISTIC_CONFIG_DEFAULTS,
+    ...options,
+  };
+
+  const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'));
+
   return [
     {
       name: 'vinicunca:stylistic',
@@ -22,6 +41,8 @@ export function stylistic(): ConfigItem[] {
         'style/array-bracket-spacing': [ERROR, NEVER],
 
         'style/array-element-newline': [ERROR, CONSISTENT],
+
+        'style/arrow-parens': [ERROR, ALWAYS],
 
         'style/arrow-spacing': [ERROR, { after: true, before: true }],
 
@@ -43,7 +64,7 @@ export function stylistic(): ConfigItem[] {
 
         'style/func-call-spacing': [ERROR, NEVER],
 
-        'style/indent': [ERROR, 2, {
+        'style/indent': [ERROR, indent, {
           ArrayExpression: 1,
           CallExpression: { arguments: 1 },
           FunctionDeclaration: { body: 1, parameters: 1 },
@@ -81,6 +102,8 @@ export function stylistic(): ConfigItem[] {
           offsetTernaryExpressions: true,
           outerIIFEBody: 1,
         }],
+
+        'style/indent-binary-ops': [ERROR, indent],
 
         'style/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],
 
@@ -133,11 +156,11 @@ export function stylistic(): ConfigItem[] {
 
         'style/quote-props': [ERROR, 'consistent-as-needed'],
 
-        'style/quotes': [ERROR, 'single'],
+        'style/quotes': [ERROR, quotes],
 
         'style/rest-spread-spacing': [ERROR, NEVER],
 
-        'style/semi': [ERROR, ALWAYS],
+        'style/semi': [ERROR, semi ? ALWAYS : NEVER],
 
         'style/semi-spacing': [ERROR, { after: true, before: false }],
 

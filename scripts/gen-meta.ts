@@ -30,7 +30,7 @@ async function generateJsonRules() {
 
   const eslintRules = await import('eslint/use-at-your-own-risk').then((r) => r.default.builtinRules);
 
-  const rawConfigs = jiti(configPath).default as Array<FlatESLintConfigItem & { name?: string }>;
+  const rawConfigs = await jiti(configPath).default as Array<FlatESLintConfigItem & { name?: string }>;
 
   const rulesMap = new Map<string, any>();
 
