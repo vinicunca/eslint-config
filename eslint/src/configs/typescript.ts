@@ -166,7 +166,6 @@ export async function typescript(
         'ts/prefer-ts-expect-error': ERROR,
 
         'ts/triple-slash-reference': OFF,
-        'vinicunca/no-cjs-exports': ERROR,
         'vinicunca/no-ts-export-equal': ERROR,
 
         ...additionalTypeAwareRules,
