@@ -2,7 +2,7 @@ import { isBoolean, isObject } from '@vinicunca/perkakas';
 import { isPackageExists } from 'local-pkg';
 import process from 'node:process';
 
-import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic } from './types';
+import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic, UserConfigItem } from './types';
 
 import {
   comments,
@@ -24,7 +24,19 @@ import {
   vue,
   yaml,
 } from './configs';
+import { formatters } from './configs/formatters';
 import { combineConfigs } from './utils';
+
+const flatConfigProps: (keyof FlatConfigItem)[] = [
+  'files',
+  'ignores',
+  'languageOptions',
+  'linterOptions',
+  'processor',
+  'plugins',
+  'rules',
+  'settings',
+];
 
 const VuePackages = [
   'vue',
@@ -35,27 +47,19 @@ const VuePackages = [
 
 // eslint-disable-next-line vinicunca/cognitive-complexity
 export async function vinicuncaESLint(
-  { options = {}, userConfigs = [] }:
-  {
-    options?: OptionsConfig & FlatConfigItem;
-    userConfigs?: Awaitable<FlatConfigItem | FlatConfigItem[]>[];
-  } = {},
-): Promise<FlatConfigItem[]> {
+  options: OptionsConfig & FlatConfigItem = {},
+  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
+): Promise<UserConfigItem[]> {
   const {
     componentExts = [],
-    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
-    jsonc: enableJsonc = true,
-    markdown: enableMarkdown = true,
-    overrides = {},
+    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     react: enableReact = false,
-    test: enableTest = true,
-    typescript: tsOptions = {},
+    typescript: enableTypeScript = isPackageExists('typescript'),
     unocss: enableUnoCSS = false,
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
-    yaml: enableYaml = true,
   } = options;
 
-  let stylisticOptions: OptionsStylistic['stylistic'] = true;
+  let stylisticOptions: OptionsStylistic['stylistic'] = {};
 
   if (options.stylistic === false) {
     stylisticOptions = false;
@@ -70,14 +74,22 @@ export async function vinicuncaESLint(
 
   configs.push(
     ignores(options.ignores),
+
     javascript({
       isInEditor,
-      overrides: overrides.javascript,
+      overrides: getOverrides(options, 'javascript'),
     }),
+
     comments(),
+
     node(),
-    jsdoc(),
+
+    jsdoc({
+      stylistic: stylisticOptions,
+    }),
+
     imports(),
+
     unicorn(),
   );
 
@@ -85,56 +97,53 @@ export async function vinicuncaESLint(
     componentExts.push('vue');
   }
 
-  const {
-    enabled: tsEnabled = isPackageExists('typescript'),
-    ...tsParams
-  } = tsOptions;
-
-  if (tsEnabled) {
+  if (enableTypeScript) {
     configs.push(typescript({
-      ...tsParams,
+      ...resolveSubOptions(options, 'typescript'),
       componentExts,
-      overrides: overrides.typescript,
     }));
   }
 
   if (stylisticOptions) {
-    configs.push(stylistic());
+    configs.push(stylistic({
+      ...stylisticOptions,
+      overrides: getOverrides(options, 'stylistic'),
+    }));
   }
 
-  if (enableTest) {
+  if (options.test ?? true) {
     configs.push(test({
       isInEditor,
-      overrides: overrides.test,
+      overrides: getOverrides(options, 'test'),
     }));
-  };
+  }
 
   if (enableVue) {
     configs.push(vue({
-      overrides: overrides.vue,
-      typescript: {
-        enabled: tsEnabled,
-        ...tsParams,
-      },
+      ...resolveSubOptions(options, 'vue'),
+      stylistic: stylisticOptions,
+      typescript: !!enableTypeScript,
     }));
-  };
+  }
 
   if (enableReact) {
     configs.push(react({
-      overrides: overrides.react,
+      overrides: getOverrides(options, 'react'),
+      typescript: !!enableTypeScript,
     }));
   }
 
   if (enableUnoCSS) {
-    configs.push(unocss(
-      isBoolean(enableUnoCSS) ? {} : enableUnoCSS,
-    ));
+    configs.push(unocss({
+      ...resolveSubOptions(options, 'unocss'),
+      overrides: getOverrides(options, 'unocss'),
+    }));
   }
 
-  if (enableJsonc) {
+  if (options.jsonc ?? true) {
     configs.push(
       jsonc({
-        overrides: overrides.jsonc,
+        overrides: getOverrides(options, 'jsonc'),
         stylistic: stylisticOptions,
       }),
       sortPackageJson(),
@@ -142,24 +151,74 @@ export async function vinicuncaESLint(
     );
   }
 
-  if (enableYaml) {
+  if (options.yaml ?? true) {
     configs.push(yaml({
-      overrides: overrides.yaml,
+      overrides: getOverrides(options, 'yaml'),
       stylistic: stylisticOptions,
     }));
-  };
+  }
 
-  if (enableMarkdown) {
-    configs.push(markdown({
-      componentExts,
-      overrides: overrides.markdown,
-    }));
-  };
+  if (options.markdown ?? true) {
+    configs.push(
+      markdown(
+        {
+          componentExts,
+          overrides: getOverrides(options, 'markdown'),
+        },
+      ),
+    );
+  }
 
-  configs.push(ignores(options.ignores));
+  if (options.formatters) {
+    configs.push(formatters(
+      options.formatters,
+      typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
+    ));
+  }
+
+  /**
+   * User can optionally pass a flat config item to the first argument.
+   * We pick the known keys as ESLint would do schema validation
+   */
+  const fusedConfig = flatConfigProps.reduce((acc, key) => {
+    if (key in options) {
+      acc[key] = options[key] as any;
+    };
+    return acc;
+  }, {} as FlatConfigItem);
+
+  if (Object.keys(fusedConfig).length) {
+    configs.push([fusedConfig]);
+  };
 
   return combineConfigs(
     ...configs,
     ...userConfigs,
   );
+}
+
+function getOverrides<K extends keyof OptionsConfig>(
+  options: OptionsConfig,
+  key: K,
+) {
+  const sub = resolveSubOptions(options, key);
+
+  return {
+    ...'overrides' in sub
+      ? sub.overrides
+      : {},
+  };
+}
+
+type ResolvedOptions<T> = T extends boolean
+  ? never
+  : NonNullable<T>;
+
+function resolveSubOptions<K extends keyof OptionsConfig>(
+  options: OptionsConfig,
+  key: K,
+): ResolvedOptions<OptionsConfig[K]> {
+  return isBoolean(options[key])
+    ? {} as any
+    : options[key] || {};
 }

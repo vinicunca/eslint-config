@@ -50,25 +50,44 @@ export async function yaml(
         'style/spaced-comment': OFF,
 
         'yaml/block-mapping': ERROR,
-        'yaml/block-mapping-question-indicator-newline': ERROR,
+
         'yaml/block-sequence': ERROR,
-        'yaml/block-sequence-hyphen-indicator-newline': ERROR,
-        'yaml/flow-mapping-curly-newline': ERROR,
-        'yaml/flow-mapping-curly-spacing': ERROR,
-        'yaml/flow-sequence-bracket-newline': ERROR,
-        'yaml/flow-sequence-bracket-spacing': ERROR,
-        'yaml/indent': [ERROR, indent === 'tab' ? 2 : indent],
-        'yaml/key-spacing': ERROR,
+
         'yaml/no-empty-key': ERROR,
+
         'yaml/no-empty-sequence-entry': ERROR,
+
         'yaml/no-irregular-whitespace': ERROR,
-        'yaml/no-tab-indent': ERROR,
+
         'yaml/plain-scalar': ERROR,
 
-        'yaml/quotes': [ERROR, { avoidEscape: false, prefer: quotes }],
-        'yaml/spaced-comment': ERROR,
-
         'yaml/vue-custom-block/no-parsing-error': ERROR,
+
+        ...stylistic
+          ? {
+              'yaml/block-mapping-question-indicator-newline': ERROR,
+
+              'yaml/block-sequence-hyphen-indicator-newline': ERROR,
+
+              'yaml/flow-mapping-curly-newline': ERROR,
+
+              'yaml/flow-mapping-curly-spacing': ERROR,
+
+              'yaml/flow-sequence-bracket-newline': ERROR,
+
+              'yaml/flow-sequence-bracket-spacing': ERROR,
+
+              'yaml/indent': [ERROR, indent === 'tab' ? 2 : indent],
+
+              'yaml/key-spacing': ERROR,
+
+              'yaml/no-tab-indent': ERROR,
+
+              'yaml/quotes': [ERROR, { avoidEscape: false, prefer: quotes }],
+
+              'yaml/spaced-comment': ERROR,
+            }
+          : {},
 
         ...overrides,
       },

@@ -1,8 +1,10 @@
+import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
+
 import type { FlatConfigItem, OptionsComponentExts, OptionsFiles, OptionsOverrides } from '../types';
 
 import { OFF } from '../flags';
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs';
-import { interopDefault } from '../utils';
+import { interopDefault, parserPlain } from '../utils';
 
 export async function markdown(
   options: OptionsFiles & OptionsComponentExts & OptionsOverrides = {},
@@ -13,13 +15,15 @@ export async function markdown(
     overrides = {},
   } = options;
 
+  // @ts-expect-error missing types
+  const markdown = await interopDefault(import('eslint-plugin-markdown'));
+
   return [
     {
       name: 'vinicunca:markdown:setup',
 
       plugins: {
-        // @ts-expect-error missing types
-        markdown: await interopDefault(import('eslint-plugin-markdown')),
+        markdown,
       },
     },
 
@@ -27,13 +31,23 @@ export async function markdown(
       files,
       ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
       name: 'vinicunca:markdown:processor',
-      processor: 'markdown/markdown',
+      /**
+       * `eslint-plugin-markdown` only creates virtual files for code blocks,
+       * but not the markdown file itself. We use `eslint-merge-processors` to
+       * add a pass-through processor for the markdown file itself.
+       */
+      processor: mergeProcessors([
+        markdown.processors.markdown,
+        processorPassThrough,
+      ]),
     },
 
     {
-      files: [GLOB_MARKDOWN],
-      name: 'vinicunca:markdown:processor',
-      processor: 'markdown/markdown',
+      files,
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'vinicunca:markdown:parser',
     },
 
     {

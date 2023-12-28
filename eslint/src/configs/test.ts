@@ -44,6 +44,8 @@ export async function test(
       name: 'vinicunca:test:rules',
 
       rules: {
+        'node/prefer-global/process': OFF,
+
         'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],
         'test/no-identical-title': ERROR,
         'test/no-only-tests': isInEditor ? OFF : ERROR,

@@ -1,12 +1,11 @@
-import { isEmpty } from '@vinicunca/perkakas';
 import process from 'node:process';
 
 import type { FlatConfigItem, OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
 
 import { ERROR, OFF } from '../flags';
-import { GLOB_SRC } from '../globs';
-import { pluginImport, pluginVinicunca } from '../plugins';
-import { interopDefault, renameRules } from '../utils';
+import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
+import { pluginVinicunca } from '../plugins';
+import { interopDefault, renameRules, toArray } from '../utils';
 
 export async function typescript(
   options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
@@ -15,13 +14,14 @@ export async function typescript(
     componentExts = [],
     overrides = {},
     parserOptions = {},
-    tsconfigPath = [],
   } = options ?? {};
 
   const files = options.files ?? [
     GLOB_SRC,
     ...componentExts.map((ext) => `**/*.${ext}`),
   ];
+
+  const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX];
 
   const typeAwareRules: FlatConfigItem['rules'] = {
     'dot-notation': OFF,
@@ -39,26 +39,16 @@ export async function typescript(
     'ts/restrict-template-expressions': ERROR,
   };
 
-  let tsConfigOptions = {};
-  let additionalTypeAwareRules: FlatConfigItem['rules'] = {};
-
-  if (!isEmpty(tsconfigPath)) {
-    tsConfigOptions = {
-      project: tsconfigPath,
-      tsconfigRootDir: process.cwd(),
-    };
-
-    additionalTypeAwareRules = typeAwareRules;
-  }
+  const tsconfigPath = options?.tsconfigPath
+    ? toArray(options.tsconfigPath)
+    : undefined;
 
   const [
     pluginTs,
     parserTs,
-    pluginStylistic,
   ] = await Promise.all([
     interopDefault(import('@typescript-eslint/eslint-plugin')),
     interopDefault(import('@typescript-eslint/parser')),
-    interopDefault(import('@stylistic/eslint-plugin')),
   ] as const);
 
   return [
@@ -67,8 +57,6 @@ export async function typescript(
       name: 'vinicunca:typescript:setup',
 
       plugins: {
-        import: pluginImport,
-        style: pluginStylistic,
         ts: pluginTs as any,
         vinicunca: pluginVinicunca,
       },
@@ -82,7 +70,12 @@ export async function typescript(
         parserOptions: {
           extraFileExtensions: componentExts.map((ext) => `.${ext}`),
           sourceType: 'module',
-          ...tsConfigOptions,
+          ...tsconfigPath
+            ? {
+                project: tsconfigPath,
+                tsconfigRootDir: process.cwd(),
+              }
+            : {},
           ...parserOptions as any,
         },
       },
@@ -112,9 +105,6 @@ export async function typescript(
         'no-use-before-define': OFF,
 
         'no-useless-constructor': OFF,
-
-        'style/type-generic-spacing': ERROR,
-        'style/type-named-tuple-spacing': ERROR,
 
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
 
@@ -166,10 +156,16 @@ export async function typescript(
         'ts/prefer-ts-expect-error': ERROR,
 
         'ts/triple-slash-reference': OFF,
-        'vinicunca/no-ts-export-equal': ERROR,
 
-        ...additionalTypeAwareRules,
+        ...overrides,
+      },
+    },
 
+    {
+      files: filesTypeAware,
+      name: 'vinicunca:typescript:rules-type-aware',
+      rules: {
+        ...tsconfigPath ? typeAwareRules : {},
         ...overrides,
       },
     },
@@ -182,6 +178,7 @@ export async function typescript(
       rules: {
         'eslint-comments/no-unlimited-disable': OFF,
         'import/no-duplicates': OFF,
+        'no-restricted-syntax': 'off',
         'unused-imports/no-unused-vars': OFF,
       },
     },

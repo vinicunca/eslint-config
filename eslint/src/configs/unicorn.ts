@@ -1,15 +1,9 @@
-import type { FlatConfigItem, OptionsOverrides } from '../types';
+import type { FlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
 import { pluginUnicorn } from '../plugins';
 
-export async function unicorn(
-  options: OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
-  const {
-    overrides = {},
-  } = options;
-
+export async function unicorn(): Promise<FlatConfigItem[]> {
   return [
     {
       name: 'vinicunca:unicorn',
@@ -44,8 +38,6 @@ export async function unicorn(
         'unicorn/prefer-type-error': ERROR,
 
         'unicorn/throw-new-error': ERROR,
-
-        ...overrides,
       },
     },
   ];

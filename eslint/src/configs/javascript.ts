@@ -26,6 +26,7 @@ export async function javascript(
         ecmaVersion: 2022,
 
         globals: {
+          ...globals.browser,
           ...globals.es2021,
           ...globals.node,
           document: 'readonly',
@@ -438,4 +439,3 @@ export async function javascript(
     },
   ];
 }
-

@@ -1,12 +1,12 @@
-import type { Awaitable, FlatConfigItem } from './types';
+import type { Awaitable, UserConfigItem } from './types';
 
 /**
  * Combine array and non-array configs into a single array.
  */
-export async function combineConfigs(...configs: Awaitable<FlatConfigItem | FlatConfigItem[]>[]): Promise<FlatConfigItem[]> {
-  const resolvedConfigs = await Promise.all(configs);
+export async function combineConfigs(...configs: Awaitable<UserConfigItem | UserConfigItem[]>[]): Promise<UserConfigItem[]> {
+  const resolved = await Promise.all(configs);
 
-  return resolvedConfigs.flatMap((config) => Array.isArray(config) ? config : [config]);
+  return resolved.flat();
 }
 
 export function renameRules(rules: Record<string, any>, from: string, to: string) {
@@ -24,4 +24,29 @@ export function renameRules(rules: Record<string, any>, from: string, to: string
 export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> {
   const resolved = await m;
   return (resolved as any).default || resolved;
+}
+
+export const parserPlain = {
+  meta: {
+    name: 'parser-plain',
+  },
+  parseForESLint: (code: string) => ({
+    ast: {
+      body: [],
+      comments: [],
+      loc: { end: code.length, start: 0 },
+      range: [0, code.length],
+      tokens: [],
+      type: 'Program',
+    },
+    scopeManager: null,
+    services: { isPlain: true },
+    visitorKeys: {
+      Program: [],
+    },
+  }),
+};
+
+export function toArray<T>(value: T | T[]): T[] {
+  return Array.isArray(value) ? value : [value];
 }

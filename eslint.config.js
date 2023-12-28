@@ -1,15 +1,21 @@
 import { vinicuncaESLint } from '@vinicunca/eslint-config';
 
-export default vinicuncaESLint({
-  options: {
-    ignores: {
-      items: [
-        '**/fixtures',
-      ],
-    },
+export default vinicuncaESLint(
+  {
+    formatters: true,
+    ignores: [
+      '**/fixtures',
+      '**/_fixtures',
+    ],
+    typescript: true,
 
-    typescript: {
-      tsconfigPath: ['tsconfig.eslint.json'],
+    vue: true,
+  },
+
+  {
+    files: ['**/*.md'],
+    rules: {
+      'perfectionist/sort-objects': 'off',
     },
   },
-});
+);

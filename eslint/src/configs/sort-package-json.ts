@@ -13,6 +13,7 @@ export async function sortPackageJson(): Promise<FlatConfigItem[]> {
       files: ['**/package.json'],
 
       name: 'vinicunca:sort-package-json',
+
       rules: {
         'jsonc/sort-array-values': [
           ERROR,

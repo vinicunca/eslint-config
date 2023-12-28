@@ -4,38 +4,84 @@ import fs from 'fs-extra';
 import { join, resolve } from 'node:path';
 import { afterAll, beforeAll, it } from 'vitest';
 
-import type { OptionsConfig } from '../src/types';
+import type { FlatConfigItem, OptionsConfig } from '../src/types';
 
 beforeAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
 });
+
 afterAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
 });
 
 runWithConfig('js', {
-  options: {
-    react: true,
-    typescript: {
-      enabled: false,
-    },
-    vue: false,
-  },
+  typescript: false,
+  vue: false,
 });
 
 runWithConfig('all', {
-  options: {
-    react: true,
-  },
+  typescript: true,
+  vue: true,
 });
 
 runWithConfig('no-style', {
-  options: {
-    stylistic: false,
-  },
+  stylistic: false,
+  typescript: true,
+  vue: true,
 });
 
-function runWithConfig(name: string, configs: { options: OptionsConfig }) {
+runWithConfig(
+  'tab-double-quotes',
+  {
+    stylistic: {
+      indent: 'tab',
+      quotes: 'double',
+    },
+    typescript: true,
+    vue: true,
+  },
+  {
+    rules: {
+      'style/no-mixed-spaces-and-tabs': 'off',
+    },
+  },
+);
+
+// https://github.com/antfu/eslint-config/issues/255
+runWithConfig(
+  'ts-override',
+  {
+    typescript: true,
+  },
+  {
+    rules: {
+      'ts/consistent-type-definitions': ['error', 'type'],
+    },
+  },
+);
+
+runWithConfig(
+  'with-formatters',
+  {
+    formatters: true,
+    typescript: true,
+    vue: true,
+  },
+);
+
+runWithConfig(
+  'no-markdown-with-formatters',
+  {
+    formatters: {
+      markdown: true,
+    },
+    jsx: false,
+    markdown: false,
+    vue: false,
+  },
+);
+
+function runWithConfig(name: string, configs: OptionsConfig, ...items: FlatConfigItem[]) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
     const output = resolve('fixtures/output', name);
@@ -46,12 +92,16 @@ function runWithConfig(name: string, configs: { options: OptionsConfig }) {
         return !src.includes('node_modules');
       },
     });
+
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
 import { vinicuncaESLint } from '@vinicunca/eslint-config';
 
-export default vinicuncaESLint(${JSON.stringify(configs)})
-  `);
+export default vinicuncaESLint(
+  ${JSON.stringify(configs)},
+  ...${JSON.stringify(items) ?? []},
+);
+`);
 
     await execa('npx', ['eslint', '.', '--fix'], {
       cwd: target,
@@ -74,10 +124,8 @@ export default vinicuncaESLint(${JSON.stringify(configs)})
         if (fs.existsSync(outputPath)) {
           fs.remove(outputPath);
         };
-
         return;
       }
-
       await expect.soft(content).toMatchFileSnapshot(join(output, file));
     }));
   }, 30_000);

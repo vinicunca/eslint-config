@@ -2459,7 +2459,7 @@
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid any invalid exports, i.e. re-export of the same name.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/export.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/export.md"
           },
           "name": "import/export",
           "level": "error"
@@ -2469,7 +2469,7 @@
           "docs": {
             "category": "Style guide",
             "description": "Ensure all imports appear before other statements.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/first.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/first.md"
           },
           "fixable": "code",
           "name": "import/first",
@@ -2480,7 +2480,7 @@
           "docs": {
             "category": "Style guide",
             "description": "Enforce a newline after import statements.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/newline-after-import.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/newline-after-import.md"
           },
           "fixable": "whitespace",
           "name": "import/newline-after-import",
@@ -2497,7 +2497,7 @@
           "docs": {
             "category": "Style guide",
             "description": "Forbid repeated import of the same module in multiple places.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-duplicates.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-duplicates.md"
           },
           "fixable": "code",
           "name": "import/no-duplicates",
@@ -2508,7 +2508,7 @@
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid the use of mutable exports with `var` or `let`.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-mutable-exports.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-mutable-exports.md"
           },
           "name": "import/no-mutable-exports",
           "level": "error"
@@ -2518,7 +2518,7 @@
           "docs": {
             "category": "Style guide",
             "description": "Forbid named default exports.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-named-default.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-named-default.md"
           },
           "name": "import/no-named-default",
           "level": "error"
@@ -2529,7 +2529,7 @@
             "category": "Static analysis",
             "description": "Forbid a module from importing itself.",
             "recommended": true,
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-self-import.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-self-import.md"
           },
           "name": "import/no-self-import",
           "level": "error"
@@ -2539,7 +2539,7 @@
           "docs": {
             "category": "Static analysis",
             "description": "Forbid webpack loader syntax in imports.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-webpack-loader-syntax.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-webpack-loader-syntax.md"
           },
           "name": "import/no-webpack-loader-syntax",
           "level": "error"
@@ -2549,7 +2549,7 @@
           "docs": {
             "category": "Style guide",
             "description": "Enforce a convention in module import order.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/order.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/order.md"
           },
           "fixable": "code",
           "name": "import/order",
@@ -2592,7 +2592,7 @@
           "type": "problem",
           "docs": {
             "description": "Enforce passing a `message` value when creating a built-in error.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/error-message.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/error-message.md"
           },
           "name": "unicorn/error-message",
           "level": "error"
@@ -2601,7 +2601,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Require escape sequences to use uppercase values.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/escape-case.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/escape-case.md"
           },
           "fixable": "code",
           "name": "unicorn/escape-case",
@@ -2611,7 +2611,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Require `Array.isArray()` instead of `instanceof Array`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/no-instanceof-array.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/no-instanceof-array.md"
           },
           "fixable": "code",
           "name": "unicorn/no-instanceof-array",
@@ -2621,7 +2621,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Disallow `new Array()`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/no-new-array.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/no-new-array.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2632,7 +2632,7 @@
           "type": "problem",
           "docs": {
             "description": "Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/no-new-buffer.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/no-new-buffer.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2643,7 +2643,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Enforce proper case for numeric literals.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/number-literal-case.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/number-literal-case.md"
           },
           "fixable": "code",
           "name": "unicorn/number-literal-case",
@@ -2653,7 +2653,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `.textContent` over `.innerText`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-dom-node-text-content.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-dom-node-text-content.md"
           },
           "hasSuggestions": true,
           "name": "unicorn/prefer-dom-node-text-content",
@@ -2663,7 +2663,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `.includes()` over `.indexOf()` and `Array#some()` when checking for existence or non-existence.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-includes.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-includes.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2674,7 +2674,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer using the `node:` protocol when importing Node.js builtin modules.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-node-protocol.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-node-protocol.md"
           },
           "fixable": "code",
           "name": "unicorn/prefer-node-protocol",
@@ -2684,7 +2684,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `Number` static properties over global ones.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-number-properties.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-number-properties.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2695,7 +2695,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-string-starts-ends-with.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-string-starts-ends-with.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2706,7 +2706,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Enforce throwing `TypeError` in type checking conditions.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-type-error.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-type-error.md"
           },
           "fixable": "code",
           "name": "unicorn/prefer-type-error",
@@ -2716,7 +2716,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Require `new` when throwing an error.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/throw-new-error.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/throw-new-error.md"
           },
           "fixable": "code",
           "name": "unicorn/throw-new-error",
@@ -2729,12 +2729,6 @@
     {
       "name": "vinicunca:typescript:setup",
       "plugins": {
-        "import": {
-          "url": "https://github.com/un-es/eslint-plugin-i"
-        },
-        "style": {
-          "url": "https://eslint.style/"
-        },
         "ts": {
           "url": "https://typescript-eslint.io/"
         },
@@ -3345,28 +3339,6 @@
           "plugin": "eslint",
           "level": "off"
         },
-        "style/type-generic-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforces consistent spacing inside TypeScript type generics",
-            "recommended": "stylistic",
-            "url": "https://eslint.style/rules/ts/type-generic-spacing"
-          },
-          "fixable": "whitespace",
-          "name": "style/type-generic-spacing",
-          "level": "error"
-        },
-        "style/type-named-tuple-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Expect space before the type declaration in the named tuple",
-            "recommended": "stylistic",
-            "url": "https://eslint.style/rules/ts/type-named-tuple-spacing"
-          },
-          "fixable": "whitespace",
-          "name": "style/type-named-tuple-spacing",
-          "level": "error"
-        },
         "ts/consistent-type-definitions": {
           "type": "suggestion",
           "docs": {
@@ -3533,171 +3505,16 @@
           },
           "name": "ts/parameter-properties",
           "level": "off"
-        },
-        "vinicunca/no-cjs-exports": {
-          "docs": {
-            "description": "Do not use CJS exports",
-            "url": "https://eslint.vinicunca.dev/plugin-vinicunca/no-cjs-exports"
-          },
-          "type": "problem",
-          "name": "vinicunca/no-cjs-exports",
-          "level": "error"
-        },
-        "vinicunca/no-ts-export-equal": {
-          "docs": {
-            "description": "Do not use `exports =`",
-            "recommended": "recommended",
-            "url": "https://eslint.vinicunca.dev/plugin-vinicunca/no-ts-export-equal"
-          },
-          "type": "problem",
-          "name": "vinicunca/no-ts-export-equal",
-          "level": "error"
-        },
-        "dot-notation": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce dot notation whenever possible",
-            "recommended": false,
-            "url": "https://eslint.org/docs/latest/rules/dot-notation"
-          },
-          "fixable": "code",
-          "name": "dot-notation",
-          "plugin": "eslint",
-          "level": "off"
-        },
-        "no-implied-eval": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Disallow the use of `eval()`-like methods",
-            "recommended": false,
-            "url": "https://eslint.org/docs/latest/rules/no-implied-eval"
-          },
-          "name": "no-implied-eval",
-          "plugin": "eslint",
-          "level": "off"
-        },
-        "no-throw-literal": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Disallow throwing literals as exceptions",
-            "recommended": false,
-            "url": "https://eslint.org/docs/latest/rules/no-throw-literal"
-          },
-          "name": "no-throw-literal",
-          "plugin": "eslint",
-          "level": "off"
-        },
-        "ts/await-thenable": {
-          "docs": {
-            "description": "Disallow awaiting a value that is not a Thenable",
-            "recommended": "recommended",
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/await-thenable"
-          },
-          "hasSuggestions": true,
-          "type": "problem",
-          "name": "ts/await-thenable",
-          "level": "error"
-        },
-        "ts/dot-notation": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce dot notation whenever possible",
-            "recommended": "stylistic",
-            "extendsBaseRule": true,
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/dot-notation"
-          },
-          "fixable": "code",
-          "name": "ts/dot-notation",
-          "level": "error",
-          "options": [
-            {
-              "allowKeywords": true
-            }
-          ]
-        },
-        "ts/no-floating-promises": {
-          "docs": {
-            "description": "Require Promise-like statements to be handled appropriately",
-            "recommended": "recommended",
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/no-floating-promises"
-          },
-          "hasSuggestions": true,
-          "type": "problem",
-          "name": "ts/no-floating-promises",
-          "level": "error"
-        },
-        "ts/no-for-in-array": {
-          "docs": {
-            "description": "Disallow iterating over an array with a for-in loop",
-            "recommended": "recommended",
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/no-for-in-array"
-          },
-          "type": "problem",
-          "name": "ts/no-for-in-array",
-          "level": "error"
-        },
-        "ts/no-implied-eval": {
-          "docs": {
-            "description": "Disallow the use of `eval()`-like methods",
-            "recommended": "recommended",
-            "extendsBaseRule": true,
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/no-implied-eval"
-          },
-          "type": "suggestion",
-          "name": "ts/no-implied-eval",
-          "level": "error"
-        },
-        "ts/no-misused-promises": {
-          "docs": {
-            "description": "Disallow Promises in places not designed to handle them",
-            "recommended": "recommended",
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/no-misused-promises"
-          },
-          "type": "problem",
-          "name": "ts/no-misused-promises",
-          "level": "off"
-        },
-        "ts/no-throw-literal": {
-          "type": "problem",
-          "docs": {
-            "description": "Disallow throwing literals as exceptions",
-            "recommended": "strict",
-            "extendsBaseRule": true,
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/no-throw-literal"
-          },
-          "name": "ts/no-throw-literal",
-          "level": "error"
-        },
-        "ts/restrict-plus-operands": {
-          "type": "problem",
-          "docs": {
-            "description": "Require both operands of addition to be the same type and be `bigint`, `number`, or `string`",
-            "recommended": "recommended",
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/restrict-plus-operands"
-          },
-          "name": "ts/restrict-plus-operands",
-          "level": "error"
-        },
-        "ts/restrict-template-expressions": {
-          "type": "problem",
-          "docs": {
-            "description": "Enforce template literal expressions to be of `string` type",
-            "recommended": "recommended",
-            "requiresTypeChecking": true,
-            "url": "https://typescript-eslint.io/rules/restrict-template-expressions"
-          },
-          "name": "ts/restrict-template-expressions",
-          "level": "error"
         }
       }
+    },
+    {
+      "files": [
+        "**/*.?([cm])ts",
+        "**/*.?([cm])tsx"
+      ],
+      "name": "vinicunca:typescript:rules-type-aware",
+      "rules": {}
     },
     {
       "files": [
@@ -3722,10 +3539,21 @@
           "docs": {
             "category": "Style guide",
             "description": "Forbid repeated import of the same module in multiple places.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-duplicates.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-duplicates.md"
           },
           "fixable": "code",
           "name": "import/no-duplicates",
+          "level": "off"
+        },
+        "no-restricted-syntax": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Disallow specified syntax",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/no-restricted-syntax"
+          },
+          "name": "no-restricted-syntax",
+          "plugin": "eslint",
           "level": "off"
         },
         "unused-imports/no-unused-vars": {
@@ -3802,34 +3630,6 @@
         }
       },
       "rules": {
-        "curly": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce consistent brace style for all control statements",
-            "recommended": false,
-            "url": "https://eslint.org/docs/latest/rules/curly"
-          },
-          "fixable": "code",
-          "name": "curly",
-          "plugin": "eslint",
-          "level": "error",
-          "options": [
-            "all"
-          ]
-        },
-        "style/array-bracket-newline": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce linebreaks after opening and before closing array brackets",
-            "url": "https://eslint.style/rules/js/array-bracket-newline"
-          },
-          "fixable": "whitespace",
-          "name": "style/array-bracket-newline",
-          "level": "error",
-          "options": [
-            "consistent"
-          ]
-        },
         "style/array-bracket-spacing": {
           "type": "layout",
           "docs": {
@@ -3841,19 +3641,6 @@
           "level": "error",
           "options": [
             "never"
-          ]
-        },
-        "style/array-element-newline": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce line breaks after each array element",
-            "url": "https://eslint.style/rules/js/array-element-newline"
-          },
-          "fixable": "whitespace",
-          "name": "style/array-element-newline",
-          "level": "error",
-          "options": [
-            "consistent"
           ]
         },
         "style/arrow-parens": {
@@ -3994,20 +3781,6 @@
           "name": "style/eol-last",
           "level": "error"
         },
-        "style/func-call-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Require or disallow spacing between function identifiers and their invocations",
-            "extendsBaseRule": true,
-            "url": "https://eslint.style/rules/ts/function-call-spacing"
-          },
-          "fixable": "whitespace",
-          "name": "style/func-call-spacing",
-          "level": "error",
-          "options": [
-            "never"
-          ]
-        },
         "style/indent": {
           "type": "layout",
           "docs": {
@@ -4025,6 +3798,7 @@
               "CallExpression": {
                 "arguments": 1
               },
+              "flatTernaryExpressions": false,
               "FunctionDeclaration": {
                 "body": 1,
                 "parameters": 1
@@ -4033,12 +3807,6 @@
                 "body": 1,
                 "parameters": 1
               },
-              "ImportDeclaration": 1,
-              "MemberExpression": 1,
-              "ObjectExpression": 1,
-              "SwitchCase": 1,
-              "VariableDeclarator": 1,
-              "flatTernaryExpressions": false,
               "ignoreComments": false,
               "ignoredNodes": [
                 "TemplateLiteral *",
@@ -4058,13 +3826,20 @@
                 "JSXText",
                 "JSXEmptyExpression",
                 "JSXSpreadChild",
+                "TSUnionType",
+                "TSIntersectionType",
                 "TSTypeParameterInstantiation",
                 "FunctionExpression > .params[decorators.length > 0]",
                 "FunctionExpression > .params > :matches(Decorator, :not(:first-child))",
                 "ClassBody.body > PropertyDefinition[decorators.length > 0] > .key"
               ],
+              "ImportDeclaration": 1,
+              "MemberExpression": 1,
+              "ObjectExpression": 1,
               "offsetTernaryExpressions": true,
-              "outerIIFEBody": 1
+              "outerIIFEBody": 1,
+              "SwitchCase": 1,
+              "VariableDeclarator": 1
             }
           ]
         },
@@ -4271,7 +4046,7 @@
             {
               "max": 1,
               "maxBOF": 0,
-              "maxEOF": 1
+              "maxEOF": 0
             }
           ]
         },
@@ -4304,22 +4079,6 @@
           "name": "style/no-whitespace-before-property",
           "level": "error"
         },
-        "style/object-curly-newline": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent line breaks after opening and before closing braces",
-            "url": "https://eslint.style/rules/js/object-curly-newline"
-          },
-          "fixable": "whitespace",
-          "name": "style/object-curly-newline",
-          "level": "error",
-          "options": [
-            {
-              "consistent": true,
-              "multiline": true
-            }
-          ]
-        },
         "style/object-curly-spacing": {
           "type": "layout",
           "docs": {
@@ -4332,21 +4091,6 @@
           "level": "error",
           "options": [
             "always"
-          ]
-        },
-        "style/object-property-newline": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce placing object properties on separate lines",
-            "url": "https://eslint.style/rules/js/object-property-newline"
-          },
-          "fixable": "whitespace",
-          "name": "style/object-property-newline",
-          "level": "error",
-          "options": [
-            {
-              "allowMultiplePropertiesPerLine": true
-            }
           ]
         },
         "style/operator-linebreak": {
@@ -4475,7 +4219,7 @@
           "level": "error",
           "options": [
             {
-              "anonymous": "never",
+              "anonymous": "always",
               "asyncArrow": "always",
               "named": "never"
             }
@@ -4590,6 +4334,28 @@
             {}
           ]
         },
+        "style/type-generic-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforces consistent spacing inside TypeScript type generics",
+            "recommended": "stylistic",
+            "url": "https://eslint.style/rules/ts/type-generic-spacing"
+          },
+          "fixable": "whitespace",
+          "name": "style/type-generic-spacing",
+          "level": "error"
+        },
+        "style/type-named-tuple-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Expect space before the type declaration in the named tuple",
+            "recommended": "stylistic",
+            "url": "https://eslint.style/rules/ts/type-named-tuple-spacing"
+          },
+          "fixable": "whitespace",
+          "name": "style/type-named-tuple-spacing",
+          "level": "error"
+        },
         "style/wrap-iife": {
           "type": "layout",
           "docs": {
@@ -4617,6 +4383,281 @@
           "level": "error",
           "options": [
             "both"
+          ]
+        },
+        "style/jsx-closing-bracket-location": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce closing bracket location in JSX",
+            "url": "https://eslint.style/rules/jsx/jsx-closing-bracket-location"
+          },
+          "fixable": "code",
+          "name": "style/jsx-closing-bracket-location",
+          "level": "error"
+        },
+        "style/jsx-closing-tag-location": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce closing tag location for multiline JSX",
+            "url": "https://eslint.style/rules/jsx/jsx-closing-tag-location"
+          },
+          "fixable": "whitespace",
+          "name": "style/jsx-closing-tag-location",
+          "level": "error"
+        },
+        "style/jsx-curly-brace-presence": {
+          "type": "layout",
+          "docs": {
+            "description": "Disallow unnecessary JSX expressions when literals alone are sufficient or enforce JSX expressions on literals in JSX children or attributes",
+            "url": "https://eslint.style/rules/jsx/jsx-curly-brace-presence"
+          },
+          "fixable": "code",
+          "name": "style/jsx-curly-brace-presence",
+          "level": "error",
+          "options": [
+            {
+              "propElementValues": "always"
+            }
+          ]
+        },
+        "style/jsx-curly-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent linebreaks in curly braces in JSX attributes and expressions",
+            "recommended": "stylistic",
+            "url": "https://eslint.style/rules/jsx/jsx-curly-newline"
+          },
+          "fixable": "whitespace",
+          "name": "style/jsx-curly-newline",
+          "level": "error"
+        },
+        "style/jsx-curly-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce or disallow spaces inside of curly braces in JSX attributes and expressions",
+            "url": "https://eslint.style/rules/jsx/jsx-curly-spacing"
+          },
+          "fixable": "code",
+          "name": "style/jsx-curly-spacing",
+          "level": "error",
+          "options": [
+            "never"
+          ]
+        },
+        "style/jsx-equals-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce or disallow spaces around equal signs in JSX attributes",
+            "url": "https://eslint.style/rules/jsx/jsx-equals-spacing"
+          },
+          "fixable": "code",
+          "name": "style/jsx-equals-spacing",
+          "level": "error"
+        },
+        "style/jsx-first-prop-new-line": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce proper position of the first property in JSX",
+            "url": "https://eslint.style/rules/jsx/jsx-first-prop-new-line"
+          },
+          "fixable": "code",
+          "name": "style/jsx-first-prop-new-line",
+          "level": "error"
+        },
+        "style/jsx-indent": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce JSX indentation",
+            "url": "https://eslint.style/rules/jsx/jsx-indent"
+          },
+          "fixable": "whitespace",
+          "name": "style/jsx-indent",
+          "level": "error",
+          "options": [
+            2,
+            {
+              "checkAttributes": true,
+              "indentLogicalExpressions": true
+            }
+          ]
+        },
+        "style/jsx-indent-props": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce props indentation in JSX",
+            "url": "https://eslint.style/rules/jsx/jsx-indent-props"
+          },
+          "fixable": "code",
+          "name": "style/jsx-indent-props",
+          "level": "error",
+          "options": [
+            2
+          ]
+        },
+        "style/jsx-max-props-per-line": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce maximum of props on a single line in JSX",
+            "url": "https://eslint.style/rules/jsx/jsx-max-props-per-line"
+          },
+          "fixable": "code",
+          "name": "style/jsx-max-props-per-line",
+          "level": "error",
+          "options": [
+            {
+              "maximum": 1,
+              "when": "multiline"
+            }
+          ]
+        },
+        "style/jsx-one-expression-per-line": {
+          "type": "layout",
+          "docs": {
+            "description": "Require one JSX element per line",
+            "url": "https://eslint.style/rules/jsx/jsx-one-expression-per-line"
+          },
+          "fixable": "whitespace",
+          "name": "style/jsx-one-expression-per-line",
+          "level": "error",
+          "options": [
+            {
+              "allow": "single-child"
+            }
+          ]
+        },
+        "style/jsx-quotes": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce the consistent use of either double or single quotes in JSX attributes",
+            "url": "https://eslint.style/rules/js/jsx-quotes"
+          },
+          "fixable": "whitespace",
+          "name": "style/jsx-quotes",
+          "level": "error"
+        },
+        "style/jsx-tag-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce whitespace in and around the JSX opening and closing brackets",
+            "url": "https://eslint.style/rules/jsx/jsx-tag-spacing"
+          },
+          "fixable": "whitespace",
+          "name": "style/jsx-tag-spacing",
+          "level": "error",
+          "options": [
+            {
+              "afterOpening": "never",
+              "beforeClosing": "never",
+              "beforeSelfClosing": "always",
+              "closingSlash": "never"
+            }
+          ]
+        },
+        "style/jsx-wrap-multilines": {
+          "type": "layout",
+          "docs": {
+            "description": "Disallow missing parentheses around multiline JSX",
+            "url": "https://eslint.style/rules/jsx/jsx-wrap-multilines"
+          },
+          "fixable": "code",
+          "name": "style/jsx-wrap-multilines",
+          "level": "error",
+          "options": [
+            {
+              "arrow": "parens-new-line",
+              "assignment": "parens-new-line",
+              "condition": "parens-new-line",
+              "declaration": "parens-new-line",
+              "logical": "parens-new-line",
+              "prop": "parens-new-line",
+              "return": "parens-new-line"
+            }
+          ]
+        },
+        "curly": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce consistent brace style for all control statements",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/curly"
+          },
+          "fixable": "code",
+          "name": "curly",
+          "plugin": "eslint",
+          "level": "error",
+          "options": [
+            "all"
+          ]
+        },
+        "style/array-bracket-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce linebreaks after opening and before closing array brackets",
+            "url": "https://eslint.style/rules/js/array-bracket-newline"
+          },
+          "fixable": "whitespace",
+          "name": "style/array-bracket-newline",
+          "level": "error",
+          "options": [
+            "consistent"
+          ]
+        },
+        "style/array-element-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce line breaks after each array element",
+            "url": "https://eslint.style/rules/js/array-element-newline"
+          },
+          "fixable": "whitespace",
+          "name": "style/array-element-newline",
+          "level": "error",
+          "options": [
+            "consistent"
+          ]
+        },
+        "style/func-call-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Require or disallow spacing between function identifiers and their invocations",
+            "extendsBaseRule": true,
+            "url": "https://eslint.style/rules/ts/function-call-spacing"
+          },
+          "fixable": "whitespace",
+          "name": "style/func-call-spacing",
+          "level": "error",
+          "options": [
+            "never"
+          ]
+        },
+        "style/object-curly-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent line breaks after opening and before closing braces",
+            "url": "https://eslint.style/rules/js/object-curly-newline"
+          },
+          "fixable": "whitespace",
+          "name": "style/object-curly-newline",
+          "level": "error",
+          "options": [
+            {
+              "consistent": true,
+              "multiline": true
+            }
+          ]
+        },
+        "style/object-property-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce placing object properties on separate lines",
+            "url": "https://eslint.style/rules/js/object-property-newline"
+          },
+          "fixable": "whitespace",
+          "name": "style/object-property-newline",
+          "level": "error",
+          "options": [
+            {
+              "allowMultiplePropertiesPerLine": true
+            }
           ]
         },
         "vinicunca/consistent-list-newline": {
@@ -4672,6 +4713,17 @@
       ],
       "name": "vinicunca:test:rules",
       "rules": {
+        "node/prefer-global/process": {
+          "docs": {
+            "description": "enforce either `process` or `require(\"process\")`",
+            "recommended": false,
+            "url": "https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/process.md"
+          },
+          "type": "suggestion",
+          "fixable": null,
+          "name": "node/prefer-global/process",
+          "level": "off"
+        },
         "test/consistent-test-it": {
           "type": "suggestion",
           "fixable": "code",
@@ -6355,45 +6407,6 @@
           "name": "node/prefer-global/process",
           "level": "off"
         },
-        "vue/array-bracket-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent spacing inside array brackets in `<template>`",
-            "url": "https://eslint.vuejs.org/rules/array-bracket-spacing.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/js/array-bracket-spacing",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/array-bracket-spacing",
-          "level": "error",
-          "options": [
-            "never"
-          ]
-        },
-        "vue/arrow-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent spacing before and after the arrow in arrow functions in `<template>`",
-            "url": "https://eslint.vuejs.org/rules/arrow-spacing.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/js/arrow-spacing",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/arrow-spacing",
-          "level": "error",
-          "options": [
-            {
-              "after": true,
-              "before": true
-            }
-          ]
-        },
         "vue/block-order": {
           "type": "suggestion",
           "docs": {
@@ -6411,122 +6424,6 @@
                 "style"
               ]
             }
-          ]
-        },
-        "vue/block-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Disallow or enforce spaces inside of blocks after opening block and before closing block in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/block-spacing.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/block-spacing",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/block-spacing",
-          "level": "error",
-          "options": [
-            "always"
-          ]
-        },
-        "vue/block-tag-newline": {
-          "type": "layout",
-          "docs": {
-            "description": "enforce line breaks after opening and before closing block-level tags",
-            "url": "https://eslint.vuejs.org/rules/block-tag-newline.html"
-          },
-          "fixable": "whitespace",
-          "name": "vue/block-tag-newline",
-          "level": "error",
-          "options": [
-            {
-              "multiline": "always",
-              "singleline": "always"
-            }
-          ]
-        },
-        "vue/brace-style": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent brace style for blocks in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/brace-style.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/brace-style",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/brace-style",
-          "level": "error",
-          "options": [
-            "stroustrup",
-            {
-              "allowSingleLine": true
-            }
-          ]
-        },
-        "vue/comma-dangle": {
-          "type": "layout",
-          "docs": {
-            "description": "Require or disallow trailing commas in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/comma-dangle.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/comma-dangle",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "code",
-          "name": "vue/comma-dangle",
-          "level": "error",
-          "options": [
-            "always-multiline"
-          ]
-        },
-        "vue/comma-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent spacing before and after commas in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/comma-spacing.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/comma-spacing",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/comma-spacing",
-          "level": "error",
-          "options": [
-            {
-              "after": true,
-              "before": false
-            }
-          ]
-        },
-        "vue/comma-style": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent comma style in `<template>`",
-            "url": "https://eslint.vuejs.org/rules/comma-style.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/js/comma-style",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "code",
-          "name": "vue/comma-style",
-          "level": "error",
-          "options": [
-            "last"
           ]
         },
         "vue/component-name-in-template-casing": {
@@ -6645,68 +6542,6 @@
           "level": "error",
           "options": [
             "smart"
-          ]
-        },
-        "vue/html-comment-content-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "enforce unified spacing in HTML comments",
-            "url": "https://eslint.vuejs.org/rules/html-comment-content-spacing.html"
-          },
-          "fixable": "whitespace",
-          "name": "vue/html-comment-content-spacing",
-          "level": "error",
-          "options": [
-            "always",
-            {
-              "exceptions": [
-                "-"
-              ]
-            }
-          ]
-        },
-        "vue/key-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent spacing between keys and values in object literal properties in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/key-spacing.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/key-spacing",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/key-spacing",
-          "level": "error",
-          "options": [
-            {
-              "afterColon": true,
-              "beforeColon": false
-            }
-          ]
-        },
-        "vue/keyword-spacing": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent spacing before and after keywords in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/keyword-spacing.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/keyword-spacing",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/keyword-spacing",
-          "level": "error",
-          "options": [
-            {
-              "after": true,
-              "before": true
-            }
           ]
         },
         "vue/no-constant-condition": {
@@ -6864,6 +6699,309 @@
           "name": "vue/no-useless-v-bind",
           "level": "error"
         },
+        "vue/object-shorthand": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Require or disallow method and property shorthand syntax for object literals in `<template>`",
+            "recommended": false,
+            "url": "https://eslint.vuejs.org/rules/object-shorthand.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.org/docs/latest/rules/object-shorthand",
+              "name": "ESLint core"
+            }
+          },
+          "fixable": "code",
+          "name": "vue/object-shorthand",
+          "level": "error",
+          "options": [
+            "always",
+            {
+              "avoidQuotes": true,
+              "ignoreConstructors": false
+            }
+          ]
+        },
+        "vue/prefer-separate-static-class": {
+          "type": "suggestion",
+          "docs": {
+            "description": "require static class names in template to be in a separate `class` attribute",
+            "url": "https://eslint.vuejs.org/rules/prefer-separate-static-class.html"
+          },
+          "fixable": "code",
+          "name": "vue/prefer-separate-static-class",
+          "level": "error"
+        },
+        "vue/prefer-template": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Require template literals instead of string concatenation in `<template>`",
+            "recommended": false,
+            "url": "https://eslint.vuejs.org/rules/prefer-template.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.org/docs/latest/rules/prefer-template",
+              "name": "ESLint core"
+            }
+          },
+          "fixable": "code",
+          "name": "vue/prefer-template",
+          "level": "error"
+        },
+        "vue/space-infix-ops": {
+          "type": "layout",
+          "docs": {
+            "description": "Require spacing around infix operators in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/space-infix-ops.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/space-infix-ops",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/space-infix-ops",
+          "level": "error"
+        },
+        "vue/space-unary-ops": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent spacing before or after unary operators in `<template>`",
+            "url": "https://eslint.vuejs.org/rules/space-unary-ops.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/js/space-unary-ops",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/space-unary-ops",
+          "level": "error",
+          "options": [
+            {
+              "nonwords": false,
+              "words": true
+            }
+          ]
+        },
+        "vue/array-bracket-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent spacing inside array brackets in `<template>`",
+            "url": "https://eslint.vuejs.org/rules/array-bracket-spacing.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/js/array-bracket-spacing",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/array-bracket-spacing",
+          "level": "error",
+          "options": [
+            "never"
+          ]
+        },
+        "vue/arrow-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent spacing before and after the arrow in arrow functions in `<template>`",
+            "url": "https://eslint.vuejs.org/rules/arrow-spacing.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/js/arrow-spacing",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/arrow-spacing",
+          "level": "error",
+          "options": [
+            {
+              "after": true,
+              "before": true
+            }
+          ]
+        },
+        "vue/block-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Disallow or enforce spaces inside of blocks after opening block and before closing block in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/block-spacing.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/block-spacing",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/block-spacing",
+          "level": "error",
+          "options": [
+            "always"
+          ]
+        },
+        "vue/block-tag-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "enforce line breaks after opening and before closing block-level tags",
+            "url": "https://eslint.vuejs.org/rules/block-tag-newline.html"
+          },
+          "fixable": "whitespace",
+          "name": "vue/block-tag-newline",
+          "level": "error",
+          "options": [
+            {
+              "multiline": "always",
+              "singleline": "always"
+            }
+          ]
+        },
+        "vue/brace-style": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent brace style for blocks in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/brace-style.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/brace-style",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/brace-style",
+          "level": "error",
+          "options": [
+            "stroustrup",
+            {
+              "allowSingleLine": true
+            }
+          ]
+        },
+        "vue/comma-dangle": {
+          "type": "layout",
+          "docs": {
+            "description": "Require or disallow trailing commas in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/comma-dangle.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/comma-dangle",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "code",
+          "name": "vue/comma-dangle",
+          "level": "error",
+          "options": [
+            "always-multiline"
+          ]
+        },
+        "vue/comma-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent spacing before and after commas in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/comma-spacing.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/comma-spacing",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/comma-spacing",
+          "level": "error",
+          "options": [
+            {
+              "after": true,
+              "before": false
+            }
+          ]
+        },
+        "vue/comma-style": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent comma style in `<template>`",
+            "url": "https://eslint.vuejs.org/rules/comma-style.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/js/comma-style",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "code",
+          "name": "vue/comma-style",
+          "level": "error",
+          "options": [
+            "last"
+          ]
+        },
+        "vue/html-comment-content-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "enforce unified spacing in HTML comments",
+            "url": "https://eslint.vuejs.org/rules/html-comment-content-spacing.html"
+          },
+          "fixable": "whitespace",
+          "name": "vue/html-comment-content-spacing",
+          "level": "error",
+          "options": [
+            "always",
+            {
+              "exceptions": [
+                "-"
+              ]
+            }
+          ]
+        },
+        "vue/key-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent spacing between keys and values in object literal properties in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/key-spacing.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/key-spacing",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/key-spacing",
+          "level": "error",
+          "options": [
+            {
+              "afterColon": true,
+              "beforeColon": false
+            }
+          ]
+        },
+        "vue/keyword-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce consistent spacing before and after keywords in `<template>`",
+            "extendsBaseRule": true,
+            "url": "https://eslint.vuejs.org/rules/keyword-spacing.html",
+            "category": null,
+            "extensionSource": {
+              "url": "https://eslint.style/rules/ts/keyword-spacing",
+              "name": "ESLint Stylistic"
+            }
+          },
+          "fixable": "whitespace",
+          "name": "vue/keyword-spacing",
+          "level": "error",
+          "options": [
+            {
+              "after": true,
+              "before": true
+            }
+          ]
+        },
         "vue/object-curly-newline": {
           "type": "layout",
           "docs": {
@@ -6924,29 +7062,6 @@
             }
           ]
         },
-        "vue/object-shorthand": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Require or disallow method and property shorthand syntax for object literals in `<template>`",
-            "recommended": false,
-            "url": "https://eslint.vuejs.org/rules/object-shorthand.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.org/docs/latest/rules/object-shorthand",
-              "name": "ESLint core"
-            }
-          },
-          "fixable": "code",
-          "name": "vue/object-shorthand",
-          "level": "error",
-          "options": [
-            "always",
-            {
-              "avoidQuotes": true,
-              "ignoreConstructors": false
-            }
-          ]
-        },
         "vue/operator-linebreak": {
           "type": "layout",
           "docs": {
@@ -6977,32 +7092,6 @@
           "options": [
             "always"
           ]
-        },
-        "vue/prefer-separate-static-class": {
-          "type": "suggestion",
-          "docs": {
-            "description": "require static class names in template to be in a separate `class` attribute",
-            "url": "https://eslint.vuejs.org/rules/prefer-separate-static-class.html"
-          },
-          "fixable": "code",
-          "name": "vue/prefer-separate-static-class",
-          "level": "error"
-        },
-        "vue/prefer-template": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Require template literals instead of string concatenation in `<template>`",
-            "recommended": false,
-            "url": "https://eslint.vuejs.org/rules/prefer-template.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.org/docs/latest/rules/prefer-template",
-              "name": "ESLint core"
-            }
-          },
-          "fixable": "code",
-          "name": "vue/prefer-template",
-          "level": "error"
         },
         "vue/quote-props": {
           "type": "layout",
@@ -7040,43 +7129,6 @@
             "never"
           ]
         },
-        "vue/space-infix-ops": {
-          "type": "layout",
-          "docs": {
-            "description": "Require spacing around infix operators in `<template>`",
-            "extendsBaseRule": true,
-            "url": "https://eslint.vuejs.org/rules/space-infix-ops.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/ts/space-infix-ops",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/space-infix-ops",
-          "level": "error"
-        },
-        "vue/space-unary-ops": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent spacing before or after unary operators in `<template>`",
-            "url": "https://eslint.vuejs.org/rules/space-unary-ops.html",
-            "category": null,
-            "extensionSource": {
-              "url": "https://eslint.style/rules/js/space-unary-ops",
-              "name": "ESLint Stylistic"
-            }
-          },
-          "fixable": "whitespace",
-          "name": "vue/space-unary-ops",
-          "level": "error",
-          "options": [
-            {
-              "nonwords": false,
-              "words": true
-            }
-          ]
-        },
         "vue/template-curly-spacing": {
           "type": "layout",
           "docs": {
@@ -7090,675 +7142,6 @@
           },
           "fixable": "whitespace",
           "name": "vue/template-curly-spacing",
-          "level": "error"
-        }
-      }
-    }
-  ],
-  "react": [
-    {
-      "name": "vinicunca:react:setup",
-      "plugins": {
-        "react": {},
-        "react-hooks": {}
-      },
-      "settings": {
-        "react": {
-          "version": "detect"
-        }
-      }
-    },
-    {
-      "files": [
-        "**/*.?([cm])jsx",
-        "**/*.?([cm])tsx"
-      ],
-      "name": "vinicunca:react:rules",
-      "rules": {
-        "react/display-name": {
-          "docs": {
-            "description": "Disallow missing displayName in a React component definition",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/display-name.md"
-          },
-          "name": "react/display-name",
-          "level": "error"
-        },
-        "react/jsx-key": {
-          "docs": {
-            "description": "Disallow missing `key` props in iterators/collection literals",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-key.md"
-          },
-          "name": "react/jsx-key",
-          "level": "off"
-        },
-        "react/jsx-no-comment-textnodes": {
-          "docs": {
-            "description": "Disallow comments from being inserted as text nodes",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-comment-textnodes.md"
-          },
-          "name": "react/jsx-no-comment-textnodes",
-          "level": "error"
-        },
-        "react/jsx-no-duplicate-props": {
-          "docs": {
-            "description": "Disallow duplicate properties in JSX",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-duplicate-props.md"
-          },
-          "name": "react/jsx-no-duplicate-props",
-          "level": "error",
-          "options": [
-            {
-              "ignoreCase": true
-            }
-          ]
-        },
-        "react/jsx-no-target-blank": {
-          "fixable": "code",
-          "docs": {
-            "description": "Disallow `target=\"_blank\"` attribute without `rel=\"noreferrer\"`",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-target-blank.md"
-          },
-          "name": "react/jsx-no-target-blank",
-          "level": "error"
-        },
-        "react/jsx-no-undef": {
-          "docs": {
-            "description": "Disallow undeclared variables in JSX",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-undef.md"
-          },
-          "name": "react/jsx-no-undef",
-          "level": "error"
-        },
-        "react/jsx-uses-react": {
-          "docs": {
-            "description": "Disallow React to be incorrectly marked as unused",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-uses-react.md"
-          },
-          "name": "react/jsx-uses-react",
-          "level": "error"
-        },
-        "react/jsx-uses-vars": {
-          "docs": {
-            "description": "Disallow variables used in JSX to be incorrectly marked as unused",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-uses-vars.md"
-          },
-          "name": "react/jsx-uses-vars",
-          "level": "error"
-        },
-        "react/no-children-prop": {
-          "docs": {
-            "description": "Disallow passing of children as props",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-children-prop.md"
-          },
-          "name": "react/no-children-prop",
-          "level": "error"
-        },
-        "react/no-danger-with-children": {
-          "docs": {
-            "description": "Disallow when a DOM element is using both children and dangerouslySetInnerHTML",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-danger-with-children.md"
-          },
-          "name": "react/no-danger-with-children",
-          "level": "error"
-        },
-        "react/no-deprecated": {
-          "docs": {
-            "description": "Disallow usage of deprecated methods",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-deprecated.md"
-          },
-          "name": "react/no-deprecated",
-          "level": "error"
-        },
-        "react/no-direct-mutation-state": {
-          "docs": {
-            "description": "Disallow direct mutation of this.state",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-direct-mutation-state.md"
-          },
-          "name": "react/no-direct-mutation-state",
-          "level": "error"
-        },
-        "react/no-find-dom-node": {
-          "docs": {
-            "description": "Disallow usage of findDOMNode",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-find-dom-node.md"
-          },
-          "name": "react/no-find-dom-node",
-          "level": "error"
-        },
-        "react/no-is-mounted": {
-          "docs": {
-            "description": "Disallow usage of isMounted",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-is-mounted.md"
-          },
-          "name": "react/no-is-mounted",
-          "level": "error"
-        },
-        "react/no-render-return-value": {
-          "docs": {
-            "description": "Disallow usage of the return value of ReactDOM.render",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-render-return-value.md"
-          },
-          "name": "react/no-render-return-value",
-          "level": "error"
-        },
-        "react/no-string-refs": {
-          "docs": {
-            "description": "Disallow using string references",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-string-refs.md"
-          },
-          "name": "react/no-string-refs",
-          "level": "error"
-        },
-        "react/no-unescaped-entities": {
-          "docs": {
-            "description": "Disallow unescaped HTML entities from appearing in markup",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-unescaped-entities.md"
-          },
-          "name": "react/no-unescaped-entities",
-          "level": "off"
-        },
-        "react/no-unknown-property": {
-          "docs": {
-            "description": "Disallow usage of unknown DOM property",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-unknown-property.md"
-          },
-          "fixable": "code",
-          "name": "react/no-unknown-property",
-          "level": "error"
-        },
-        "react/no-unsafe": {
-          "docs": {
-            "description": "Disallow usage of unsafe lifecycle methods",
-            "category": "Best Practices",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-unsafe.md"
-          },
-          "name": "react/no-unsafe",
-          "level": "off"
-        },
-        "react/prop-types": {
-          "docs": {
-            "description": "Disallow missing props validation in a React component definition",
-            "category": "Best Practices",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/prop-types.md"
-          },
-          "name": "react/prop-types",
-          "level": "off"
-        },
-        "react/react-in-jsx-scope": {
-          "docs": {
-            "description": "Disallow missing React when using JSX",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/react-in-jsx-scope.md"
-          },
-          "name": "react/react-in-jsx-scope",
-          "level": "off"
-        },
-        "react/require-render-return": {
-          "docs": {
-            "description": "Enforce ES5 or ES6 class for returning value in render function",
-            "category": "Possible Errors",
-            "recommended": true,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/require-render-return.md"
-          },
-          "name": "react/require-render-return",
-          "level": "error"
-        },
-        "react-hooks/rules-of-hooks": {
-          "type": "problem",
-          "docs": {
-            "description": "enforces the Rules of Hooks",
-            "recommended": true,
-            "url": "https://reactjs.org/docs/hooks-rules.html"
-          },
-          "name": "react-hooks/rules-of-hooks",
-          "level": "error"
-        },
-        "react-hooks/exhaustive-deps": {
-          "type": "suggestion",
-          "docs": {
-            "description": "verifies the list of dependencies for Hooks like useEffect and similar",
-            "recommended": true,
-            "url": "https://github.com/facebook/react/issues/14920"
-          },
-          "fixable": "code",
-          "hasSuggestions": true,
-          "name": "react-hooks/exhaustive-deps",
-          "level": "warn"
-        },
-        "react/boolean-prop-naming": {
-          "docs": {
-            "category": "Stylistic Issues",
-            "description": "Enforces consistent naming for boolean props",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/boolean-prop-naming.md"
-          },
-          "name": "react/boolean-prop-naming",
-          "level": "off",
-          "options": [
-            {
-              "message": "",
-              "propTypeNames": [
-                "bool",
-                "mutuallyExclusiveTrueProps"
-              ],
-              "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
-            }
-          ]
-        },
-        "react/destructuring-assignment": {
-          "docs": {
-            "description": "Enforce consistent usage of destructuring assignment of props, state, and context",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/destructuring-assignment.md"
-          },
-          "fixable": "code",
-          "name": "react/destructuring-assignment",
-          "level": "error",
-          "options": [
-            "always"
-          ]
-        },
-        "react/jsx-boolean-value": {
-          "docs": {
-            "description": "Enforce boolean attributes notation in JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-boolean-value.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-boolean-value",
-          "level": "error",
-          "options": [
-            "never",
-            {
-              "always": []
-            }
-          ]
-        },
-        "react/jsx-child-element-spacing": {
-          "docs": {
-            "description": "Enforce or disallow spaces inside of curly braces in JSX attributes and expressions",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-child-element-spacing.md"
-          },
-          "fixable": null,
-          "name": "react/jsx-child-element-spacing",
-          "level": "off"
-        },
-        "react/jsx-closing-bracket-location": {
-          "docs": {
-            "description": "Enforce closing bracket location in JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-closing-bracket-location.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-closing-bracket-location",
-          "level": "error",
-          "options": [
-            "line-aligned"
-          ]
-        },
-        "react/jsx-closing-tag-location": {
-          "docs": {
-            "description": "Enforce closing tag location for multiline JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-closing-tag-location.md"
-          },
-          "fixable": "whitespace",
-          "name": "react/jsx-closing-tag-location",
-          "level": "error"
-        },
-        "react/jsx-curly-brace-presence": {
-          "docs": {
-            "description": "Disallow unnecessary JSX expressions when literals alone are sufficient or enforce JSX expressions on literals in JSX children or attributes",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-curly-brace-presence.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-curly-brace-presence",
-          "level": "error",
-          "options": [
-            {
-              "children": "never",
-              "props": "never"
-            }
-          ]
-        },
-        "react/jsx-curly-newline": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce consistent linebreaks in curly braces in JSX attributes and expressions",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-curly-newline.md"
-          },
-          "fixable": "whitespace",
-          "name": "react/jsx-curly-newline",
-          "level": "error",
-          "options": [
-            {
-              "multiline": "consistent",
-              "singleline": "consistent"
-            }
-          ]
-        },
-        "react/jsx-curly-spacing": {
-          "docs": {
-            "description": "Enforce or disallow spaces inside of curly braces in JSX attributes and expressions",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-curly-spacing.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-curly-spacing",
-          "level": "error",
-          "options": [
-            {
-              "children": true,
-              "spacing": {
-                "objectLiterals": "never"
-              },
-              "when": "always"
-            }
-          ]
-        },
-        "react/jsx-equals-spacing": {
-          "docs": {
-            "description": "Enforce or disallow spaces around equal signs in JSX attributes",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-equals-spacing.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-equals-spacing",
-          "level": "error",
-          "options": [
-            "never"
-          ]
-        },
-        "react/jsx-first-prop-new-line": {
-          "docs": {
-            "description": "Enforce proper position of the first property in JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-first-prop-new-line.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-first-prop-new-line",
-          "level": "error",
-          "options": [
-            "multiline-multiprop"
-          ]
-        },
-        "react/jsx-indent": {
-          "docs": {
-            "description": "Enforce JSX indentation",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-indent.md"
-          },
-          "fixable": "whitespace",
-          "name": "react/jsx-indent",
-          "level": "error",
-          "options": [
-            2
-          ]
-        },
-        "react/jsx-indent-props": {
-          "docs": {
-            "description": "Enforce props indentation in JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-indent-props.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-indent-props",
-          "level": "error",
-          "options": [
-            2
-          ]
-        },
-        "react/jsx-max-depth": {
-          "docs": {
-            "description": "Enforce JSX maximum depth",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-max-depth.md"
-          },
-          "name": "react/jsx-max-depth",
-          "level": "off"
-        },
-        "react/jsx-max-props-per-line": {
-          "docs": {
-            "description": "Enforce maximum of props on a single line in JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-max-props-per-line.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-max-props-per-line",
-          "level": "error",
-          "options": [
-            {
-              "maximum": 1,
-              "when": "multiline"
-            }
-          ]
-        },
-        "react/jsx-newline": {
-          "docs": {
-            "description": "Require or prevent a new line after jsx elements and expressions.",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-newline.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-newline",
-          "level": "error"
-        },
-        "react/jsx-no-literals": {
-          "docs": {
-            "description": "Disallow usage of string literals in JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-literals.md"
-          },
-          "name": "react/jsx-no-literals",
-          "level": "off",
-          "options": [
-            {
-              "noStrings": true
-            }
-          ]
-        },
-        "react/jsx-one-expression-per-line": {
-          "docs": {
-            "description": "Require one JSX element per line",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-one-expression-per-line.md"
-          },
-          "fixable": "whitespace",
-          "name": "react/jsx-one-expression-per-line",
-          "level": "error",
-          "options": [
-            {
-              "allow": "single-child"
-            }
-          ]
-        },
-        "react/jsx-pascal-case": {
-          "docs": {
-            "description": "Enforce PascalCase for user-defined JSX components",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-pascal-case.md"
-          },
-          "name": "react/jsx-pascal-case",
-          "level": "error",
-          "options": [
-            {
-              "allowAllCaps": true,
-              "ignore": []
-            }
-          ]
-        },
-        "react/jsx-props-no-multi-spaces": {
-          "docs": {
-            "description": "Disallow multiple spaces between inline JSX props",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-props-no-multi-spaces.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-props-no-multi-spaces",
-          "level": "error"
-        },
-        "react/jsx-sort-default-props": {
-          "deprecated": true,
-          "replacedBy": [
-            "sort-default-props"
-          ],
-          "docs": {
-            "description": "Enforce defaultProps declarations alphabetical sorting",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-sort-default-props.md"
-          },
-          "name": "react/jsx-sort-default-props",
-          "level": "off",
-          "options": [
-            {
-              "ignoreCase": true
-            }
-          ]
-        },
-        "react/jsx-sort-props": {
-          "docs": {
-            "description": "Enforce props alphabetical sorting",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-sort-props.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-sort-props",
-          "level": "off",
-          "options": []
-        },
-        "react/jsx-tag-spacing": {
-          "docs": {
-            "description": "Enforce whitespace in and around the JSX opening and closing brackets",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-tag-spacing.md"
-          },
-          "fixable": "whitespace",
-          "name": "react/jsx-tag-spacing",
-          "level": "error",
-          "options": [
-            {
-              "afterOpening": "never",
-              "beforeClosing": "never",
-              "beforeSelfClosing": "always",
-              "closingSlash": "never"
-            }
-          ]
-        },
-        "react/jsx-wrap-multilines": {
-          "docs": {
-            "description": "Disallow missing parentheses around multiline JSX",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-wrap-multilines.md"
-          },
-          "fixable": "code",
-          "name": "react/jsx-wrap-multilines",
-          "level": "error",
-          "options": [
-            {
-              "arrow": "parens-new-line",
-              "assignment": "parens-new-line",
-              "condition": "parens-new-line",
-              "declaration": "parens-new-line",
-              "logical": "parens-new-line",
-              "prop": "parens-new-line",
-              "return": "parens-new-line"
-            }
-          ]
-        },
-        "react/no-danger": {
-          "docs": {
-            "description": "Disallow usage of dangerous JSX properties",
-            "category": "Best Practices",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-danger.md"
-          },
-          "name": "react/no-danger",
-          "level": "warn"
-        },
-        "react/self-closing-comp": {
-          "docs": {
-            "description": "Disallow extra closing tags for components without children",
-            "category": "Stylistic Issues",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/self-closing-comp.md"
-          },
-          "fixable": "code",
-          "name": "react/self-closing-comp",
-          "level": "error"
-        },
-        "react/style-prop-object": {
-          "docs": {
-            "description": "Enforce style prop value is an object",
-            "category": "Possible Errors",
-            "recommended": false,
-            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/style-prop-object.md"
-          },
-          "name": "react/style-prop-object",
           "level": "error"
         }
       }
@@ -8265,8 +7648,8 @@
             "ruleId": "jsonc/array-bracket-spacing",
             "ruleName": "array-bracket-spacing"
           },
-          "fixable": "whitespace",
           "type": "layout",
+          "fixable": "whitespace",
           "name": "jsonc/array-bracket-spacing",
           "level": "error",
           "options": [
@@ -8285,8 +7668,8 @@
             "ruleId": "jsonc/comma-dangle",
             "ruleName": "comma-dangle"
           },
-          "fixable": "code",
           "type": "layout",
+          "fixable": "code",
           "name": "jsonc/comma-dangle",
           "level": "error",
           "options": [
@@ -8303,8 +7686,8 @@
             "ruleId": "jsonc/comma-style",
             "ruleName": "comma-style"
           },
-          "fixable": "code",
           "type": "layout",
+          "fixable": "code",
           "name": "jsonc/comma-style",
           "level": "error",
           "options": [
@@ -8321,8 +7704,8 @@
             "ruleId": "jsonc/indent",
             "ruleName": "indent"
           },
-          "fixable": "whitespace",
           "type": "layout",
+          "fixable": "whitespace",
           "name": "jsonc/indent",
           "level": "error",
           "options": [
@@ -8339,8 +7722,8 @@
             "ruleId": "jsonc/key-spacing",
             "ruleName": "key-spacing"
           },
-          "fixable": "whitespace",
           "type": "layout",
+          "fixable": "whitespace",
           "name": "jsonc/key-spacing",
           "level": "error",
           "options": [
@@ -8360,8 +7743,8 @@
             "ruleId": "jsonc/object-curly-newline",
             "ruleName": "object-curly-newline"
           },
-          "fixable": "whitespace",
           "type": "layout",
+          "fixable": "whitespace",
           "name": "jsonc/object-curly-newline",
           "level": "error",
           "options": [
@@ -8381,8 +7764,8 @@
             "ruleId": "jsonc/object-curly-spacing",
             "ruleName": "object-curly-spacing"
           },
-          "fixable": "whitespace",
           "type": "layout",
+          "fixable": "whitespace",
           "name": "jsonc/object-curly-spacing",
           "level": "error",
           "options": [
@@ -8399,8 +7782,8 @@
             "ruleId": "jsonc/object-property-newline",
             "ruleName": "object-property-newline"
           },
-          "fixable": "whitespace",
           "type": "layout",
+          "fixable": "whitespace",
           "name": "jsonc/object-property-newline",
           "level": "error",
           "options": [
@@ -8422,8 +7805,8 @@
             "ruleId": "jsonc/quote-props",
             "ruleName": "quote-props"
           },
+          "type": "layout",
           "fixable": "code",
-          "type": "suggestion",
           "name": "jsonc/quote-props",
           "level": "error"
         },
@@ -8440,8 +7823,8 @@
             "ruleId": "jsonc/quotes",
             "ruleName": "quotes"
           },
-          "fixable": "code",
           "type": "layout",
+          "fixable": "code",
           "name": "jsonc/quotes",
           "level": "error"
         }
@@ -8745,23 +8128,6 @@
           "name": "yaml/block-mapping",
           "level": "error"
         },
-        "yaml/block-mapping-question-indicator-newline": {
-          "docs": {
-            "description": "enforce consistent line breaks after `?` indicator",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": false,
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-question-indicator-newline.html",
-            "ruleId": "yml/block-mapping-question-indicator-newline",
-            "ruleName": "block-mapping-question-indicator-newline"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/block-mapping-question-indicator-newline",
-          "level": "error"
-        },
         "yaml/block-sequence": {
           "docs": {
             "description": "require or disallow block style sequences.",
@@ -8777,128 +8143,6 @@
           "fixable": "code",
           "type": "layout",
           "name": "yaml/block-sequence",
-          "level": "error"
-        },
-        "yaml/block-sequence-hyphen-indicator-newline": {
-          "docs": {
-            "description": "enforce consistent line breaks after `-` indicator",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": false,
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence-hyphen-indicator-newline.html",
-            "ruleId": "yml/block-sequence-hyphen-indicator-newline",
-            "ruleName": "block-sequence-hyphen-indicator-newline"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/block-sequence-hyphen-indicator-newline",
-          "level": "error"
-        },
-        "yaml/flow-mapping-curly-newline": {
-          "docs": {
-            "description": "enforce consistent line breaks inside braces",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": "object-curly-newline",
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-newline.html",
-            "ruleId": "yml/flow-mapping-curly-newline",
-            "ruleName": "flow-mapping-curly-newline"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/flow-mapping-curly-newline",
-          "level": "error"
-        },
-        "yaml/flow-mapping-curly-spacing": {
-          "docs": {
-            "description": "enforce consistent spacing inside braces",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": "object-curly-spacing",
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-spacing.html",
-            "ruleId": "yml/flow-mapping-curly-spacing",
-            "ruleName": "flow-mapping-curly-spacing"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/flow-mapping-curly-spacing",
-          "level": "error"
-        },
-        "yaml/flow-sequence-bracket-newline": {
-          "docs": {
-            "description": "enforce linebreaks after opening and before closing flow sequence brackets",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": "array-bracket-newline",
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-newline.html",
-            "ruleId": "yml/flow-sequence-bracket-newline",
-            "ruleName": "flow-sequence-bracket-newline"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/flow-sequence-bracket-newline",
-          "level": "error"
-        },
-        "yaml/flow-sequence-bracket-spacing": {
-          "docs": {
-            "description": "enforce consistent spacing inside flow sequence brackets",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": "array-bracket-spacing",
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-spacing.html",
-            "ruleId": "yml/flow-sequence-bracket-spacing",
-            "ruleName": "flow-sequence-bracket-spacing"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/flow-sequence-bracket-spacing",
-          "level": "error"
-        },
-        "yaml/indent": {
-          "docs": {
-            "description": "enforce consistent indentation",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": false,
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/indent.html",
-            "ruleId": "yml/indent",
-            "ruleName": "indent"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/indent",
-          "level": "error",
-          "options": [
-            2
-          ]
-        },
-        "yaml/key-spacing": {
-          "docs": {
-            "description": "enforce consistent spacing between keys and values in mapping pairs",
-            "categories": [
-              "standard"
-            ],
-            "extensionRule": "key-spacing",
-            "layout": true,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/key-spacing.html",
-            "ruleId": "yml/key-spacing",
-            "ruleName": "key-spacing"
-          },
-          "fixable": "whitespace",
-          "type": "layout",
-          "name": "yaml/key-spacing",
           "level": "error"
         },
         "yaml/no-empty-key": {
@@ -8952,23 +8196,6 @@
           "name": "yaml/no-irregular-whitespace",
           "level": "error"
         },
-        "yaml/no-tab-indent": {
-          "docs": {
-            "description": "disallow tabs for indentation.",
-            "categories": [
-              "recommended",
-              "standard"
-            ],
-            "extensionRule": false,
-            "layout": false,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/no-tab-indent.html",
-            "ruleId": "yml/no-tab-indent",
-            "ruleName": "no-tab-indent"
-          },
-          "type": "problem",
-          "name": "yaml/no-tab-indent",
-          "level": "error"
-        },
         "yaml/plain-scalar": {
           "docs": {
             "description": "require or disallow plain style scalar.",
@@ -8984,6 +8211,179 @@
           "fixable": "code",
           "type": "layout",
           "name": "yaml/plain-scalar",
+          "level": "error"
+        },
+        "yaml/vue-custom-block/no-parsing-error": {
+          "docs": {
+            "description": "disallow parsing errors in Vue custom blocks",
+            "categories": [
+              "recommended",
+              "standard"
+            ],
+            "extensionRule": false,
+            "layout": false,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/vue-custom-block/no-parsing-error.html",
+            "ruleId": "yml/vue-custom-block/no-parsing-error",
+            "ruleName": "vue-custom-block/no-parsing-error"
+          },
+          "type": "problem",
+          "name": "yaml/vue-custom-block/no-parsing-error",
+          "level": "error"
+        },
+        "yaml/block-mapping-question-indicator-newline": {
+          "docs": {
+            "description": "enforce consistent line breaks after `?` indicator",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": false,
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-question-indicator-newline.html",
+            "ruleId": "yml/block-mapping-question-indicator-newline",
+            "ruleName": "block-mapping-question-indicator-newline"
+          },
+          "fixable": "whitespace",
+          "type": "layout",
+          "name": "yaml/block-mapping-question-indicator-newline",
+          "level": "error"
+        },
+        "yaml/block-sequence-hyphen-indicator-newline": {
+          "docs": {
+            "description": "enforce consistent line breaks after `-` indicator",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": false,
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence-hyphen-indicator-newline.html",
+            "ruleId": "yml/block-sequence-hyphen-indicator-newline",
+            "ruleName": "block-sequence-hyphen-indicator-newline"
+          },
+          "fixable": "whitespace",
+          "type": "layout",
+          "name": "yaml/block-sequence-hyphen-indicator-newline",
+          "level": "error"
+        },
+        "yaml/flow-mapping-curly-newline": {
+          "docs": {
+            "description": "enforce consistent line breaks inside braces",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": "object-curly-newline",
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-newline.html",
+            "ruleId": "yml/flow-mapping-curly-newline",
+            "ruleName": "flow-mapping-curly-newline"
+          },
+          "fixable": "whitespace",
+          "type": "layout",
+          "name": "yaml/flow-mapping-curly-newline",
+          "level": "error"
+        },
+        "yaml/flow-mapping-curly-spacing": {
+          "docs": {
+            "description": "enforce consistent spacing inside braces",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": "object-curly-spacing",
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-spacing.html",
+            "ruleId": "yml/flow-mapping-curly-spacing",
+            "ruleName": "flow-mapping-curly-spacing"
+          },
+          "type": "layout",
+          "fixable": "whitespace",
+          "name": "yaml/flow-mapping-curly-spacing",
+          "level": "error"
+        },
+        "yaml/flow-sequence-bracket-newline": {
+          "docs": {
+            "description": "enforce linebreaks after opening and before closing flow sequence brackets",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": "array-bracket-newline",
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-newline.html",
+            "ruleId": "yml/flow-sequence-bracket-newline",
+            "ruleName": "flow-sequence-bracket-newline"
+          },
+          "fixable": "whitespace",
+          "type": "layout",
+          "name": "yaml/flow-sequence-bracket-newline",
+          "level": "error"
+        },
+        "yaml/flow-sequence-bracket-spacing": {
+          "docs": {
+            "description": "enforce consistent spacing inside flow sequence brackets",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": "array-bracket-spacing",
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-spacing.html",
+            "ruleId": "yml/flow-sequence-bracket-spacing",
+            "ruleName": "flow-sequence-bracket-spacing"
+          },
+          "type": "layout",
+          "fixable": "whitespace",
+          "name": "yaml/flow-sequence-bracket-spacing",
+          "level": "error"
+        },
+        "yaml/indent": {
+          "docs": {
+            "description": "enforce consistent indentation",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": false,
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/indent.html",
+            "ruleId": "yml/indent",
+            "ruleName": "indent"
+          },
+          "fixable": "whitespace",
+          "type": "layout",
+          "name": "yaml/indent",
+          "level": "error",
+          "options": [
+            2
+          ]
+        },
+        "yaml/key-spacing": {
+          "docs": {
+            "description": "enforce consistent spacing between keys and values in mapping pairs",
+            "categories": [
+              "standard"
+            ],
+            "extensionRule": "key-spacing",
+            "layout": true,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/key-spacing.html",
+            "ruleId": "yml/key-spacing",
+            "ruleName": "key-spacing"
+          },
+          "fixable": "whitespace",
+          "type": "layout",
+          "name": "yaml/key-spacing",
+          "level": "error"
+        },
+        "yaml/no-tab-indent": {
+          "docs": {
+            "description": "disallow tabs for indentation.",
+            "categories": [
+              "recommended",
+              "standard"
+            ],
+            "extensionRule": false,
+            "layout": false,
+            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/no-tab-indent.html",
+            "ruleId": "yml/no-tab-indent",
+            "ruleName": "no-tab-indent"
+          },
+          "type": "problem",
+          "name": "yaml/no-tab-indent",
           "level": "error"
         },
         "yaml/quotes": {
@@ -9025,23 +8425,6 @@
           "type": "suggestion",
           "name": "yaml/spaced-comment",
           "level": "error"
-        },
-        "yaml/vue-custom-block/no-parsing-error": {
-          "docs": {
-            "description": "disallow parsing errors in Vue custom blocks",
-            "categories": [
-              "recommended",
-              "standard"
-            ],
-            "extensionRule": false,
-            "layout": false,
-            "url": "https://ota-meshi.github.io/eslint-plugin-yml/rules/vue-custom-block/no-parsing-error.html",
-            "ruleId": "yml/vue-custom-block/no-parsing-error",
-            "ruleName": "vue-custom-block/no-parsing-error"
-          },
-          "type": "problem",
-          "name": "yaml/vue-custom-block/no-parsing-error",
-          "level": "error"
         }
       }
     }
@@ -9066,7 +8449,7 @@
       "files": [
         "**/*.md"
       ],
-      "name": "vinicunca:markdown:processor"
+      "name": "vinicunca:markdown:parser"
     },
     {
       "files": [
@@ -9080,7 +8463,7 @@
           "docs": {
             "category": "Style guide",
             "description": "Enforce a newline after import statements.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/newline-after-import.md"
+            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/newline-after-import.md"
           },
           "fixable": "whitespace",
           "name": "import/newline-after-import",
@@ -9462,15 +8845,6 @@
           },
           "type": "problem",
           "name": "ts/unbound-method",
-          "level": "off"
-        },
-        "vinicunca/no-cjs-exports": {
-          "docs": {
-            "description": "Do not use CJS exports",
-            "url": "https://eslint.vinicunca.dev/plugin-vinicunca/no-cjs-exports"
-          },
-          "type": "problem",
-          "name": "vinicunca/no-cjs-exports",
           "level": "off"
         },
         "vinicunca/no-ts-export-equal": {

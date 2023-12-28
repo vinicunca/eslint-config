@@ -1,9 +1,13 @@
-import type { FlatConfigItem } from '../types';
+import type { FlatConfigItem, OptionsStylistic } from '../types';
 
 import { WARN } from '../flags';
 import { interopDefault } from '../utils';
 
-export async function jsdoc(): Promise<FlatConfigItem[]> {
+export async function jsdoc(options: OptionsStylistic = {}): Promise<FlatConfigItem[]> {
+  const {
+    stylistic = true,
+  } = options;
+
   return [
     {
       name: 'vinicunca:jsdoc',
@@ -51,6 +55,13 @@ export async function jsdoc(): Promise<FlatConfigItem[]> {
         'jsdoc/require-yields-check': WARN,
 
         'jsdoc/valid-types': WARN,
+
+        ...stylistic
+          ? {
+              'jsdoc/check-alignment': 'warn',
+              'jsdoc/multiline-blocks': 'warn',
+            }
+          : {},
       },
     },
   ];
