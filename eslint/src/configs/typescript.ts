@@ -147,6 +147,7 @@ export async function typescript(
           argsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
           ignoreRestSiblings: true,
+          varsIgnorePattern: '^_',
         }],
 
         'ts/no-use-before-define': [ERROR, { classes: false, functions: false, variables: true }],
