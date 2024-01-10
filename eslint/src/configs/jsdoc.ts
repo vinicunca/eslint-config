@@ -13,7 +13,6 @@ export async function jsdoc(options: OptionsStylistic = {}): Promise<FlatConfigI
       name: 'vinicunca:jsdoc',
 
       plugins: {
-        // @ts-expect-error missing types
         jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),
       },
 
