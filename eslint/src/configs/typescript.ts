@@ -22,6 +22,10 @@ export async function typescript(
   ];
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX];
+  const tsconfigPath = options?.tsconfigPath
+    ? toArray(options.tsconfigPath)
+    : undefined;
+  const isTypeAware = !!tsconfigPath;
 
   const typeAwareRules: FlatConfigItem['rules'] = {
     'dot-notation': OFF,
@@ -39,10 +43,6 @@ export async function typescript(
     'ts/restrict-template-expressions': ERROR,
   };
 
-  const tsconfigPath = options?.tsconfigPath
-    ? toArray(options.tsconfigPath)
-    : undefined;
-
   const [
     pluginTs,
     parserTs,
@@ -50,6 +50,31 @@ export async function typescript(
     interopDefault(import('@typescript-eslint/eslint-plugin')),
     interopDefault(import('@typescript-eslint/parser')),
   ] as const);
+
+  function makeParser(
+    { files, ignores, typeAware }:
+    { files: string[]; ignores?: string[]; typeAware: boolean },
+  ): FlatConfigItem {
+    return {
+      files,
+      ...ignores ? { ignores } : {},
+      languageOptions: {
+        parser: parserTs,
+        parserOptions: {
+          extraFileExtensions: componentExts.map((ext) => `.${ext}`),
+          sourceType: 'module',
+          ...typeAware
+            ? {
+                project: tsconfigPath,
+                tsconfigRootDir: process.cwd(),
+              }
+            : {},
+          ...parserOptions as any,
+        },
+      },
+      name: `vinicunca:typescript:${typeAware ? 'type-aware-parser' : 'parser'}`,
+    };
+  }
 
   return [
     {
@@ -62,23 +87,16 @@ export async function typescript(
       },
     },
 
+    // assign type-aware parser for type-aware files and type-unaware parser for the rest
+    ...isTypeAware
+      ? [
+          makeParser({ files: filesTypeAware, typeAware: true }),
+          makeParser({ files, ignores: filesTypeAware, typeAware: false }),
+        ]
+      : [makeParser({ files, typeAware: false })],
+
     {
       files,
-
-      languageOptions: {
-        parser: parserTs,
-        parserOptions: {
-          extraFileExtensions: componentExts.map((ext) => `.${ext}`),
-          sourceType: 'module',
-          ...tsconfigPath
-            ? {
-                project: tsconfigPath,
-                tsconfigRootDir: process.cwd(),
-              }
-            : {},
-          ...parserOptions as any,
-        },
-      },
 
       name: 'vinicunca:typescript:rules',
 

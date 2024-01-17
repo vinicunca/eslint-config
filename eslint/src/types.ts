@@ -280,7 +280,7 @@ export interface OptionsConfig extends OptionsComponentExts {
    *
    * @default true
    */
-  stylistic?: StylisticConfig | boolean;
+  stylistic?: (StylisticConfig & OptionsOverrides) | boolean;
 
   /**
    * Enable test support.
