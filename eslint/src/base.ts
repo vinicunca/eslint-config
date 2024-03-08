@@ -28,6 +28,7 @@ import { formatters } from './configs/formatters';
 import { combineConfigs } from './utils';
 
 const flatConfigProps: (keyof FlatConfigItem)[] = [
+  'name',
   'files',
   'ignores',
   'languageOptions',

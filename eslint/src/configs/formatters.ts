@@ -66,7 +66,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'vinicunca:formatter:css',
+        name: 'vinicunca:formatters:css',
         rules: {
           'format/prettier': [
             'error',
@@ -82,7 +82,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'vinicunca:formatter:scss',
+        name: 'vinicunca:formatters:scss',
         rules: {
           'format/prettier': [
             'error',
@@ -98,7 +98,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'vinicunca:formatter:less',
+        name: 'vinicunca:formatters:less',
         rules: {
           'format/prettier': [
             'error',
@@ -118,7 +118,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:formatter:html',
+      name: 'vinicunca:formatters:html',
       rules: {
         'format/prettier': [
           'error',
@@ -141,7 +141,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:formatter:markdown',
+      name: 'vinicunca:formatters:markdown',
       rules: {
         [`format/${formater}`]: [
           'error',
@@ -167,7 +167,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:formatter:graphql',
+      name: 'vinicunca:formatters:graphql',
       rules: {
         'format/prettier': [
           'error',

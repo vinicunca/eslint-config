@@ -1,4 +1,3 @@
-import { uniq } from '@vinicunca/perkakas';
 import fs from 'node:fs';
 // @ts-expect-error missing types
 import parseGitignore from 'parse-gitignore';
@@ -38,7 +37,7 @@ export async function ignores(
 
   return [
     {
-      ignores: uniq(ignoreList),
+      ignores: Array.from(new Set(ignoreList)),
     },
   ];
 }

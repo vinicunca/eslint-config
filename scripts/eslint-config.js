@@ -1,11 +1,10 @@
 import { vinicuncaESLint } from '@vinicunca/eslint-config';
 
 export default vinicuncaESLint({
-  options: {
-    react: true,
+  formatters: true,
+  react: true,
 
-    typescript: {
-      tsconfigPath: ['tsconfig.eslint.json'],
-    },
+  typescript: {
+    tsconfigPath: ['tsconfig.eslint.json'],
   },
 });

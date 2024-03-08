@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.15.4",
   "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
     "lint": "TIMING=1 eslint .",
@@ -13,27 +13,27 @@
     "prepublish": "pnpm run build:lib",
     "deploy:docs": "pnpm run gen:meta && pnpm -C docs generate",
     "release": "pnpm -C eslint release",
-    "gen:meta": "bun scripts/gen-meta.ts",
+    "gen:meta": "tsx scripts/gen-meta.ts",
     "registry": "pnpm publish --access public --no-git-checks"
   },
   "devDependencies": {
-    "@types/node": "^20.10.5",
+    "@types/node": "^20.11.24",
     "@vinicunca/eslint-config": "workspace:*",
-    "@vinicunca/perkakas": "^0.0.11",
-    "bumpp": "^9.2.1",
-    "bun": "^1.0.20",
-    "eslint": "^8.56.0",
+    "@vinicunca/perkakas": "^0.3.1",
+    "bumpp": "^9.4.0",
+    "eslint": "^8.57.0",
     "is-ci": "^3.0.1",
     "rimraf": "^5.0.5",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3",
-    "vitest": "^1.1.3"
+    "vitest": "^1.3.1"
   },
   "publishConfig": {
     "directory": "eslint"
   },
   "pnpm": {
     "overrides": {
-      "eslint": "^8.56.0"
+      "eslint": "^8.57.0"
     }
   }
 }

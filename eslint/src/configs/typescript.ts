@@ -124,6 +124,8 @@ export async function typescript(
 
         'no-useless-constructor': OFF,
 
+        'ts/array-type': [ERROR, { default: 'generic' }],
+
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
 
         'ts/ban-types': [ERROR, { types: { Function: false } }],
@@ -137,6 +139,9 @@ export async function typescript(
         'ts/explicit-member-accessibility': OFF,
 
         'ts/explicit-module-boundary-types': OFF,
+
+        // https://www.totaltypescript.com/method-shorthand-syntax-considered-harmful
+        'ts/method-signature-style': ['error', 'property'],
 
         'ts/naming-convention': OFF,
 
@@ -159,6 +164,7 @@ export async function typescript(
         'ts/no-non-null-assertion': OFF,
 
         'ts/no-redeclare': ERROR,
+
         'ts/no-require-imports': ERROR,
 
         'ts/no-unused-vars': [ERROR, {

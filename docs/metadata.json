@@ -2592,7 +2592,7 @@
           "type": "problem",
           "docs": {
             "description": "Enforce passing a `message` value when creating a built-in error.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/error-message.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/error-message.md"
           },
           "name": "unicorn/error-message",
           "level": "error"
@@ -2601,7 +2601,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Require escape sequences to use uppercase values.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/escape-case.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/escape-case.md"
           },
           "fixable": "code",
           "name": "unicorn/escape-case",
@@ -2611,7 +2611,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Require `Array.isArray()` instead of `instanceof Array`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/no-instanceof-array.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/no-instanceof-array.md"
           },
           "fixable": "code",
           "name": "unicorn/no-instanceof-array",
@@ -2621,7 +2621,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Disallow `new Array()`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/no-new-array.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/no-new-array.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2632,7 +2632,7 @@
           "type": "problem",
           "docs": {
             "description": "Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/no-new-buffer.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/no-new-buffer.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2643,7 +2643,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Enforce proper case for numeric literals.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/number-literal-case.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/number-literal-case.md"
           },
           "fixable": "code",
           "name": "unicorn/number-literal-case",
@@ -2653,7 +2653,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `.textContent` over `.innerText`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-dom-node-text-content.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/prefer-dom-node-text-content.md"
           },
           "hasSuggestions": true,
           "name": "unicorn/prefer-dom-node-text-content",
@@ -2663,7 +2663,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `.includes()` over `.indexOf()` and `Array#some()` when checking for existence or non-existence.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-includes.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/prefer-includes.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2674,7 +2674,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer using the `node:` protocol when importing Node.js builtin modules.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-node-protocol.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/prefer-node-protocol.md"
           },
           "fixable": "code",
           "name": "unicorn/prefer-node-protocol",
@@ -2684,7 +2684,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `Number` static properties over global ones.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-number-properties.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/prefer-number-properties.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2695,7 +2695,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-string-starts-ends-with.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/prefer-string-starts-ends-with.md"
           },
           "fixable": "code",
           "hasSuggestions": true,
@@ -2706,7 +2706,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Enforce throwing `TypeError` in type checking conditions.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/prefer-type-error.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/prefer-type-error.md"
           },
           "fixable": "code",
           "name": "unicorn/prefer-type-error",
@@ -2716,7 +2716,7 @@
           "type": "suggestion",
           "docs": {
             "description": "Require `new` when throwing an error.",
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v50.0.1/docs/rules/throw-new-error.md"
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v51.0.1/docs/rules/throw-new-error.md"
           },
           "fixable": "code",
           "name": "unicorn/throw-new-error",
@@ -2736,6 +2736,24 @@
           "url": "/plugin-vinicunca"
         }
       }
+    },
+    {
+      "files": [
+        "**/*.?([cm])ts",
+        "**/*.?([cm])tsx"
+      ],
+      "name": "vinicunca:typescript:type-aware-parser"
+    },
+    {
+      "files": [
+        "**/*.?([cm])[jt]s?(x)",
+        "**/*.vue"
+      ],
+      "ignores": [
+        "**/*.?([cm])ts",
+        "**/*.?([cm])tsx"
+      ],
+      "name": "vinicunca:typescript:parser"
     },
     {
       "files": [
@@ -3227,7 +3245,8 @@
             {
               "argsIgnorePattern": "^_",
               "destructuredArrayIgnorePattern": "^_",
-              "ignoreRestSiblings": true
+              "ignoreRestSiblings": true,
+              "varsIgnorePattern": "^_"
             }
           ]
         },
@@ -3398,6 +3417,19 @@
           "name": "ts/explicit-module-boundary-types",
           "level": "off"
         },
+        "ts/method-signature-style": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce using a particular method signature syntax",
+            "url": "https://typescript-eslint.io/rules/method-signature-style"
+          },
+          "fixable": "code",
+          "name": "ts/method-signature-style",
+          "level": "error",
+          "options": [
+            "property"
+          ]
+        },
         "ts/naming-convention": {
           "docs": {
             "description": "Enforce naming conventions for everything across a codebase",
@@ -3514,7 +3546,152 @@
         "**/*.?([cm])tsx"
       ],
       "name": "vinicunca:typescript:rules-type-aware",
-      "rules": {}
+      "rules": {
+        "dot-notation": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce dot notation whenever possible",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/dot-notation"
+          },
+          "fixable": "code",
+          "name": "dot-notation",
+          "plugin": "eslint",
+          "level": "off"
+        },
+        "no-implied-eval": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Disallow the use of `eval()`-like methods",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/no-implied-eval"
+          },
+          "name": "no-implied-eval",
+          "plugin": "eslint",
+          "level": "off"
+        },
+        "no-throw-literal": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Disallow throwing literals as exceptions",
+            "recommended": false,
+            "url": "https://eslint.org/docs/latest/rules/no-throw-literal"
+          },
+          "name": "no-throw-literal",
+          "plugin": "eslint",
+          "level": "off"
+        },
+        "ts/await-thenable": {
+          "docs": {
+            "description": "Disallow awaiting a value that is not a Thenable",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/await-thenable"
+          },
+          "hasSuggestions": true,
+          "type": "problem",
+          "name": "ts/await-thenable",
+          "level": "error"
+        },
+        "ts/dot-notation": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce dot notation whenever possible",
+            "recommended": "stylistic",
+            "extendsBaseRule": true,
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/dot-notation"
+          },
+          "fixable": "code",
+          "name": "ts/dot-notation",
+          "level": "error",
+          "options": [
+            {
+              "allowKeywords": true
+            }
+          ]
+        },
+        "ts/no-floating-promises": {
+          "docs": {
+            "description": "Require Promise-like statements to be handled appropriately",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-floating-promises"
+          },
+          "hasSuggestions": true,
+          "type": "problem",
+          "name": "ts/no-floating-promises",
+          "level": "error"
+        },
+        "ts/no-for-in-array": {
+          "docs": {
+            "description": "Disallow iterating over an array with a for-in loop",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-for-in-array"
+          },
+          "type": "problem",
+          "name": "ts/no-for-in-array",
+          "level": "error"
+        },
+        "ts/no-implied-eval": {
+          "docs": {
+            "description": "Disallow the use of `eval()`-like methods",
+            "recommended": "recommended",
+            "extendsBaseRule": true,
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-implied-eval"
+          },
+          "type": "suggestion",
+          "name": "ts/no-implied-eval",
+          "level": "error"
+        },
+        "ts/no-misused-promises": {
+          "docs": {
+            "description": "Disallow Promises in places not designed to handle them",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-misused-promises"
+          },
+          "type": "problem",
+          "name": "ts/no-misused-promises",
+          "level": "off"
+        },
+        "ts/no-throw-literal": {
+          "type": "problem",
+          "docs": {
+            "description": "Disallow throwing literals as exceptions",
+            "recommended": "strict",
+            "extendsBaseRule": true,
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/no-throw-literal"
+          },
+          "name": "ts/no-throw-literal",
+          "level": "error"
+        },
+        "ts/restrict-plus-operands": {
+          "type": "problem",
+          "docs": {
+            "description": "Require both operands of addition to be the same type and be `bigint`, `number`, or `string`",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/restrict-plus-operands"
+          },
+          "name": "ts/restrict-plus-operands",
+          "level": "error"
+        },
+        "ts/restrict-template-expressions": {
+          "type": "problem",
+          "docs": {
+            "description": "Enforce template literal expressions to be of `string` type",
+            "recommended": "recommended",
+            "requiresTypeChecking": true,
+            "url": "https://typescript-eslint.io/rules/restrict-template-expressions"
+          },
+          "name": "ts/restrict-template-expressions",
+          "level": "error"
+        }
+      }
     },
     {
       "files": [
@@ -3848,7 +4025,7 @@
           "docs": {
             "description": "Indentation for binary operators",
             "recommended": "stylistic",
-            "url": "https://eslint.style/rules/ts/indent-binary-ops"
+            "url": "https://eslint.style/rules/plus/indent-binary-ops"
           },
           "fixable": "whitespace",
           "name": "style/indent-binary-ops",
@@ -4126,8 +4303,9 @@
         "style/quote-props": {
           "type": "layout",
           "docs": {
-            "description": "Require quotes around object literal property names",
-            "url": "https://eslint.style/rules/js/quote-props"
+            "description": "Require quotes around object literal, type literal, interfaces and enums property names",
+            "extendsBaseRule": true,
+            "url": "https://eslint.style/rules/ts/quote-props"
           },
           "fixable": "code",
           "name": "style/quote-props",
@@ -4339,7 +4517,7 @@
           "docs": {
             "description": "Enforces consistent spacing inside TypeScript type generics",
             "recommended": "stylistic",
-            "url": "https://eslint.style/rules/ts/type-generic-spacing"
+            "url": "https://eslint.style/rules/plus/type-generic-spacing"
           },
           "fixable": "whitespace",
           "name": "style/type-generic-spacing",
@@ -4350,7 +4528,7 @@
           "docs": {
             "description": "Expect space before the type declaration in the named tuple",
             "recommended": "stylistic",
-            "url": "https://eslint.style/rules/ts/type-named-tuple-spacing"
+            "url": "https://eslint.style/rules/plus/type-named-tuple-spacing"
           },
           "fixable": "whitespace",
           "name": "style/type-named-tuple-spacing",
@@ -4393,7 +4571,10 @@
           },
           "fixable": "code",
           "name": "style/jsx-closing-bracket-location",
-          "level": "error"
+          "level": "error",
+          "options": [
+            "line-aligned"
+          ]
         },
         "style/jsx-closing-tag-location": {
           "type": "layout",
@@ -4416,7 +4597,8 @@
           "level": "error",
           "options": [
             {
-              "propElementValues": "always"
+              "children": "never",
+              "props": "never"
             }
           ]
         },
@@ -4429,7 +4611,13 @@
           },
           "fixable": "whitespace",
           "name": "style/jsx-curly-newline",
-          "level": "error"
+          "level": "error",
+          "options": [
+            {
+              "multiline": "consistent",
+              "singleline": "consistent"
+            }
+          ]
         },
         "style/jsx-curly-spacing": {
           "type": "layout",
@@ -4441,7 +4629,13 @@
           "name": "style/jsx-curly-spacing",
           "level": "error",
           "options": [
-            "never"
+            {
+              "children": true,
+              "spacing": {
+                "objectLiterals": "never"
+              },
+              "when": "always"
+            }
           ]
         },
         "style/jsx-equals-spacing": {
@@ -4452,7 +4646,10 @@
           },
           "fixable": "code",
           "name": "style/jsx-equals-spacing",
-          "level": "error"
+          "level": "error",
+          "options": [
+            "never"
+          ]
         },
         "style/jsx-first-prop-new-line": {
           "type": "layout",
@@ -4462,7 +4659,10 @@
           },
           "fixable": "code",
           "name": "style/jsx-first-prop-new-line",
-          "level": "error"
+          "level": "error",
+          "options": [
+            "multiline-multiprop"
+          ]
         },
         "style/jsx-indent": {
           "type": "layout",
@@ -4474,11 +4674,7 @@
           "name": "style/jsx-indent",
           "level": "error",
           "options": [
-            2,
-            {
-              "checkAttributes": true,
-              "indentLogicalExpressions": true
-            }
+            2
           ]
         },
         "style/jsx-indent-props": {
@@ -4628,6 +4824,47 @@
           "options": [
             "never"
           ]
+        },
+        "style/jsx-child-element-spacing": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce or disallow spaces inside of curly braces in JSX attributes and expressions",
+            "url": "https://eslint.style/rules/jsx/jsx-child-element-spacing"
+          },
+          "name": "style/jsx-child-element-spacing",
+          "level": "off"
+        },
+        "style/jsx-newline": {
+          "type": "layout",
+          "docs": {
+            "description": "Require or prevent a new line after jsx elements and expressions.",
+            "url": "https://eslint.style/rules/jsx/jsx-newline"
+          },
+          "fixable": "code",
+          "name": "style/jsx-newline",
+          "level": "error"
+        },
+        "style/jsx-props-no-multi-spaces": {
+          "type": "layout",
+          "docs": {
+            "description": "Disallow multiple spaces between inline JSX props",
+            "url": "https://eslint.style/rules/jsx/jsx-props-no-multi-spaces"
+          },
+          "fixable": "code",
+          "name": "style/jsx-props-no-multi-spaces",
+          "level": "error"
+        },
+        "style/jsx-sort-props": {
+          "type": "layout",
+          "docs": {
+            "description": "Enforce props alphabetical sorting",
+            "recommended": "stylistic",
+            "url": "https://eslint.style/rules/jsx/jsx-sort-props"
+          },
+          "fixable": "code",
+          "name": "style/jsx-sort-props",
+          "level": "off",
+          "options": []
         },
         "style/object-curly-newline": {
           "type": "layout",
@@ -5100,7 +5337,7 @@
             ],
             "url": "https://eslint.vuejs.org/rules/no-deprecated-v-is.html"
           },
-          "fixable": "code",
+          "fixable": null,
           "name": "vue/no-deprecated-v-is",
           "level": "error"
         },
@@ -6473,6 +6710,7 @@
             "url": "https://eslint.vuejs.org/rules/define-macros-order.html"
           },
           "fixable": "code",
+          "hasSuggestions": true,
           "name": "vue/define-macros-order",
           "level": "error",
           "options": [
@@ -7097,10 +7335,11 @@
           "type": "layout",
           "docs": {
             "description": "Require quotes around object literal property names in `<template>`",
+            "extendsBaseRule": true,
             "url": "https://eslint.vuejs.org/rules/quote-props.html",
             "category": null,
             "extensionSource": {
-              "url": "https://eslint.style/rules/js/quote-props",
+              "url": "https://eslint.style/rules/ts/quote-props",
               "name": "ESLint Stylistic"
             }
           },
@@ -7142,6 +7381,420 @@
           },
           "fixable": "whitespace",
           "name": "vue/template-curly-spacing",
+          "level": "error"
+        }
+      }
+    }
+  ],
+  "react": [
+    {
+      "name": "vinicunca:react:setup",
+      "plugins": {
+        "react": {},
+        "react-hooks": {}
+      },
+      "settings": {
+        "react": {
+          "version": "detect"
+        }
+      }
+    },
+    {
+      "files": [
+        "**/*.?([cm])jsx",
+        "**/*.?([cm])tsx"
+      ],
+      "name": "vinicunca:react:rules",
+      "rules": {
+        "react/display-name": {
+          "docs": {
+            "description": "Disallow missing displayName in a React component definition",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/display-name.md"
+          },
+          "name": "react/display-name",
+          "level": "error"
+        },
+        "react/jsx-key": {
+          "docs": {
+            "description": "Disallow missing `key` props in iterators/collection literals",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-key.md"
+          },
+          "name": "react/jsx-key",
+          "level": "off"
+        },
+        "react/jsx-no-comment-textnodes": {
+          "docs": {
+            "description": "Disallow comments from being inserted as text nodes",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-comment-textnodes.md"
+          },
+          "name": "react/jsx-no-comment-textnodes",
+          "level": "error"
+        },
+        "react/jsx-no-duplicate-props": {
+          "docs": {
+            "description": "Disallow duplicate properties in JSX",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-duplicate-props.md"
+          },
+          "name": "react/jsx-no-duplicate-props",
+          "level": "error",
+          "options": [
+            {
+              "ignoreCase": true
+            }
+          ]
+        },
+        "react/jsx-no-target-blank": {
+          "fixable": "code",
+          "docs": {
+            "description": "Disallow `target=\"_blank\"` attribute without `rel=\"noreferrer\"`",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-target-blank.md"
+          },
+          "name": "react/jsx-no-target-blank",
+          "level": "error"
+        },
+        "react/jsx-no-undef": {
+          "docs": {
+            "description": "Disallow undeclared variables in JSX",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-undef.md"
+          },
+          "name": "react/jsx-no-undef",
+          "level": "error"
+        },
+        "react/jsx-uses-react": {
+          "docs": {
+            "description": "Disallow React to be incorrectly marked as unused",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-uses-react.md"
+          },
+          "name": "react/jsx-uses-react",
+          "level": "error"
+        },
+        "react/jsx-uses-vars": {
+          "docs": {
+            "description": "Disallow variables used in JSX to be incorrectly marked as unused",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-uses-vars.md"
+          },
+          "name": "react/jsx-uses-vars",
+          "level": "error"
+        },
+        "react/no-children-prop": {
+          "docs": {
+            "description": "Disallow passing of children as props",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-children-prop.md"
+          },
+          "name": "react/no-children-prop",
+          "level": "error"
+        },
+        "react/no-danger-with-children": {
+          "docs": {
+            "description": "Disallow when a DOM element is using both children and dangerouslySetInnerHTML",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-danger-with-children.md"
+          },
+          "name": "react/no-danger-with-children",
+          "level": "error"
+        },
+        "react/no-deprecated": {
+          "docs": {
+            "description": "Disallow usage of deprecated methods",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-deprecated.md"
+          },
+          "name": "react/no-deprecated",
+          "level": "error"
+        },
+        "react/no-direct-mutation-state": {
+          "docs": {
+            "description": "Disallow direct mutation of this.state",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-direct-mutation-state.md"
+          },
+          "name": "react/no-direct-mutation-state",
+          "level": "error"
+        },
+        "react/no-find-dom-node": {
+          "docs": {
+            "description": "Disallow usage of findDOMNode",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-find-dom-node.md"
+          },
+          "name": "react/no-find-dom-node",
+          "level": "error"
+        },
+        "react/no-is-mounted": {
+          "docs": {
+            "description": "Disallow usage of isMounted",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-is-mounted.md"
+          },
+          "name": "react/no-is-mounted",
+          "level": "error"
+        },
+        "react/no-render-return-value": {
+          "docs": {
+            "description": "Disallow usage of the return value of ReactDOM.render",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-render-return-value.md"
+          },
+          "name": "react/no-render-return-value",
+          "level": "error"
+        },
+        "react/no-string-refs": {
+          "docs": {
+            "description": "Disallow using string references",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-string-refs.md"
+          },
+          "name": "react/no-string-refs",
+          "level": "error"
+        },
+        "react/no-unescaped-entities": {
+          "docs": {
+            "description": "Disallow unescaped HTML entities from appearing in markup",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-unescaped-entities.md"
+          },
+          "name": "react/no-unescaped-entities",
+          "level": "off"
+        },
+        "react/no-unknown-property": {
+          "docs": {
+            "description": "Disallow usage of unknown DOM property",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-unknown-property.md"
+          },
+          "fixable": "code",
+          "name": "react/no-unknown-property",
+          "level": "error"
+        },
+        "react/no-unsafe": {
+          "docs": {
+            "description": "Disallow usage of unsafe lifecycle methods",
+            "category": "Best Practices",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-unsafe.md"
+          },
+          "name": "react/no-unsafe",
+          "level": "off"
+        },
+        "react/prop-types": {
+          "docs": {
+            "description": "Disallow missing props validation in a React component definition",
+            "category": "Best Practices",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/prop-types.md"
+          },
+          "name": "react/prop-types",
+          "level": "off"
+        },
+        "react/react-in-jsx-scope": {
+          "docs": {
+            "description": "Disallow missing React when using JSX",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/react-in-jsx-scope.md"
+          },
+          "name": "react/react-in-jsx-scope",
+          "level": "off"
+        },
+        "react/require-render-return": {
+          "docs": {
+            "description": "Enforce ES5 or ES6 class for returning value in render function",
+            "category": "Possible Errors",
+            "recommended": true,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/require-render-return.md"
+          },
+          "name": "react/require-render-return",
+          "level": "error"
+        },
+        "react-hooks/rules-of-hooks": {
+          "type": "problem",
+          "docs": {
+            "description": "enforces the Rules of Hooks",
+            "recommended": true,
+            "url": "https://reactjs.org/docs/hooks-rules.html"
+          },
+          "name": "react-hooks/rules-of-hooks",
+          "level": "error"
+        },
+        "react-hooks/exhaustive-deps": {
+          "type": "suggestion",
+          "docs": {
+            "description": "verifies the list of dependencies for Hooks like useEffect and similar",
+            "recommended": true,
+            "url": "https://github.com/facebook/react/issues/14920"
+          },
+          "fixable": "code",
+          "hasSuggestions": true,
+          "name": "react-hooks/exhaustive-deps",
+          "level": "warn"
+        },
+        "react/boolean-prop-naming": {
+          "docs": {
+            "category": "Stylistic Issues",
+            "description": "Enforces consistent naming for boolean props",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/boolean-prop-naming.md"
+          },
+          "name": "react/boolean-prop-naming",
+          "level": "off",
+          "options": [
+            {
+              "message": "",
+              "propTypeNames": [
+                "bool",
+                "mutuallyExclusiveTrueProps"
+              ],
+              "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+"
+            }
+          ]
+        },
+        "react/destructuring-assignment": {
+          "docs": {
+            "description": "Enforce consistent usage of destructuring assignment of props, state, and context",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/destructuring-assignment.md"
+          },
+          "fixable": "code",
+          "name": "react/destructuring-assignment",
+          "level": "error",
+          "options": [
+            "always"
+          ]
+        },
+        "react/jsx-boolean-value": {
+          "docs": {
+            "description": "Enforce boolean attributes notation in JSX",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-boolean-value.md"
+          },
+          "fixable": "code",
+          "name": "react/jsx-boolean-value",
+          "level": "error",
+          "options": [
+            "never",
+            {
+              "always": []
+            }
+          ]
+        },
+        "react/jsx-max-depth": {
+          "docs": {
+            "description": "Enforce JSX maximum depth",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-max-depth.md"
+          },
+          "name": "react/jsx-max-depth",
+          "level": "off"
+        },
+        "react/jsx-no-literals": {
+          "docs": {
+            "description": "Disallow usage of string literals in JSX",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-no-literals.md"
+          },
+          "name": "react/jsx-no-literals",
+          "level": "off",
+          "options": [
+            {
+              "noStrings": true
+            }
+          ]
+        },
+        "react/jsx-pascal-case": {
+          "docs": {
+            "description": "Enforce PascalCase for user-defined JSX components",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-pascal-case.md"
+          },
+          "name": "react/jsx-pascal-case",
+          "level": "error",
+          "options": [
+            {
+              "allowAllCaps": true,
+              "ignore": []
+            }
+          ]
+        },
+        "react/jsx-sort-default-props": {
+          "deprecated": true,
+          "replacedBy": [
+            "sort-default-props"
+          ],
+          "docs": {
+            "description": "Enforce defaultProps declarations alphabetical sorting",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/jsx-sort-default-props.md"
+          },
+          "name": "react/jsx-sort-default-props",
+          "level": "off",
+          "options": [
+            {
+              "ignoreCase": true
+            }
+          ]
+        },
+        "react/no-danger": {
+          "docs": {
+            "description": "Disallow usage of dangerous JSX properties",
+            "category": "Best Practices",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/no-danger.md"
+          },
+          "name": "react/no-danger",
+          "level": "warn"
+        },
+        "react/self-closing-comp": {
+          "docs": {
+            "description": "Disallow extra closing tags for components without children",
+            "category": "Stylistic Issues",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/self-closing-comp.md"
+          },
+          "fixable": "code",
+          "name": "react/self-closing-comp",
+          "level": "error"
+        },
+        "react/style-prop-object": {
+          "docs": {
+            "description": "Enforce style prop value is an object",
+            "category": "Possible Errors",
+            "recommended": false,
+            "url": "https://github.com/jsx-eslint/eslint-plugin-react/tree/master/docs/rules/style-prop-object.md"
+          },
+          "name": "react/style-prop-object",
           "level": "error"
         }
       }
@@ -8856,6 +9509,191 @@
           "type": "problem",
           "name": "vinicunca/no-ts-export-equal",
           "level": "off"
+        }
+      }
+    }
+  ],
+  "formatters": [
+    {
+      "name": "vinicunca:formatters:setup",
+      "plugins": {
+        "format": {}
+      }
+    },
+    {
+      "files": [
+        "**/*.css",
+        "**/*.{p,post}css"
+      ],
+      "name": "vinicunca:formatters:css",
+      "rules": {
+        "format/prettier": {
+          "type": "layout",
+          "docs": {
+            "description": "Use Prettier to format code",
+            "category": "Stylistic"
+          },
+          "fixable": "whitespace",
+          "name": "format/prettier",
+          "level": "error",
+          "options": [
+            {
+              "endOfLine": "auto",
+              "semi": true,
+              "singleQuote": true,
+              "tabWidth": 2,
+              "trailingComma": "all",
+              "useTabs": false,
+              "parser": "css"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "files": [
+        "**/*.scss"
+      ],
+      "name": "vinicunca:formatters:scss",
+      "rules": {
+        "format/prettier": {
+          "type": "layout",
+          "docs": {
+            "description": "Use Prettier to format code",
+            "category": "Stylistic"
+          },
+          "fixable": "whitespace",
+          "name": "format/prettier",
+          "level": "error",
+          "options": [
+            {
+              "endOfLine": "auto",
+              "semi": true,
+              "singleQuote": true,
+              "tabWidth": 2,
+              "trailingComma": "all",
+              "useTabs": false,
+              "parser": "scss"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "files": [
+        "**/*.less"
+      ],
+      "name": "vinicunca:formatters:less",
+      "rules": {
+        "format/prettier": {
+          "type": "layout",
+          "docs": {
+            "description": "Use Prettier to format code",
+            "category": "Stylistic"
+          },
+          "fixable": "whitespace",
+          "name": "format/prettier",
+          "level": "error",
+          "options": [
+            {
+              "endOfLine": "auto",
+              "semi": true,
+              "singleQuote": true,
+              "tabWidth": 2,
+              "trailingComma": "all",
+              "useTabs": false,
+              "parser": "less"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "files": [
+        "**/*.html"
+      ],
+      "name": "vinicunca:formatters:html",
+      "rules": {
+        "format/prettier": {
+          "type": "layout",
+          "docs": {
+            "description": "Use Prettier to format code",
+            "category": "Stylistic"
+          },
+          "fixable": "whitespace",
+          "name": "format/prettier",
+          "level": "error",
+          "options": [
+            {
+              "endOfLine": "auto",
+              "semi": true,
+              "singleQuote": true,
+              "tabWidth": 2,
+              "trailingComma": "all",
+              "useTabs": false,
+              "parser": "html"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "files": [
+        "**/*.md"
+      ],
+      "name": "vinicunca:formatters:markdown",
+      "rules": {
+        "format/prettier": {
+          "type": "layout",
+          "docs": {
+            "description": "Use Prettier to format code",
+            "category": "Stylistic"
+          },
+          "fixable": "whitespace",
+          "name": "format/prettier",
+          "level": "error",
+          "options": [
+            {
+              "printWidth": 120,
+              "endOfLine": "auto",
+              "semi": true,
+              "singleQuote": true,
+              "tabWidth": 2,
+              "trailingComma": "all",
+              "useTabs": false,
+              "embeddedLanguageFormatting": "off",
+              "parser": "markdown"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "files": [
+        "**/*.graphql"
+      ],
+      "name": "vinicunca:formatters:graphql",
+      "rules": {
+        "format/prettier": {
+          "type": "layout",
+          "docs": {
+            "description": "Use Prettier to format code",
+            "category": "Stylistic"
+          },
+          "fixable": "whitespace",
+          "name": "format/prettier",
+          "level": "error",
+          "options": [
+            {
+              "endOfLine": "auto",
+              "semi": true,
+              "singleQuote": true,
+              "tabWidth": 2,
+              "trailingComma": "all",
+              "useTabs": false,
+              "parser": "graphql"
+            }
+          ]
         }
       }
     }
