@@ -9,19 +9,7 @@ import { fileURLToPath } from 'node:url';
 
 import type { ConfigInfo, RuleInfo } from '../metadata/src/types';
 
-// const pluginUrlMap = {
-//   'eslint-comments': 'https://mysticatea.github.io/eslint-plugin-eslint-comments/',
-//   'import': 'https://github.com/un-es/eslint-plugin-i',
-//   'jsdoc': 'https://github.com/gajus/eslint-plugin-jsdoc',
-//   'jsonc': 'https://ota-meshi.github.io/eslint-plugin-jsonc/',
-//   'node': 'https://github.com/eslint-community/eslint-plugin-n',
-//   'style': 'https://eslint.style/',
-//   'ts': 'https://typescript-eslint.io/',
-//   'unicorn': 'https://github.com/sindresorhus/eslint-plugin-unicorn',
-//   'unused-imports': 'https://github.com/sweepline/eslint-plugin-unused-imports',
-//   'vinicunca': '/plugin-vinicunca',
-//   'vue': 'https://eslint.vuejs.org/',
-// } as Record<string, string>;
+import { GLOB_EXCLUDE } from '../eslint/src/globs';
 
 /**
  * First we store the rules into a Map
@@ -67,15 +55,11 @@ async function generateJsonRules() {
 
   await setRulesMap(rawConfigs);
 
-  const OUTPUT: Record<string, ConfigInfo[]> = {};
+  const OUTPUT: Array<ConfigInfo> = [];
 
   for (const rawConfig of rawConfigs) {
     if (rawConfig.name) {
-      const [, configName] = rawConfig.name.split(':');
-
-      OUTPUT[configName] = OUTPUT[configName] || [];
-
-      const rules: RuleInfo[] = [];
+      const rules: Array<RuleInfo> = [];
 
       if (rawConfig.rules) {
         Object.keys(rawConfig.rules).forEach((rule) => {
@@ -100,7 +84,7 @@ async function generateJsonRules() {
         });
       }
 
-      OUTPUT[configName].push({
+      OUTPUT.push({
         files: rawConfig.files,
         name: rawConfig.name,
         plugins: Object.keys(rawConfig.plugins ?? {}),
@@ -129,7 +113,7 @@ function getRuleLevel(level: RuleConfig | undefined) {
   }
 }
 
-function getRuleOptions<T extends any[]>(level: RuleConfig<T> | undefined): any[] {
+function getRuleOptions<T extends Array<any>>(level: RuleConfig<T> | undefined): Array<any> {
   if (Array.isArray(level)) {
     return level.slice(1) as T;
   };
@@ -150,10 +134,12 @@ async function writeJson(content: any) {
   await fs.writeFile(
     path.join(cwd, 'metadata', 'src', 'metadata.ts'),
   `
-import type { ConfigInfo } from './types'
+import type { ConfigInfo } from './types';
 
-export const configs: Readonly<ConfigInfo[]> = Object.freeze(${JSON.stringify(content, null, 2)})
-  `.trimStart(),
+export const configs: ReadonlyArray<ConfigInfo> = Object.freeze(${JSON.stringify(content, null, 2)});
+
+export const GLOB_EXCLUDE = Object.freeze(${JSON.stringify(GLOB_EXCLUDE)})
+`.trimStart(),
   'utf-8',
   );
 

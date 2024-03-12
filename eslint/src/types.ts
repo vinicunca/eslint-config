@@ -22,6 +22,7 @@ import type { StylisticCustomizeOptions, UnprefixedRuleOptions as StylisticRules
 import type { ParserOptions } from '@typescript-eslint/parser';
 import type { Rules as VinicuncaRules } from '@vinicunca/eslint-plugin-vinicunca';
 import type { Linter } from 'eslint';
+import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore';
 import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks';
 
 import type { VendoredPrettierOptions } from './vendor/prettier-types';
@@ -76,7 +77,7 @@ export interface OptionsFiles {
   /**
    * Override the `files` option to provide custom globs.
    */
-  files?: string[];
+  files?: Array<string>;
 }
 
 export interface OptionsVue extends OptionsOverrides {
@@ -151,7 +152,7 @@ export interface OptionsComponentExts {
    * @example ['vue']
    * @default []
    */
-  componentExts?: string[];
+  componentExts?: Array<string>;
 }
 
 export interface OptionsTypeScriptParserOptions {
@@ -159,7 +160,7 @@ export interface OptionsTypeScriptParserOptions {
    * Glob patterns for files that should be type aware.
    * @default ['**\/*.{ts,tsx}']
    */
-  filesTypeAware?: string[];
+  filesTypeAware?: Array<string>;
 
   /**
    * Additional parser options for TypeScript.
@@ -172,7 +173,7 @@ export interface OptionsTypeScriptWithTypes {
    * When this options is provided, type aware rules will be enabled.
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
-  tsconfigPath?: string | string[];
+  tsconfigPath?: Array<string> | string;
 }
 
 export interface OptionsHasTypeScript {
@@ -207,12 +208,6 @@ export interface OptionsUnoCSS extends OptionsOverrides {
   strict?: boolean;
 }
 
-export interface OptionsIgnores {
-  enableGitignore?: boolean;
-  items?: string[];
-  replace?: boolean;
-}
-
 export interface OptionsConfig extends OptionsComponentExts {
   /**
    * Use external formatters to format files.
@@ -227,9 +222,14 @@ export interface OptionsConfig extends OptionsComponentExts {
   formatters?: OptionsFormatters | boolean;
 
   /**
-   * Additional options for the ignore rules.
+   * Enable gitignore support.
+   *
+   * Passing an object to configure the options.
+   *
+   * @see https://github.com/antfu/eslint-config-flat-gitignore
+   * @default true
    */
-  ignores?: OptionsIgnores;
+  gitignore?: FlatGitignoreOptions | boolean;
 
   /**
    * Control to disable some rules in editors.

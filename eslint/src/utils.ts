@@ -3,7 +3,7 @@ import type { Awaitable, UserConfigItem } from './types';
 /**
  * Combine array and non-array configs into a single array.
  */
-export async function combineConfigs(...configs: Awaitable<UserConfigItem | UserConfigItem[]>[]): Promise<UserConfigItem[]> {
+export async function combineConfigs(...configs: Array<Awaitable<Array<UserConfigItem> | UserConfigItem>>): Promise<Array<UserConfigItem>> {
   const resolved = await Promise.all(configs);
 
   return resolved.flat();
@@ -47,6 +47,6 @@ export const parserPlain = {
   }),
 };
 
-export function toArray<T>(value: T | T[]): T[] {
+export function toArray<T>(value: Array<T> | T): Array<T> {
   return Array.isArray(value) ? value : [value];
 }

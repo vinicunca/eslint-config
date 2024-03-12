@@ -1,16 +1,22 @@
-import type { RuleLevel } from '@antfu/eslint-define-config';
-import type { Rule } from 'eslint';
-
 export interface ConfigInfo {
-  files?: string[];
+  files?: Array<string>;
   name?: string;
-  plugins?: string[];
-  rules: RuleInfo[];
+  plugins?: Array<string>;
+  rules: Array<RuleInfo>;
+}
+
+export interface RuleMeta {
+  docs?: {
+    description?: string;
+    recommended?: 'recommended' | 'strict' | 'stylistic' | 'warn' | Array<string> | boolean | null;
+    url?: string;
+  };
+  fixable?: 'code' | 'whitespace' | boolean | null;
 }
 
 export interface RuleInfo {
-  level: RuleLevel;
-  meta?: Rule.RuleModule['meta'];
+  level: 'error' | 'off' | 'warn' | 0 | 1 | 2;
+  meta?: RuleMeta;
   name: string;
-  options: Array<object>;
+  options: Array<any>;
 }

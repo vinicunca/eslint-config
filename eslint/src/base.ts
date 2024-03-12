@@ -1,5 +1,6 @@
 import { isBoolean, isObject } from '@vinicunca/perkakas';
 import { isPackageExists } from 'local-pkg';
+import fs from 'node:fs';
 import process from 'node:process';
 
 import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic, UserConfigItem } from './types';
@@ -25,9 +26,9 @@ import {
   yaml,
 } from './configs';
 import { formatters } from './configs/formatters';
-import { combineConfigs } from './utils';
+import { combineConfigs, interopDefault } from './utils';
 
-const flatConfigProps: (keyof FlatConfigItem)[] = [
+const flatConfigProps: Array<keyof FlatConfigItem> = [
   'name',
   'files',
   'ignores',
@@ -49,10 +50,11 @@ const VuePackages = [
 // eslint-disable-next-line vinicunca/cognitive-complexity
 export async function vinicuncaESLint(
   options: OptionsConfig & FlatConfigItem = {},
-  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
-): Promise<UserConfigItem[]> {
+  ...userConfigs: Array<Awaitable<Array<UserConfigItem> | UserConfigItem>>
+): Promise<Array<UserConfigItem>> {
   const {
     componentExts = [],
+    gitignore: enableGitignore = true,
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     react: enableReact = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
@@ -71,10 +73,20 @@ export async function vinicuncaESLint(
     };
   }
 
-  const configs: Awaitable<FlatConfigItem[]>[] = [];
+  const configs: Array<Awaitable<Array<FlatConfigItem>>> = [];
+
+  if (enableGitignore) {
+    if (typeof enableGitignore !== 'boolean') {
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r(enableGitignore)]));
+    } else {
+      if (fs.existsSync('.gitignore')) {
+        configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r()]));
+      }
+    }
+  }
 
   configs.push(
-    ignores(options.ignores),
+    ignores(),
 
     javascript({
       isInEditor,
