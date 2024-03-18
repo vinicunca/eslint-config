@@ -5,7 +5,6 @@ import fs from 'fs-extra';
 import JITI from 'jiti';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import type { ConfigInfo, RuleInfo } from '../metadata/src/types';
 
@@ -45,7 +44,7 @@ type RawConfigs = Array<FlatESLintConfigItem & { name?: string }>;
 
 async function generateJsonRules() {
   const cwd = process.cwd();
-  const configPath = path.resolve(cwd, 'scripts', 'eslint-config.js');
+  const configPath = path.resolve(cwd, '..', 'scripts', 'eslint-config.js');
 
   const jiti = JITI(cwd, {
     cache: false,
@@ -121,18 +120,11 @@ function getRuleOptions<T extends Array<any>>(level: RuleConfig<T> | undefined):
   return [];
 }
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const cwd = process.cwd();
 
 async function writeJson(content: any) {
-  const docsDataDir = path.resolve(__dirname, '../docs');
-
-  const filePath = path.resolve(__dirname, docsDataDir, 'metadata2.json');
-
   await fs.writeFile(
-    path.join(cwd, 'metadata', 'src', 'metadata.ts'),
+    path.join(cwd, 'src', 'metadata.ts'),
   `
 import type { ConfigInfo } from './types';
 
@@ -142,6 +134,4 @@ export const GLOB_EXCLUDE = Object.freeze(${JSON.stringify(GLOB_EXCLUDE)})
 `.trimStart(),
   'utf-8',
   );
-
-  return fs.writeJSON(filePath, content, { EOL: '\n', spaces: 2 });
 }

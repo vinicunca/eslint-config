@@ -3919,6 +3919,24 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
+            "description": "Require consistently using either `T[]` or `Array<T>` for arrays",
+            "recommended": "stylistic",
+            "url": "https://typescript-eslint.io/rules/array-type"
+          },
+          "fixable": "code"
+        },
+        "name": "ts/array-type",
+        "options": [
+          {
+            "default": "generic"
+          }
+        ]
+      },
+      {
+        "level": "error",
+        "meta": {
+          "type": "suggestion",
+          "docs": {
             "description": "Enforce type definitions to consistently use either `interface` or `type`",
             "recommended": "stylistic",
             "url": "https://typescript-eslint.io/rules/consistent-type-definitions"
@@ -7787,7 +7805,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             ],
             "url": "https://eslint.vuejs.org/rules/order-in-components.html"
           },
-          "fixable": "code"
+          "fixable": "code",
+          "hasSuggestions": true
         },
         "name": "vue/order-in-components",
         "options": []

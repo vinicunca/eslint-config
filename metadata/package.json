@@ -25,7 +25,8 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "prepublishOnly": "tsx ../scripts/gen-meta.ts && unbuild"
+    "prepublishOnly": "pnpm run gen:meta && unbuild",
+    "gen:meta": "tsx ../scripts/gen-meta.ts"
   },
   "devDependencies": {
     "unbuild": "^2.0.0"
