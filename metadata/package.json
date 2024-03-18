@@ -1,6 +1,6 @@
 {
   "name": "@vinicunca/eslint-metadata",
-  "version": "0.0.2",
+  "version": "2.1.6",
   "description": "Metadata for vinicunca eslint config",
   "author": {
     "name": "praburangki",
@@ -25,7 +25,7 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "prepublishOnly": "unbuild"
+    "prepublishOnly": "tsx ../scripts/gen-meta.ts && unbuild"
   },
   "devDependencies": {
     "unbuild": "^2.0.0"

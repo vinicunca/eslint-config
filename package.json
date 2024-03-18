@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/eslint-config-monorepo",
   "type": "module",
-  "version": "0.0.0",
+  "version": "2.1.6",
   "private": true,
   "packageManager": "pnpm@8.15.4",
   "author": "praburangki<https://github.com/praburangki>",
@@ -9,12 +9,8 @@
     "lint": "TIMING=1 eslint .",
     "test": "pnpm -r run test",
     "postinstall": "is-ci || pnpm -r run stub",
-    "build:lib": "pnpm -C eslint build",
-    "prepublish": "pnpm run build:lib",
-    "deploy:docs": "pnpm run gen:meta && pnpm -C docs generate",
-    "gen:meta": "tsx scripts/gen-meta.ts",
-    "release": "bumpp -r --commit --push --tag --commit 'chore: release v'",
-    "registry": "pnpm publish --access public --no-git-checks"
+    "release": "bumpp -r",
+    "publish:ci": "tsx scripts/publish.ts"
   },
   "devDependencies": {
     "@types/node": "^20.11.28",
