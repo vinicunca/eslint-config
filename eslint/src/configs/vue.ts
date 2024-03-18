@@ -9,7 +9,7 @@ import { interopDefault } from '../utils';
 
 export async function vue(
   options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<FlatConfigItem>> {
   const {
     files = [GLOB_VUE],
     overrides = {},

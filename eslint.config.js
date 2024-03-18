@@ -7,6 +7,7 @@ export default vinicuncaESLint(
       '**/fixtures',
       '**/_fixtures',
     ],
+
     typescript: true,
 
     vue: true,

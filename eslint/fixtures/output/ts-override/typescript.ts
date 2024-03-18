@@ -5,7 +5,7 @@ type Person = {
 };
 
 // Create an array of objects with the defined interface
-const people: Person[] = [
+const people: Array<Person> = [
   { age: 30, name: 'Alice' },
   { age: 25, name: 'Bob' },
   {

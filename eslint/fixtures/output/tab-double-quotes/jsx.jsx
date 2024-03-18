@@ -8,15 +8,18 @@ export function HelloWorld({ greeted = "\"World\"", greeting = "hello", onMouseO
 		.replace(/\.\d+/ig, "");
 
 	return (
-		<div className="HelloWorld" onMouseOver={onMouseOver} title={`You are visitor number ${num}`}>
-			<strong>{ greeting.slice(0, 1).toUpperCase() + greeting.slice(1).toLowerCase() }</strong>
-			{greeting.endsWith(",")
+  <div className="HelloWorld" onMouseOver={ onMouseOver } title={ `You are visitor number ${num}` }>
+    <strong>{ greeting.slice(0, 1).toUpperCase() + greeting.slice(1).toLowerCase() }</strong>
+
+    { greeting.endsWith(",")
     	? " "
-				: <span style={{ color: "\grey" }}>", "</span> }
-			<em>
-				{ greeted }
-			</em>
-			{ (silent) ? "." : "!"}
-		</div>
+    	: <span style={{ color: "\grey" }}>", "</span> }
+
+    <em>
+      { greeted }
+    </em>
+
+    { (silent) ? "." : "!" }
+  </div>
 	);
 }

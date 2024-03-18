@@ -14,7 +14,7 @@ import { pluginPerfectionist, pluginUnusedImports, pluginVinicunca } from '../pl
 
 export async function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<FlatConfigItem>> {
   const {
     isInEditor = false,
     overrides = {},
