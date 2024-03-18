@@ -49,6 +49,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Publish to NPM
-        run: pnpm run registry
+        run: pnpm run publish:ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.VINICUNCA_NPM_TOKEN }}
