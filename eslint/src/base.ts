@@ -26,7 +26,7 @@ import {
   yaml,
 } from './configs';
 import { formatters } from './configs/formatters';
-import { combineConfigs, interopDefault } from './utils';
+import { combineConfigs, interopDefault, renamePluginInConfigs } from './utils';
 
 const flatConfigProps: Array<keyof FlatConfigItem> = [
   'name',
@@ -47,12 +47,22 @@ const VuePackages = [
   '@slidev/cli',
 ];
 
+export const defaultPluginRenaming = {
+  '@stylistic': 'style',
+  '@typescript-eslint': 'ts',
+  'import-x': 'import',
+  'n': 'node',
+  'vitest': 'test',
+  'yml': 'yaml',
+};
+
 // eslint-disable-next-line vinicunca/cognitive-complexity
 export async function vinicuncaESLint(
   options: OptionsConfig & FlatConfigItem = {},
   ...userConfigs: Array<Awaitable<Array<UserConfigItem> | UserConfigItem>>
 ): Promise<Array<UserConfigItem>> {
   const {
+    autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
@@ -206,10 +216,16 @@ export async function vinicuncaESLint(
     configs.push([fusedConfig]);
   };
 
-  return combineConfigs(
+  const merged = await combineConfigs(
     ...configs,
     ...userConfigs,
   );
+
+  if (autoRenamePlugins) {
+    return renamePluginInConfigs(merged, defaultPluginRenaming);
+  }
+
+  return merged;
 }
 
 function getOverrides<K extends keyof OptionsConfig>(

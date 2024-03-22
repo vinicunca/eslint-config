@@ -7,7 +7,7 @@ import { ERROR } from '../flags';
  *
  * Requires `jsonc` config
  */
-export async function sortPackageJson(): Promise<FlatConfigItem[]> {
+export async function sortPackageJson(): Promise<Array<FlatConfigItem>> {
   return [
     {
       files: ['**/package.json'],
@@ -93,6 +93,22 @@ export async function sortPackageJson(): Promise<FlatConfigItem[]> {
             ],
             pathPattern: '^exports.*$',
           },
+          {
+            order: [
+              // client hooks only
+              'pre-commit',
+              'prepare-commit-msg',
+              'commit-msg',
+              'post-commit',
+              'pre-rebase',
+              'post-rewrite',
+              'post-checkout',
+              'post-merge',
+              'pre-push',
+              'pre-auto-gc',
+            ],
+            pathPattern: '^(?:gitHooks|husky|simple-git-hooks)$',
+          },
         ],
       },
     },
@@ -104,7 +120,7 @@ export async function sortPackageJson(): Promise<FlatConfigItem[]> {
  *
  * Requires `jsonc` config
  */
-export function sortTsconfig(): FlatConfigItem[] {
+export function sortTsconfig(): Array<FlatConfigItem> {
   return [
     {
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],

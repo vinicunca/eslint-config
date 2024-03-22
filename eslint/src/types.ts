@@ -210,6 +210,13 @@ export interface OptionsUnoCSS extends OptionsOverrides {
 
 export interface OptionsConfig extends OptionsComponentExts {
   /**
+   * Automatically rename plugins in the config.
+   *
+   * @default true
+   */
+  autoRenamePlugins?: boolean;
+
+  /**
    * Use external formatters to format files.
    *
    * Requires installing:

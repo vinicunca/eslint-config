@@ -9,7 +9,7 @@ import { interopDefault, renameRules, toArray } from '../utils';
 
 export async function typescript(
   options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<FlatConfigItem>> {
   const {
     componentExts = [],
     overrides = {},
@@ -53,7 +53,7 @@ export async function typescript(
 
   function makeParser(
     { files, ignores, typeAware }:
-    { files: string[]; ignores?: string[]; typeAware: boolean },
+    { files: Array<string>; ignores?: Array<string>; typeAware: boolean },
   ): FlatConfigItem {
     return {
       files,
@@ -103,14 +103,12 @@ export async function typescript(
       rules: {
         ...renameRules(
           pluginTs.configs['eslint-recommended'].overrides![0].rules!,
-          '@typescript-eslint/',
-          'ts/',
+          { '@typescript-eslint': 'ts' },
         ),
 
         ...renameRules(
           pluginTs.configs.strict.rules!,
-          '@typescript-eslint/',
-          'ts/',
+          { '@typescript-eslint': 'ts' },
         ),
 
         'no-dupe-class-members': OFF,

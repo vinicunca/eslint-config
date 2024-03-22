@@ -47,7 +47,6 @@ runWithConfig(
   },
 );
 
-// https://github.com/antfu/eslint-config/issues/255
 runWithConfig(
   'ts-override',
   {
@@ -81,7 +80,7 @@ runWithConfig(
   },
 );
 
-function runWithConfig(name: string, configs: OptionsConfig, ...items: FlatConfigItem[]) {
+function runWithConfig(name: string, configs: OptionsConfig, ...items: Array<FlatConfigItem>) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
     const output = resolve('fixtures/output', name);
