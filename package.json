@@ -13,20 +13,15 @@
     "publish:ci": "tsx scripts/publish.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.30",
     "@vinicunca/eslint-config": "workspace:*",
-    "@vinicunca/perkakas": "^0.3.6",
+    "@vinicunca/perkakas": "^0.5.3",
     "bumpp": "^9.4.0",
-    "eslint": "^8.57.0",
+    "eslint": "9.0.0-rc.0",
     "is-ci": "^3.0.1",
     "rimraf": "^5.0.5",
     "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.3",
     "vitest": "^1.4.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "eslint": "^8.57.0"
-    }
   }
 }

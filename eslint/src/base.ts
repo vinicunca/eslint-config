@@ -1,4 +1,5 @@
 import { isBoolean, isObject } from '@vinicunca/perkakas';
+import { FlatConfigPipeline } from 'eslint-flat-config-utils';
 import { isPackageExists } from 'local-pkg';
 import fs from 'node:fs';
 import process from 'node:process';
@@ -26,7 +27,7 @@ import {
   yaml,
 } from './configs';
 import { formatters } from './configs/formatters';
-import { combineConfigs, interopDefault, renamePluginInConfigs } from './utils';
+import { interopDefault } from './utils';
 
 const flatConfigProps: Array<keyof FlatConfigItem> = [
   'name',
@@ -57,10 +58,10 @@ export const defaultPluginRenaming = {
 };
 
 // eslint-disable-next-line vinicunca/cognitive-complexity
-export async function vinicuncaESLint(
+export function vinicuncaESLint(
   options: OptionsConfig & FlatConfigItem = {},
   ...userConfigs: Array<Awaitable<Array<UserConfigItem> | UserConfigItem>>
-): Promise<Array<UserConfigItem>> {
+): FlatConfigPipeline<UserConfigItem> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
@@ -216,16 +217,20 @@ export async function vinicuncaESLint(
     configs.push([fusedConfig]);
   };
 
-  const merged = await combineConfigs(
-    ...configs,
-    ...userConfigs,
-  );
+  let pipeline = new FlatConfigPipeline<UserConfigItem>();
+
+  pipeline = pipeline
+    .append(
+      ...configs,
+      ...userConfigs,
+    );
 
   if (autoRenamePlugins) {
-    return renamePluginInConfigs(merged, defaultPluginRenaming);
+    pipeline = pipeline
+      .renamePlugins(defaultPluginRenaming);
   }
 
-  return merged;
+  return pipeline;
 }
 
 function getOverrides<K extends keyof OptionsConfig>(
