@@ -1,9 +1,9 @@
-import type { Awaitable, UserConfigItem } from './types';
+import type { Awaitable, FlatConfigItem } from './types';
 
 /**
  * Combine array and non-array configs into a single array.
  */
-export async function combineConfigs(...configs: Array<Awaitable<Array<UserConfigItem> | UserConfigItem>>): Promise<Array<UserConfigItem>> {
+export async function combineConfigs(...configs: Array<Awaitable<Array<FlatConfigItem> | FlatConfigItem>>): Promise<Array<FlatConfigItem>> {
   const resolved = await Promise.all(configs);
 
   return resolved.flat();
@@ -55,7 +55,7 @@ export function renameRules(rules: Record<string, any>, map: Record<string, stri
  * })
  * ```
  */
-export function renamePluginInConfigs(configs: Array<UserConfigItem>, map: Record<string, string>): Array<UserConfigItem> {
+export function renamePluginInConfigs(configs: Array<FlatConfigItem>, map: Record<string, string>): Array<FlatConfigItem> {
   return configs.map((i) => {
     const clone = { ...i };
     if (clone.rules) {

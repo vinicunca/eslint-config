@@ -10,7 +10,7 @@ import {
   WARN,
 } from '../flags';
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
-import { pluginPerfectionist, pluginUnusedImports, pluginVinicunca } from '../plugins';
+import { pluginUnusedImports, pluginVinicunca } from '../plugins';
 
 export async function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
@@ -52,7 +52,6 @@ export async function javascript(
       name: 'vinicunca:javascript',
 
       plugins: {
-        'perfectionist': pluginPerfectionist,
         'unused-imports': pluginUnusedImports,
         'vinicunca': pluginVinicunca,
       },
@@ -396,33 +395,6 @@ export async function javascript(
         'yoda': [ERROR, NEVER],
 
         ...pluginVinicunca.configs.recommended.rules,
-
-        ...pluginPerfectionist.configs['recommended-natural'].rules,
-
-        'perfectionist/sort-imports': [
-          ERROR,
-          {
-            'groups': [
-              'type',
-              ['builtin', 'external'],
-              'internal-type',
-              'internal',
-              ['parent-type', 'sibling-type', 'index-type'],
-              ['parent', 'sibling', 'index'],
-              'object',
-              'unknown',
-            ],
-            'internal-pattern': [
-              '~/**',
-              '~~/**',
-            ],
-            'newlines-between': 'always',
-            'order': 'asc',
-            'type': 'natural',
-          },
-        ],
-
-        'perfectionist/sort-vue-attributes': [OFF],
 
         ...overrides,
       },

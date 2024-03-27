@@ -146,3 +146,5 @@ temp/
 
 .output
 .firebase
+
+eslint/src/typegen.d.ts

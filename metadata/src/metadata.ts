@@ -333,7 +333,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow expressions where the operation doesn't affect the value",
-            "recommended": false,
+            "recommended": true,
             "url": "https://eslint.org/docs/latest/rules/no-constant-binary-expression"
           }
         },
@@ -815,9 +815,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow `new` operators with the `Symbol` object",
-            "recommended": true,
+            "recommended": false,
             "url": "https://eslint.org/docs/latest/rules/no-new-symbol"
-          }
+          },
+          "deprecated": true,
+          "replacedBy": [
+            "no-new-native-nonconstructor"
+          ]
         },
         "name": "no-new-symbol",
         "options": []
@@ -1706,6 +1710,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "hasSuggestions": true,
           "type": "problem",
           "docs": {
             "description": "Require calls to `isNaN()` when checking for `NaN`",
@@ -2827,7 +2832,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid any invalid exports, i.e. re-export of the same name.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/export.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/export.md"
           }
         },
         "name": "import/export",
@@ -2840,7 +2845,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Ensure all imports appear before other statements.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/first.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/first.md"
           },
           "fixable": "code"
         },
@@ -2854,7 +2859,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Enforce a newline after import statements.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/newline-after-import.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/newline-after-import.md"
           },
           "fixable": "whitespace"
         },
@@ -2873,7 +2878,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Forbid repeated import of the same module in multiple places.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-duplicates.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-duplicates.md"
           },
           "fixable": "code"
         },
@@ -2887,7 +2892,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid the use of mutable exports with `var` or `let`.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-mutable-exports.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-mutable-exports.md"
           }
         },
         "name": "import/no-mutable-exports",
@@ -2900,7 +2905,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Forbid named default exports.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-named-default.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-named-default.md"
           }
         },
         "name": "import/no-named-default",
@@ -2914,7 +2919,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "category": "Static analysis",
             "description": "Forbid a module from importing itself.",
             "recommended": true,
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-self-import.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-self-import.md"
           }
         },
         "name": "import/no-self-import",
@@ -2927,7 +2932,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Static analysis",
             "description": "Forbid webpack loader syntax in imports.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-webpack-loader-syntax.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-webpack-loader-syntax.md"
           }
         },
         "name": "import/no-webpack-loader-syntax",
@@ -2940,7 +2945,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Enforce a convention in module import order.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/order.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/order.md"
           },
           "fixable": "code"
         },
@@ -3302,9 +3307,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow `new` operators with the `Symbol` object",
-            "recommended": true,
+            "recommended": false,
             "url": "https://eslint.org/docs/latest/rules/no-new-symbol"
-          }
+          },
+          "deprecated": true,
+          "replacedBy": [
+            "no-new-native-nonconstructor"
+          ]
         },
         "name": "no-new-symbol",
         "options": []
@@ -3463,7 +3472,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow `@ts-<directive>` comments or require descriptions after directives",
-            "recommended": "recommended",
+            "recommended": {
+              "recommended": true,
+              "strict": [
+                {
+                  "minimumDescriptionLength": 10
+                }
+              ]
+            },
             "url": "https://typescript-eslint.io/rules/ban-ts-comment"
           },
           "hasSuggestions": true
@@ -4303,9 +4319,12 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "error",
         "meta": {
           "type": "problem",
+          "deprecated": true,
+          "replacedBy": [
+            "@typescript-eslint/only-throw-error"
+          ],
           "docs": {
             "description": "Disallow throwing literals as exceptions",
-            "recommended": "strict",
             "extendsBaseRule": true,
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-throw-literal"
@@ -4320,7 +4339,18 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Require both operands of addition to be the same type and be `bigint`, `number`, or `string`",
-            "recommended": "recommended",
+            "recommended": {
+              "recommended": true,
+              "strict": [
+                {
+                  "allowAny": false,
+                  "allowBoolean": false,
+                  "allowNullish": false,
+                  "allowNumberAndString": false,
+                  "allowRegExp": false
+                }
+              ]
+            },
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/restrict-plus-operands"
           }
@@ -4334,7 +4364,19 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Enforce template literal expressions to be of `string` type",
-            "recommended": "recommended",
+            "recommended": {
+              "recommended": true,
+              "strict": [
+                {
+                  "allowAny": false,
+                  "allowBoolean": false,
+                  "allowNullish": false,
+                  "allowNumber": false,
+                  "allowRegExp": false,
+                  "allowNever": false
+                }
+              ]
+            },
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/restrict-template-expressions"
           }
@@ -4373,7 +4415,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Forbid repeated import of the same module in multiple places.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/no-duplicates.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/no-duplicates.md"
           },
           "fixable": "code"
         },
@@ -5811,7 +5853,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "fixable": "code",
           "docs": {
             "description": "Prefer test or it but not both",
-            "recommended": "warn",
+            "recommended": "strict",
             "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-it.md"
           }
         },
@@ -5932,7 +5974,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require component names to be always multi-word",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/multi-word-component-names.html"
           }
@@ -5948,7 +5990,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow using arrow functions to define watcher",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-arrow-functions-in-watch.html"
           },
@@ -5965,7 +6007,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow asynchronous actions in computed properties",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-async-in-computed-properties.html"
           },
@@ -5982,7 +6024,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow element's child contents which would be overwritten by a directive like `v-html` or `v-text`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-child-content.html"
           },
@@ -6000,7 +6042,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow accessing computed properties in `data`.",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-computed-properties-in-data.html"
           },
@@ -6321,7 +6363,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow duplication of field names",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-dupe-keys.html"
           },
@@ -6338,7 +6380,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow duplicate conditions in `v-if` / `v-else-if` chains",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-dupe-v-else-if.html"
           },
@@ -6355,7 +6397,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow duplication of attributes",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-duplicate-attributes.html"
           },
@@ -6372,7 +6414,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow `export` in `<script setup>`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-export-in-script-setup.html"
           },
@@ -6421,7 +6463,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow mutation of component props",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-mutating-props.html"
           },
@@ -6438,7 +6480,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow parsing errors in `<template>`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-parsing-error.html"
           },
@@ -6455,7 +6497,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow use of value wrapped by `ref()` (Composition API) as an operand",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-ref-as-operand.html"
           },
@@ -6472,7 +6514,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow the use of reserved names in component definitions",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-reserved-component-names.html"
           },
@@ -6489,7 +6531,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow overwriting reserved keys",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-reserved-keys.html"
           },
@@ -6506,7 +6548,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow reserved names in props",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-reserved-props.html",
             "defaultOptions": {
@@ -6530,7 +6572,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce component's data property to be a function",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-shared-component-data.html"
           },
@@ -6547,7 +6589,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow side effects in computed properties",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-side-effects-in-computed-properties.html"
           },
@@ -6564,7 +6606,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow `key` attribute on `<template>`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-template-key.html"
           },
@@ -6581,7 +6623,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow mustaches in `<textarea>`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-textarea-mustache.html"
           },
@@ -6598,7 +6640,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow registering components that are not used inside templates",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-unused-components.html"
           },
@@ -6615,7 +6657,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow unused variable definitions of v-for directives or scope attributes",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-unused-vars.html"
           },
@@ -6633,7 +6675,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow use computed property like method",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-use-computed-property-like-method.html"
           },
@@ -6650,7 +6692,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow using `v-if` on the same element as `v-for`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-use-v-if-with-v-for.html"
           },
@@ -6667,7 +6709,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow useless attribute on `<template>`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-useless-template-attributes.html"
           },
@@ -6699,7 +6741,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "description": "disallow v-text / v-html on component",
             "categories": [
-              "essential",
+              "vue2-essential",
               "vue3-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/no-v-text-v-html-on-component.html"
@@ -6749,7 +6791,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require `v-bind:is` of `<component>` elements",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/require-component-is.html"
           },
@@ -6766,7 +6808,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require prop type to be a constructor",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/require-prop-type-constructor.html"
           },
@@ -6783,7 +6825,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce render function to always return value",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/require-render-return.html"
           },
@@ -6832,7 +6874,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require `v-bind:key` with `v-for` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/require-v-for-key.html"
           },
@@ -6849,7 +6891,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce props default values to be valid",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/require-valid-default-prop.html"
           },
@@ -6866,7 +6908,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce that a return statement is present in computed property",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/return-in-computed-property.html"
           },
@@ -6883,7 +6925,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce that a return statement is present in emits validator",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/return-in-emits-validator.html"
           },
@@ -6900,7 +6942,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce usage of `exact` modifier on `v-on`",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/use-v-on-exact.html"
           },
@@ -6917,7 +6959,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require valid attribute names",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-attribute-name.html"
           },
@@ -6934,7 +6976,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `defineEmits` compiler macro",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-define-emits.html"
           },
@@ -6951,7 +6993,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `defineProps` compiler macro",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-define-props.html"
           },
@@ -6968,7 +7010,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `nextTick` function calls",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-next-tick.html"
           },
@@ -6986,7 +7028,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid template root",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-template-root.html"
           },
@@ -7003,7 +7045,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-bind` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-bind.html"
           },
@@ -7020,7 +7062,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-cloak` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-cloak.html"
           },
@@ -7037,7 +7079,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-else-if` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-else-if.html"
           },
@@ -7054,7 +7096,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-else` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-else.html"
           },
@@ -7071,7 +7113,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-for` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-for.html"
           },
@@ -7088,7 +7130,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-html` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-html.html"
           },
@@ -7105,7 +7147,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-if` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-if.html"
           },
@@ -7154,7 +7196,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-model` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-model.html"
           },
@@ -7171,7 +7213,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-on` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-on.html"
           },
@@ -7188,7 +7230,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-once` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-once.html"
           },
@@ -7205,7 +7247,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-pre` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-pre.html"
           },
@@ -7222,7 +7264,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-show` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-show.html"
           },
@@ -7239,7 +7281,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-slot` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-slot.html"
           },
@@ -7256,7 +7298,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce valid `v-text` directives",
             "categories": [
               "vue3-essential",
-              "essential"
+              "vue2-essential"
             ],
             "url": "https://eslint.vuejs.org/rules/valid-v-text.html"
           },
@@ -7273,7 +7315,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce attribute naming style on custom components in template",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/attribute-hyphenation.html"
           },
@@ -7290,7 +7332,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce specific casing for component definition name",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/component-definition-name-casing.html"
           },
@@ -7307,7 +7349,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce the location of first attribute",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/first-attribute-linebreak.html"
           },
@@ -7324,7 +7366,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require or disallow a line break before tag's closing brackets",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/html-closing-bracket-newline.html"
           },
@@ -7341,7 +7383,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require or disallow a space before tag's closing brackets",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/html-closing-bracket-spacing.html"
           },
@@ -7358,7 +7400,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce end tag style",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/html-end-tags.html"
           },
@@ -7375,7 +7417,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce consistent indentation in `<template>`",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/html-indent.html"
           },
@@ -7394,7 +7436,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce quotes style of HTML attributes",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/html-quotes.html"
           },
@@ -7411,7 +7453,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce self-closing style",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/html-self-closing.html"
           },
@@ -7428,7 +7470,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce the maximum number of attributes per line",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/max-attributes-per-line.html"
           },
@@ -7445,7 +7487,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require a line break before and after the contents of a multiline element",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/multiline-html-element-content-newline.html"
           },
@@ -7462,7 +7504,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce unified spacing in mustache interpolations",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/mustache-interpolation-spacing.html"
           },
@@ -7479,7 +7521,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow multiple spaces",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/no-multi-spaces.html"
           },
@@ -7496,7 +7538,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow spaces around equal signs in attribute",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/no-spaces-around-equal-signs-in-attribute.html"
           },
@@ -7513,7 +7555,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow variable declarations from shadowing variables declared in the outer scope",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/no-template-shadow.html"
           },
@@ -7530,7 +7572,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce that each component should be in its own file",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/one-component-per-file.html"
           },
@@ -7547,7 +7589,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce specific casing for the Prop name in Vue components",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/prop-name-casing.html"
           },
@@ -7564,7 +7606,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require default value for props",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/require-default-prop.html"
           },
@@ -7598,7 +7640,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require type definitions in props",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/require-prop-types.html"
           },
@@ -7615,7 +7657,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "require a line break before and after the contents of a singleline element",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html"
           },
@@ -7632,7 +7674,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce `v-bind` directive style",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/v-bind-style.html"
           },
@@ -7678,7 +7720,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce `v-on` directive style",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/v-on-style.html"
           },
@@ -7695,7 +7737,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce `v-slot` directive style",
             "categories": [
               "vue3-strongly-recommended",
-              "strongly-recommended"
+              "vue2-strongly-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/v-slot-style.html"
           },
@@ -7712,7 +7754,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce order of attributes",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/attributes-order.html"
           },
@@ -7729,7 +7771,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce order of component top-level elements",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/component-tags-order.html"
           },
@@ -7750,7 +7792,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow unnecessary `<template>`",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/no-lone-template.html"
           },
@@ -7767,7 +7809,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow to pass multiple arguments to scoped slots",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/no-multiple-slot-args.html"
           },
@@ -7784,7 +7826,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow use of v-html to prevent XSS attack",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/no-v-html.html"
           },
@@ -7801,7 +7843,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "enforce order of properties in components",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/order-in-components.html"
           },
@@ -7819,7 +7861,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "description": "disallow usage of `this` in template",
             "categories": [
               "vue3-recommended",
-              "recommended"
+              "vue2-recommended"
             ],
             "url": "https://eslint.vuejs.org/rules/this-in-template.html"
           },
@@ -10090,6 +10132,21 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
               "default"
             ],
             "pathPattern": "^exports.*$"
+          },
+          {
+            "order": [
+              "pre-commit",
+              "prepare-commit-msg",
+              "commit-msg",
+              "post-commit",
+              "pre-rebase",
+              "post-rewrite",
+              "post-checkout",
+              "post-merge",
+              "pre-push",
+              "pre-auto-gc"
+            ],
+            "pathPattern": "^(?:gitHooks|husky|simple-git-hooks)$"
           }
         ]
       }
@@ -10662,7 +10719,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Enforce a newline after import statements.",
-            "url": "https://github.com/import-js/eslint-plugin-import/blob/v2.29.1/docs/rules/newline-after-import.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v0.4.4/docs/rules/newline-after-import.md"
           },
           "fixable": "whitespace"
         },
@@ -11005,9 +11062,12 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "off",
         "meta": {
           "type": "problem",
+          "deprecated": true,
+          "replacedBy": [
+            "@typescript-eslint/only-throw-error"
+          ],
           "docs": {
             "description": "Disallow throwing literals as exceptions",
-            "recommended": "strict",
             "extendsBaseRule": true,
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-throw-literal"
@@ -11107,7 +11167,18 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Require both operands of addition to be the same type and be `bigint`, `number`, or `string`",
-            "recommended": "recommended",
+            "recommended": {
+              "recommended": true,
+              "strict": [
+                {
+                  "allowAny": false,
+                  "allowBoolean": false,
+                  "allowNullish": false,
+                  "allowNumberAndString": false,
+                  "allowRegExp": false
+                }
+              ]
+            },
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/restrict-plus-operands"
           }
@@ -11121,7 +11192,19 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Enforce template literal expressions to be of `string` type",
-            "recommended": "recommended",
+            "recommended": {
+              "recommended": true,
+              "strict": [
+                {
+                  "allowAny": false,
+                  "allowBoolean": false,
+                  "allowNullish": false,
+                  "allowNumber": false,
+                  "allowRegExp": false,
+                  "allowNever": false
+                }
+              ]
+            },
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/restrict-template-expressions"
           }

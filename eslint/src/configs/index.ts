@@ -1,4 +1,5 @@
 export * from './comments';
+export * from './formatters';
 export * from './ignores';
 export * from './imports';
 export * from './javascript';
@@ -6,6 +7,7 @@ export * from './jsdoc';
 export * from './jsonc';
 export * from './markdown';
 export * from './node';
+export * from './perfectionist';
 export * from './react';
 export * from './sort-package-json';
 export * from './stylistic';

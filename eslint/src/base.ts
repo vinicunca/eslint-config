@@ -4,7 +4,7 @@ import { isPackageExists } from 'local-pkg';
 import fs from 'node:fs';
 import process from 'node:process';
 
-import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic, UserConfigItem } from './types';
+import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic } from './types';
 
 import {
   comments,
@@ -15,6 +15,7 @@ import {
   jsonc,
   markdown,
   node,
+  perfectionist,
   react,
   sortPackageJson,
   sortTsconfig,
@@ -60,8 +61,8 @@ export const defaultPluginRenaming = {
 // eslint-disable-next-line vinicunca/cognitive-complexity
 export function vinicuncaESLint(
   options: OptionsConfig & FlatConfigItem = {},
-  ...userConfigs: Array<Awaitable<Array<UserConfigItem> | UserConfigItem>>
-): FlatConfigPipeline<UserConfigItem> {
+  ...userConfigs: Array<Awaitable<Array<FlatConfigItem> | FlatConfigItem>>
+): FlatConfigPipeline<FlatConfigItem> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
@@ -115,6 +116,8 @@ export function vinicuncaESLint(
     imports(),
 
     unicorn(),
+
+    perfectionist(),
   );
 
   if (enableVue) {
@@ -217,7 +220,7 @@ export function vinicuncaESLint(
     configs.push([fusedConfig]);
   };
 
-  let pipeline = new FlatConfigPipeline<UserConfigItem>();
+  let pipeline = new FlatConfigPipeline<FlatConfigItem>();
 
   pipeline = pipeline
     .append(

@@ -8,7 +8,7 @@ export interface ConfigInfo {
 export interface RuleMeta {
   docs?: {
     description?: string;
-    recommended?: 'recommended' | 'strict' | 'stylistic' | 'warn' | Array<string> | boolean | null;
+    recommended?: any; // TODO: some rules has an object value for the recommended, so need to investigate more on this.
     url?: string;
   };
   fixable?: 'code' | 'whitespace' | boolean | null;

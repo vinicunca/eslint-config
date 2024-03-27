@@ -8,7 +8,7 @@ import { STYLISTIC_CONFIG_DEFAULTS } from './stylistic';
 export async function formatters(
   options: OptionsFormatters | true = {},
   stylistic: StylisticConfig = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<FlatConfigItem>> {
   if (options === true) {
     options = {
       css: true,
@@ -50,7 +50,7 @@ export async function formatters(
 
   const pluginFormat = await interopDefault(import('eslint-plugin-format'));
 
-  const configs: FlatConfigItem[] = [
+  const configs: Array<FlatConfigItem> = [
     {
       name: 'vinicunca:formatters:setup',
       plugins: {

@@ -16,7 +16,7 @@ export const STYLISTIC_CONFIG_DEFAULTS: StylisticConfig = {
 
 export async function stylistic(
   options: StylisticConfig & OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<FlatConfigItem>> {
   const {
     indent,
     jsx,
