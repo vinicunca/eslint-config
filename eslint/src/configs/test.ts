@@ -1,4 +1,4 @@
-import type { FlatConfigItem, OptionsFiles, OptionsIsInEditor, OptionsOverrides } from '../types';
+import type { OptionsFiles, OptionsIsInEditor, OptionsOverrides, TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_TESTS } from '../globs';
@@ -6,7 +6,7 @@ import { interopDefault } from '../utils';
 
 export async function test(
   options: OptionsFiles & OptionsIsInEditor & OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = GLOB_TESTS,
     isInEditor = false,

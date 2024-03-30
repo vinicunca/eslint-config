@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { join, resolve } from 'node:path';
 import { afterAll, beforeAll, it } from 'vitest';
 
-import type { FlatConfigItem, OptionsConfig } from '../src/types';
+import type { OptionsConfig, TypedFlatConfigItem } from '../src/types';
 
 beforeAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
@@ -80,7 +80,7 @@ runWithConfig(
   },
 );
 
-function runWithConfig(name: string, configs: OptionsConfig, ...items: Array<FlatConfigItem>) {
+function runWithConfig(name: string, configs: OptionsConfig, ...items: Array<TypedFlatConfigItem>) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
     const output = resolve('fixtures/output', name);

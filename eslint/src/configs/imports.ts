@@ -1,9 +1,9 @@
-import type { FlatConfigItem } from '../types';
+import type { TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { pluginImport, pluginVinicunca } from '../plugins';
 
-export async function imports(): Promise<Array<FlatConfigItem>> {
+export async function imports(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
       name: 'vinicunca:imports',

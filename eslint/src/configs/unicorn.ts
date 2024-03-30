@@ -1,9 +1,9 @@
-import type { FlatConfigItem } from '../types';
+import type { TypedFlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
 import { pluginUnicorn } from '../plugins';
 
-export async function unicorn(): Promise<FlatConfigItem[]> {
+export async function unicorn(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
       name: 'vinicunca:unicorn',

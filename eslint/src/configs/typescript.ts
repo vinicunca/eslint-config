@@ -1,6 +1,6 @@
 import process from 'node:process';
 
-import type { FlatConfigItem, OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types';
+import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
@@ -9,7 +9,7 @@ import { interopDefault, renameRules, toArray } from '../utils';
 
 export async function typescript(
   options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
-): Promise<Array<FlatConfigItem>> {
+): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
     overrides = {},
@@ -27,7 +27,7 @@ export async function typescript(
     : undefined;
   const isTypeAware = !!tsconfigPath;
 
-  const typeAwareRules: FlatConfigItem['rules'] = {
+  const typeAwareRules: TypedFlatConfigItem['rules'] = {
     'dot-notation': OFF,
     'no-implied-eval': OFF,
     'no-throw-literal': OFF,
@@ -54,7 +54,7 @@ export async function typescript(
   function makeParser(
     { files, ignores, typeAware }:
     { files: Array<string>; ignores?: Array<string>; typeAware: boolean },
-  ): FlatConfigItem {
+  ): TypedFlatConfigItem {
     return {
       files,
       ...ignores ? { ignores } : {},

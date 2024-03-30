@@ -1,7 +1,7 @@
 import { isBoolean } from '@vinicunca/perkakas';
 import { mergeProcessors } from 'eslint-merge-processors';
 
-import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, OptionsVue } from '../types';
+import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, OptionsVue, TypedFlatConfigItem } from '../types';
 
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 import { GLOB_VUE } from '../globs';
@@ -9,7 +9,7 @@ import { interopDefault } from '../utils';
 
 export async function vue(
   options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
-): Promise<Array<FlatConfigItem>> {
+): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_VUE],
     overrides = {},

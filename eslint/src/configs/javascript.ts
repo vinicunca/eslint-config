@@ -1,6 +1,6 @@
 import globals from 'globals';
 
-import type { FlatConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types';
+import type { OptionsIsInEditor, OptionsOverrides, TypedFlatConfigItem } from '../types';
 
 import {
   ALWAYS,
@@ -14,7 +14,7 @@ import { pluginUnusedImports, pluginVinicunca } from '../plugins';
 
 export async function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): Promise<Array<FlatConfigItem>> {
+): Promise<Array<TypedFlatConfigItem>> {
   const {
     isInEditor = false,
     overrides = {},

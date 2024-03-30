@@ -1,6 +1,6 @@
 import { isBoolean } from '@vinicunca/perkakas';
 
-import type { FlatConfigItem, OptionsFiles, OptionsOverrides, OptionsStylistic } from '../types';
+import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_YAML } from '../globs';
@@ -8,7 +8,7 @@ import { interopDefault } from '../utils';
 
 export async function yaml(
   options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},
-): Promise<FlatConfigItem[]> {
+): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_YAML],
     overrides = {},

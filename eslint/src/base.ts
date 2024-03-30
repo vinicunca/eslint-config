@@ -4,7 +4,7 @@ import { isPackageExists } from 'local-pkg';
 import fs from 'node:fs';
 import process from 'node:process';
 
-import type { Awaitable, FlatConfigItem, OptionsConfig, OptionsStylistic } from './types';
+import type { Awaitable, TypedFlatConfigItem, OptionsConfig, OptionsStylistic } from './types';
 
 import {
   comments,
@@ -30,7 +30,7 @@ import {
 import { formatters } from './configs/formatters';
 import { interopDefault } from './utils';
 
-const flatConfigProps: Array<keyof FlatConfigItem> = [
+const flatConfigProps: Array<keyof TypedFlatConfigItem> = [
   'name',
   'files',
   'ignores',
@@ -60,9 +60,9 @@ export const defaultPluginRenaming = {
 
 // eslint-disable-next-line vinicunca/cognitive-complexity
 export function vinicuncaESLint(
-  options: OptionsConfig & FlatConfigItem = {},
-  ...userConfigs: Array<Awaitable<Array<FlatConfigItem> | FlatConfigItem>>
-): FlatConfigPipeline<FlatConfigItem> {
+  options: OptionsConfig & TypedFlatConfigItem = {},
+  ...userConfigs: Array<Awaitable<Array<TypedFlatConfigItem> | TypedFlatConfigItem>>
+): FlatConfigPipeline<TypedFlatConfigItem> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
@@ -85,7 +85,7 @@ export function vinicuncaESLint(
     };
   }
 
-  const configs: Array<Awaitable<Array<FlatConfigItem>>> = [];
+  const configs: Array<Awaitable<Array<TypedFlatConfigItem>>> = [];
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
@@ -214,13 +214,13 @@ export function vinicuncaESLint(
       acc[key] = options[key] as any;
     };
     return acc;
-  }, {} as FlatConfigItem);
+  }, {} as TypedFlatConfigItem);
 
   if (Object.keys(fusedConfig).length) {
     configs.push([fusedConfig]);
   };
 
-  let pipeline = new FlatConfigPipeline<FlatConfigItem>();
+  let pipeline = new FlatConfigPipeline<TypedFlatConfigItem>();
 
   pipeline = pipeline
     .append(

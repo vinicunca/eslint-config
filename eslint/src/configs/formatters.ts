@@ -1,4 +1,4 @@
-import type { FlatConfigItem, OptionsFormatters, StylisticConfig } from '../types';
+import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '../types';
 import type { VendoredPrettierOptions } from '../vendor/prettier-types';
 
 import { GLOB_CSS, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS } from '../globs';
@@ -8,7 +8,7 @@ import { STYLISTIC_CONFIG_DEFAULTS } from './stylistic';
 export async function formatters(
   options: OptionsFormatters | true = {},
   stylistic: StylisticConfig = {},
-): Promise<Array<FlatConfigItem>> {
+): Promise<Array<TypedFlatConfigItem>> {
   if (options === true) {
     options = {
       css: true,
@@ -50,7 +50,7 @@ export async function formatters(
 
   const pluginFormat = await interopDefault(import('eslint-plugin-format'));
 
-  const configs: Array<FlatConfigItem> = [
+  const configs: Array<TypedFlatConfigItem> = [
     {
       name: 'vinicunca:formatters:setup',
       plugins: {

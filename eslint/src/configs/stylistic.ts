@@ -1,4 +1,4 @@
-import type { FlatConfigItem, OptionsOverrides, StylisticConfig } from '../types';
+import type { OptionsOverrides, StylisticConfig, TypedFlatConfigItem } from '../types';
 
 import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
 import { GLOB_JSX, GLOB_TSX } from '../globs';
@@ -16,7 +16,7 @@ export const STYLISTIC_CONFIG_DEFAULTS: StylisticConfig = {
 
 export async function stylistic(
   options: StylisticConfig & OptionsOverrides = {},
-): Promise<Array<FlatConfigItem>> {
+): Promise<Array<TypedFlatConfigItem>> {
   const {
     indent,
     jsx,

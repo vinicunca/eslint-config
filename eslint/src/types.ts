@@ -11,7 +11,7 @@ export type Awaitable<T> = Promise<T> | T;
 
 export type Rules = RuleOptions;
 
-export type FlatConfigItem = Omit<Linter.FlatConfig, 'plugins' | 'rules'> & {
+export type TypedFlatConfigItem = Omit<Linter.FlatConfig, 'plugins'> & {
   /**
    * Custom name of each config item
    */
@@ -28,9 +28,7 @@ export type FlatConfigItem = Omit<Linter.FlatConfig, 'plugins' | 'rules'> & {
   /**
    * An object containing a name-value mapping of rules to use.
    */
-  rules?: {
-    [key: string]: Linter.RuleEntry;
-  } & Rules;
+  rules?: Linter.RulesRecord & Rules;
 };
 
 export interface OptionsFiles {
@@ -148,7 +146,7 @@ export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent
 }
 
 export interface OptionsOverrides {
-  overrides?: FlatConfigItem['rules'];
+  overrides?: TypedFlatConfigItem['rules'];
 }
 
 export interface OptionsIsInEditor {
