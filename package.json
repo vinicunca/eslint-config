@@ -13,9 +13,9 @@
     "publish:ci": "tsx scripts/publish.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.12.2",
     "@vinicunca/eslint-config": "workspace:*",
-    "@vinicunca/perkakas": "^0.5.3",
+    "@vinicunca/perkakas": "^0.5.4",
     "bumpp": "^9.4.0",
     "eslint": "9.0.0-rc.0",
     "is-ci": "^3.0.1",

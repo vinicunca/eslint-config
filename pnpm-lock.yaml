@@ -9,14 +9,14 @@ importers:
   .:
     devDependencies:
       '@types/node':
-        specifier: ^20.11.30
-        version: 20.11.30
+        specifier: ^20.12.2
+        version: 20.12.2
       '@vinicunca/eslint-config':
         specifier: workspace:*
         version: link:eslint
       '@vinicunca/perkakas':
-        specifier: ^0.5.3
-        version: 0.5.3
+        specifier: ^0.5.4
+        version: 0.5.4
       bumpp:
         specifier: ^9.4.0
         version: 9.4.0
@@ -37,7 +37,7 @@ importers:
         version: 5.4.3
       vitest:
         specifier: ^1.4.0
-        version: 1.4.0(@types/node@20.11.30)
+        version: 1.4.0(@types/node@20.12.2)
 
   eslint:
     dependencies:
@@ -108,8 +108,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0(@typescript-eslint/eslint-plugin@7.4.0)(eslint@8.57.0)
       eslint-plugin-vitest:
-        specifier: ^0.4.0
-        version: 0.4.0(@typescript-eslint/eslint-plugin@7.4.0)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
+        specifier: ^0.4.1
+        version: 0.4.1(@typescript-eslint/eslint-plugin@7.4.0)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0)
       eslint-plugin-vue:
         specifier: ^9.24.0
         version: 9.24.0(eslint@8.57.0)
@@ -120,8 +120,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)
       eslint-typegen:
-        specifier: ^0.1.6
-        version: 0.1.6
+        specifier: ^0.2.0
+        version: 0.2.0
       globals:
         specifier: ^15.0.0
         version: 15.0.0
@@ -1266,7 +1266,7 @@ packages:
   /@types/jsonfile@6.1.4:
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
     dev: true
 
   /@types/mdast@3.0.15:
@@ -1277,6 +1277,12 @@ packages:
 
   /@types/node@20.11.30:
     resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
+  /@types/node@20.12.2:
+    resolution: {integrity: sha512-zQ0NYO87hyN6Xrclcqp7f8ZbXNbRfoGWNcMvHTPQp9UUrwI0mI7XBz+cu7/W6/VClYo2g63B0cjull/srU7LgQ==}
     dependencies:
       undici-types: 5.26.5
 
@@ -1591,8 +1597,8 @@ packages:
       eslint: 8.57.0
     dev: false
 
-  /@vinicunca/perkakas@0.5.3:
-    resolution: {integrity: sha512-Iu80FBtIZfAGWCJw91f+Q8ZY0hwsRIAcqMizFJG5iV0Br5UKZTDtpnSHTZA0ss1qHKwxCUFEWztlSKDUTlTwyw==}
+  /@vinicunca/perkakas@0.5.4:
+    resolution: {integrity: sha512-5HNnl6cXlyBvaebLHzIgwkTUmnivIt2kHlg0G+kYMPSCfEfB1HhUU7gmlWXTZ4XJJdsKY0M3/XoF0zv2xcpWAQ==}
     engines: {node: '>=20.0.0'}
     dev: true
 
@@ -2939,8 +2945,8 @@ packages:
       eslint-rule-composer: 0.3.0
     dev: false
 
-  /eslint-plugin-vitest@0.4.0(@typescript-eslint/eslint-plugin@7.4.0)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
-    resolution: {integrity: sha512-3oWgZIwdWVBQ5plvkmOBjreIGLQRdYb7x54OP8uIRHeZyRVJIdOn9o/qWVb9292fDMC8jn7H7d9TSFBZqhrykQ==}
+  /eslint-plugin-vitest@0.4.1(@typescript-eslint/eslint-plugin@7.4.0)(eslint@8.57.0)(typescript@5.4.3)(vitest@1.4.0):
+    resolution: {integrity: sha512-+PnZ2u/BS+f5FiuHXz4zKsHPcMKHie+K+1Uvu/x91ovkCMEOJqEI8E9Tw1Wzx2QRz4MHOBHYf1ypO8N1K0aNAA==}
     engines: {node: ^18.0.0 || >= 20.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
@@ -2955,7 +2961,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 7.4.0(@typescript-eslint/parser@7.4.0)(eslint@8.57.0)(typescript@5.4.3)
       '@typescript-eslint/utils': 7.4.0(eslint@8.57.0)(typescript@5.4.3)
       eslint: 8.57.0
-      vitest: 1.4.0(@types/node@20.11.30)
+      vitest: 1.4.0(@types/node@20.12.2)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3035,8 +3041,8 @@ packages:
       estraverse: 5.3.0
     dev: true
 
-  /eslint-typegen@0.1.6:
-    resolution: {integrity: sha512-M6a9l3ifdZvZIJahUQmf1c1gVxoNu9e8E1Uwzu3bg2jKH1dfSkO8KSViNio54vEQCvyVPfJky5U246hZf4j1RA==}
+  /eslint-typegen@0.2.0:
+    resolution: {integrity: sha512-zaAQemIb3RfMjxCMv+sgoXAAhrMZDlx8rZ35zaIUS7ebZHvj1QjjspQnHnZ8UA/7U00u9tI+Lv1pjX1A73HHPQ==}
     dependencies:
       '@types/eslint': 8.56.6
       json-schema-to-typescript-lite: 14.0.0
@@ -5827,7 +5833,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: false
 
-  /vite-node@1.4.0(@types/node@20.11.30):
+  /vite-node@1.4.0(@types/node@20.12.2):
     resolution: {integrity: sha512-VZDAseqjrHgNd4Kh8icYHWzTKSCZMhia7GyHfhtzLW33fZlG9SwsB6CEhgyVOWkJfJ2pFLrp/Gj1FSfAiqH9Lw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5836,7 +5842,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.6(@types/node@20.11.30)
+      vite: 5.2.6(@types/node@20.12.2)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5847,7 +5853,7 @@ packages:
       - supports-color
       - terser
 
-  /vite@5.2.6(@types/node@20.11.30):
+  /vite@5.2.6(@types/node@20.12.2):
     resolution: {integrity: sha512-FPtnxFlSIKYjZ2eosBQamz4CbyrTizbZ3hnGJlh/wMtCrlp1Hah6AzBLjGI5I2urTfNnpovpHdrL6YRuBOPnCA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5875,14 +5881,14 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.13.0
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vitest@1.4.0(@types/node@20.11.30):
+  /vitest@1.4.0(@types/node@20.12.2):
     resolution: {integrity: sha512-gujzn0g7fmwf83/WzrDTnncZt2UiXP41mHuFYFrdwaLRVQ6JYQEiME2IfEjU3vcFL3VKa75XhI3lFgn+hfVsQw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5907,7 +5913,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
       '@vitest/expect': 1.4.0
       '@vitest/runner': 1.4.0
       '@vitest/snapshot': 1.4.0
@@ -5925,8 +5931,8 @@ packages:
       strip-literal: 2.0.0
       tinybench: 2.6.0
       tinypool: 0.8.3
-      vite: 5.2.6(@types/node@20.11.30)
-      vite-node: 1.4.0(@types/node@20.11.30)
+      vite: 5.2.6(@types/node@20.12.2)
+      vite-node: 1.4.0(@types/node@20.12.2)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
