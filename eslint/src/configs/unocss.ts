@@ -18,7 +18,7 @@ export async function unocss(
 
   return [
     {
-      name: 'vinicunca:unocss',
+      name: 'vinicunca/unocss',
       plugins: {
         unocss: pluginUnoCSS,
       },

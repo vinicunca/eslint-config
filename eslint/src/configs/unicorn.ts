@@ -6,7 +6,7 @@ import { pluginUnicorn } from '../plugins';
 export async function unicorn(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca:unicorn',
+      name: 'vinicunca/unicorn/rules',
 
       plugins: {
         unicorn: pluginUnicorn,

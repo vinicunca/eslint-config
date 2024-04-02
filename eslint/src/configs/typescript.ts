@@ -72,14 +72,14 @@ export async function typescript(
           ...parserOptions as any,
         },
       },
-      name: `vinicunca:typescript:${typeAware ? 'type-aware-parser' : 'parser'}`,
+      name: `vinicunca/typescript/${typeAware ? 'type-aware-parser' : 'parser'}`,
     };
   }
 
   return [
     {
       // Install the plugins without globs, so they can be configured separately.
-      name: 'vinicunca:typescript:setup',
+      name: 'vinicunca/typescript/setup',
 
       plugins: {
         ts: pluginTs as any,
@@ -98,7 +98,7 @@ export async function typescript(
     {
       files,
 
-      name: 'vinicunca:typescript:rules',
+      name: 'vinicunca/typescript/rules',
 
       rules: {
         ...renameRules(
@@ -186,7 +186,7 @@ export async function typescript(
 
     {
       files: filesTypeAware,
-      name: 'vinicunca:typescript:rules-type-aware',
+      name: 'vinicunca/typescript/rules-type-aware',
       rules: {
         ...tsconfigPath ? typeAwareRules : {},
         ...overrides,
@@ -196,7 +196,7 @@ export async function typescript(
     {
       files: ['**/*.d.ts'],
 
-      name: 'vinicunca:typescript:dts-overrides',
+      name: 'vinicunca/typescript/disables/dts',
 
       rules: {
         'eslint-comments/no-unlimited-disable': OFF,
@@ -209,7 +209,7 @@ export async function typescript(
     {
       files: ['**/*.{test,spec}.ts?(x)'],
 
-      name: 'vinicunca:typescript:tests-overrides',
+      name: 'vinicunca/typescript/disables/tests',
 
       rules: {
         'no-unused-expressions': OFF,
@@ -219,7 +219,7 @@ export async function typescript(
     {
       files: ['**/*.js', '**/*.cjs'],
 
-      name: 'vinicunca:typescript:javascript-overrides',
+      name: 'vinicunca/typescript/disables/javascript',
 
       rules: {
         'ts/no-require-imports': OFF,

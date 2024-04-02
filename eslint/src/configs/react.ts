@@ -24,7 +24,7 @@ export async function react(
 
   return [
     {
-      name: 'vinicunca:react:setup',
+      name: 'vinicunca/react/setup',
 
       plugins: {
         'react': pluginReact,
@@ -49,7 +49,7 @@ export async function react(
         },
       },
 
-      name: 'vinicunca:react:rules',
+      name: 'vinicunca/react/rules',
 
       rules: {
         ...pluginReact.configs.recommended.rules,

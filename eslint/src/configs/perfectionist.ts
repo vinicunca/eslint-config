@@ -11,7 +11,7 @@ import { pluginPerfectionist } from '../plugins';
 export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca:perfectionist',
+      name: 'vinicunca/perfectionist/rules',
       plugins: {
         perfectionist: pluginPerfectionist,
       },

@@ -41,7 +41,7 @@ export async function stylistic(
 
   return [
     {
-      name: 'vinicunca:stylistic',
+      name: 'vinicunca/stylistic/rules',
 
       plugins: {
         style: pluginStylistic,

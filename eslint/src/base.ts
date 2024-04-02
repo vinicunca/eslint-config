@@ -1,10 +1,10 @@
 import { isBoolean, isObject } from '@vinicunca/perkakas';
-import { FlatConfigPipeline } from 'eslint-flat-config-utils';
+import { FlatConfigComposer } from 'eslint-flat-config-utils';
 import { isPackageExists } from 'local-pkg';
 import fs from 'node:fs';
 import process from 'node:process';
 
-import type { Awaitable, TypedFlatConfigItem, OptionsConfig, OptionsStylistic } from './types';
+import type { Awaitable, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
 
 import {
   comments,
@@ -62,7 +62,7 @@ export const defaultPluginRenaming = {
 export function vinicuncaESLint(
   options: OptionsConfig & TypedFlatConfigItem = {},
   ...userConfigs: Array<Awaitable<Array<TypedFlatConfigItem> | TypedFlatConfigItem>>
-): FlatConfigPipeline<TypedFlatConfigItem> {
+): FlatConfigComposer<TypedFlatConfigItem> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
@@ -220,7 +220,7 @@ export function vinicuncaESLint(
     configs.push([fusedConfig]);
   };
 
-  let pipeline = new FlatConfigPipeline<TypedFlatConfigItem>();
+  let pipeline = new FlatConfigComposer<TypedFlatConfigItem>();
 
   pipeline = pipeline
     .append(

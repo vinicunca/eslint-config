@@ -10,7 +10,7 @@ export async function jsdoc(options: OptionsStylistic = {}): Promise<Array<Typed
 
   return [
     {
-      name: 'vinicunca:jsdoc',
+      name: 'vinicunca/jsdoc/rules',
 
       plugins: {
         jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),

@@ -30,7 +30,7 @@ export async function yaml(
 
   return [
     {
-      name: 'vinicunca:yaml:setup',
+      name: 'vinicunca/yaml/setup',
 
       plugins: {
         yaml: pluginYaml as any,
@@ -44,7 +44,7 @@ export async function yaml(
         parser: parserYaml,
       },
 
-      name: 'vinicunca:yaml:rules',
+      name: 'vinicunca/yaml/rules',
 
       rules: {
         'style/spaced-comment': OFF,

@@ -6,7 +6,7 @@ import { pluginNode } from '../plugins';
 export async function node(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca:node',
+      name: 'vinicunca/node/rules',
 
       plugins: {
         node: pluginNode,

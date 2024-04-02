@@ -6,7 +6,7 @@ import { pluginImport, pluginVinicunca } from '../plugins';
 export async function imports(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca:imports',
+      name: 'vinicunca/imports/rules',
 
       plugins: {
         import: pluginImport,

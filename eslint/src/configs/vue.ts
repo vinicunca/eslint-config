@@ -37,7 +37,7 @@ export async function vue(
 
   return [
     {
-      name: 'vinicunca:vue:setup',
+      name: 'vinicunca/vue/setup',
 
       plugins: {
         vue: pluginVue,
@@ -62,7 +62,7 @@ export async function vue(
         },
       },
 
-      name: 'vinicunca:vue:rules',
+      name: 'vinicunca/vue/rules',
 
       processor: sfcBlocks === false
         ? pluginVue.processors['.vue']

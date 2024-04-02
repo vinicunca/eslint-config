@@ -12,7 +12,7 @@ export async function sortPackageJson(): Promise<Array<TypedFlatConfigItem>> {
     {
       files: ['**/package.json'],
 
-      name: 'vinicunca:sort-package-json',
+      name: 'vinicunca/sort/package-json',
 
       rules: {
         'jsonc/sort-array-values': [
@@ -125,7 +125,7 @@ export function sortTsconfig(): Array<TypedFlatConfigItem> {
     {
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],
 
-      name: 'vinicunca:sort-tsconfig',
+      name: 'vinicunca/sort/tsconfig',
       rules: {
         'jsonc/sort-keys': [
           ERROR,

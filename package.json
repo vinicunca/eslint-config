@@ -13,7 +13,7 @@
     "publish:ci": "tsx scripts/publish.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.12.2",
+    "@types/node": "^20.12.3",
     "@vinicunca/eslint-config": "workspace:*",
     "@vinicunca/perkakas": "^0.5.4",
     "bumpp": "^9.4.0",

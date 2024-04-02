@@ -24,7 +24,7 @@ export async function test(
 
   return [
     {
-      name: 'vinicunca:test:setup',
+      name: 'vinicunca/test/setup',
 
       plugins: {
         test: {
@@ -41,7 +41,7 @@ export async function test(
     {
       files,
 
-      name: 'vinicunca:test:rules',
+      name: 'vinicunca/test/rules',
 
       rules: {
         'node/prefer-global/process': OFF,

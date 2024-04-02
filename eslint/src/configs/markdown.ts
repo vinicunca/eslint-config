@@ -20,7 +20,7 @@ export async function markdown(
 
   return [
     {
-      name: 'vinicunca:markdown:setup',
+      name: 'vinicunca/markdown/setup',
 
       plugins: {
         markdown,
@@ -30,7 +30,7 @@ export async function markdown(
     {
       files,
       ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
-      name: 'vinicunca:markdown:processor',
+      name: 'vinicunca/markdown/processor',
       /**
        * `eslint-plugin-markdown` only creates virtual files for code blocks,
        * but not the markdown file itself. We use `eslint-merge-processors` to
@@ -47,7 +47,7 @@ export async function markdown(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:markdown:parser',
+      name: 'vinicunca/markdown/parser',
     },
 
     {
@@ -64,7 +64,7 @@ export async function markdown(
         },
       },
 
-      name: 'vinicunca:markdown:disables',
+      name: 'vinicunca/markdown/disables',
 
       rules: {
         'import/newline-after-import': OFF,

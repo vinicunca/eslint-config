@@ -52,7 +52,7 @@ export async function formatters(
 
   const configs: Array<TypedFlatConfigItem> = [
     {
-      name: 'vinicunca:formatters:setup',
+      name: 'vinicunca/formatter/setup',
       plugins: {
         format: pluginFormat,
       },
@@ -66,7 +66,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'vinicunca:formatters:css',
+        name: 'vinicunca/formatter/css',
         rules: {
           'format/prettier': [
             'error',
@@ -82,7 +82,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'vinicunca:formatters:scss',
+        name: 'vinicunca/formatter/scss',
         rules: {
           'format/prettier': [
             'error',
@@ -98,7 +98,7 @@ export async function formatters(
         languageOptions: {
           parser: parserPlain,
         },
-        name: 'vinicunca:formatters:less',
+        name: 'vinicunca/formatter/less',
         rules: {
           'format/prettier': [
             'error',
@@ -118,7 +118,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:formatters:html',
+      name: 'vinicunca/formatter/html',
       rules: {
         'format/prettier': [
           'error',
@@ -141,7 +141,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:formatters:markdown',
+      name: 'vinicunca/formatter/markdown',
       rules: {
         [`format/${formater}`]: [
           'error',
@@ -167,7 +167,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'vinicunca:formatters:graphql',
+      name: 'vinicunca/formatter/graphql',
       rules: {
         'format/prettier': [
           'error',

@@ -49,7 +49,7 @@ export async function javascript(
         reportUnusedDisableDirectives: true,
       },
 
-      name: 'vinicunca:javascript',
+      name: 'vinicunca/javascript/rules',
 
       plugins: {
         'unused-imports': pluginUnusedImports,
@@ -403,7 +403,7 @@ export async function javascript(
     {
       files: [`**/scripts/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
 
-      name: 'vinicunca:javascript:overrides',
+      name: 'vinicunca/javascript/disables',
 
       rules: {
         'no-console': OFF,

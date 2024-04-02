@@ -6,7 +6,7 @@ import { pluginComments } from '../plugins';
 export async function comments(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca:eslint-comments',
+      name: 'vinicunca/eslint-comments',
 
       plugins: {
         'eslint-comments': pluginComments,

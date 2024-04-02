@@ -29,7 +29,7 @@ export async function jsonc(
 
   return [
     {
-      name: 'vinicunca:jsonc:setup',
+      name: 'vinicunca/jsonc/setup',
 
       plugins: {
         jsonc: pluginJsonc as any,
@@ -43,7 +43,7 @@ export async function jsonc(
         parser: parserJsonc,
       },
 
-      name: 'vinicunca:jsonc:rules',
+      name: 'vinicunca/jsonc/rules',
 
       rules: {
         'jsonc/no-bigint-literals': ERROR,
