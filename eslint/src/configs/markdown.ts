@@ -114,8 +114,6 @@ export async function markdown(
           'ts/unbound-method': OFF,
         },
 
-        'vinicunca/no-ts-export-equal': OFF,
-
         ...overrides,
       },
     },

@@ -10,7 +10,7 @@ import {
   WARN,
 } from '../flags';
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
-import { pluginUnusedImports, pluginVinicunca } from '../plugins';
+import { pluginAntfu, pluginUnusedImports } from '../plugins';
 
 export async function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
@@ -52,8 +52,8 @@ export async function javascript(
       name: 'vinicunca/javascript/rules',
 
       plugins: {
+        'antfu': pluginAntfu,
         'unused-imports': pluginUnusedImports,
-        'vinicunca': pluginVinicunca,
       },
 
       rules: {
@@ -393,8 +393,6 @@ export async function javascript(
         'vars-on-top': ERROR,
 
         'yoda': [ERROR, NEVER],
-
-        ...pluginVinicunca.configs.recommended.rules,
 
         ...overrides,
       },

@@ -1,7 +1,6 @@
 // Define a TypeScript interface
 interface Person {
-  age: number;
-  name: string;
+  age: number; name: string;
 }
 
 // Create an array of objects with the defined interface
@@ -29,8 +28,7 @@ function identity< T >(arg: T): T {
 
 // Use the generic function with type inference
 const result = identity(
-  'TypeScript is awesome',
-);
+  'TypeScript is awesome');
 log(result);
 
 // Use optional properties in an interface
@@ -41,10 +39,7 @@ interface Car {
 
 // Create objects using the interface
 const car1: Car = { make: 'Toyota' };
-const car2: Car = {
-  make: 'Ford',
-  model: 'Focus',
-};
+const car2: Car = { make: 'Ford', model: 'Focus' };
 
 // Use union types
 type Fruit = 'apple' | 'banana' | 'orange';
@@ -80,8 +75,8 @@ class Dog extends Animal {
 const dog = new Dog('Buddy');
 dog.bark();
 
-function fn(): string {
+const fn = (): string => {
   return `hello${1}`;
-}
+};
 
 log(car1, car2, favoriteFruit, numericValue, fn());

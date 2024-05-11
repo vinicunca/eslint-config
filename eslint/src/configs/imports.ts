@@ -1,7 +1,7 @@
 import type { TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
-import { pluginImport, pluginVinicunca } from '../plugins';
+import { pluginAntfu, pluginImport } from '../plugins';
 
 export async function imports(): Promise<Array<TypedFlatConfigItem>> {
   return [
@@ -9,8 +9,8 @@ export async function imports(): Promise<Array<TypedFlatConfigItem>> {
       name: 'vinicunca/imports/rules',
 
       plugins: {
+        antfu: pluginAntfu,
         import: pluginImport,
-        vinicunca: pluginVinicunca,
       },
 
       rules: {
@@ -35,10 +35,6 @@ export async function imports(): Promise<Array<TypedFlatConfigItem>> {
 
         // Turned off to avoid conflicts with Perfectionist. https://eslint-plugin-perfectionist.azat.io/rules/sort-imports
         'import/order': OFF,
-
-        'vinicunca/import-dedupe': ERROR,
-
-        'vinicunca/no-import-node-modules-by-path': ERROR,
       },
     },
   ];

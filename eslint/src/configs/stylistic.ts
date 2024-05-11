@@ -1,8 +1,7 @@
 import type { OptionsOverrides, StylisticConfig, TypedFlatConfigItem } from '../types';
 
 import { ALWAYS, CONSISTENT, ERROR, NEVER, OFF } from '../flags';
-import { GLOB_JSX, GLOB_TSX } from '../globs';
-import { pluginVinicunca } from '../plugins';
+import { pluginAntfu } from '../plugins';
 import { interopDefault } from '../utils';
 
 const STR_PARENS_NEW_LINE = 'parens-new-line';
@@ -15,7 +14,7 @@ export const STYLISTIC_CONFIG_DEFAULTS: StylisticConfig = {
 };
 
 export async function stylistic(
-  options: StylisticConfig & OptionsOverrides = {},
+  options: OptionsOverrides & StylisticConfig = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     indent,
@@ -44,8 +43,8 @@ export async function stylistic(
       name: 'vinicunca/stylistic/rules',
 
       plugins: {
+        antfu: pluginAntfu,
         style: pluginStylistic,
-        vinicunca: pluginVinicunca,
       },
 
       rules: {
@@ -144,21 +143,7 @@ export async function stylistic(
 
         'style/semi-spacing': [ERROR, { after: true, before: false }],
 
-        'vinicunca/consistent-list-newline': ERROR,
-
-        'vinicunca/if-newline': ERROR,
-
-        'vinicunca/top-level-function': ERROR,
-
         ...overrides,
-      },
-    },
-
-    {
-      files: [GLOB_JSX, GLOB_TSX],
-
-      rules: {
-        'vinicunca/consistent-list-newline': OFF,
       },
     },
   ];

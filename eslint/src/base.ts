@@ -1,10 +1,12 @@
+import type { Linter } from 'eslint';
+
 import { isBoolean, isObject } from '@vinicunca/perkakas';
 import { FlatConfigComposer } from 'eslint-flat-config-utils';
 import { isPackageExists } from 'local-pkg';
 import fs from 'node:fs';
 import process from 'node:process';
 
-import type { Awaitable, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
+import type { Awaitable, ConfigNames, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
 
 import {
   comments,
@@ -17,6 +19,7 @@ import {
   node,
   perfectionist,
   react,
+  sonar,
   sortPackageJson,
   sortTsconfig,
   stylistic,
@@ -54,15 +57,25 @@ export const defaultPluginRenaming = {
   '@typescript-eslint': 'ts',
   'import-x': 'import',
   'n': 'node',
+  'sonarjs': 'sonar',
   'vitest': 'test',
   'yml': 'yaml',
 };
 
-// eslint-disable-next-line vinicunca/cognitive-complexity
+/**
+ * Construct an array of ESLint flat config items.
+ *
+ * @param options
+ *  The options for generating the ESLint configurations.
+ * @param userConfigs
+ *  The user configurations to be merged with the generated configurations.
+ * @returns
+ *  The merged ESLint configurations.
+ */
 export function vinicuncaESLint(
   options: OptionsConfig & TypedFlatConfigItem = {},
-  ...userConfigs: Array<Awaitable<Array<TypedFlatConfigItem> | TypedFlatConfigItem>>
-): FlatConfigComposer<TypedFlatConfigItem> {
+  ...userConfigs: Array<Awaitable<Array<Linter.FlatConfig> | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | TypedFlatConfigItem>>
+): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
@@ -118,6 +131,8 @@ export function vinicuncaESLint(
     unicorn(),
 
     perfectionist(),
+
+    sonar(),
   );
 
   if (enableVue) {
@@ -220,20 +235,20 @@ export function vinicuncaESLint(
     configs.push([fusedConfig]);
   };
 
-  let pipeline = new FlatConfigComposer<TypedFlatConfigItem>();
+  let composer = new FlatConfigComposer<TypedFlatConfigItem, ConfigNames>();
 
-  pipeline = pipeline
+  composer = composer
     .append(
       ...configs,
-      ...userConfigs,
+      ...userConfigs as any,
     );
 
   if (autoRenamePlugins) {
-    pipeline = pipeline
+    composer = composer
       .renamePlugins(defaultPluginRenaming);
   }
 
-  return pipeline;
+  return composer;
 }
 
 function getOverrides<K extends keyof OptionsConfig>(

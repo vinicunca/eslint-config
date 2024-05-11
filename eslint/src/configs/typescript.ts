@@ -4,11 +4,11 @@ import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeS
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
-import { pluginVinicunca } from '../plugins';
+import { pluginAntfu } from '../plugins';
 import { interopDefault, renameRules, toArray } from '../utils';
 
 export async function typescript(
-  options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions = {},
+  options: OptionsComponentExts & OptionsFiles & OptionsOverrides & OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
@@ -82,8 +82,8 @@ export async function typescript(
       name: 'vinicunca/typescript/setup',
 
       plugins: {
+        antfu: pluginAntfu,
         ts: pluginTs as any,
-        vinicunca: pluginVinicunca,
       },
     },
 
