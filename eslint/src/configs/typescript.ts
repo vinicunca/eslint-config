@@ -41,6 +41,7 @@ export async function typescript(
     'ts/no-throw-literal': ERROR,
     'ts/restrict-plus-operands': ERROR,
     'ts/restrict-template-expressions': ERROR,
+    'ts/strict-boolean-expressions': 'error',
   };
 
   const [

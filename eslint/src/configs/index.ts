@@ -9,6 +9,7 @@ export * from './markdown';
 export * from './node';
 export * from './perfectionist';
 export * from './react';
+export * from './regexp';
 export * from './sonar';
 export * from './sort-package-json';
 export * from './stylistic';

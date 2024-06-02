@@ -31,6 +31,7 @@ import {
   yaml,
 } from './configs';
 import { formatters } from './configs/formatters';
+import { regexp } from './configs/regexp';
 import { interopDefault } from './utils';
 
 const flatConfigProps: Array<keyof TypedFlatConfigItem> = [
@@ -82,6 +83,7 @@ export function vinicuncaESLint(
     gitignore: enableGitignore = true,
     isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     react: enableReact = false,
+    regexp: enableRegexp = true,
     typescript: enableTypeScript = isPackageExists('typescript'),
     unocss: enableUnoCSS = false,
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
@@ -109,6 +111,9 @@ export function vinicuncaESLint(
       }
     }
   }
+
+  const typescriptOptions = resolveSubOptions(options, 'typescript');
+  const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined;
 
   configs.push(
     ignores(),
@@ -141,7 +146,7 @@ export function vinicuncaESLint(
 
   if (enableTypeScript) {
     configs.push(typescript({
-      ...resolveSubOptions(options, 'typescript'),
+      ...typescriptOptions,
       componentExts,
       overrides: getOverrides(options, 'typescript'),
     }));
@@ -152,6 +157,10 @@ export function vinicuncaESLint(
       ...stylisticOptions,
       overrides: getOverrides(options, 'stylistic'),
     }));
+  }
+
+  if (enableRegexp) {
+    configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp));
   }
 
   if (options.test ?? true) {
@@ -173,7 +182,7 @@ export function vinicuncaESLint(
   if (enableReact) {
     configs.push(react({
       overrides: getOverrides(options, 'react'),
-      typescript: !!enableTypeScript,
+      tsconfigPath,
     }));
   }
 

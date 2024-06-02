@@ -11,9 +11,9 @@ export type Awaitable<T> = Promise<T> | T;
 
 export type Rules = RuleOptions;
 
-export type { ConfigNames }
+export type { ConfigNames };
 
-export type TypedFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord & Rules>, 'plugins'> & {
+export type TypedFlatConfigItem = {
   // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
   /**
    * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
@@ -21,7 +21,7 @@ export type TypedFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord & Ru
    * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
    */
   plugins?: Record<string, any>;
-};
+} & Omit<Linter.FlatConfig<Linter.RulesRecord & Rules>, 'plugins'>;
 
 export interface OptionsFiles {
   /**
@@ -48,8 +48,8 @@ export interface OptionsVue extends OptionsOverrides {
 }
 
 export type OptionsTypescript =
-  (OptionsTypeScriptParserOptions & OptionsOverrides)
-  | (OptionsTypeScriptWithTypes & OptionsOverrides);
+  (OptionsOverrides & OptionsTypeScriptParserOptions)
+  | (OptionsOverrides & OptionsTypeScriptWithTypes);
 
 export interface OptionsFormatters {
   /**
@@ -139,6 +139,13 @@ export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent
 
 export interface OptionsOverrides {
   overrides?: TypedFlatConfigItem['rules'];
+}
+
+export interface OptionsRegExp {
+  /**
+   * Override rulelevels
+   */
+  level?: 'error' | 'warn';
 }
 
 export interface OptionsIsInEditor {
@@ -233,11 +240,20 @@ export interface OptionsConfig extends OptionsComponentExts {
   react?: OptionsOverrides | boolean;
 
   /**
-   * Enable stylistic rules.
+   * Enable regexp rules.
    *
+   * @see https://ota-meshi.github.io/eslint-plugin-regexp/
    * @default true
    */
-  stylistic?: (StylisticConfig & OptionsOverrides) | boolean;
+  regexp?: (OptionsOverrides & OptionsRegExp) | boolean;
+
+  /**
+   * Enable stylistic rules.
+   *
+   * @see https://eslint.style/
+   * @default true
+   */
+  stylistic?: (OptionsOverrides & StylisticConfig) | boolean;
 
   /**
    * Enable test support.
