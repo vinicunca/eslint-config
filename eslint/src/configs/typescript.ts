@@ -39,9 +39,16 @@ export async function typescript(
     // Temporary turning it off due to performance
     'ts/no-misused-promises': OFF,
     'ts/no-throw-literal': ERROR,
+    'ts/no-unnecessary-type-assertion': ERROR,
+    'ts/no-unsafe-argument': ERROR,
+    'ts/no-unsafe-assignment': ERROR,
+    'ts/no-unsafe-call': ERROR,
+    'ts/no-unsafe-member-access': ERROR,
+    'ts/no-unsafe-return': ERROR,
     'ts/restrict-plus-operands': ERROR,
     'ts/restrict-template-expressions': ERROR,
-    'ts/strict-boolean-expressions': 'error',
+    'ts/strict-boolean-expressions': ERROR,
+    'ts/unbound-method': ERROR,
   };
 
   const [
@@ -140,7 +147,7 @@ export async function typescript(
         'ts/explicit-module-boundary-types': OFF,
 
         // https://www.totaltypescript.com/method-shorthand-syntax-considered-harmful
-        'ts/method-signature-style': ['error', 'property'],
+        'ts/method-signature-style': [ERROR, 'property'],
 
         'ts/naming-convention': OFF,
 
