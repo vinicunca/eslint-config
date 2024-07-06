@@ -50,6 +50,9 @@ export async function stylistic(
       rules: {
         ...config.rules,
 
+        'antfu/consistent-list-newline': 'error',
+        'antfu/top-level-function': 'error',
+
         'curly': [ERROR, 'all'],
 
         'style/array-bracket-newline': [ERROR, CONSISTENT],
