@@ -113,6 +113,12 @@ export interface OptionsTypeScriptParserOptions {
   filesTypeAware?: Array<string>;
 
   /**
+   * Glob patterns for files that should not be type aware.
+   * @default ['**\/*.md\/**', '**\/*.astro/*.ts']
+   */
+  ignoresTypeAware?: Array<string>;
+
+  /**
    * Additional parser options for TypeScript.
    */
   parserOptions?: Partial<ParserOptions>;
@@ -134,6 +140,7 @@ export interface OptionsStylistic {
   stylistic?: StylisticConfig | boolean;
 }
 
+// eslint-disable-next-line ts/no-empty-object-type
 export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'jsx' | 'quotes' | 'semi'> {
 }
 

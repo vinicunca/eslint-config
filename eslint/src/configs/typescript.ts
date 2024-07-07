@@ -3,7 +3,7 @@ import process from 'node:process';
 import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
-import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
+import { GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
 import { pluginAntfu } from '../plugins';
 import { interopDefault, renameRules, toArray } from '../utils';
 
@@ -22,6 +22,9 @@ export async function typescript(
   ];
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX];
+  const ignoresTypeAware = options.ignoresTypeAware ?? [
+    `${GLOB_MARKDOWN}/**`,
+  ];
   const tsconfigPath = options?.tsconfigPath
     ? toArray(options.tsconfigPath)
     : undefined;
@@ -30,7 +33,6 @@ export async function typescript(
   const typeAwareRules: TypedFlatConfigItem['rules'] = {
     'dot-notation': OFF,
     'no-implied-eval': OFF,
-    'no-throw-literal': OFF,
     'ts/await-thenable': ERROR,
     'ts/dot-notation': [ERROR, { allowKeywords: true }],
     'ts/no-floating-promises': ERROR,
@@ -38,16 +40,18 @@ export async function typescript(
     'ts/no-implied-eval': ERROR,
     // Temporary turning it off due to performance
     'ts/no-misused-promises': OFF,
-    'ts/no-throw-literal': ERROR,
     'ts/no-unnecessary-type-assertion': ERROR,
     'ts/no-unsafe-argument': ERROR,
     'ts/no-unsafe-assignment': ERROR,
     'ts/no-unsafe-call': ERROR,
     'ts/no-unsafe-member-access': ERROR,
     'ts/no-unsafe-return': ERROR,
+    'ts/promise-function-async': 'error',
     'ts/restrict-plus-operands': ERROR,
     'ts/restrict-template-expressions': ERROR,
-    'ts/strict-boolean-expressions': ERROR,
+    'ts/return-await': [ERROR, 'in-try-catch'],
+    'ts/strict-boolean-expressions': [ERROR, { allowNullableBoolean: true, allowNullableObject: true }],
+    'ts/switch-exhaustiveness-check': ERROR,
     'ts/unbound-method': ERROR,
   };
 
@@ -73,7 +77,10 @@ export async function typescript(
           sourceType: 'module',
           ...typeAware
             ? {
-                project: tsconfigPath,
+                projectService: {
+                  allowDefaultProject: ['./*.js'],
+                  defaultProject: tsconfigPath,
+                },
                 tsconfigRootDir: process.cwd(),
               }
             : {},
@@ -98,10 +105,12 @@ export async function typescript(
     // assign type-aware parser for type-aware files and type-unaware parser for the rest
     ...isTypeAware
       ? [
-          makeParser({ files: filesTypeAware, typeAware: true }),
+          makeParser({ files: filesTypeAware, ignores: ignoresTypeAware, typeAware: true }),
           makeParser({ files, ignores: filesTypeAware, typeAware: false }),
         ]
-      : [makeParser({ files, typeAware: false })],
+      : [
+          makeParser({ files, typeAware: false }),
+        ],
 
     {
       files,
@@ -133,8 +142,6 @@ export async function typescript(
         'ts/array-type': [ERROR, { default: 'generic' }],
 
         'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
-
-        'ts/ban-types': [ERROR, { types: { Function: false } }],
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 
@@ -201,8 +208,17 @@ export async function typescript(
       },
     },
 
+    ...isTypeAware
+      ? [{
+          files: filesTypeAware,
+          ignores: ignoresTypeAware,
+          name: 'vinicunca/typescript/rules-type-aware',
+          rules: typeAwareRules,
+        }]
+      : [],
+
     {
-      files: ['**/*.d.ts'],
+      files: ['**/*.d.?([cm])ts'],
 
       name: 'vinicunca/typescript/disables/dts',
 

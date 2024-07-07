@@ -7,7 +7,7 @@ import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '..
 import { interopDefault, parserPlain } from '../utils';
 
 export async function markdown(
-  options: OptionsFiles & OptionsComponentExts & OptionsOverrides = {},
+  options: OptionsComponentExts & OptionsFiles & OptionsOverrides = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
@@ -93,26 +93,6 @@ export async function markdown(
 
         'unused-imports/no-unused-imports': OFF,
         'unused-imports/no-unused-vars': OFF,
-
-        // Type aware rules
-        ...{
-          'ts/await-thenable': OFF,
-          'ts/dot-notation': OFF,
-          'ts/no-floating-promises': OFF,
-          'ts/no-for-in-array': OFF,
-          'ts/no-implied-eval': OFF,
-          'ts/no-misused-promises': OFF,
-          'ts/no-throw-literal': OFF,
-          'ts/no-unnecessary-type-assertion': OFF,
-          'ts/no-unsafe-argument': OFF,
-          'ts/no-unsafe-assignment': OFF,
-          'ts/no-unsafe-call': OFF,
-          'ts/no-unsafe-member-access': OFF,
-          'ts/no-unsafe-return': OFF,
-          'ts/restrict-plus-operands': OFF,
-          'ts/restrict-template-expressions': OFF,
-          'ts/unbound-method': OFF,
-        },
 
         ...overrides,
       },

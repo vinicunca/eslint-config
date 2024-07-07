@@ -49,6 +49,9 @@ export async function javascript(
         reportUnusedDisableDirectives: true,
       },
 
+      name: 'vinicunca/javascript/setup',
+    },
+    {
       name: 'vinicunca/javascript/rules',
 
       plugins: {

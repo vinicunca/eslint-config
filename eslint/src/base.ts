@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 
-import { isBoolean, isObject } from '@vinicunca/perkakas';
+import { isBoolean, isPlainObject } from '@vinicunca/perkakas';
 import { FlatConfigComposer } from 'eslint-flat-config-utils';
 import { isPackageExists } from 'local-pkg';
 import fs from 'node:fs';
@@ -15,6 +15,7 @@ import {
   javascript,
   jsdoc,
   jsonc,
+  jsx,
   markdown,
   node,
   perfectionist,
@@ -81,7 +82,8 @@ export function vinicuncaESLint(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
-    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
+    isInEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM) && !process.env.CI),
+    jsx: enableJsx = true,
     react: enableReact = false,
     regexp: enableRegexp = true,
     typescript: enableTypeScript = isPackageExists('typescript'),
@@ -93,11 +95,15 @@ export function vinicuncaESLint(
 
   if (options.stylistic === false) {
     stylisticOptions = false;
-  } else if (isObject(options.stylistic)) {
+  } else if (isPlainObject(options.stylistic)) {
     stylisticOptions = {
       ...options.stylistic,
       jsx: options.jsx ?? true,
     };
+  }
+
+  if (stylisticOptions && !('jsx' in stylisticOptions)) {
+    stylisticOptions.jsx = enableJsx;
   }
 
   const configs: Array<Awaitable<Array<TypedFlatConfigItem>>> = [];
@@ -142,6 +148,10 @@ export function vinicuncaESLint(
 
   if (enableVue) {
     componentExts.push('vue');
+  }
+
+  if (enableJsx) {
+    configs.push(jsx());
   }
 
   if (enableTypeScript) {
