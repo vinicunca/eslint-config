@@ -1,6 +1,6 @@
 {
   "name": "@vinicunca/eslint-metadata",
-  "version": "2.7.0-beta.1",
+  "version": "2.7.0",
   "description": "Metadata for vinicunca eslint config",
   "author": {
     "name": "praburangki",
