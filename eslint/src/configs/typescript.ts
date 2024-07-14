@@ -141,7 +141,7 @@ export async function typescript(
 
         'ts/array-type': [ERROR, { default: 'generic' }],
 
-        'ts/ban-ts-comment': [ERROR, { 'ts-ignore': 'allow-with-description' }],
+        'ts/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 
@@ -163,6 +163,8 @@ export async function typescript(
         'ts/no-empty-function': OFF,
 
         'ts/no-empty-interface': OFF,
+
+        'ts/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
 
         'ts/no-explicit-any': OFF,
 

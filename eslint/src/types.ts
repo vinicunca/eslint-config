@@ -140,7 +140,6 @@ export interface OptionsStylistic {
   stylistic?: StylisticConfig | boolean;
 }
 
-// eslint-disable-next-line ts/no-empty-object-type
 export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'jsx' | 'quotes' | 'semi'> {
 }
 
