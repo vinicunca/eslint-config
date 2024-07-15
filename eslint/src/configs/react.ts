@@ -15,19 +15,23 @@ export async function react(
   const [
     pluginReact,
     pluginReactHooks,
+    parserTs,
   ] = await Promise.all([
-    // @ts-expect-error missing types
-    interopDefault(import('eslint-plugin-react')),
+    interopDefault(import('@eslint-react/eslint-plugin')),
     // @ts-expect-error missing types
     interopDefault(import('eslint-plugin-react-hooks')),
+    interopDefault(import('@typescript-eslint/parser')),
   ] as const);
+
+  const plugins = pluginReact.configs.all.plugins;
 
   return [
     {
       name: 'vinicunca/react/setup',
 
       plugins: {
-        'react': pluginReact,
+        'react': plugins['@eslint-react'],
+        'react-dom': plugins['@eslint-react/dom'],
         'react-hooks': pluginReactHooks,
       },
 
@@ -42,11 +46,13 @@ export async function react(
       files,
 
       languageOptions: {
+        parser: parserTs,
         parserOptions: {
           ecmaFeatures: {
             jsx: true,
           },
         },
+        sourceType: 'module',
       },
 
       name: 'vinicunca/react/rules',

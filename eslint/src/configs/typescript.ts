@@ -5,7 +5,7 @@ import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeS
 import { ERROR, OFF } from '../flags';
 import { GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
 import { pluginAntfu } from '../plugins';
-import { interopDefault, renameRules, toArray } from '../utils';
+import { interopDefault, renameRules } from '../utils';
 
 export async function typescript(
   options: OptionsComponentExts & OptionsFiles & OptionsOverrides & OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes = {},
@@ -26,7 +26,7 @@ export async function typescript(
     `${GLOB_MARKDOWN}/**`,
   ];
   const tsconfigPath = options?.tsconfigPath
-    ? toArray(options.tsconfigPath)
+    ? options.tsconfigPath
     : undefined;
   const isTypeAware = !!tsconfigPath;
 

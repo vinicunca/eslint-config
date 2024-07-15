@@ -5,7 +5,7 @@ export function Component1() {
 export function jsx2() {
   const props = { a: 1, b: 2 };
   return (
-    <a bar="foo" foo='bar'>
+    <a bar="foo" foo="bar">
       <div
         { ...props }
         a={ 1 }

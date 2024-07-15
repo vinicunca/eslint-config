@@ -14,21 +14,21 @@ afterAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
 });
 
-// runWithConfig('js', {
-//   typescript: false,
-//   vue: false,
-// });
+runWithConfig('js', {
+  typescript: false,
+  vue: false,
+});
 
-// runWithConfig('all', {
-//   typescript: true,
-//   vue: true,
-// });
+runWithConfig('all', {
+  typescript: true,
+  vue: true,
+});
 
-// runWithConfig('no-style', {
-//   stylistic: false,
-//   typescript: true,
-//   vue: true,
-// });
+runWithConfig('no-style', {
+  stylistic: false,
+  typescript: true,
+  vue: true,
+});
 
 runWithConfig(
   'tab-double-quotes',
@@ -47,38 +47,52 @@ runWithConfig(
   },
 );
 
-// runWithConfig(
-//   'ts-override',
-//   {
-//     typescript: true,
-//   },
-//   {
-//     rules: {
-//       'ts/consistent-type-definitions': ['error', 'type'],
-//     },
-//   },
-// );
+runWithConfig(
+  'ts-override',
+  {
+    typescript: true,
+  },
+  {
+    rules: {
+      'ts/consistent-type-definitions': ['error', 'type'],
+    },
+  },
+);
 
-// runWithConfig(
-//   'with-formatters',
-//   {
-//     formatters: true,
-//     typescript: true,
-//     vue: true,
-//   },
-// );
+runWithConfig(
+  'ts-strict',
+  {
+    typescript: {
+      tsconfigPath: '../../tsconfig.json',
+    },
+  },
+  {
+    rules: {
+      'ts/no-unsafe-return': ['off'],
+    },
+  },
+);
 
-// runWithConfig(
-//   'no-markdown-with-formatters',
-//   {
-//     formatters: {
-//       markdown: true,
-//     },
-//     jsx: false,
-//     markdown: false,
-//     vue: false,
-//   },
-// );
+runWithConfig(
+  'with-formatters',
+  {
+    formatters: true,
+    typescript: true,
+    vue: true,
+  },
+);
+
+runWithConfig(
+  'no-markdown-with-formatters',
+  {
+    formatters: {
+      markdown: true,
+    },
+    jsx: false,
+    markdown: false,
+    vue: false,
+  },
+);
 
 function runWithConfig(name: string, configs: OptionsConfig, ...items: Array<TypedFlatConfigItem>) {
   it.concurrent(name, async ({ expect }) => {
