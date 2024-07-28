@@ -22,23 +22,11 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
         'perfectionist/sort-imports': [
           ERROR,
           {
-            'groups': [
-              'type',
-              ['builtin', 'external'],
-              'internal-type',
-              'internal',
-              ['parent-type', 'sibling-type', 'index-type'],
-              ['parent', 'sibling', 'index'],
-              'object',
-              'unknown',
-            ],
-            'internal-pattern': [
+            internalPattern: [
               '~/**',
               '~~/**',
             ],
-            'newlines-between': 'always',
-            'order': 'asc',
-            'type': 'natural',
+            type: 'natural',
           },
         ],
 
