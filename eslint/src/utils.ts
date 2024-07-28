@@ -1,3 +1,5 @@
+import process from 'node:process';
+
 import type { Awaitable, TypedFlatConfigItem } from './types';
 
 /**
@@ -101,3 +103,7 @@ export const parserPlain = {
     },
   }),
 };
+
+export function isInEditorEnv(): boolean {
+  return !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM) && !process.env.CI);
+}

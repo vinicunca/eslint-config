@@ -21,7 +21,7 @@ export type TypedFlatConfigItem = {
    * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
    */
   plugins?: Record<string, any>;
-} & Omit<Linter.FlatConfig<Linter.RulesRecord & Rules>, 'plugins'>;
+} & Omit<Linter.Config<Linter.RulesRecord & Rules>, 'plugins'>;
 
 export interface OptionsFiles {
   /**
@@ -129,7 +129,7 @@ export interface OptionsTypeScriptWithTypes {
    * When this options is provided, type aware rules will be enabled.
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
-  tsconfigPath?: Array<string> | string;
+  tsconfigPath?: string;
 }
 
 export interface OptionsHasTypeScript {

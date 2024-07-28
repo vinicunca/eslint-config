@@ -3,9 +3,8 @@ import type { Linter } from 'eslint';
 import { isBoolean, isPlainObject } from '@vinicunca/perkakas';
 import { FlatConfigComposer } from 'eslint-flat-config-utils';
 import { isPackageExists } from 'local-pkg';
-import fs from 'node:fs';
-import process from 'node:process';
 
+import type { RuleOptions } from './typegen';
 import type { Awaitable, ConfigNames, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
 
 import {
@@ -33,7 +32,7 @@ import {
 } from './configs';
 import { formatters } from './configs/formatters';
 import { regexp } from './configs/regexp';
-import { interopDefault } from './utils';
+import { interopDefault, isInEditorEnv } from './utils';
 
 const flatConfigProps: Array<keyof TypedFlatConfigItem> = [
   'name',
@@ -76,13 +75,13 @@ export const defaultPluginRenaming = {
  */
 export function vinicuncaESLint(
   options: OptionsConfig & TypedFlatConfigItem = {},
-  ...userConfigs: Array<Awaitable<Array<Linter.FlatConfig> | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | TypedFlatConfigItem>>
+  ...userConfigs: Array<Awaitable<Array<Linter.Config> | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | TypedFlatConfigItem>>
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
-    isInEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM) && !process.env.CI),
+    isInEditor = isInEditorEnv(),
     jsx: enableJsx = true,
     react: enableReact = false,
     regexp: enableRegexp = true,
@@ -112,9 +111,7 @@ export function vinicuncaESLint(
     if (typeof enableGitignore !== 'boolean') {
       configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r(enableGitignore)]));
     } else {
-      if (fs.existsSync('.gitignore')) {
-        configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r()]));
-      }
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r()]));
     }
   }
 
@@ -273,7 +270,7 @@ export function vinicuncaESLint(
 function getOverrides<K extends keyof OptionsConfig>(
   options: OptionsConfig,
   key: K,
-) {
+): Partial<Linter.RulesRecord & RuleOptions> {
   const sub = resolveSubOptions(options, key);
 
   return {
