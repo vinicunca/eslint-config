@@ -13,14 +13,14 @@
     "publish:ci": "tsx scripts/publish.ts"
   },
   "devDependencies": {
-    "@types/node": "^22.0.2",
+    "@types/node": "^22.1.0",
     "@vinicunca/eslint-config": "workspace:*",
-    "@vinicunca/perkakas": "^1.0.3",
+    "@vinicunca/perkakas": "^1.0.4",
     "bumpp": "^9.4.2",
     "eslint": "^9.8.0",
     "is-ci": "^3.0.1",
     "rimraf": "^6.0.1",
-    "tsx": "^4.16.5",
+    "tsx": "^4.17.0",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5"
   }
