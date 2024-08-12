@@ -71,6 +71,7 @@
     "@typescript-eslint/eslint-plugin": "8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
     "@unocss/eslint-plugin": "^0.61.9",
+    "@vitest/eslint-plugin": "^1.0.1",
     "eslint-config-flat-gitignore": "^0.1.8",
     "eslint-flat-config-utils": "^0.3.0",
     "eslint-merge-processors": "^0.1.0",

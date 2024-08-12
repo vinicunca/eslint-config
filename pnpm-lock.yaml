@@ -17,9 +17,6 @@ importers:
       '@vinicunca/perkakas':
         specifier: ^1.0.4
         version: 1.0.4
-      '@vitest/eslint-plugin':
-        specifier: ^1.0.1
-        version: 1.0.1(@typescript-eslint/utils@8.0.1(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.2.0))
       bumpp:
         specifier: ^9.4.2
         version: 9.4.2
@@ -59,6 +56,9 @@ importers:
       '@unocss/eslint-plugin':
         specifier: ^0.61.9
         version: 0.61.9(eslint@9.2.0)(typescript@5.5.4)
+      '@vitest/eslint-plugin':
+        specifier: ^1.0.1
+        version: 1.0.1(@typescript-eslint/utils@8.0.1(eslint@9.2.0)(typescript@5.5.4))(eslint@9.2.0)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.2.0))
       eslint:
         specifier: '>=8.57.0'
         version: 9.2.0
@@ -4490,18 +4490,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@typescript-eslint/utils@8.0.1(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)':
-    dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.9.0(jiti@1.21.6))
-      '@typescript-eslint/scope-manager': 8.0.1
-      '@typescript-eslint/types': 8.0.1
-      '@typescript-eslint/typescript-estree': 8.0.1(typescript@5.5.4)
-      eslint: 9.9.0(jiti@1.21.6)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    optional: true
-
   '@typescript-eslint/visitor-keys@7.16.1':
     dependencies:
       '@typescript-eslint/types': 7.16.1
@@ -4547,11 +4535,11 @@ snapshots:
     dependencies:
       type-fest: 4.24.0
 
-  '@vitest/eslint-plugin@1.0.1(@typescript-eslint/utils@8.0.1(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.2.0))':
+  '@vitest/eslint-plugin@1.0.1(@typescript-eslint/utils@8.0.1(eslint@9.2.0)(typescript@5.5.4))(eslint@9.2.0)(typescript@5.5.4)(vitest@2.0.5(@types/node@22.2.0))':
     dependencies:
-      eslint: 9.9.0(jiti@1.21.6)
+      eslint: 9.2.0
     optionalDependencies:
-      '@typescript-eslint/utils': 8.0.1(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.0.1(eslint@9.2.0)(typescript@5.5.4)
       typescript: 5.5.4
       vitest: 2.0.5(@types/node@22.2.0)
 
