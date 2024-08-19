@@ -13,10 +13,10 @@
     "publish:ci": "tsx scripts/publish.ts"
   },
   "devDependencies": {
-    "@types/node": "^22.2.0",
+    "@types/node": "^22.4.1",
     "@vinicunca/eslint-config": "workspace:*",
-    "@vinicunca/perkakas": "^1.0.4",
-    "bumpp": "^9.4.2",
+    "@vinicunca/perkakas": "^1.0.5",
+    "bumpp": "^9.5.1",
     "eslint": "^9.9.0",
     "is-ci": "^3.0.1",
     "rimraf": "^6.0.1",
