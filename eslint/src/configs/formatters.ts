@@ -67,12 +67,15 @@ export async function formatters(
     xmlWhitespaceSensitivity: 'ignore',
   };
 
-  const dprintOptions = {
-    indentWidth: isNumber(indent) ? indent : 2,
-    quoteStyle: quotes === 'single' ? 'preferSingle' : 'preferDouble',
-    useTabs: indent === 'tab',
-    ...options.dprintOptions || {},
-  };
+  // eslint-disable-next-line sonar/prefer-object-spread
+  const dprintOptions = Object.assign(
+    {
+      indentWidth: isNumber(indent) ? indent : 2,
+      quoteStyle: quotes === 'single' ? 'preferSingle' : 'preferDouble',
+      useTabs: indent === 'tab',
+    },
+    options.dprintOptions || {},
+  );
 
   const pluginFormat = await interopDefault(import('eslint-plugin-format'));
 
