@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/eslint-config",
   "type": "module",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "description": "Vinicunca ESLint config",
   "author": {
     "name": "praburangki",
