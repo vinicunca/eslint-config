@@ -143,7 +143,7 @@
     "eslint-plugin-no-only-tests": "^3.3.0",
     "eslint-plugin-perfectionist": "^3.2.0",
     "eslint-plugin-regexp": "^2.6.0",
-    "eslint-plugin-sonarjs": "^2.0.1",
+    "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-toml": "^0.11.1",
     "eslint-plugin-unicorn": "^55.0.0",
     "eslint-plugin-unused-imports": "^4.1.3",
