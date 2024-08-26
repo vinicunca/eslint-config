@@ -16,6 +16,7 @@ export default vinicuncaESLint(
     rules: {
       'perfectionist/sort-objects': 'off',
       'perfectionist/sort-interfaces': 'off',
+      'sonar/cognitive-complexity': 'off',
     },
   },
 

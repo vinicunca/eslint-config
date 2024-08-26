@@ -40,7 +40,7 @@ async function setRulesMap(rawConfigs: RawConfigs) {
   }
 }
 
-type RawConfigs = Array<FlatESLintConfigItem & { name?: string }>;
+type RawConfigs = Array<{ name?: string } & FlatESLintConfigItem>;
 
 async function generateJsonRules() {
   const cwd = process.cwd();
@@ -125,13 +125,13 @@ const cwd = process.cwd();
 async function writeJson(content: any) {
   await fs.writeFile(
     path.join(cwd, 'src', 'metadata.ts'),
-  `
+    `
 import type { ConfigInfo } from './types';
 
 export const configs: ReadonlyArray<ConfigInfo> = Object.freeze(${JSON.stringify(content, null, 2)});
 
 export const GLOB_EXCLUDE = Object.freeze(${JSON.stringify(GLOB_EXCLUDE)})
 `.trimStart(),
-  'utf-8',
+    'utf-8',
   );
 }

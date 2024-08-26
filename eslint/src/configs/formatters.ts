@@ -1,4 +1,3 @@
-/* eslint-disable sonar/no-duplicate-string */
 import { isNumber } from '@vinicunca/perkakas';
 import { isPackageExists } from 'local-pkg';
 
@@ -68,14 +67,12 @@ export async function formatters(
     xmlWhitespaceSensitivity: 'ignore',
   };
 
-  const dprintOptions = Object.assign(
-    {
-      indentWidth: isNumber(indent) ? indent : 2,
-      quoteStyle: quotes === 'single' ? 'preferSingle' : 'preferDouble',
-      useTabs: indent === 'tab',
-    },
-    options.dprintOptions || {},
-  );
+  const dprintOptions = {
+    indentWidth: isNumber(indent) ? indent : 2,
+    quoteStyle: quotes === 'single' ? 'preferSingle' : 'preferDouble',
+    useTabs: indent === 'tab',
+    ...options.dprintOptions || {},
+  };
 
   const pluginFormat = await interopDefault(import('eslint-plugin-format'));
 
@@ -166,7 +163,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/xml',
+      name: 'vinicunca/formatter/xml',
       rules: {
         'format/prettier': [
           ERROR,
@@ -189,7 +186,7 @@ export async function formatters(
       languageOptions: {
         parser: parserPlain,
       },
-      name: 'antfu/formatter/svg',
+      name: 'vinicunca/formatter/svg',
       rules: {
         'format/prettier': [
           ERROR,
