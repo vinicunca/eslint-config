@@ -5,10 +5,6 @@ import { vinicuncaESLint } from './eslint/src';
 export default vinicuncaESLint(
   {
     vue: true,
-    react: true,
-    solid: true,
-    svelte: true,
-    astro: true,
     typescript: true,
     formatters: true,
     type: 'lib',
