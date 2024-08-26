@@ -8,7 +8,7 @@ import { GLOB_VUE } from '../globs';
 import { interopDefault } from '../utils';
 
 export async function vue(
-  options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+  options: OptionsFiles & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsVue = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_VUE],
@@ -41,6 +41,27 @@ export async function vue(
 
       plugins: {
         vue: pluginVue,
+      },
+
+      // This allows Vue plugin to work with auto imports
+      // https://github.com/vuejs/eslint-plugin-vue/pull/2422
+      languageOptions: {
+        globals: {
+          computed: 'readonly',
+          defineEmits: 'readonly',
+          defineExpose: 'readonly',
+          defineProps: 'readonly',
+          onMounted: 'readonly',
+          onUnmounted: 'readonly',
+          reactive: 'readonly',
+          ref: 'readonly',
+          shallowReactive: 'readonly',
+          shallowRef: 'readonly',
+          toRef: 'readonly',
+          toRefs: 'readonly',
+          watch: 'readonly',
+          watchEffect: 'readonly',
+        },
       },
     },
 

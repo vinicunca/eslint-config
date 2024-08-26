@@ -7,7 +7,7 @@ import { GLOB_YAML } from '../globs';
 import { interopDefault } from '../utils';
 
 export async function yaml(
-  options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+  options: OptionsFiles & OptionsOverrides & OptionsStylistic = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_YAML],
@@ -33,7 +33,7 @@ export async function yaml(
       name: 'vinicunca/yaml/setup',
 
       plugins: {
-        yaml: pluginYaml as any,
+        yaml: pluginYaml,
       },
     },
 

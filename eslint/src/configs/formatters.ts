@@ -1,8 +1,13 @@
+/* eslint-disable sonar/no-duplicate-string */
+import { isNumber } from '@vinicunca/perkakas';
+import { isPackageExists } from 'local-pkg';
+
 import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '../types';
 import type { VendoredPrettierOptions } from '../vendor/prettier-types';
 
-import { GLOB_CSS, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS } from '../globs';
-import { interopDefault, parserPlain } from '../utils';
+import { ERROR, OFF } from '../flags';
+import { GLOB_ASTRO, GLOB_ASTRO_TS, GLOB_CSS, GLOB_GRAPHQL, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '../globs';
+import { ensurePackages, interopDefault, isPackageInScope, parserPlain } from '../utils';
 import { STYLISTIC_CONFIG_DEFAULTS } from './stylistic';
 
 export async function formatters(
@@ -10,12 +15,29 @@ export async function formatters(
   stylistic: StylisticConfig = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   if (options === true) {
+    const isPrettierPluginXmlInScope = isPackageInScope('@prettier/plugin-xml');
+
     options = {
+      astro: isPackageInScope('prettier-plugin-astro'),
       css: true,
       graphql: true,
       html: true,
       markdown: true,
+      slidev: isPackageExists('@slidev/cli'),
+      svg: isPrettierPluginXmlInScope,
+      xml: isPrettierPluginXmlInScope,
     };
+  }
+
+  await ensurePackages([
+    'eslint-plugin-format',
+    options.markdown && options.slidev ? 'prettier-plugin-slidev' : undefined,
+    options.astro ? 'prettier-plugin-astro' : undefined,
+    (options.xml || options.svg) ? '@prettier/plugin-xml' : undefined,
+  ]);
+
+  if (options.slidev && options.markdown !== true && options.markdown !== 'prettier') {
+    throw new Error('`slidev` option only works when `markdown` is enabled with `prettier`');
   }
 
   const {
@@ -32,16 +54,23 @@ export async function formatters(
       endOfLine: 'auto',
       semi,
       singleQuote: quotes === 'single',
-      tabWidth: typeof indent === 'number' ? indent : 2,
+      tabWidth: isNumber(indent) ? indent : 2,
       trailingComma: 'all',
       useTabs: indent === 'tab',
     } satisfies VendoredPrettierOptions,
     options.prettierOptions || {},
   );
 
+  const prettierXmlOptions = {
+    xmlQuoteAttributes: 'double',
+    xmlSelfClosingSpace: true,
+    xmlSortAttributesByKey: false,
+    xmlWhitespaceSensitivity: 'ignore',
+  };
+
   const dprintOptions = Object.assign(
     {
-      indentWidth: typeof indent === 'number' ? indent : 2,
+      indentWidth: isNumber(indent) ? indent : 2,
       quoteStyle: quotes === 'single' ? 'preferSingle' : 'preferDouble',
       useTabs: indent === 'tab',
     },
@@ -69,7 +98,7 @@ export async function formatters(
         name: 'vinicunca/formatter/css',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             {
               ...prettierOptions,
               parser: 'css',
@@ -85,7 +114,7 @@ export async function formatters(
         name: 'vinicunca/formatter/scss',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             {
               ...prettierOptions,
               parser: 'scss',
@@ -101,7 +130,7 @@ export async function formatters(
         name: 'vinicunca/formatter/less',
         rules: {
           'format/prettier': [
-            'error',
+            ERROR,
             {
               ...prettierOptions,
               parser: 'less',
@@ -121,10 +150,56 @@ export async function formatters(
       name: 'vinicunca/formatter/html',
       rules: {
         'format/prettier': [
-          'error',
+          ERROR,
           {
             ...prettierOptions,
             parser: 'html',
+          },
+        ],
+      },
+    });
+  }
+
+  if (options.xml) {
+    configs.push({
+      files: [GLOB_XML],
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'antfu/formatter/xml',
+      rules: {
+        'format/prettier': [
+          ERROR,
+          {
+            ...prettierXmlOptions,
+            ...prettierOptions,
+            parser: 'xml',
+            plugins: [
+              '@prettier/plugin-xml',
+            ],
+          },
+        ],
+      },
+    });
+  }
+
+  if (options.svg) {
+    configs.push({
+      files: [GLOB_SVG],
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'antfu/formatter/svg',
+      rules: {
+        'format/prettier': [
+          ERROR,
+          {
+            ...prettierXmlOptions,
+            ...prettierOptions,
+            parser: 'xml',
+            plugins: [
+              '@prettier/plugin-xml',
+            ],
           },
         ],
       },
@@ -136,20 +211,31 @@ export async function formatters(
       ? 'prettier'
       : options.markdown;
 
+    let GLOB_SLIDEV;
+
+    if (options.slidev) {
+      GLOB_SLIDEV = options.slidev === true
+        ? ['**/slides.md']
+        : options.slidev.files;
+    } else {
+      GLOB_SLIDEV = [];
+    }
+
     configs.push({
       files: [GLOB_MARKDOWN],
+      ignores: GLOB_SLIDEV,
       languageOptions: {
         parser: parserPlain,
       },
       name: 'vinicunca/formatter/markdown',
       rules: {
         [`format/${formater}`]: [
-          'error',
+          ERROR,
           formater === 'prettier'
             ? {
                 printWidth: 120,
                 ...prettierOptions,
-                embeddedLanguageFormatting: 'off',
+                embeddedLanguageFormatting: OFF,
                 parser: 'markdown',
               }
             : {
@@ -159,18 +245,77 @@ export async function formatters(
         ],
       },
     });
+
+    if (options.slidev) {
+      configs.push({
+        files: GLOB_SLIDEV,
+        languageOptions: {
+          parser: parserPlain,
+        },
+        name: 'vinicunca/formatter/slidev',
+        rules: {
+          'format/prettier': [
+            ERROR,
+            {
+              ...prettierOptions,
+              embeddedLanguageFormatting: 'off',
+              parser: 'slidev',
+              plugins: [
+                'prettier-plugin-slidev',
+              ],
+            },
+          ],
+        },
+      });
+    }
+  }
+
+  if (options.astro) {
+    configs.push({
+      files: [GLOB_ASTRO],
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'vinicunca/formatter/astro',
+      rules: {
+        'format/prettier': [
+          ERROR,
+          {
+            ...prettierOptions,
+            parser: 'astro',
+            plugins: [
+              'prettier-plugin-astro',
+            ],
+          },
+        ],
+      },
+    });
+
+    configs.push({
+      files: [GLOB_ASTRO, GLOB_ASTRO_TS],
+      name: 'vinicunca/formatter/astro/disables',
+      rules: {
+        'style/arrow-parens': OFF,
+        'style/block-spacing': OFF,
+        'style/comma-dangle': OFF,
+        'style/indent': OFF,
+        'style/no-multi-spaces': OFF,
+        'style/quotes': OFF,
+        'style/semi': OFF,
+      },
+    });
   }
 
   if (options.graphql) {
     configs.push({
-      files: ['**/*.graphql'],
+      files: [GLOB_GRAPHQL],
       languageOptions: {
         parser: parserPlain,
       },
       name: 'vinicunca/formatter/graphql',
       rules: {
         'format/prettier': [
-          'error',
+          ERROR,
           {
             ...prettierOptions,
             parser: 'graphql',

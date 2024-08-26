@@ -22,23 +22,25 @@ runWithConfig('js', {
 runWithConfig('all', {
   typescript: true,
   vue: true,
+  svelte: true,
+  astro: true,
 });
 
 runWithConfig('no-style', {
-  stylistic: false,
   typescript: true,
   vue: true,
+  stylistic: false,
 });
 
 runWithConfig(
   'tab-double-quotes',
   {
+    typescript: true,
+    vue: true,
     stylistic: {
       indent: 'tab',
       quotes: 'double',
     },
-    typescript: true,
-    vue: true,
   },
   {
     rules: {
@@ -76,21 +78,22 @@ runWithConfig(
 runWithConfig(
   'with-formatters',
   {
-    formatters: true,
     typescript: true,
     vue: true,
+    astro: true,
+    formatters: true,
   },
 );
 
 runWithConfig(
   'no-markdown-with-formatters',
   {
+    jsx: false,
+    vue: false,
+    markdown: false,
     formatters: {
       markdown: true,
     },
-    jsx: false,
-    markdown: false,
-    vue: false,
   },
 );
 

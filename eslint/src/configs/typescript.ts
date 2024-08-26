@@ -1,30 +1,36 @@
 import process from 'node:process';
 
-import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
+import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsProjectType, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
 
 import { ERROR, OFF } from '../flags';
-import { GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
+import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../globs';
 import { pluginAntfu } from '../plugins';
 import { interopDefault, renameRules } from '../utils';
 
 export async function typescript(
-  options: OptionsComponentExts & OptionsFiles & OptionsOverrides & OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes = {},
+  options: OptionsComponentExts & OptionsFiles & OptionsOverrides & OptionsProjectType & OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
     overrides = {},
+    overridesTypeAware = {},
     parserOptions = {},
+    type = 'app',
   } = options ?? {};
 
   const files = options.files ?? [
-    GLOB_SRC,
+    GLOB_TS,
+    GLOB_TSX,
     ...componentExts.map((ext) => `**/*.${ext}`),
   ];
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX];
+
   const ignoresTypeAware = options.ignoresTypeAware ?? [
     `${GLOB_MARKDOWN}/**`,
+    GLOB_ASTRO_TS,
   ];
+
   const tsconfigPath = options?.tsconfigPath
     ? options.tsconfigPath
     : undefined;
@@ -46,7 +52,7 @@ export async function typescript(
     'ts/no-unsafe-call': ERROR,
     'ts/no-unsafe-member-access': ERROR,
     'ts/no-unsafe-return': ERROR,
-    'ts/promise-function-async': 'error',
+    'ts/promise-function-async': ERROR,
     'ts/restrict-plus-operands': ERROR,
     'ts/restrict-template-expressions': ERROR,
     'ts/return-await': [ERROR, 'in-try-catch'],
@@ -141,13 +147,11 @@ export async function typescript(
 
         'ts/array-type': [ERROR, { default: 'generic' }],
 
-        'ts/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
+        'ts/ban-ts-comment': [ERROR, { 'ts-expect-error': 'allow-with-description' }],
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 
         'ts/consistent-type-imports': [ERROR, { disallowTypeAnnotations: false, prefer: 'type-imports' }],
-
-        'ts/explicit-function-return-type': OFF,
 
         'ts/explicit-member-accessibility': OFF,
 
@@ -164,7 +168,7 @@ export async function typescript(
 
         'ts/no-empty-interface': OFF,
 
-        'ts/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
+        'ts/no-empty-object-type': [ERROR, { allowInterfaces: 'always' }],
 
         'ts/no-explicit-any': OFF,
 
@@ -197,15 +201,17 @@ export async function typescript(
 
         'ts/triple-slash-reference': OFF,
 
-        ...overrides,
-      },
-    },
+        ...(type === 'lib'
+          ? {
+              'ts/explicit-function-return-type': [ERROR, {
+                allowExpressions: true,
+                allowHigherOrderFunctions: true,
+                allowIIFEs: true,
+              }],
+            }
+          : {}
+        ),
 
-    {
-      files: filesTypeAware,
-      name: 'vinicunca/typescript/rules-type-aware',
-      rules: {
-        ...tsconfigPath ? typeAwareRules : {},
         ...overrides,
       },
     },
@@ -215,7 +221,10 @@ export async function typescript(
           files: filesTypeAware,
           ignores: ignoresTypeAware,
           name: 'vinicunca/typescript/rules-type-aware',
-          rules: typeAwareRules,
+          rules: {
+            ...typeAwareRules,
+            ...overridesTypeAware,
+          },
         }]
       : [],
 
@@ -227,7 +236,7 @@ export async function typescript(
       rules: {
         'eslint-comments/no-unlimited-disable': OFF,
         'import/no-duplicates': OFF,
-        'no-restricted-syntax': 'off',
+        'no-restricted-syntax': OFF,
         'unused-imports/no-unused-vars': OFF,
       },
     },

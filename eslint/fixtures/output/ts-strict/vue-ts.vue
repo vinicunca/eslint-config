@@ -2,14 +2,8 @@
 // Define reactive data and props
 import { ref } from 'vue';
 
-import { useI18n } from '~~/locale';
-
-const { $t } = useI18n();
-
-const anu = $t('hehe');
-
 const greeting = ref('Hello, Vue 3!');
-const counter = ref<number | string>(0);
+const counter = ref<1 | number>(0);
 
 // Define a function
 function incrementCounter() {
@@ -24,8 +18,6 @@ function incrementCounter() {
       Click me!
     </button>
     <p>Counter: {{ counter }}</p>
-
-    <p>{{ anu }}</p>
   </div>
 </template>
 

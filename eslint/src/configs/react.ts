@@ -1,8 +1,26 @@
+import { isPackageExists } from 'local-pkg';
+
 import type { OptionsFiles, OptionsOverrides, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
 
-import { ERROR, NEVER, OFF, WARN } from '../flags';
+import { ERROR, WARN } from '../flags';
 import { GLOB_SRC } from '../globs';
-import { interopDefault } from '../utils';
+import { interopDefault, toArray } from '../utils';
+
+// react refresh
+const ReactRefreshAllowConstantExportPackages = [
+  'vite',
+];
+
+const RemixPackages = [
+  '@remix-run/node',
+  '@remix-run/react',
+  '@remix-run/serve',
+  '@remix-run/dev',
+];
+
+const NextJsPackages = [
+  'next',
+];
 
 export async function react(
   options: OptionsFiles & OptionsOverrides & OptionsTypeScriptWithTypes = {},
@@ -12,16 +30,27 @@ export async function react(
     overrides = {},
   } = options;
 
+  const tsconfigPath = options?.tsconfigPath
+    ? toArray(options.tsconfigPath)
+    : undefined;
+
+  const isTypeAware = !!tsconfigPath;
+
   const [
     pluginReact,
     pluginReactHooks,
+    pluginReactRefresh,
     parserTs,
   ] = await Promise.all([
     interopDefault(import('@eslint-react/eslint-plugin')),
-    // @ts-expect-error missing types
     interopDefault(import('eslint-plugin-react-hooks')),
+    interopDefault(import('eslint-plugin-react-refresh')),
     interopDefault(import('@typescript-eslint/parser')),
   ] as const);
+
+  const isAllowConstantExport = ReactRefreshAllowConstantExportPackages.some((i) => isPackageExists(i));
+  const isUsingRemix = RemixPackages.some((i) => isPackageExists(i));
+  const isUsingNext = NextJsPackages.some((i) => isPackageExists(i));
 
   const plugins = pluginReact.configs.all.plugins;
 
@@ -33,12 +62,9 @@ export async function react(
         'react': plugins['@eslint-react'],
         'react-dom': plugins['@eslint-react/dom'],
         'react-hooks': pluginReactHooks,
-      },
-
-      settings: {
-        react: {
-          version: 'detect',
-        },
+        'react-hooks-extra': plugins['@eslint-react/hooks-extra'],
+        'react-naming-convention': plugins['@eslint-react/naming-convention'],
+        'react-refresh': pluginReactRefresh,
       },
     },
 
@@ -51,6 +77,7 @@ export async function react(
           ecmaFeatures: {
             jsx: true,
           },
+          ...isTypeAware ? { project: tsconfigPath } : {},
         },
         sourceType: 'module',
       },
@@ -58,48 +85,97 @@ export async function react(
       name: 'vinicunca/react/rules',
 
       rules: {
-        ...pluginReact.configs.recommended.rules,
-        ...pluginReactHooks.configs.recommended.rules,
+        // recommended rules from @eslint-react/dom
+        'react-dom/no-children-in-void-dom-elements': WARN,
+        'react-dom/no-dangerously-set-innerhtml': WARN,
+        'react-dom/no-dangerously-set-innerhtml-with-children': ERROR,
+        'react-dom/no-find-dom-node': ERROR,
+        'react-dom/no-missing-button-type': WARN,
+        'react-dom/no-missing-iframe-sandbox': WARN,
+        'react-dom/no-namespace': ERROR,
+        'react-dom/no-render-return-value': ERROR,
+        'react-dom/no-script-url': WARN,
+        'react-dom/no-unsafe-iframe-sandbox': WARN,
+        'react-dom/no-unsafe-target-blank': WARN,
 
-        'react/boolean-prop-naming': [OFF, {
-          message: '',
-          propTypeNames: ['bool', 'mutuallyExclusiveTrueProps'],
-          rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
-        }],
+        // recommended rules react-hooks
+        'react-hooks/exhaustive-deps': WARN,
+        'react-hooks/rules-of-hooks': ERROR,
 
-        'react/destructuring-assignment': [ERROR, 'always'],
+        // react refresh
+        'react-refresh/only-export-components': [
+          WARN,
+          {
+            allowConstantExport: isAllowConstantExport,
+            allowExportNames: [
+              ...(isUsingNext
+                ? [
+                    'config',
+                    'generateStaticParams',
+                    'metadata',
+                    'generateMetadata',
+                    'viewport',
+                    'generateViewport',
+                  ]
+                : []),
+              ...(isUsingRemix
+                ? [
+                    'meta',
+                    'links',
+                    'headers',
+                    'loader',
+                    'action',
+                  ]
+                : []),
+            ],
+          },
+        ],
 
-        'react/jsx-boolean-value': [ERROR, NEVER, { always: [] }],
+        // recommended rules from @eslint-react
+        'react/ensure-forward-ref-using-ref': WARN,
+        'react/no-access-state-in-setstate': ERROR,
+        'react/no-array-index-key': WARN,
+        'react/no-children-count': WARN,
+        'react/no-children-for-each': WARN,
+        'react/no-children-map': WARN,
+        'react/no-children-only': WARN,
+        'react/no-children-prop': WARN,
+        'react/no-children-to-array': WARN,
+        'react/no-clone-element': WARN,
+        'react/no-comment-textnodes': WARN,
+        'react/no-component-will-mount': ERROR,
+        'react/no-component-will-receive-props': ERROR,
+        'react/no-component-will-update': ERROR,
+        'react/no-create-ref': ERROR,
+        'react/no-direct-mutation-state': ERROR,
+        'react/no-duplicate-key': ERROR,
+        'react/no-implicit-key': ERROR,
+        'react/no-missing-key': ERROR,
+        'react/no-nested-components': WARN,
+        'react/no-redundant-should-component-update': ERROR,
+        'react/no-set-state-in-component-did-mount': WARN,
+        'react/no-set-state-in-component-did-update': WARN,
+        'react/no-set-state-in-component-will-update': WARN,
+        'react/no-string-refs': ERROR,
+        'react/no-unsafe-component-will-mount': WARN,
+        'react/no-unsafe-component-will-receive-props': WARN,
+        'react/no-unsafe-component-will-update': WARN,
+        'react/no-unstable-context-value': ERROR,
+        'react/no-unstable-default-props': ERROR,
+        'react/no-unused-class-component-members': WARN,
+        'react/no-unused-state': WARN,
+        'react/no-useless-fragment': WARN,
+        'react/prefer-destructuring-assignment': WARN,
+        'react/prefer-shorthand-boolean': WARN,
+        'react/prefer-shorthand-fragment': WARN,
 
-        'react/jsx-key': OFF,
+        ...isTypeAware
+          ? {
+              'react/no-leaked-conditional-rendering': WARN,
+            }
+          : {},
 
-        'react/jsx-max-depth': OFF,
-
-        'react/jsx-no-duplicate-props': [ERROR, { ignoreCase: true }],
-
-        'react/jsx-no-literals': [OFF, { noStrings: true }],
-
-        'react/jsx-pascal-case': [ERROR, {
-          allowAllCaps: true,
-          ignore: [],
-        }],
-
-        'react/jsx-sort-default-props': [OFF, {
-          ignoreCase: true,
-        }],
-
-        'react/no-danger': WARN,
-
-        'react/no-unescaped-entities': OFF,
-
-        'react/prop-types': OFF,
-
-        'react/react-in-jsx-scope': OFF,
-
-        'react/self-closing-comp': ERROR,
-
-        'react/style-prop-object': ERROR,
-
+        // overrides
         ...overrides,
       },
     },

@@ -1,5 +1,5 @@
-export const GLOB_SRC = '**/*.?([cm])[jt]s?(x)';
 export const GLOB_SRC_EXT = '?([cm])[jt]s?(x)';
+export const GLOB_SRC = '**/*.?([cm])[jt]s?(x)';
 
 export const GLOB_JS = '**/*.?([cm])js';
 export const GLOB_JSX = '**/*.?([cm])jsx';
@@ -19,9 +19,16 @@ export const GLOB_JSONC = '**/*.jsonc';
 
 export const GLOB_MARKDOWN = '**/*.md';
 export const GLOB_MARKDOWN_IN_MARKDOWN = '**/*.md/*.md';
+export const GLOB_SVELTE = '**/*.svelte';
 export const GLOB_VUE = '**/*.vue';
 export const GLOB_YAML = '**/*.y?(a)ml';
+export const GLOB_TOML = '**/*.toml';
+export const GLOB_XML = '**/*.xml';
+export const GLOB_SVG = '**/*.svg';
 export const GLOB_HTML = '**/*.htm?(l)';
+export const GLOB_ASTRO = '**/*.astro';
+export const GLOB_ASTRO_TS = '**/*.astro/*.ts';
+export const GLOB_GRAPHQL = '**/*.{g,graph}ql';
 
 export const GLOB_MARKDOWN_CODE = `${GLOB_MARKDOWN}/${GLOB_SRC}`;
 
@@ -39,8 +46,10 @@ export const GLOB_ALL_SRC = [
   GLOB_JSON,
   GLOB_JSON5,
   GLOB_MARKDOWN,
+  GLOB_SVELTE,
   GLOB_VUE,
   GLOB_YAML,
+  GLOB_XML,
   GLOB_HTML,
 ];
 
@@ -62,6 +71,7 @@ export const GLOB_EXCLUDE = [
   '**/.vitepress/cache',
   '**/.nuxt',
   '**/.next',
+  '**/.svelte-kit',
   '**/.vercel',
   '**/.changeset',
   '**/.idea',

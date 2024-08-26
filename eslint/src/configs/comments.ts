@@ -6,7 +6,7 @@ import { pluginComments } from '../plugins';
 export async function comments(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca/eslint-comments',
+      name: 'vinicunca/eslint-comments/rules',
 
       plugins: {
         'eslint-comments': pluginComments,
@@ -14,11 +14,8 @@ export async function comments(): Promise<Array<TypedFlatConfigItem>> {
 
       rules: {
         'eslint-comments/no-aggregating-enable': ERROR,
-
         'eslint-comments/no-duplicate-disable': ERROR,
-
         'eslint-comments/no-unlimited-disable': ERROR,
-
         'eslint-comments/no-unused-enable': ERROR,
       },
     },

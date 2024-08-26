@@ -37,7 +37,7 @@ export interface OptionsVue extends OptionsOverrides {
    * @see https://github.com/antfu/eslint-processor-vue-blocks
    * @default true
    */
-  sfcBlocks?: VueBlocksOptions | boolean;
+  sfcBlocks?: boolean | VueBlocksOptions;
 
   /**
    * Vue version. Apply different rules set from `eslint-plugin-vue`.
@@ -60,23 +60,25 @@ export interface OptionsFormatters {
   css?: 'prettier' | boolean;
 
   /**
-   * Custom options for dprint.
-   *
-   * By default it's controlled by our own config.
-   */
-  dprintOptions?: boolean;
-
-  /**
-   * Enable formatting support for GraphQL.
-   */
-  graphql?: 'prettier' | boolean;
-
-  /**
    * Enable formatting support for HTML.
    *
    * Currently only support Prettier.
    */
   html?: 'prettier' | boolean;
+
+  /**
+   * Enable formatting support for XML.
+   *
+   * Currently only support Prettier.
+   */
+  xml?: 'prettier' | boolean;
+
+  /**
+   * Enable formatting support for SVG.
+   *
+   * Currently only support Prettier.
+   */
+  svg?: 'prettier' | boolean;
 
   /**
    * Enable formatting support for Markdown.
@@ -88,11 +90,39 @@ export interface OptionsFormatters {
   markdown?: 'dprint' | 'prettier' | boolean;
 
   /**
+   * Enable formatting support for GraphQL.
+   */
+  graphql?: 'prettier' | boolean;
+
+  /**
    * Custom options for Prettier.
    *
    * By default it's controlled by our own config.
    */
   prettierOptions?: VendoredPrettierOptions;
+
+  /**
+   * Custom options for dprint.
+   *
+   * By default it's controlled by our own config.
+   */
+  dprintOptions?: boolean;
+
+  /**
+   * Install the prettier plugin for handle Slidev markdown
+   *
+   * Only works when `markdown` is enabled with `prettier`.
+   */
+  slidev?: {
+    files?: Array<string>;
+  } | boolean;
+
+  /**
+   * Enable formatting support for Astro.
+   *
+   * Currently only support Prettier.
+   */
+  astro?: 'prettier' | boolean;
 }
 
 export interface OptionsComponentExts {
@@ -107,6 +137,11 @@ export interface OptionsComponentExts {
 
 export interface OptionsTypeScriptParserOptions {
   /**
+   * Additional parser options for TypeScript.
+   */
+  parserOptions?: Partial<ParserOptions>;
+
+  /**
    * Glob patterns for files that should be type aware.
    * @default ['**\/*.{ts,tsx}']
    */
@@ -117,11 +152,6 @@ export interface OptionsTypeScriptParserOptions {
    * @default ['**\/*.md\/**', '**\/*.astro/*.ts']
    */
   ignoresTypeAware?: Array<string>;
-
-  /**
-   * Additional parser options for TypeScript.
-   */
-  parserOptions?: Partial<ParserOptions>;
 }
 
 export interface OptionsTypeScriptWithTypes {
@@ -130,6 +160,11 @@ export interface OptionsTypeScriptWithTypes {
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
   tsconfigPath?: string;
+
+  /**
+   * Override type aware rules.
+   */
+  overridesTypeAware?: TypedFlatConfigItem['rules'];
 }
 
 export interface OptionsHasTypeScript {
@@ -137,7 +172,7 @@ export interface OptionsHasTypeScript {
 }
 
 export interface OptionsStylistic {
-  stylistic?: StylisticConfig | boolean;
+  stylistic?: boolean | StylisticConfig;
 }
 
 export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'jsx' | 'quotes' | 'semi'> {
@@ -145,6 +180,15 @@ export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent
 
 export interface OptionsOverrides {
   overrides?: TypedFlatConfigItem['rules'];
+}
+
+export interface OptionsProjectType {
+  /**
+   * Type of the project. `lib` will enable more strict rules for libraries.
+   *
+   * @default 'app'
+   */
+  type?: 'app' | 'lib';
 }
 
 export interface OptionsRegExp {
@@ -171,26 +215,7 @@ export interface OptionsUnoCSS extends OptionsOverrides {
   strict?: boolean;
 }
 
-export interface OptionsConfig extends OptionsComponentExts {
-  /**
-   * Automatically rename plugins in the config.
-   *
-   * @default true
-   */
-  autoRenamePlugins?: boolean;
-
-  /**
-   * Use external formatters to format files.
-   *
-   * Requires installing:
-   * - `eslint-plugin-format`
-   *
-   * When set to `true`, it will enable all formatters.
-   *
-   * @default false
-   */
-  formatters?: OptionsFormatters | boolean;
-
+export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType {
   /**
    * Enable gitignore support.
    *
@@ -199,13 +224,7 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @see https://github.com/antfu/eslint-config-flat-gitignore
    * @default true
    */
-  gitignore?: FlatGitignoreOptions | boolean;
-
-  /**
-   * Control to disable some rules in editors.
-   * @default auto-detect based on the process.env
-   */
-  isInEditor?: boolean;
+  gitignore?: boolean | FlatGitignoreOptions;
 
   /**
    * Core rules. Can't be disabled.
@@ -213,11 +232,13 @@ export interface OptionsConfig extends OptionsComponentExts {
   javascript?: OptionsOverrides;
 
   /**
-   * Enable JSONC support.
+   * Enable TypeScript support.
    *
-   * @default true
+   * Passing an object to enable TypeScript Language Server support.
+   *
+   * @default auto-detect based on the dependencies
    */
-  jsonc?: OptionsOverrides | boolean;
+  typescript?: boolean | OptionsTypescript;
 
   /**
    * Enable JSX related rules.
@@ -229,29 +250,55 @@ export interface OptionsConfig extends OptionsComponentExts {
   jsx?: boolean;
 
   /**
+   * Enable test support.
+   *
+   * @default true
+   */
+  test?: boolean | OptionsOverrides;
+
+  /**
+   * Enable Vue support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  vue?: boolean | OptionsVue;
+
+  /**
+   * Enable JSONC support.
+   *
+   * @default true
+   */
+  jsonc?: boolean | OptionsOverrides;
+
+  /**
+   * Enable YAML support.
+   *
+   * @default true
+   */
+  yaml?: boolean | OptionsOverrides;
+
+  /**
+   * Enable TOML support.
+   *
+   * @default true
+   */
+  toml?: boolean | OptionsOverrides;
+
+  /**
+   * Enable Astro support.
+   *
+   * @default false
+   */
+  astro?: boolean | OptionsOverrides;
+
+  /**
    * Enable linting for **code snippets** in Markdown.
    *
    * For formatting Markdown content, enable also `formatters.markdown`.
    *
    * @default true
    */
-  markdown?: OptionsOverrides | boolean;
-
-  /**
-   * Enable react support.
-   * In This plugin, react is not supported as a first class citizen. 😎
-   *
-   * @default false
-   */
-  react?: OptionsOverrides | boolean;
-
-  /**
-   * Enable regexp rules.
-   *
-   * @see https://ota-meshi.github.io/eslint-plugin-regexp/
-   * @default true
-   */
-  regexp?: (OptionsOverrides & OptionsRegExp) | boolean;
+  markdown?: boolean | OptionsOverrides;
 
   /**
    * Enable stylistic rules.
@@ -259,45 +306,63 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @see https://eslint.style/
    * @default true
    */
-  stylistic?: (OptionsOverrides & StylisticConfig) | boolean;
+  stylistic?: boolean | (OptionsOverrides & StylisticConfig);
 
   /**
-   * Enable test support.
+   * Enable regexp rules.
    *
+   * @see https://ota-meshi.github.io/eslint-plugin-regexp/
    * @default true
    */
-  test?: OptionsOverrides | boolean;
+  regexp?: boolean | (OptionsOverrides & OptionsRegExp);
 
   /**
-   * Enable TypeScript support.
+   * Enable react rules.
    *
-   * Passing an object to enable TypeScript Language Server support.
-   *
-   * @default auto-detect based on the dependencies
+   * @default false
    */
-  typescript?: OptionsTypescript | boolean;
+  react?: boolean | OptionsOverrides;
+
+  /**
+   * Enable solid rules.
+   *
+   * @default false
+   */
+  solid?: boolean | OptionsOverrides;
+
+  /**
+   * Enable svelte rules.
+   *
+   * @default false
+   */
+  svelte?: boolean;
 
   /**
    * Enable unocss rules.
    *
-   * Requires installing:
-   * - `@unocss/eslint-plugin`
+   * @default false
+   */
+  unocss?: boolean | OptionsUnoCSS;
+
+  /**
+   * Use external formatters to format files.
+   *
+   * When set to `true`, it will enable all formatters.
    *
    * @default false
    */
-  unocss?: OptionsUnoCSS | boolean;
+  formatters?: boolean | OptionsFormatters;
 
   /**
-   * Enable Vue support.
-   *
-   * @default auto-detect based on the dependencies
+   * Control to disable some rules in editors.
+   * @default auto-detect based on the process.env
    */
-  vue?: OptionsVue | boolean;
+  isInEditor?: boolean;
 
   /**
-   * Enable YAML support.
+   * Automatically rename plugins in the config.
    *
    * @default true
    */
-  yaml?: OptionsOverrides | boolean;
+  autoRenamePlugins?: boolean;
 }

@@ -8,6 +8,8 @@ import type { RuleOptions } from './typegen';
 import type { Awaitable, ConfigNames, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
 
 import {
+  astro,
+  command,
   comments,
   ignores,
   imports,
@@ -19,11 +21,14 @@ import {
   node,
   perfectionist,
   react,
+  solid,
   sonar,
   sortPackageJson,
   sortTsconfig,
   stylistic,
+  svelte,
   test,
+  toml,
   typescript,
   unicorn,
   unocss,
@@ -54,6 +59,11 @@ const VuePackages = [
 ];
 
 export const defaultPluginRenaming = {
+  '@eslint-react': 'react',
+  '@eslint-react/dom': 'react-dom',
+  '@eslint-react/hooks-extra': 'react-hooks-extra',
+  '@eslint-react/naming-convention': 'react-naming-convention',
+
   '@stylistic': 'style',
   '@typescript-eslint': 'ts',
   'import-x': 'import',
@@ -78,27 +88,37 @@ export function vinicuncaESLint(
   ...userConfigs: Array<Awaitable<Array<Linter.Config> | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | TypedFlatConfigItem>>
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
+    astro: enableAstro = false,
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
-    isInEditor = isInEditorEnv(),
     jsx: enableJsx = true,
     react: enableReact = false,
     regexp: enableRegexp = true,
+    solid: enableSolid = false,
+    svelte: enableSvelte = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
     unocss: enableUnoCSS = false,
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
   } = options;
+
+  let isInEditor = options.isInEditor;
+  if (isInEditor == null) {
+    isInEditor = isInEditorEnv();
+    if (isInEditor) {
+      // eslint-disable-next-line no-console
+      console.log('[@antfu/eslint-config] Detected running in editor, some rules are disabled.');
+    }
+  }
 
   let stylisticOptions: OptionsStylistic['stylistic'] = {};
 
   if (options.stylistic === false) {
     stylisticOptions = false;
   } else if (isPlainObject(options.stylistic)) {
-    stylisticOptions = {
-      ...options.stylistic,
-      jsx: options.jsx ?? true,
-    };
+    stylisticOptions = options.stylistic;
+  } else {
+    stylisticOptions = {};
   }
 
   if (stylisticOptions && !('jsx' in stylisticOptions)) {
@@ -108,10 +128,12 @@ export function vinicuncaESLint(
   const configs: Array<Awaitable<Array<TypedFlatConfigItem>>> = [];
 
   if (enableGitignore) {
-    if (typeof enableGitignore !== 'boolean') {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r(enableGitignore)]));
+    if (!isBoolean(enableGitignore)) {
+      configs.push(interopDefault(import('eslint-config-flat-gitignore'))
+        .then((r) => [r(enableGitignore)]));
     } else {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r()]));
+      configs.push(interopDefault(import('eslint-config-flat-gitignore'))
+        .then((r) => [r({ strict: false })]));
     }
   }
 
@@ -134,9 +156,13 @@ export function vinicuncaESLint(
       stylistic: stylisticOptions,
     }),
 
-    imports(),
+    imports({
+      stylistic: stylisticOptions,
+    }),
 
     unicorn(),
+
+    command(),
 
     perfectionist(),
 
@@ -156,6 +182,7 @@ export function vinicuncaESLint(
       ...typescriptOptions,
       componentExts,
       overrides: getOverrides(options, 'typescript'),
+      type: options.type,
     }));
   }
 
@@ -167,7 +194,7 @@ export function vinicuncaESLint(
   }
 
   if (enableRegexp) {
-    configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp));
+    configs.push(regexp(isBoolean(enableRegexp) ? {} : enableRegexp));
   }
 
   if (options.test ?? true) {
@@ -193,10 +220,33 @@ export function vinicuncaESLint(
     }));
   }
 
+  if (enableSolid) {
+    configs.push(solid({
+      overrides: getOverrides(options, 'solid'),
+      tsconfigPath,
+      typescript: !!enableTypeScript,
+    }));
+  }
+
+  if (enableSvelte) {
+    configs.push(svelte({
+      overrides: getOverrides(options, 'svelte'),
+      stylistic: stylisticOptions,
+      typescript: !!enableTypeScript,
+    }));
+  }
+
   if (enableUnoCSS) {
     configs.push(unocss({
       ...resolveSubOptions(options, 'unocss'),
       overrides: getOverrides(options, 'unocss'),
+    }));
+  }
+
+  if (enableAstro) {
+    configs.push(astro({
+      overrides: getOverrides(options, 'astro'),
+      stylistic: stylisticOptions,
     }));
   }
 
@@ -218,6 +268,13 @@ export function vinicuncaESLint(
     }));
   }
 
+  if (options.toml ?? true) {
+    configs.push(toml({
+      overrides: getOverrides(options, 'toml'),
+      stylistic: stylisticOptions,
+    }));
+  }
+
   if (options.markdown ?? true) {
     configs.push(
       markdown(
@@ -232,7 +289,7 @@ export function vinicuncaESLint(
   if (options.formatters) {
     configs.push(formatters(
       options.formatters,
-      typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
+      isBoolean(stylisticOptions) ? {} : stylisticOptions,
     ));
   }
 
@@ -267,6 +324,19 @@ export function vinicuncaESLint(
   return composer;
 }
 
+export type ResolvedOptions<T> = T extends boolean
+  ? never
+  : NonNullable<T>;
+
+function resolveSubOptions<K extends keyof OptionsConfig>(
+  options: OptionsConfig,
+  key: K,
+): ResolvedOptions<OptionsConfig[K]> {
+  return isBoolean(options[key])
+    ? {} as any
+    : options[key] || {};
+}
+
 function getOverrides<K extends keyof OptionsConfig>(
   options: OptionsConfig,
   key: K,
@@ -278,17 +348,4 @@ function getOverrides<K extends keyof OptionsConfig>(
       ? sub.overrides
       : {},
   };
-}
-
-type ResolvedOptions<T> = T extends boolean
-  ? never
-  : NonNullable<T>;
-
-function resolveSubOptions<K extends keyof OptionsConfig>(
-  options: OptionsConfig,
-  key: K,
-): ResolvedOptions<OptionsConfig[K]> {
-  return isBoolean(options[key])
-    ? {} as any
-    : options[key] || {};
 }
