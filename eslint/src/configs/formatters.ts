@@ -29,7 +29,6 @@ export async function formatters(
   }
 
   await ensurePackages([
-    'eslint-plugin-format',
     options.markdown && options.slidev ? 'prettier-plugin-slidev' : undefined,
     options.astro ? 'prettier-plugin-astro' : undefined,
     (options.xml || options.svg) ? '@prettier/plugin-xml' : undefined,
@@ -67,7 +66,6 @@ export async function formatters(
     xmlWhitespaceSensitivity: 'ignore',
   };
 
-  // eslint-disable-next-line sonar/prefer-object-spread
   const dprintOptions = Object.assign(
     {
       indentWidth: isNumber(indent) ? indent : 2,
