@@ -1,9 +1,9 @@
-import type { TypedFlatConfigItem } from '../types';
+import type { OptionsUnicorn, TypedFlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
 import { pluginUnicorn } from '../plugins';
 
-export async function unicorn(): Promise<Array<TypedFlatConfigItem>> {
+export async function unicorn(options: OptionsUnicorn = {}): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
       name: 'vinicunca/unicorn/rules',
@@ -13,31 +13,35 @@ export async function unicorn(): Promise<Array<TypedFlatConfigItem>> {
       },
 
       rules: {
-        'unicorn/error-message': ERROR,
+        ...(options.allRecommended
+          ? pluginUnicorn.configs['flat/recommended'].rules
+          : {
+              'unicorn/error-message': ERROR,
 
-        'unicorn/escape-case': ERROR,
+              'unicorn/escape-case': ERROR,
 
-        'unicorn/no-instanceof-array': ERROR,
+              'unicorn/no-instanceof-array': ERROR,
 
-        'unicorn/no-new-array': ERROR,
+              'unicorn/no-new-array': ERROR,
 
-        'unicorn/no-new-buffer': ERROR,
+              'unicorn/no-new-buffer': ERROR,
 
-        'unicorn/number-literal-case': ERROR,
+              'unicorn/number-literal-case': ERROR,
 
-        'unicorn/prefer-dom-node-text-content': ERROR,
+              'unicorn/prefer-dom-node-text-content': ERROR,
 
-        'unicorn/prefer-includes': ERROR,
+              'unicorn/prefer-includes': ERROR,
 
-        'unicorn/prefer-node-protocol': ERROR,
+              'unicorn/prefer-node-protocol': ERROR,
 
-        'unicorn/prefer-number-properties': ERROR,
+              'unicorn/prefer-number-properties': ERROR,
 
-        'unicorn/prefer-string-starts-ends-with': ERROR,
+              'unicorn/prefer-string-starts-ends-with': ERROR,
 
-        'unicorn/prefer-type-error': ERROR,
+              'unicorn/prefer-type-error': ERROR,
 
-        'unicorn/throw-new-error': ERROR,
+              'unicorn/throw-new-error': ERROR,
+            }),
       },
     },
   ];

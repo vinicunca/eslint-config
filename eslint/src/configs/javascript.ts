@@ -252,10 +252,7 @@ export async function javascript(
 
         'no-restricted-syntax': [
           ERROR,
-          'DebuggerStatement',
           'ForInStatement',
-          'LabeledStatement',
-          'WithStatement',
           'TSEnumDeclaration[const=true]',
           'TSExportAssignment',
         ],

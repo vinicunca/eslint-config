@@ -39,17 +39,15 @@ import { formatters } from './configs/formatters';
 import { regexp } from './configs/regexp';
 import { interopDefault, isInEditorEnv } from './utils';
 
-const flatConfigProps: Array<keyof TypedFlatConfigItem> = [
+const flatConfigProps = [
   'name',
-  'files',
-  'ignores',
   'languageOptions',
   'linterOptions',
   'processor',
   'plugins',
   'rules',
   'settings',
-];
+] satisfies Array<keyof TypedFlatConfigItem>;
 
 const VuePackages = [
   'vue',
@@ -98,6 +96,7 @@ export function vinicuncaESLint(
     solid: enableSolid = false,
     svelte: enableSvelte = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
+    unicorn: enableUnicorn = true,
     unocss: enableUnoCSS = false,
     vue: enableVue = VuePackages.some((i) => isPackageExists(i)),
   } = options;
@@ -129,11 +128,15 @@ export function vinicuncaESLint(
 
   if (enableGitignore) {
     if (!isBoolean(enableGitignore)) {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore'))
-        .then((r) => [r(enableGitignore)]));
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
+        name: 'vinicunca/gitignore',
+        ...enableGitignore,
+      })]));
     } else {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore'))
-        .then((r) => [r({ strict: false })]));
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
+        name: 'vinicunca/gitignore',
+        strict: false,
+      })]));
     }
   }
 
@@ -141,7 +144,7 @@ export function vinicuncaESLint(
   const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined;
 
   configs.push(
-    ignores(),
+    ignores(options.ignores),
 
     javascript({
       isInEditor,
@@ -160,14 +163,18 @@ export function vinicuncaESLint(
       stylistic: stylisticOptions,
     }),
 
-    unicorn(),
-
     command(),
 
     perfectionist(),
 
     sonar(),
   );
+
+  if (enableUnicorn) {
+    configs.push(
+      unicorn(enableUnicorn === true ? {} : enableUnicorn),
+    );
+  }
 
   if (enableVue) {
     componentExts.push('vue');
@@ -291,6 +298,10 @@ export function vinicuncaESLint(
       options.formatters,
       isBoolean(stylisticOptions) ? {} : stylisticOptions,
     ));
+  }
+
+  if ('files' in options) {
+    throw new Error('[@vinicunca/eslint-config] The first argument should not contain the "files" property as the options are supposed to be global. Place it in the second or later config instead.');
   }
 
   /**

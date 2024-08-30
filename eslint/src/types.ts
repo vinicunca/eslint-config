@@ -135,6 +135,15 @@ export interface OptionsComponentExts {
   componentExts?: Array<string>;
 }
 
+export interface OptionsUnicorn {
+  /**
+   * Include all rules recommended by `eslint-plugin-unicorn`, instead of only ones picked by Anthony.
+   *
+   * @default false
+   */
+  allRecommended?: boolean;
+}
+
 export interface OptionsTypeScriptParserOptions {
   /**
    * Additional parser options for TypeScript.
@@ -248,6 +257,13 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * @default true
    */
   jsx?: boolean;
+
+  /**
+   * Options for eslint-plugin-unicorn.
+   *
+   * @default true
+   */
+  unicorn?: boolean | OptionsUnicorn;
 
   /**
    * Enable test support.
