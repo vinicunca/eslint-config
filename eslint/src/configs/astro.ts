@@ -64,7 +64,6 @@ export async function astro(
           ? {
               'style/indent': OFF,
               'style/jsx-closing-tag-location': OFF,
-              'style/jsx-indent': OFF,
               'style/jsx-one-expression-per-line': OFF,
               'style/no-multiple-empty-lines': OFF,
             }
