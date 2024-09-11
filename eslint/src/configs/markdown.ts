@@ -15,8 +15,7 @@ export async function markdown(
     overrides = {},
   } = options;
 
-  // @ts-expect-error missing types
-  const markdown = await interopDefault(import('eslint-plugin-markdown'));
+  const markdown = await interopDefault(import('@eslint/markdown'));
 
   return [
     {
@@ -37,7 +36,7 @@ export async function markdown(
        * add a pass-through processor for the markdown file itself.
        */
       processor: mergeProcessors([
-        markdown.processors.markdown,
+        markdown.processors!.markdown,
         processorPassThrough,
       ]),
     },
