@@ -13,6 +13,7 @@ export default vinicuncaESLint(
       'perfectionist/sort-objects': 'off',
       'perfectionist/sort-interfaces': 'off',
       'sonar/cognitive-complexity': 'off',
+      'sonar/no-duplicate-string': 'off',
     },
   },
 

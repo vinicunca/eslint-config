@@ -2,138 +2,143 @@
  * Vendor types from Prettier so we don't rely on the dependency.
  */
 
-export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>
+export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>;
+
+export type VendoredPrettierRuleOptions = {
+  [k: string]: undefined | unknown;
+  parser?: BuiltInParserName | ExternalParserName;
+} & VendoredPrettierOptions;
 
 export interface VendoredPrettierOptionsRequired {
   /**
    * Specify the line length that the printer will wrap on.
    * @default 120
    */
-  printWidth: number
+  printWidth: number;
   /**
    * Specify the number of spaces per indentation-level.
    */
-  tabWidth: number
+  tabWidth: number;
   /**
    * Indent lines with tabs instead of spaces
    */
-  useTabs?: boolean
+  useTabs?: boolean;
   /**
    * Print semicolons at the ends of statements.
    */
-  semi: boolean
+  semi: boolean;
   /**
    * Use single quotes instead of double quotes.
    */
-  singleQuote: boolean
+  singleQuote: boolean;
   /**
    * Use single quotes in JSX.
    */
-  jsxSingleQuote: boolean
+  jsxSingleQuote: boolean;
   /**
    * Print trailing commas wherever possible.
    */
-  trailingComma: 'none' | 'es5' | 'all'
+  trailingComma: 'all' | 'es5' | 'none';
   /**
    * Print spaces between brackets in object literals.
    */
-  bracketSpacing: boolean
+  bracketSpacing: boolean;
   /**
    * Put the `>` of a multi-line HTML (HTML, XML, JSX, Vue, Angular) element at the end of the last line instead of being
    * alone on the next line (does not apply to self closing elements).
    */
-  bracketSameLine: boolean
+  bracketSameLine: boolean;
   /**
    * Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.
    * @deprecated use bracketSameLine instead
    */
-  jsxBracketSameLine: boolean
+  jsxBracketSameLine: boolean;
   /**
    * Format only a segment of a file.
    */
-  rangeStart: number
+  rangeStart: number;
   /**
    * Format only a segment of a file.
    * @default Number.POSITIVE_INFINITY
    */
-  rangeEnd: number
+  rangeEnd: number;
   /**
    * By default, Prettier will wrap markdown text as-is since some services use a linebreak-sensitive renderer.
    * In some cases you may want to rely on editor/viewer soft wrapping instead, so this option allows you to opt out.
    * @default "preserve"
    */
-  proseWrap: 'always' | 'never' | 'preserve'
+  proseWrap: 'always' | 'never' | 'preserve';
   /**
    * Include parentheses around a sole arrow function parameter.
    * @default "always"
    */
-  arrowParens: 'avoid' | 'always'
+  arrowParens: 'always' | 'avoid';
   /**
    * Provide ability to support new languages to prettier.
    */
-  plugins: Array<string | any>
+  plugins: Array<any | string>;
   /**
    * How to handle whitespaces in HTML.
    * @default "css"
    */
-  htmlWhitespaceSensitivity: 'css' | 'strict' | 'ignore'
+  htmlWhitespaceSensitivity: 'css' | 'ignore' | 'strict';
   /**
    * Which end of line characters to apply.
    * @default "lf"
    */
-  endOfLine: 'auto' | 'lf' | 'crlf' | 'cr'
+  endOfLine: 'auto' | 'cr' | 'crlf' | 'lf';
   /**
    * Change when properties in objects are quoted.
    * @default "as-needed"
    */
-  quoteProps: 'as-needed' | 'consistent' | 'preserve'
+  quoteProps: 'as-needed' | 'consistent' | 'preserve';
   /**
    * Whether or not to indent the code inside <script> and <style> tags in Vue files.
    * @default false
    */
-  vueIndentScriptAndStyle: boolean
+  vueIndentScriptAndStyle: boolean;
   /**
    * Enforce single attribute per line in HTML, XML, Vue and JSX.
    * @default false
    */
-  singleAttributePerLine: boolean
+  singleAttributePerLine: boolean;
 
   /**
    * How to handle whitespaces in XML.
    * @default "preserve"
    */
-  xmlQuoteAttributes: 'single' | 'double' | 'preserve'
+  xmlQuoteAttributes: 'double' | 'preserve' | 'single';
   /**
    * Whether to put a space inside the brackets of self-closing XML elements.
    * @default true
    */
-  xmlSelfClosingSpace: boolean
+  xmlSelfClosingSpace: boolean;
   /**
    * Whether to sort attributes by key in XML elements.
    * @default false
    */
-  xmlSortAttributesByKey: boolean
+  xmlSortAttributesByKey: boolean;
   /**
    * How to handle whitespaces in XML.
    * @default "ignore"
    */
-  xmlWhitespaceSensitivity: 'ignore' | 'strict' | 'preserve'
+  xmlWhitespaceSensitivity: 'ignore' | 'preserve' | 'strict';
 }
 
 export type BuiltInParserName =
   | 'acorn'
   | 'angular'
+  | 'babel'
   | 'babel-flow'
   | 'babel-ts'
-  | 'babel'
   | 'css'
   | 'espree'
   | 'flow'
   | 'glimmer'
   | 'graphql'
   | 'html'
-  | 'json-stringify'
   | 'json'
+  | 'json-stringify'
   | 'json5'
   | 'less'
   | 'lwc'
@@ -144,7 +149,7 @@ export type BuiltInParserName =
   | 'typescript'
   | 'vue'
   | 'xml'
-  | 'yaml'
+  | 'yaml';
 
 // This utility is here to handle the case where you have an explicit union
 // between string literals and the generic string type. It would normally
@@ -154,5 +159,7 @@ export type BuiltInParserName =
 // It comes from this issue: microsoft/TypeScript#29729:
 //   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
 export type LiteralUnion<T extends U, U = string> =
-  | T
-  | (Pick<U, never> & { _?: never | undefined })
+  | ({ _?: never | undefined } & Pick<U, never>)
+  | T;
+
+export type ExternalParserName = 'astro' | 'slidev';
