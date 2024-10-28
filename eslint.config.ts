@@ -33,4 +33,11 @@ export default vinicuncaESLint(
       'style-migrate/migrate': ['error', { namespaceTo: 'style' }],
     },
   },
+
+  {
+    files: ['**/docs/**'],
+    rules: {
+      'ts/explicit-function-return-type': 'off',
+    },
+  },
 );

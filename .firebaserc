@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "vinicunca-docs"
+  },
+  "targets": {
+    "vinicunca-docs": {
+      "hosting": {
+        "eslint": [
+          "eslint-vinicunca"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -44,7 +44,7 @@ type RawConfigs = Array<{ name?: string } & FlatESLintConfigItem>;
 
 async function generateJsonRules() {
   const cwd = process.cwd();
-  const configPath = path.resolve(cwd, '..', 'scripts', 'eslint-config.js');
+  const configPath = path.resolve(cwd, 'scripts', 'eslint-config.js');
 
   const jiti = JITI(cwd, {
     cache: false,
@@ -123,8 +123,11 @@ function getRuleOptions<T extends Array<any>>(level: RuleConfig<T> | undefined):
 const cwd = process.cwd();
 
 async function writeJson(content: any) {
+  const outputPath = path.join(cwd, 'docs', '.vitepress', 'data', 'metadata.ts');
+  // const outputFile = path.join(cwd, 'src', 'metadata.ts');
+
   await fs.writeFile(
-    path.join(cwd, 'src', 'metadata.ts'),
+    outputPath,
     `
 import type { ConfigInfo } from './types';
 

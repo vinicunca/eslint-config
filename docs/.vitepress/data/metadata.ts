@@ -2,6 +2,16 @@ import type { ConfigInfo } from './types';
 
 export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
   {
+    "name": "vinicunca/gitignore",
+    "plugins": [],
+    "rules": []
+  },
+  {
+    "name": "vinicunca/ignores",
+    "plugins": [],
+    "rules": []
+  },
+  {
     "name": "vinicunca/javascript/setup",
     "plugins": [],
     "rules": []
@@ -1037,10 +1047,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         },
         "name": "no-restricted-syntax",
         "options": [
-          "DebuggerStatement",
           "ForInStatement",
-          "LabeledStatement",
-          "WithStatement",
           "TSEnumDeclaration[const=true]",
           "TSExportAssignment"
         ]
@@ -1680,8 +1687,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-imports.md"
           },
           "fixable": "code"
@@ -1695,8 +1702,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-vars.md"
           },
           "fixable": "code"
@@ -2138,7 +2145,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "warn",
         "meta": {
           "docs": {
-            "description": "",
+            "description": "Prevents use of multiple asterisks at the beginning of lines.",
             "url": "https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-multi-asterisks.md#repos-sticky-header"
           },
           "fixable": "code",
@@ -2310,7 +2317,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid any invalid exports, i.e. re-export of the same name.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/export.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/export.md"
           }
         },
         "name": "import/export",
@@ -2323,7 +2330,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Ensure all imports appear before other statements.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/first.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/first.md"
           },
           "fixable": "code"
         },
@@ -2337,7 +2344,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Forbid repeated import of the same module in multiple places.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-duplicates.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-duplicates.md"
           },
           "fixable": "code"
         },
@@ -2351,7 +2358,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid the use of mutable exports with `var` or `let`.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-mutable-exports.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-mutable-exports.md"
           }
         },
         "name": "import/no-mutable-exports",
@@ -2364,7 +2371,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Forbid named default exports.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-named-default.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-named-default.md"
           }
         },
         "name": "import/no-named-default",
@@ -2378,7 +2385,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "category": "Static analysis",
             "description": "Forbid a module from importing itself.",
             "recommended": true,
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-self-import.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-self-import.md"
           }
         },
         "name": "import/no-self-import",
@@ -2391,7 +2398,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Static analysis",
             "description": "Forbid webpack loader syntax in imports.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-webpack-loader-syntax.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-webpack-loader-syntax.md"
           }
         },
         "name": "import/no-webpack-loader-syntax",
@@ -2404,7 +2411,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Enforce a convention in module import order.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/order.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/order.md"
           },
           "fixable": "code"
         },
@@ -2418,7 +2425,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Enforce a newline after import statements.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/newline-after-import.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/newline-after-import.md"
           },
           "fixable": "whitespace"
         },
@@ -2462,200 +2469,6 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           }
         },
         "name": "antfu/no-import-node-modules-by-path",
-        "options": []
-      }
-    ]
-  },
-  {
-    "name": "vinicunca/unicorn/rules",
-    "plugins": [
-      "unicorn"
-    ],
-    "rules": [
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Enforce passing a `message` value when creating a built-in error.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/error-message.md"
-          }
-        },
-        "name": "unicorn/error-message",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Require escape sequences to use uppercase values.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/escape-case.md"
-          },
-          "fixable": "code"
-        },
-        "name": "unicorn/escape-case",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Require `Array.isArray()` instead of `instanceof Array`.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/no-instanceof-array.md"
-          },
-          "fixable": "code"
-        },
-        "name": "unicorn/no-instanceof-array",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Disallow `new Array()`.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/no-new-array.md"
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "unicorn/no-new-array",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/no-new-buffer.md"
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "unicorn/no-new-buffer",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce proper case for numeric literals.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/number-literal-case.md"
-          },
-          "fixable": "code"
-        },
-        "name": "unicorn/number-literal-case",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Prefer `.textContent` over `.innerText`.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/prefer-dom-node-text-content.md"
-          },
-          "hasSuggestions": true
-        },
-        "name": "unicorn/prefer-dom-node-text-content",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/prefer-includes.md"
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "unicorn/prefer-includes",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Prefer using the `node:` protocol when importing Node.js builtin modules.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/prefer-node-protocol.md"
-          },
-          "fixable": "code"
-        },
-        "name": "unicorn/prefer-node-protocol",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Prefer `Number` static properties over global ones.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/prefer-number-properties.md"
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "unicorn/prefer-number-properties",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/prefer-string-starts-ends-with.md"
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "unicorn/prefer-string-starts-ends-with",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce throwing `TypeError` in type checking conditions.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/prefer-type-error.md"
-          },
-          "fixable": "code"
-        },
-        "name": "unicorn/prefer-type-error",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Require `new` when creating an error.",
-            "recommended": true,
-            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v55.0.0/docs/rules/throw-new-error.md"
-          },
-          "fixable": "code"
-        },
-        "name": "unicorn/throw-new-error",
         "options": []
       }
     ]
@@ -2722,55 +2535,6 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "order": "asc"
           }
         ]
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce sorted Svelte attributes.",
-            "url": "https://perfectionist.dev/rules/sort-svelte-attributes"
-          },
-          "fixable": "code"
-        },
-        "name": "perfectionist/sort-svelte-attributes",
-        "options": [
-          {
-            "type": "natural",
-            "order": "asc"
-          }
-        ]
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce sorted Astro attributes.",
-            "url": "https://perfectionist.dev/rules/sort-astro-attributes"
-          },
-          "fixable": "code"
-        },
-        "name": "perfectionist/sort-astro-attributes",
-        "options": [
-          {
-            "type": "natural",
-            "order": "asc"
-          }
-        ]
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enforce sorted Vue attributes.",
-            "url": "https://perfectionist.dev/rules/sort-vue-attributes"
-          },
-          "fixable": "code"
-        },
-        "name": "perfectionist/sort-vue-attributes",
-        "options": []
       },
       {
         "level": "error",
@@ -3014,6 +2778,24 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
+            "description": "Enforce sorted sets.",
+            "url": "https://perfectionist.dev/rules/sort-sets"
+          },
+          "fixable": "code"
+        },
+        "name": "perfectionist/sort-sets",
+        "options": [
+          {
+            "type": "natural",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "level": "error",
+        "meta": {
+          "type": "suggestion",
+          "docs": {
             "description": "Enforce sorted Map elements.",
             "url": "https://perfectionist.dev/rules/sort-maps"
           },
@@ -3026,6 +2808,23 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "order": "asc"
           }
         ]
+      },
+      {
+        "level": "off",
+        "meta": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Enforce sorted Vue attributes.",
+            "url": "https://perfectionist.dev/rules/sort-vue-attributes"
+          },
+          "fixable": "code",
+          "deprecated": true,
+          "replacedBy": [
+            "vue/attributes-order"
+          ]
+        },
+        "name": "perfectionist/sort-vue-attributes",
+        "options": []
       }
     ]
   },
@@ -3040,907 +2839,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Property getters and setters should come in pairs",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2376/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/accessor-pairs",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Image, area, button with image and object elements should have an alternative text",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1077/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/alt-text",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Anchors should contain accessible content",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6827/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "type": "suggestion"
-        },
-        "name": "sonar/anchor-has-content",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Anchor tags should not be used as buttons",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6844/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/anchor-is-valid",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Alternatives in regular expressions should be grouped when used with anchors",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5850/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/anchor-precedence",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Arguments to built-in functions should match documented types",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3782/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/argument-type",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Parameters should be passed in the correct order",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2234/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/arguments-order",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"arguments\" should not be accessed directly",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3513/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/arguments-usage",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Callbacks of array methods should have return statements",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3796/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/array-callback-without-return",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Array constructors should not be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1528/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/array-constructor",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Braces and parentheses should be used consistently with arrow functions",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3524/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/arrow-function-convention",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Tests should include assertions",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2699/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/assertions-in-tests",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Creating public APIs is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6333/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-apigateway-public-api",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing public network access to cloud resources is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6329/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-ec2-rds-dms-public",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted EBS volumes is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6275/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-ec2-unencrypted-ebs-volume",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted EFS file systems is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6332/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-efs-unencrypted",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Policies granting all privileges are security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6302/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-iam-all-privileges",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Policies granting access to all resources of an account are security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6304/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-iam-all-resources-accessible",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "AWS IAM policies should limit the scope of permissions given",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6317/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-iam-privilege-escalation",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Policies authorizing public access to resources are security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6270/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-iam-public-access",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted Elasticsearch domains is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6308/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-opensearchservice-domain",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted RDS DB resources is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6303/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-rds-unencrypted-databases",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Administration services access should be restricted to specific IP addresses",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6321/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-restricted-ip-admin-access",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Granting access to S3 buckets to all or authenticated users is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6265/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-s3-bucket-granted-access",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Authorizing HTTP communications with S3 buckets is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6249/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-s3-bucket-insecure-http",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing public ACLs or policies on a S3 bucket is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6281/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-s3-bucket-public-access",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling server-side encryption of S3 buckets is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6245/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/aws-s3-bucket-server-encryption",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling versioning of S3 buckets is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6252/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-s3-bucket-versioning",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted SageMaker notebook instances is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6319/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-sagemaker-unencrypted-notebook",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted SNS topics is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6327/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-sns-unencrypted-topics",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using unencrypted SQS queues is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6330/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/aws-sqs-unencrypted-queue",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Bitwise operators should not be used in boolean contexts",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1529/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/bitwise-operators",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Optional boolean parameters should have default value",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4798/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/bool-param-default",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "deprecated": true,
-          "replacedBy": [],
-          "type": "suggestion",
-          "docs": {
-            "description": "An open curly brace should be located at the end of a line",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1105/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "whitespace"
-        },
-        "name": "sonar/brace-style",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Function call arguments should not start on new lines",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1472/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/call-argument-line",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling Certificate Transparency monitoring is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5742/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/certificate-transparency",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Chai assertions should have only one reason to succeed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6092/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/chai-determinate-assertion",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Class names should comply with a naming convention",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S101/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/class-name",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Class methods should be used instead of \"prototype\" assignments",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3525/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/class-prototype",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Dynamically executing code is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1523/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/code-eval",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
             "description": "Cognitive Complexity of functions should not be too high",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3776/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/cognitive-complexity.md"
           }
         },
         "name": "sonar/cognitive-complexity",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Comma and logical OR operators should not be used in switch cases",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3616/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/comma-or-logical-or-case",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Track comments matching a regular expression",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S124/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/comment-regex",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Regular expression quantifiers and character classes should be used concisely",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6353/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/concise-regex",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "A conditionally executed single line should be denoted by indentation",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3973/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/conditional-indentation",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing confidential information to be logged is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5757/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/confidential-information-logging",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Objects should not be created to be dropped immediately without being used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1848/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/constructor-for-side-effects",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing requests with excessive content length is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5693/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/content-length",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling content security policy fetch directives is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5728/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/content-security-policy",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Creating cookies without the \"HttpOnly\" flag is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3330/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/cookie-no-httponly",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Writing cookies is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2255/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/cookies",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Having a permissive Cross-Origin Resource Sharing policy is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5122/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/cors",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling CSRF protections is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4502/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/csrf",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Cyclomatic Complexity of functions should not be too high",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1541/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/cyclomatic-complexity",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variables and functions should not be declared in the global scope",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3798/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/declarations-in-global-scope",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Function parameters with default values should be last",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1788/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/default-param-last",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Deprecated APIs should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1874/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/deprecation",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Destructuring syntax should be used for assignments",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3514/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/destructuring-assignment-syntax",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Strict equality operators should not be used with dissimilar types",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3403/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/different-types-comparison",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling auto-escaping in template engines is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5247/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/disabled-auto-escaping",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using remote artifacts without integrity checks is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5725/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/disabled-resource-integrity",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling Mocha timeouts should be explicit",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6080/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/disabled-timeout",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing browsers to perform DNS prefetching is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5743/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/dns-prefetching",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Character classes in regular expressions should not contain the same character twice",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5869/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/duplicates-in-character-class",
         "options": []
       },
       {
@@ -3949,9 +2852,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "suggestion",
           "docs": {
             "description": "\"if ... else if\" constructs should end with \"else\" clauses",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S126/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/elseif-without-else.md"
           }
         },
         "name": "sonar/elseif-without-else",
@@ -3960,630 +2861,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Repeated patterns in regular expressions should not match the empty string",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5842/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/empty-string-repetition",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Encrypting data is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4787/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/encryption",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Encryption algorithms should be used with secure mode and padding scheme",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5542/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/encryption-secure-mode",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "deprecated": true,
-          "replacedBy": [],
-          "type": "suggestion",
-          "docs": {
-            "description": "Trailing commas should be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3723/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/enforce-trailing-comma",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Replacement strings should reference existing regular expression groups",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6328/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/existing-groups",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Expressions should not be too complex",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1067/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/expression-complexity",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Track lack of copyright and license headers",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1451/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/file-header",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Default export names and file names should match",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3317/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/file-name-differ-from-class",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Setting loose POSIX file permissions is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2612/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/file-permissions",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "File uploads should be restricted",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2598/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/file-uploads",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Track uses of \"FIXME\" tags",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1134/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/fixme-tag",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"for...in\" loops should filter properties before acting on them",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1535/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/for-in",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "A \"for\" loop update clause should move the counter in the right direction",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2251/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/for-loop-increment-sign",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling content security policy frame-ancestors directive is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5732/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/frame-ancestors",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should not be defined inside loops",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1515/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/function-inside-loop",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Function and method names should comply with a naming convention",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S100/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/function-name",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should always return the same type",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3800/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/function-return-type",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Future reserved words should not be used as identifiers",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1527/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/future-reserved-words",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Generators should explicitly \"yield\" a value",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3531/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/generator-without-yield",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using weak hashing algorithms is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4790/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/hashing",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Statically serving hidden files is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5691/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/hidden-files",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "The return value of \"useState\" should be destructured and named symmetrically",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6754/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion",
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/hook-use-state",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "HTML elements should have a valid language attribute",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5254/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/html-has-lang",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"in\" should not be used with primitive types",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3785/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/in-operator-type-error",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should be called consistently with or without \"new\"",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3686/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/inconsistent-function-call",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"indexOf\" checks should not be for positive numbers",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2692/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/index-of-compare-to-positive-number",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Creating cookies without the \"secure\" flag is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2092/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/insecure-cookie",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "JWT should be signed and verified with strong cipher algorithms",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5659/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/insecure-jwt-token",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Assertion arguments should be passed in the correct order",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3415/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/inverted-assertion-arguments",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "JSX list components should have a key property",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6477/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/jsx-key",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "React Context Provider values should have stable identities",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6481/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/jsx-no-constructed-context-values",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "fixable": "code",
-          "docs": {
-            "description": "Redundant React fragments should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6749/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true
-        },
-        "name": "sonar/jsx-no-useless-fragment",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Label elements should have a text label and an associated control",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6853/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/label-has-associated-control",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Only \"while\", \"do\", \"for\" and \"switch\" statements should be labelled",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1439/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/label-position",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Authorizing an opened window to access back to the originating window is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5148/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/link-with-target-blank",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "type": "suggestion",
           "docs": {
             "description": "\"switch\" statements should not have too many \"case\" clauses",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1479/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/max-switch-cases.md"
           }
         },
         "name": "sonar/max-switch-cases",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Union types should not have too many elements",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4622/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/max-union-size",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Media elements should have captions",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4084/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/media-has-caption",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"for\" loop increment clauses should modify the loops' counters",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1994/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/misplaced-loop-counter",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Mouse events should have corresponding keyboard events",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1082/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/mouse-events-a11y",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Control flow statements \"if\", \"for\", \"while\", \"switch\" and \"try\" should not be nested too deeply",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S134/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/nested-control-flow",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Constructor names should start with an upper case letter",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2430/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/new-cap",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"new\" should only be used with functions and classes",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2999/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/new-operator-misuse",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Getters and setters should access the expected fields",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4275/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": null
-        },
-        "name": "sonar/no-accessor-field-mismatch",
         "options": []
       },
       {
@@ -4592,9 +2877,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "All branches in a conditional structure should not have exactly the same implementation",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3923/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-all-duplicated-branches.md"
           }
         },
         "name": "sonar/no-all-duplicated-branches",
@@ -4603,154 +2887,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "\"Array.prototype.sort()\" and \"Array.prototype.toSorted()\" should use a compare function",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2871/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-alphabetical-sort",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling Angular built-in sanitization is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6268/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-angular-bypass-sanitization",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "\"delete\" should not be used on arrays",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2870/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-array-delete",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "JSX list components should not use array indexes as key",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6479/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/no-array-index-key",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Array indexes should be numeric",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3579/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-associative-arrays",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Objects and classes converted or coerced to strings should define a \"toString()\" method",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6551/javascript",
-            "requiresTypeChecking": true
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/no-base-to-string",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Built-in objects should not be overridden",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2424/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-built-in-override",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"switch\" statements should not contain non-case labels",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1219/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-case-label-in-switch",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using clear-text protocols is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5332/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-clear-text-protocols",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Tests should not execute any code after \"done()\" is called",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6079/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-code-after-done",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Mergeable \"if\" statements should be combined",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1066/javascript",
-            "requiresTypeChecking": false
+            "description": "Collapsible \"if\" statements should be merged",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-collapsible-if.md"
           }
         },
         "name": "sonar/no-collapsible-if",
@@ -4759,15 +2900,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
           "type": "problem",
+          "hasSuggestions": true,
           "docs": {
-            "description": "Collection size and array length comparisons should make sense",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3981/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
+            "description": "Collection sizes and array length comparisons should make sense",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-collection-size-mischeck.md"
+          }
         },
         "name": "sonar/no-collection-size-mischeck",
         "options": []
@@ -4775,86 +2914,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Sections of code should not be commented out",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S125/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-commented-code",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Unused assignments should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1854/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-dead-store",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"delete\" should be used only with object properties",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3001/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-delete-var",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Deprecated React APIs should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6957/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-deprecated-react",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Union and intersection types should not include duplicated constituents",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4621/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-duplicate-in-composite",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
           "type": "suggestion",
           "docs": {
             "description": "String literals should not be duplicated",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1192/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-duplicate-string.md"
           }
         },
         "name": "sonar/no-duplicate-string",
@@ -4863,12 +2927,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "suggestion",
+          "type": "problem",
           "docs": {
             "description": "Two branches in a conditional structure should not have exactly the same implementation",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1871/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-duplicated-branches.md"
           }
         },
         "name": "sonar/no-duplicated-branches",
@@ -4880,9 +2943,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Collection elements should not be replaced unconditionally",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4143/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-element-overwrite.md"
           }
         },
         "name": "sonar/no-element-overwrite",
@@ -4891,40 +2953,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Reluctant quantifiers in regular expressions should be followed by an expression that can't match the empty string",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6019/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-empty-after-reluctant",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Alternation in regular expressions should not contain empty alternatives",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6323/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-empty-alternatives",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "type": "problem",
           "docs": {
             "description": "Empty collections should not be accessed or iterated",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4158/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-empty-collection.md"
           }
         },
         "name": "sonar/no-empty-collection",
@@ -4933,210 +2966,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should not be empty",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1186/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-empty-function",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Regular expressions should not contain empty groups",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6331/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-empty-group",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Interfaces should not be empty",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4023/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "sonar/no-empty-interface",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Test files should contain at least one test case",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2187/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-empty-test-file",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Equality operators should not be used in \"for\" loop termination conditions",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S888/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-equals-in-for-termination",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Exclusive tests should not be commited to version control",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6426/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-exclusive-tests",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Prototypes of builtin objects should not be modified",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6643/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-extend-native",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "type": "problem",
           "docs": {
             "description": "Function calls should not pass extra arguments",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S930/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-extra-arguments.md"
           }
         },
         "name": "sonar/no-extra-arguments",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "deprecated": true,
-          "replacedBy": [
-            "@stylistic/ts/no-extra-semi"
-          ],
-          "type": "suggestion",
-          "docs": {
-            "description": "Extra semicolons should be removed",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1116/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-extra-semi",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "React's \"findDOMNode\" should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6788/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/no-find-dom-node",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"for in\" should not be used with iterables",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4139/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-for-in-iterable",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Function declarations should not be made within blocks",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1530/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-function-declaration-in-block",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "The global \"this\" object should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2990/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-global-this",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Special identifiers should not be bound or assigned",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2137/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-globals-shadowing",
         "options": []
       },
       {
@@ -5145,9 +2982,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "suggestion",
           "docs": {
             "description": "Boolean expressions should not be gratuitous",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2589/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-gratuitous-expressions.md"
           }
         },
         "name": "sonar/no-gratuitous-expressions",
@@ -5158,52 +2994,9 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "problem",
           "docs": {
-            "description": "Hard-coded credentials are security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2068/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-hardcoded-credentials",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using hardcoded IP addresses is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1313/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-hardcoded-ip",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "React's useState hook should not be used directly in the render function or body of a component",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6442/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-hook-setter-in-body",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"if/else if\" chains and \"switch\" cases should not have the same condition",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1862/javascript",
-            "requiresTypeChecking": false
+            "description": "Related \"if-else-if\" and \"switch-case\" statements should not have the same condition",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-identical-conditions.md"
           }
         },
         "name": "sonar/no-identical-conditions",
@@ -5215,9 +3008,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Identical expressions should not be used on both sides of a binary operator",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1764/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-identical-expressions.md"
           }
         },
         "name": "sonar/no-identical-expressions",
@@ -5226,12 +3018,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "suggestion",
+          "type": "problem",
           "docs": {
             "description": "Functions should not have identical implementations",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4144/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-identical-functions.md"
           }
         },
         "name": "sonar/no-identical-functions",
@@ -5240,185 +3031,27 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Exceptions should not be ignored",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2486/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-ignored-exceptions",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "type": "problem",
           "docs": {
             "description": "Return values from functions without side effects should not be ignored",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2201/javascript",
-            "requiresTypeChecking": true
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-ignored-return.md"
           }
         },
         "name": "sonar/no-ignored-return",
         "options": []
       },
       {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Dependencies should be explicit",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4328/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-implicit-dependencies",
-        "options": []
-      },
-      {
         "level": "error",
         "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variables should be declared explicitly",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2703/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-implicit-global",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "\"in\" should not be used on arrays",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4619/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-in-misuse",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Assertions should be complete",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2970/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-incomplete-assertions",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should use \"return\" consistently",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3801/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-inconsistent-returns",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Strings and non-strings should not be added",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3402/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-incorrect-string-concat",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Loops should not be infinite",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2189/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-infinite-loop",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using intrusive permissions is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5604/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-intrusive-permissions",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"await\" should only be used with promises",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4123/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-invalid-await",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Function returns should not be invariant",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3516/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-invariant-returns",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "fixable": "code",
           "type": "suggestion",
           "docs": {
             "description": "Boolean checks should not be inverted",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1940/javascript",
-            "requiresTypeChecking": false
-          }
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-inverted-boolean-check.md"
+          },
+          "hasSuggestions": true,
+          "fixable": "code"
         },
         "name": "sonar/no-inverted-boolean-check",
         "options": []
@@ -5426,184 +3059,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Forwarding client IP address is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5759/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-ip-forward",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Labels should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1119/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-labels",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Literals should not be used as functions",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6958/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-literal-call",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "If statements should not be the only statement in else blocks",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6660/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-lonely-if",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing browsers to sniff MIME types is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5734/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-mime-sniff",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Array-mutating methods should not be used misleadingly",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4043/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-misleading-array-reverse",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Promises should not be misused",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6544/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-misused-promises",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Allowing mixed-content is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5730/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-mixed-content",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Assignments should not be made from within sub-expressions",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1121/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-nested-assignment",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Ternary operators should not be nested",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3358/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-nested-conditional",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should not be nested too deeply",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2004/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-nested-functions",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Increment (++) and decrement (--) operators should not be used in a method call or mixed with other operators in an expression",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S881/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-nested-incdec",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
           "type": "suggestion",
           "docs": {
             "description": "\"switch\" statements should not be nested",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1821/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-nested-switch.md"
           }
         },
         "name": "sonar/no-nested-switch",
@@ -5615,9 +3075,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "suggestion",
           "docs": {
             "description": "Template literals should not be nested",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4624/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-nested-template-literals.md"
           }
         },
         "name": "sonar/no-nested-template-literals",
@@ -5629,9 +3088,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Loops with at most one iteration should be refactored",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1751/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-one-iteration-loop.md"
           }
         },
         "name": "sonar/no-one-iteration-loop",
@@ -5640,84 +3098,11 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Searching OS commands in PATH is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4036/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-os-command-from-path",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Initial values of parameters, caught exceptions, and loop variables should not be ignored",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1226/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-parameter-reassignment",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
           "type": "suggestion",
           "docs": {
-            "description": "Wrapper objects should not be used for primitive types",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1533/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-primitive-wrappers",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variables and functions should not be redeclared",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2814/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-redeclare",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Assignments should not be redundant",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4165/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-redundant-assignments",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Boolean literals should not be used in comparisons",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1125/javascript",
-            "requiresTypeChecking": false
+            "description": "Boolean literals should not be redundant",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-redundant-boolean.md"
           }
         },
         "name": "sonar/no-redundant-boolean",
@@ -5726,15 +3111,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
           "type": "suggestion",
+          "hasSuggestions": true,
           "docs": {
             "description": "Jump statements should not be redundant",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3626/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-redundant-jump.md"
+          }
         },
         "name": "sonar/no-redundant-jump",
         "options": []
@@ -5742,132 +3125,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Optional property declarations should not use both '?' and 'undefined' syntax",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4782/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-redundant-optional",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Redundant pairs of parentheses should be removed",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1110/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code",
-          "deprecated": true
-        },
-        "name": "sonar/no-redundant-parentheses",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Type constituents of unions and intersections should not be redundant",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6571/javascript",
-            "requiresTypeChecking": true
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/no-redundant-type-constituents",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
           "type": "problem",
-          "docs": {
-            "description": "Variables should be defined before being used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3827/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-reference-error",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling strict HTTP no-referrer policy is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5736/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-referrer-policy",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"import\" should be used to include external code",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3533/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-require-or-define",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Primitive return types should be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4324/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-return-type-any",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Assertions should not be given twice the same argument",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5863/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-same-argument-assert",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "hasSuggestions": true,
-          "type": "suggestion",
           "docs": {
             "description": "Conditionals should start on new lines",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3972/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-same-line-conditional.md"
+          }
         },
         "name": "sonar/no-same-line-conditional",
         "options": []
@@ -5877,261 +3141,22 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "\"Number.isNaN()\" should be used to check for \"NaN\" value",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6679/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-self-compare",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
             "description": "\"switch\" statements should have at least 3 \"case\" clauses",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1301/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-small-switch.md"
           }
         },
         "name": "sonar/no-small-switch",
         "options": []
       },
       {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Tabulation characters should not be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S105/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/no-tab",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "HTML \"<table>\" should not be used for layout purposes",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5257/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-table-as-layout",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"this\" should not be assigned to variables",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4327/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-this-alias",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Literals should not be thrown",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3696/javascript",
-            "requiresTypeChecking": true
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-throw-literal",
-        "options": []
-      },
-      {
         "level": "error",
         "meta": {
           "type": "problem",
           "docs": {
-            "description": "Promise rejections should not be caught by \"try\" blocks",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4822/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-try-promise",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "\"undefined\" should not be passed as the value of optional parameters",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4623/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-undefined-argument",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"undefined\" should not be assigned",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2138/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-undefined-assignment",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Multiline blocks should be enclosed in curly braces",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2681/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-unenclosed-multiline-block",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "JSX list components keys should match up between renders",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6486/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-uniq-key",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "JSX elements should not use unknown properties and attributes",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6747/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-unknown-property",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "All code should be reachable",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1763/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-unreachable",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "React legacy lifecycle methods should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6791/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/no-unsafe",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Expanding archive files without controlling resource consumption is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5042/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-unsafe-unzip",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "React components should not be nested",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6478/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/no-unstable-nested-components",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Errors should not be created without being thrown",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3984/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-unthrown-error",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Collection contents should be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4030/javascript",
-            "requiresTypeChecking": false
+            "description": "Collection and array contents should be used",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-unused-collection.md"
           }
         },
         "name": "sonar/no-unused-collection",
@@ -6142,56 +3167,9 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "problem",
           "docs": {
-            "description": "Non-empty statements should change control flow or have at least one side-effect",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S905/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-unused-expressions",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Unused function parameters should be removed",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1172/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-unused-function-argument",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Unused private class members should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1068/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-unused-private-class-members",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "The return value of void functions should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3699/javascript",
-            "requiresTypeChecking": false
+            "description": "The output of functions that don't return anything should not be used",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-use-of-empty-return-value.md"
           }
         },
         "name": "sonar/no-use-of-empty-return-value",
@@ -6202,26 +3180,9 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Calls to \".call()\" and \".apply()\" methods should not be redundant",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6676/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-useless-call",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
             "description": "\"catch\" clauses should do more than rethrow",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2737/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/no-useless-catch.md"
           }
         },
         "name": "sonar/no-useless-catch",
@@ -6230,333 +3191,27 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Unnecessary constructors should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6647/javascript",
-            "requiresTypeChecking": false
-          },
+          "type": "problem",
           "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/no-useless-constructor",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
           "docs": {
-            "description": "Values should not be uselessly incremented",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2123/javascript",
-            "requiresTypeChecking": false
+            "description": "Non-existent operators \"=+\", \"=-\" and \"=!\" should not be used",
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/non-existent-operator.md"
           }
-        },
-        "name": "sonar/no-useless-increment",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Type intersections should use meaningful types",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4335/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/no-useless-intersection",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "React state setter function should not be called with its matching state variable",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6443/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-useless-react-setstate",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variables should be declared with \"let\" or \"const\"",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3504/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/no-var",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variables declared with \"var\" should be declared before they are used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1526/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-variable-usage-before-declaration",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling Vue.js built-in escaping is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6299/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-vue-bypass-sanitization",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Cipher algorithms should be robust",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5547/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-weak-cipher",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Cryptographic keys should be robust",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4426/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-weak-keys",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Wildcard imports should not be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2208/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/no-wildcard-import",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Non-existent operators '=+', '=-' and '=!' should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2757/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
         },
         "name": "sonar/non-existent-operator",
         "options": []
       },
       {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Arithmetic operators should only have numbers as operands",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3760/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/non-number-in-arithmetic-expression",
-        "options": []
-      },
-      {
         "level": "error",
         "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Properties of variables with \"null\" or \"undefined\" values should not be accessed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2259/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/null-dereference",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"<object>\" tags should provide an alternative content",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5264/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/object-alt-content",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Object literal shorthand syntax should be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3498/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/object-shorthand",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Arithmetic operations should not result in \"NaN\"",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3757/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/operation-returning-nan",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using shell interpreter when executing OS commands is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4721/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/os-command",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Origins should be verified during cross-origin communications",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2819/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/post-message",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"default\" clauses should be last",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4524/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/prefer-default-last",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Enum member values should be either all initialized or none",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6572/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-enum-initializers",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"for of\" should be used with Iterables",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4138/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-for-of",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Function types should be preferred",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6598/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code",
-          "type": "suggestion"
-        },
-        "name": "sonar/prefer-function-type",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "fixable": "code",
           "type": "suggestion",
           "docs": {
             "description": "Local variables should not be declared and then immediately returned or thrown",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1488/javascript",
-            "requiresTypeChecking": false
-          }
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-immediate-return.md"
+          },
+          "fixable": "code"
         },
         "name": "sonar/prefer-immediate-return",
         "options": []
@@ -6566,41 +3221,9 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "\"module\" should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4156/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-namespace-keyword",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Nullish coalescing should be preferred",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6606/javascript",
-            "requiresTypeChecking": true
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-nullish-coalescing",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
             "description": "Object literal syntax should be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2428/javascript",
-            "requiresTypeChecking": false
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-object-literal.md"
           }
         },
         "name": "sonar/prefer-object-literal",
@@ -6610,45 +3233,12 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "error",
         "meta": {
           "type": "suggestion",
-          "docs": {
-            "description": "Object spread syntax should be used instead of \"Object.assign\"",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6661/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-object-spread",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
           "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Shorthand promises should be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4634/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-promise-shorthand",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
           "docs": {
             "description": "Return of boolean expressions should not be wrapped into an \"if-then-else\" statement",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1126/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md"
+          }
         },
         "name": "sonar/prefer-single-boolean-return",
         "options": []
@@ -6658,164 +3248,48 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Spread syntax should be used instead of \"apply()\"",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6666/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "sonar/prefer-spread",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Ends of strings should be checked with \"startsWith()\" and \"endsWith()\"",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6557/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code",
-          "hasSuggestions": true
-        },
-        "name": "sonar/prefer-string-starts-ends-with",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Template strings should be used instead of concatenation",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3512/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-template",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Type predicates should be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4322/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/prefer-type-guard",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "fixable": "code",
-          "type": "suggestion",
-          "docs": {
             "description": "A \"while\" loop should be used instead of a \"for\" loop",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1264/javascript",
-            "requiresTypeChecking": false
-          }
+            "recommended": "recommended",
+            "url": "https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md"
+          },
+          "fixable": "code"
         },
         "name": "sonar/prefer-while",
         "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using command line arguments is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4823/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/process-argv",
-        "options": []
-      },
+      }
+    ]
+  },
+  {
+    "name": "vinicunca/unicorn/rules",
+    "plugins": [
+      "unicorn"
+    ],
+    "rules": [
       {
         "level": "error",
         "meta": {
           "type": "problem",
           "docs": {
-            "description": "Delivering code in production with debug features activated is security-sensitive",
+            "description": "Enforce passing a `message` value when creating a built-in error.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4507/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/error-message.md"
           }
         },
-        "name": "sonar/production-debug",
+        "name": "unicorn/error-message",
         "options": []
       },
       {
         "level": "error",
         "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using pseudorandom number generators (PRNGs) is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2245/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/pseudo-random",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
           "type": "suggestion",
           "docs": {
-            "description": "Public \"static\" fields should be read-only",
+            "description": "Require escape sequences to use uppercase values.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1444/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/escape-case.md"
           },
           "fixable": "code"
         },
-        "name": "sonar/public-static-readonly",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using publicly writable directories is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5443/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/publicly-writable-directories",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"Array.reduce()\" calls should include an initial value",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6959/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/reduce-initial-value",
+        "name": "unicorn/escape-case",
         "options": []
       },
       {
@@ -6823,103 +3297,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Redundant type aliases should not be used",
+            "description": "Require `Array.isArray()` instead of `instanceof Array`.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6564/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/redundant-type-aliases",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Regular expressions should not be too complicated",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5843/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/regex-complexity",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using regular expressions is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4784/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/regular-expr",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "React Hooks should be properly called",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6440/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/pluginRules-of-hooks",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "deprecated": true,
-          "replacedBy": [
-            "@stylistic/ts/semi"
-          ],
-          "type": "suggestion",
-          "docs": {
-            "description": "Statements should end with semicolons",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1438/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/no-instanceof-array.md"
           },
           "fixable": "code"
         },
-        "name": "sonar/semi",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "A new session should be created during user authentication",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5876/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/session-regeneration",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Shorthand object properties should be grouped at the beginning or end of an object declaration",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3499/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/shorthand-property-grouping",
+        "name": "unicorn/no-instanceof-array",
         "options": []
       },
       {
@@ -6927,335 +3311,86 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Character classes in regular expressions should not contain only one character",
+            "description": "Disallow `new Array()`.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6397/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/single-char-in-character-classes",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Single-character alternations in regular expressions should be replaced with character classes",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6035/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/single-character-alternation",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using slow regular expressions is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5852/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/slow-regex",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Using Sockets is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4818/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/sockets",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variables should be used in the blocks where they are declared",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2392/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-block-scoped-var",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "React components should not render non-boolean condition values",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6439/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/sonar-jsx-no-leaked-render",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Files should not have too many lines of code",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S104/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-max-lines",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should not have too many lines of code",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S138/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-max-lines-per-function",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Functions should not have too many parameters",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S107/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-max-params",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Regular expressions should not contain control characters",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6324/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/sonar-no-control-regex",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Member names should not be duplicated within a class or object literal",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1534/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/sonar-no-dupe-keys",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Empty character classes should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2639/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/sonar-no-empty-character-class",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Switch cases should end with an unconditional \"break\" statement",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S128/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-no-fallthrough",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Regular expressions should be syntactically valid",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5856/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/sonar-no-invalid-regexp",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Magic numbers should not be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S109/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-no-magic-numbers",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "Unicode Grapheme Clusters should be avoided inside regex character classes",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5868/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/sonar-no-misleading-character-class",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Regular expressions should not contain multiple spaces",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6326/javascript",
-            "requiresTypeChecking": true
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/sonar-no-regex-spaces",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "docs": {
-            "description": "Unused methods of React components should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6441/javascript",
-            "requiresTypeChecking": false
-          },
-          "type": "suggestion"
-        },
-        "name": "sonar/sonar-no-unused-class-component-methods",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Unused local variables and functions should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1481/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sonar-no-unused-vars",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Optional chaining should be preferred",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6582/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/no-new-array.md"
           },
           "fixable": "code",
           "hasSuggestions": true
         },
-        "name": "sonar/sonar-prefer-optional-chain",
+        "name": "unicorn/no-new-array",
         "options": []
       },
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
+          "type": "problem",
+          "docs": {
+            "description": "Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.",
+            "recommended": true,
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/no-new-buffer.md"
+          },
+          "fixable": "code",
+          "hasSuggestions": true
+        },
+        "name": "unicorn/no-new-buffer",
+        "options": []
+      },
+      {
+        "level": "error",
+        "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "React props should be read-only",
+            "description": "Enforce proper case for numeric literals.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6759/javascript",
-            "requiresTypeChecking": true
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/number-literal-case.md"
           },
           "fixable": "code"
         },
-        "name": "sonar/sonar-prefer-read-only-props",
+        "name": "unicorn/number-literal-case",
         "options": []
       },
       {
         "level": "error",
         "meta": {
-          "hasSuggestions": true,
           "type": "suggestion",
           "docs": {
-            "description": "\"RegExp.exec()\" should be preferred over \"String.match()\"",
+            "description": "Prefer `.textContent` over `.innerText`.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6594/javascript",
-            "requiresTypeChecking": true
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/prefer-dom-node-text-content.md"
+          },
+          "hasSuggestions": true
+        },
+        "name": "unicorn/prefer-dom-node-text-content",
+        "options": []
+      },
+      {
+        "level": "error",
+        "meta": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.",
+            "recommended": true,
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/prefer-includes.md"
+          },
+          "fixable": "code",
+          "hasSuggestions": true
+        },
+        "name": "unicorn/prefer-includes",
+        "options": []
+      },
+      {
+        "level": "error",
+        "meta": {
+          "type": "suggestion",
+          "docs": {
+            "description": "Prefer using the `node:` protocol when importing Node.js builtin modules.",
+            "recommended": true,
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/prefer-node-protocol.md"
           },
           "fixable": "code"
         },
-        "name": "sonar/sonar-prefer-regexp-exec",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Formatting SQL queries is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2077/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/sql-queries",
+        "name": "unicorn/prefer-node-protocol",
         "options": []
       },
       {
@@ -7263,128 +3398,43 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Tests should be stable",
+            "description": "Prefer `Number` static properties over global ones.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5973/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/stable-tests",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Reading the Standard Input is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4829/javascript",
-            "requiresTypeChecking": false
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/prefer-number-properties.md"
           },
-          "deprecated": true
+          "fixable": "code",
+          "hasSuggestions": true
         },
-        "name": "sonar/standard-input",
+        "name": "unicorn/prefer-number-properties",
         "options": []
       },
       {
         "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Regular expressions with the global flag should be used with caution",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6351/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/stateful-regex",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disabling Strict-Transport-Security policy is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5739/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/strict-transport-security",
-        "options": []
-      },
-      {
-        "level": "off",
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Comparison operators should not be used with strings",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3003/javascript",
-            "requiresTypeChecking": true
-          }
+            "description": "Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.",
+            "recommended": true,
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/prefer-string-starts-ends-with.md"
+          },
+          "fixable": "code",
+          "hasSuggestions": true
         },
-        "name": "sonar/strings-comparison",
+        "name": "unicorn/prefer-string-starts-ends-with",
         "options": []
       },
       {
         "level": "error",
         "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"super()\" should be invoked appropriately",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3854/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/super-invocation",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "hasSuggestions": true,
           "type": "suggestion",
           "docs": {
-            "description": "\"switch\" statements should have \"default\" clauses",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S131/javascript",
-            "requiresTypeChecking": true
+            "description": "Enforce throwing `TypeError` in type checking conditions.",
+            "recommended": true,
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/prefer-type-error.md"
           },
           "fixable": "code"
         },
-        "name": "sonar/switch-without-default",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Tables should have headers",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5256/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/table-header",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Table cells should reference their headers",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5260/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/table-header-reference",
+        "name": "unicorn/prefer-type-error",
         "options": []
       },
       {
@@ -7392,316 +3442,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "suggestion",
           "docs": {
-            "description": "Tests should check which exception is thrown",
+            "description": "Require `new` when creating an error.",
             "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5958/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/test-check-exception",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Track uses of \"TODO\" tags",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1135/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/todo-tag",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Loops should not contain more than a single \"break\" or \"continue\" statement",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S135/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/too-many-break-or-continue-in-loop",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Regular expressions using Unicode character classes or property escapes should enable the unicode flag",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5867/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/unicode-aware-regex",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Unnecessary character escapes should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S6535/javascript",
-            "requiresTypeChecking": false
-          },
-          "hasSuggestions": true,
-          "fixable": "code"
-        },
-        "name": "sonar/unnecessary-character-escapes",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "suggestion",
-          "docs": {
-            "description": "Unnecessary imports should be removed",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1128/javascript",
-            "requiresTypeChecking": true
+            "url": "https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.0/docs/rules/throw-new-error.md"
           },
           "fixable": "code"
         },
-        "name": "sonar/unused-import",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Names of regular expressions named groups should be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5860/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/unused-named-groups",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Server certificates should be verified during SSL/TLS connections",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4830/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/unverified-certificate",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Server hostnames should be verified during SSL/TLS connections",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5527/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/unverified-hostname",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "\"const\" variables should not be reassigned",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3500/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/updated-const-var",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Loop counters should not be assigned within the loop body",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2310/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/updated-loop-counter",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "hasSuggestions": true,
-          "type": "problem",
-          "docs": {
-            "description": "\"NaN\" should not be used in comparisons",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2688/javascript",
-            "requiresTypeChecking": false
-          },
-          "fixable": "code"
-        },
-        "name": "sonar/use-isnan",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Type aliases should be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4323/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/use-type-alias",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Results of operations on strings should not be ignored",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S1154/javascript",
-            "requiresTypeChecking": true
-          },
-          "deprecated": true
-        },
-        "name": "sonar/useless-string-operation",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Values not convertible to numbers should not be used in numeric comparisons",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3758/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/values-not-convertible-to-numbers",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "Variable, property and parameter names should comply with a naming convention",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S117/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/variable-name",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "suggestion",
-          "docs": {
-            "description": "\"void\" should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S3735/javascript",
-            "requiresTypeChecking": true
-          }
-        },
-        "name": "sonar/void-use",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Weak SSL/TLS protocols should not be used",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4423/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/weak-ssl",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Web SQL databases should not be used",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2817/javascript",
-            "requiresTypeChecking": true
-          },
-          "deprecated": true
-        },
-        "name": "sonar/web-sql-database",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Disclosing fingerprints from web application technologies is security-sensitive",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S5689/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/x-powered-by",
-        "options": []
-      },
-      {
-        "level": "error",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "XML parsers should not be vulnerable to XXE attacks",
-            "recommended": true,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S2755/javascript",
-            "requiresTypeChecking": false
-          }
-        },
-        "name": "sonar/xml-parser-xxe",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "problem",
-          "docs": {
-            "description": "Executing XPath expressions is security-sensitive",
-            "recommended": false,
-            "url": "https://sonarsource.github.io/rspec/#/rspec/S4817/javascript",
-            "requiresTypeChecking": false
-          },
-          "deprecated": true
-        },
-        "name": "sonar/xpath",
+        "name": "unicorn/throw-new-error",
         "options": []
       }
     ]
@@ -8079,8 +3826,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "suggestion",
           "docs": {
             "description": "Disallow generic `Array` constructors",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://typescript-eslint.io/rules/no-array-constructor"
           },
           "fixable": "code"
@@ -8105,13 +3852,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "suggestion",
           "docs": {
             "description": "Disallow using the `delete` operator on computed key expressions",
             "recommended": "strict",
             "url": "https://typescript-eslint.io/rules/no-dynamic-delete"
           },
-          "fixable": "code",
-          "type": "suggestion"
+          "fixable": "code"
         },
         "name": "ts/no-dynamic-delete",
         "options": []
@@ -8286,13 +4033,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "suggestion",
           "docs": {
             "description": "Disallow unnecessary constraints on generic types",
             "recommended": "recommended",
             "url": "https://typescript-eslint.io/rules/no-unnecessary-type-constraint"
           },
-          "hasSuggestions": true,
-          "type": "suggestion"
+          "hasSuggestions": true
         },
         "name": "ts/no-unnecessary-type-constraint",
         "options": []
@@ -8371,8 +4118,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://typescript-eslint.io/rules/no-unused-vars"
           }
         },
@@ -8405,8 +4152,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unnecessary constructors",
-            "recommended": "strict",
             "extendsBaseRule": true,
+            "recommended": "strict",
             "url": "https://typescript-eslint.io/rules/no-useless-constructor"
           }
         },
@@ -8486,12 +4233,12 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "suggestion",
           "docs": {
             "description": "Disallow two overloads that could be unified into one with a union or an optional/rest parameter",
             "recommended": "strict",
             "url": "https://typescript-eslint.io/rules/unified-signatures"
-          },
-          "type": "suggestion"
+          }
         },
         "name": "ts/unified-signatures",
         "options": []
@@ -8590,13 +4337,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "off",
         "meta": {
-          "hasSuggestions": true,
           "type": "problem",
           "docs": {
             "description": "Require explicit accessibility modifiers on class properties and methods",
             "url": "https://typescript-eslint.io/rules/explicit-member-accessibility"
           },
-          "fixable": "code"
+          "fixable": "code",
+          "hasSuggestions": true
         },
         "name": "ts/explicit-member-accessibility",
         "options": []
@@ -8631,12 +4378,12 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "off",
         "meta": {
+          "type": "suggestion",
           "docs": {
             "description": "Enforce naming conventions for everything across a codebase",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/naming-convention"
-          },
-          "type": "suggestion"
+          }
         },
         "name": "ts/naming-convention",
         "options": []
@@ -8660,8 +4407,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "suggestion",
           "docs": {
             "description": "Disallow empty functions",
-            "recommended": "stylistic",
             "extendsBaseRule": true,
+            "recommended": "stylistic",
             "url": "https://typescript-eslint.io/rules/no-empty-function"
           }
         },
@@ -8672,16 +4419,16 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "off",
         "meta": {
           "type": "suggestion",
+          "deprecated": true,
           "docs": {
             "description": "Disallow the declaration of empty interfaces",
             "url": "https://typescript-eslint.io/rules/no-empty-interface"
           },
-          "deprecated": true,
+          "fixable": "code",
+          "hasSuggestions": true,
           "replacedBy": [
             "@typescript-eslint/no-empty-object-type"
-          ],
-          "fixable": "code",
-          "hasSuggestions": true
+          ]
         },
         "name": "ts/no-empty-interface",
         "options": []
@@ -8775,14 +4522,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "problem",
           "deprecated": true,
-          "replacedBy": [
-            "@typescript-eslint/ban-ts-comment"
-          ],
           "docs": {
             "description": "Enforce using `@ts-expect-error` over `@ts-ignore`",
             "url": "https://typescript-eslint.io/rules/prefer-ts-expect-error"
           },
-          "fixable": "code"
+          "fixable": "code",
+          "replacedBy": [
+            "@typescript-eslint/ban-ts-comment"
+          ]
         },
         "name": "ts/prefer-ts-expect-error",
         "options": []
@@ -8827,14 +4574,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "problem",
           "docs": {
             "description": "Disallow awaiting a value that is not a Thenable",
             "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/await-thenable"
           },
-          "hasSuggestions": true,
-          "type": "problem"
+          "hasSuggestions": true
         },
         "name": "ts/await-thenable",
         "options": []
@@ -8845,8 +4592,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "suggestion",
           "docs": {
             "description": "Enforce dot notation whenever possible",
-            "recommended": "stylistic",
             "extendsBaseRule": true,
+            "recommended": "stylistic",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/dot-notation"
           },
@@ -8862,14 +4609,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "problem",
           "docs": {
             "description": "Require Promise-like statements to be handled appropriately",
             "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-floating-promises"
           },
-          "hasSuggestions": true,
-          "type": "problem"
+          "hasSuggestions": true
         },
         "name": "ts/no-floating-promises",
         "options": []
@@ -8877,13 +4624,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "problem",
           "docs": {
             "description": "Disallow iterating over an array with a for-in loop",
             "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-for-in-array"
-          },
-          "type": "problem"
+          }
         },
         "name": "ts/no-for-in-array",
         "options": []
@@ -8891,14 +4638,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "suggestion",
           "docs": {
             "description": "Disallow the use of `eval()`-like methods",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-implied-eval"
-          },
-          "type": "suggestion"
+          }
         },
         "name": "ts/no-implied-eval",
         "options": []
@@ -8906,13 +4653,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "off",
         "meta": {
+          "type": "problem",
           "docs": {
             "description": "Disallow Promises in places not designed to handle them",
             "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-misused-promises"
-          },
-          "type": "problem"
+          }
         },
         "name": "ts/no-misused-promises",
         "options": []
@@ -8920,14 +4667,14 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "suggestion",
           "docs": {
             "description": "Disallow type assertions that do not change the type of an expression",
             "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/no-unnecessary-type-assertion"
           },
-          "fixable": "code",
-          "type": "suggestion"
+          "fixable": "code"
         },
         "name": "ts/no-unnecessary-type-assertion",
         "options": []
@@ -9006,12 +4753,12 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "error",
         "meta": {
           "type": "suggestion",
-          "fixable": "code",
           "docs": {
             "description": "Require any function or method that returns a Promise to be marked async",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/promise-function-async"
-          }
+          },
+          "fixable": "code"
         },
         "name": "ts/promise-function-async",
         "options": []
@@ -9053,10 +4800,10 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
                 {
                   "allowAny": false,
                   "allowBoolean": false,
+                  "allowNever": false,
                   "allowNullish": false,
                   "allowNumber": false,
-                  "allowRegExp": false,
-                  "allowNever": false
+                  "allowRegExp": false
                 }
               ]
             },
@@ -9070,20 +4817,20 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "problem",
           "docs": {
             "description": "Enforce consistent awaiting of returned promises",
-            "requiresTypeChecking": true,
             "extendsBaseRule": "no-return-await",
             "recommended": {
               "strict": [
                 "error-handling-correctness-only"
               ]
             },
+            "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/return-await"
           },
           "fixable": "code",
-          "hasSuggestions": true,
-          "type": "problem"
+          "hasSuggestions": true
         },
         "name": "ts/return-await",
         "options": [
@@ -9094,13 +4841,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "level": "error",
         "meta": {
           "type": "suggestion",
-          "fixable": "code",
-          "hasSuggestions": true,
           "docs": {
             "description": "Disallow certain types in boolean expressions",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/strict-boolean-expressions"
-          }
+          },
+          "fixable": "code",
+          "hasSuggestions": true
         },
         "name": "ts/strict-boolean-expressions",
         "options": [
@@ -9127,13 +4874,13 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "error",
         "meta": {
+          "type": "problem",
           "docs": {
             "description": "Enforce unbound methods are called with their expected scope",
             "recommended": "recommended",
             "requiresTypeChecking": true,
             "url": "https://typescript-eslint.io/rules/unbound-method"
-          },
-          "type": "problem"
+          }
         },
         "name": "ts/unbound-method",
         "options": []
@@ -9169,7 +4916,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Forbid repeated import of the same module in multiple places.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-duplicates.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-duplicates.md"
           },
           "fixable": "code"
         },
@@ -9195,8 +4942,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-vars.md"
           },
           "fixable": "code"
@@ -9252,15 +4999,15 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "off",
         "meta": {
-          "deprecated": true,
-          "replacedBy": [
-            "@typescript-eslint/no-require-imports"
-          ],
           "type": "problem",
+          "deprecated": true,
           "docs": {
             "description": "Disallow `require` statements except in import statements",
             "url": "https://typescript-eslint.io/rules/no-var-requires"
-          }
+          },
+          "replacedBy": [
+            "@typescript-eslint/no-require-imports"
+          ]
         },
         "name": "ts/no-var-requires",
         "options": []
@@ -9485,6 +5232,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "offsetTernaryExpressions": true,
             "outerIIFEBody": 1,
             "SwitchCase": 1,
+            "tabLength": 2,
             "VariableDeclarator": 1
           }
         ]
@@ -10323,6 +6071,19 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "return": "parens-new-line"
           }
         ]
+      },
+      {
+        "level": "error",
+        "meta": {
+          "type": "layout",
+          "docs": {
+            "description": "Having line breaks styles to object, array and named imports",
+            "url": "https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/consistent-chaining.md"
+          },
+          "fixable": "whitespace"
+        },
+        "name": "antfu/consistent-chaining",
+        "options": []
       },
       {
         "level": "error",
@@ -11606,7 +7367,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "description": "enforce using test or it but not both",
             "recommended": false,
-            "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-it.md"
+            "url": "https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-it.md"
           }
         },
         "name": "test/consistent-test-it",
@@ -11624,7 +7385,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "description": "disallow identical titles",
             "recommended": false,
-            "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/no-identical-title.md"
+            "url": "https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-identical-title.md"
           },
           "fixable": "code"
         },
@@ -11652,7 +7413,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "description": "enforce having hooks in consistent order",
             "recommended": false,
-            "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-in-order.md"
+            "url": "https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-in-order.md"
           }
         },
         "name": "test/prefer-hooks-in-order",
@@ -11665,7 +7426,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "description": "enforce lowercase titles",
             "recommended": false,
-            "url": "https://github.com/veritem/eslint-plugin-vitest/blob/main/docs/rules/prefer-lowercase-title.md"
+            "url": "https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-lowercase-title.md"
           },
           "fixable": "code"
         },
@@ -11791,7 +7552,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "problem",
           "docs": {
-            "description": "disallow accessing computed properties in `data`.",
+            "description": "disallow accessing computed properties in `data`",
             "categories": [
               "vue3-essential",
               "vue2-essential"
@@ -13708,7 +9469,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "layout",
           "docs": {
-            "description": "enforce order of `defineEmits` and `defineProps` compiler macros",
+            "description": "enforce order of compiler macros (`defineProps`, `defineEmits`, etc.)",
             "url": "https://eslint.vuejs.org/rules/define-macros-order.html"
           },
           "fixable": "code",
@@ -14264,7 +10025,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "layout",
           "docs": {
-            "description": "Enforce consistent spacing between keys and values in object literal properties in `<template>`",
+            "description": "Enforce consistent spacing between property names and type annotations in types and interfaces in `<template>`",
             "url": "https://eslint.vuejs.org/rules/key-spacing.html",
             "category": null,
             "extensionSource": {
@@ -14410,7 +10171,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "meta": {
           "type": "layout",
           "docs": {
-            "description": "Require quotes around object literal property names in `<template>`",
+            "description": "Require quotes around object literal, type literal, interfaces and enums property names in `<template>`",
             "url": "https://eslint.vuejs.org/rules/quote-props.html",
             "category": null,
             "extensionSource": {
@@ -15367,7 +11128,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Helpful warnings",
             "description": "Forbid the use of mutable exports with `var` or `let`.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/no-mutable-exports.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/no-mutable-exports.md"
           }
         },
         "name": "import/no-mutable-exports",
@@ -15739,8 +11500,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-vars.md"
           },
           "fixable": "code"
@@ -16158,20 +11919,6 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "fixable": "whitespace"
         },
         "name": "style/jsx-closing-tag-location",
-        "options": []
-      },
-      {
-        "level": "off",
-        "meta": {
-          "type": "layout",
-          "docs": {
-            "description": "Enforce JSX indentation. Deprecated, use `indent` rule instead.",
-            "url": "https://eslint.style/rules/jsx/jsx-indent"
-          },
-          "deprecated": true,
-          "fixable": "whitespace"
-        },
-        "name": "style/jsx-indent",
         "options": []
       },
       {
@@ -18087,7 +13834,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "docs": {
             "category": "Style guide",
             "description": "Enforce a newline after import statements.",
-            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v3.1.0/docs/rules/newline-after-import.md"
+            "url": "https://github.com/un-ts/eslint-plugin-import-x/blob/v4.3.1/docs/rules/newline-after-import.md"
           },
           "fixable": "whitespace"
         },
@@ -18258,8 +14005,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://typescript-eslint.io/rules/no-unused-vars"
           }
         },
@@ -18282,15 +14029,15 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
       {
         "level": "off",
         "meta": {
-          "deprecated": true,
-          "replacedBy": [
-            "@typescript-eslint/no-require-imports"
-          ],
           "type": "problem",
+          "deprecated": true,
           "docs": {
             "description": "Disallow `require` statements except in import statements",
             "url": "https://typescript-eslint.io/rules/no-var-requires"
-          }
+          },
+          "replacedBy": [
+            "@typescript-eslint/no-require-imports"
+          ]
         },
         "name": "ts/no-var-requires",
         "options": []
@@ -18315,8 +14062,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-imports.md"
           },
           "fixable": "code"
@@ -18330,8 +14077,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
           "type": "problem",
           "docs": {
             "description": "Disallow unused variables",
-            "recommended": "recommended",
             "extendsBaseRule": true,
+            "recommended": "recommended",
             "url": "https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-vars.md"
           },
           "fixable": "code"
@@ -18375,7 +14122,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "tabWidth": 2,
             "trailingComma": "all",
             "useTabs": false,
-            "parser": "css"
+            "parser": "css",
+            "plugins": []
           }
         ]
       }
@@ -18407,7 +14155,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "tabWidth": 2,
             "trailingComma": "all",
             "useTabs": false,
-            "parser": "scss"
+            "parser": "scss",
+            "plugins": []
           }
         ]
       }
@@ -18439,7 +14188,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "tabWidth": 2,
             "trailingComma": "all",
             "useTabs": false,
-            "parser": "less"
+            "parser": "less",
+            "plugins": []
           }
         ]
       }
@@ -18471,7 +14221,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "tabWidth": 2,
             "trailingComma": "all",
             "useTabs": false,
-            "parser": "html"
+            "parser": "html",
+            "plugins": []
           }
         ]
       }
@@ -18481,7 +14232,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
     "files": [
       "**/*.xml"
     ],
-    "name": "antfu/formatter/xml",
+    "name": "vinicunca/formatter/xml",
     "plugins": [],
     "rules": [
       {
@@ -18520,7 +14271,7 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
     "files": [
       "**/*.svg"
     ],
-    "name": "antfu/formatter/svg",
+    "name": "vinicunca/formatter/svg",
     "plugins": [],
     "rules": [
       {
@@ -18575,7 +14326,6 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
         "name": "format/prettier",
         "options": [
           {
-            "printWidth": 120,
             "endOfLine": "auto",
             "semi": true,
             "singleQuote": true,
@@ -18583,7 +14333,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "trailingComma": "all",
             "useTabs": false,
             "embeddedLanguageFormatting": "off",
-            "parser": "markdown"
+            "parser": "markdown",
+            "plugins": []
           }
         ]
       }
@@ -18751,7 +14502,8 @@ export const configs: ReadonlyArray<ConfigInfo> = Object.freeze([
             "tabWidth": 2,
             "trailingComma": "all",
             "useTabs": false,
-            "parser": "graphql"
+            "parser": "graphql",
+            "plugins": []
           }
         ]
       }

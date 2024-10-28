@@ -148,3 +148,4 @@ temp/
 .firebase
 
 eslint/src/typegen.d.ts
+docs/.vitepress/cache
