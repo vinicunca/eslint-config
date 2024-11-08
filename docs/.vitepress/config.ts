@@ -158,7 +158,7 @@ export default defineConfig({
 
   themeConfig: {
     editLink: {
-      pattern: 'https://github.com/vinicucna/eslint-config/edit/main/:path',
+      pattern: 'https://github.com/vinicucna/eslint-config/edit/main/docs/:path',
       text: 'Suggest changes to this page',
     },
 
