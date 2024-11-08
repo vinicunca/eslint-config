@@ -83,7 +83,8 @@ export async function yaml(
 
               'yaml/no-tab-indent': ERROR,
 
-              'yaml/quotes': [ERROR, { avoidEscape: false, prefer: quotes }],
+              // quotes only supports single and double quotes but in options we have backtick as well
+              'yaml/quotes': [ERROR, { avoidEscape: false, prefer: quotes as any }],
 
               'yaml/spaced-comment': ERROR,
             }

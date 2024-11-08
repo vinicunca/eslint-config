@@ -101,7 +101,8 @@ export async function svelte(
               'style/no-trailing-spaces': OFF, // superseded by svelte/no-trailing-spaces
               'svelte/derived-has-same-inputs-outputs': ERROR,
               'svelte/html-closing-bracket-spacing': ERROR,
-              'svelte/html-quotes': [ERROR, { prefer: quotes }],
+              // quotes only supports single and double quotes but in options we have backtick as well
+              'svelte/html-quotes': [ERROR, { prefer: quotes as any }],
               'svelte/indent': [ERROR, { alignAttributesVertically: true, indent }],
               'svelte/mustache-spacing': ERROR,
               'svelte/no-spaces-around-equal-signs-in-attribute': ERROR,
