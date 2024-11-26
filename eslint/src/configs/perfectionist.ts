@@ -19,15 +19,38 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
       rules: {
         ...pluginPerfectionist.configs['recommended-natural'].rules,
 
+        'perfectionist/sort-exports': [
+          ERROR,
+          { order: 'asc', type: 'natural' },
+        ],
+
         'perfectionist/sort-imports': [
           ERROR,
           {
-            internalPattern: [
-              '~/**',
-              '~~/**',
+            groups: [
+              'type',
+              ['parent-type', 'sibling-type', 'index-type'],
+
+              'builtin',
+              'external',
+              ['internal', 'internal-type'],
+              ['parent', 'sibling', 'index'],
+              'side-effect',
+              'object',
+              'unknown',
             ],
+            newlinesBetween: 'ignore',
+            order: 'asc',
             type: 'natural',
           },
+        ],
+        'perfectionist/sort-named-exports': [
+          ERROR,
+          { order: 'asc', type: 'natural' },
+        ],
+        'perfectionist/sort-named-imports': [
+          ERROR,
+          { order: 'asc', type: 'natural' },
         ],
 
         'perfectionist/sort-vue-attributes': [OFF],
