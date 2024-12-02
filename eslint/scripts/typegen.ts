@@ -1,6 +1,6 @@
-import { builtinRules } from 'eslint/use-at-your-own-risk';
-import { flatConfigsToRulesDTS } from 'eslint-typegen/core';
 import fs from 'node:fs/promises';
+import { flatConfigsToRulesDTS } from 'eslint-typegen/core';
+import { builtinRules } from 'eslint/use-at-your-own-risk';
 
 import { astro, combineConfigs, comments, formatters, imports, javascript, jsdoc, jsonc, jsx, markdown, node, perfectionist, react, regexp, solid, sonar, sortPackageJson, stylistic, svelte, test, toml, typescript, unicorn, unocss, vue, yaml } from '../src';
 
@@ -24,20 +24,19 @@ const configs = await combineConfigs(
   node(),
   perfectionist(),
   react(),
-  regexp(),
   solid(),
-  sonar(),
   sortPackageJson(),
   stylistic(),
   svelte(),
   test(),
   toml(),
+  regexp(),
+  sonar(),
   typescript(),
   unicorn(),
   unocss(),
   vue(),
   yaml(),
-
 );
 
 const configNames = configs.map((i) => i.name).filter(Boolean) as Array<string>;

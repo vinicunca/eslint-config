@@ -1,6 +1,6 @@
-import { isBoolean } from '@vinicunca/perkakas';
-
 import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
+
+import { isBoolean } from '@vinicunca/perkakas';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_YAML } from '../globs';
@@ -83,8 +83,7 @@ export async function yaml(
 
               'yaml/no-tab-indent': ERROR,
 
-              // quotes only supports single and double quotes but in options we have backtick as well
-              'yaml/quotes': [ERROR, { avoidEscape: false, prefer: quotes as any }],
+              'yaml/quotes': [ERROR, { avoidEscape: true, prefer: quotes === 'backtick' ? 'single' : quotes }],
 
               'yaml/spaced-comment': ERROR,
             }

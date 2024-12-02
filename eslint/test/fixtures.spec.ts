@@ -1,10 +1,10 @@
+import type { OptionsConfig, TypedFlatConfigItem } from '../src/types';
+import { join, resolve } from 'node:path';
 import { execa } from 'execa';
 import fg from 'fast-glob';
 import fs from 'fs-extra';
-import { join, resolve } from 'node:path';
-import { afterAll, beforeAll, it } from 'vitest';
 
-import type { OptionsConfig, TypedFlatConfigItem } from '../src/types';
+import { afterAll, beforeAll, it } from 'vitest';
 
 beforeAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
@@ -14,23 +14,32 @@ afterAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
 });
 
-runWithConfig('js', {
-  typescript: false,
-  vue: false,
-});
+runWithConfig(
+  'js',
+  {
+    typescript: false,
+    vue: false,
+  },
+);
 
-runWithConfig('all', {
-  typescript: true,
-  vue: true,
-  svelte: true,
-  astro: true,
-});
+runWithConfig(
+  'all',
+  {
+    typescript: true,
+    vue: true,
+    svelte: true,
+    astro: true,
+  },
+);
 
-runWithConfig('no-style', {
-  typescript: true,
-  vue: true,
-  stylistic: false,
-});
+runWithConfig(
+  'no-style',
+  {
+    typescript: true,
+    vue: true,
+    stylistic: false,
+  },
+);
 
 runWithConfig(
   'tab-double-quotes',
@@ -76,6 +85,21 @@ runWithConfig(
 );
 
 runWithConfig(
+  'ts-strict-with-react',
+  {
+    typescript: {
+      tsconfigPath: './tsconfig.json',
+    },
+    react: true,
+  },
+  {
+    rules: {
+      'ts/no-unsafe-return': ['off'],
+    },
+  },
+);
+
+runWithConfig(
   'with-formatters',
   {
     typescript: true,
@@ -97,7 +121,11 @@ runWithConfig(
   },
 );
 
-function runWithConfig(name: string, configs: OptionsConfig, ...items: Array<TypedFlatConfigItem>): undefined {
+function runWithConfig(
+  name: string,
+  configs: OptionsConfig,
+  ...items: Array<TypedFlatConfigItem>
+): undefined {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
     const output = resolve('fixtures/output', name);

@@ -1,11 +1,11 @@
 import type { Linter } from 'eslint';
 
-import { isBoolean, isPlainObject } from '@vinicunca/perkakas';
-import { FlatConfigComposer } from 'eslint-flat-config-utils';
-import { isPackageExists } from 'local-pkg';
-
 import type { RuleOptions } from './typegen';
 import type { Awaitable, ConfigNames, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
+import { isBoolean, isPlainObject } from '@vinicunca/perkakas';
+
+import { FlatConfigComposer } from 'eslint-flat-config-utils';
+import { isPackageExists } from 'local-pkg';
 
 import {
   astro,
@@ -70,6 +70,10 @@ export const defaultPluginRenaming = {
   'vitest': 'test',
   'yml': 'yaml',
 };
+
+export type ResolvedOptions<T> = T extends boolean
+  ? never
+  : NonNullable<T>;
 
 /**
  * Construct an array of ESLint flat config items.
@@ -222,6 +226,7 @@ export function vinicuncaESLint(
 
   if (enableReact) {
     configs.push(react({
+      ...typescriptOptions,
       overrides: getOverrides(options, 'react'),
       tsconfigPath,
     }));
@@ -335,19 +340,6 @@ export function vinicuncaESLint(
   return composer;
 }
 
-export type ResolvedOptions<T> = T extends boolean
-  ? never
-  : NonNullable<T>;
-
-function resolveSubOptions<K extends keyof OptionsConfig>(
-  options: OptionsConfig,
-  key: K,
-): ResolvedOptions<OptionsConfig[K]> {
-  return isBoolean(options[key])
-    ? {} as any
-    : options[key] || {};
-}
-
 function getOverrides<K extends keyof OptionsConfig>(
   options: OptionsConfig,
   key: K,
@@ -359,4 +351,13 @@ function getOverrides<K extends keyof OptionsConfig>(
       ? sub.overrides
       : {},
   };
+}
+
+function resolveSubOptions<K extends keyof OptionsConfig>(
+  options: OptionsConfig,
+  key: K,
+): ResolvedOptions<OptionsConfig[K]> {
+  return isBoolean(options[key])
+    ? {} as any
+    : options[key] || {};
 }

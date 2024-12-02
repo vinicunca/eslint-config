@@ -2,12 +2,46 @@
  * Vendor types from Prettier so we don't rely on the dependency.
  */
 
-export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>;
+export type BuiltInParserName =
+  | 'acorn'
+  | 'angular'
+  | 'babel'
+  | 'babel-flow'
+  | 'babel-ts'
+  | 'css'
+  | 'espree'
+  | 'flow'
+  | 'glimmer'
+  | 'graphql'
+  | 'html'
+  | 'json5'
+  | 'json'
+  | 'json-stringify'
+  | 'less'
+  | 'lwc'
+  | 'markdown'
+  | 'mdx'
+  | 'meriyah'
+  | 'scss'
+  | 'typescript'
+  | 'vue'
+  | 'xml'
+  | 'yaml';
 
-export type VendoredPrettierRuleOptions = {
-  [k: string]: undefined | unknown;
-  parser?: BuiltInParserName | ExternalParserName;
-} & VendoredPrettierOptions;
+export type ExternalParserName = 'astro' | 'slidev';
+
+// This utility is here to handle the case where you have an explicit union
+// between string literals and the generic string type. It would normally
+// resolve out to just the string type, but this generic LiteralUnion maintains
+// the intellisense of the original union.
+//
+// It comes from this issue: microsoft/TypeScript#29729:
+//   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
+export type LiteralUnion<T extends U, U = string> =
+  | (Pick<U, never> & { _?: never | undefined })
+  | T;
+
+export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>;
 
 export interface VendoredPrettierOptionsRequired {
   /**
@@ -125,41 +159,7 @@ export interface VendoredPrettierOptionsRequired {
   xmlWhitespaceSensitivity: 'ignore' | 'preserve' | 'strict';
 }
 
-export type BuiltInParserName =
-  | 'acorn'
-  | 'angular'
-  | 'babel'
-  | 'babel-flow'
-  | 'babel-ts'
-  | 'css'
-  | 'espree'
-  | 'flow'
-  | 'glimmer'
-  | 'graphql'
-  | 'html'
-  | 'json'
-  | 'json-stringify'
-  | 'json5'
-  | 'less'
-  | 'lwc'
-  | 'markdown'
-  | 'mdx'
-  | 'meriyah'
-  | 'scss'
-  | 'typescript'
-  | 'vue'
-  | 'xml'
-  | 'yaml';
-
-// This utility is here to handle the case where you have an explicit union
-// between string literals and the generic string type. It would normally
-// resolve out to just the string type, but this generic LiteralUnion maintains
-// the intellisense of the original union.
-//
-// It comes from this issue: microsoft/TypeScript#29729:
-//   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
-export type LiteralUnion<T extends U, U = string> =
-  | ({ _?: never | undefined } & Pick<U, never>)
-  | T;
-
-export type ExternalParserName = 'astro' | 'slidev';
+export type VendoredPrettierRuleOptions = VendoredPrettierOptions & {
+  [k: string]: undefined | unknown;
+  parser?: BuiltInParserName | ExternalParserName;
+};
