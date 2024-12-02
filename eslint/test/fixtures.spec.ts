@@ -144,16 +144,6 @@ import { vinicuncaESLint } from '@vinicunca/eslint-config';
 export default vinicuncaESLint(
   ${JSON.stringify(configs)},
   ...${JSON.stringify(items) ?? []},
-  {
-    rules: {
-      'sonar/todo-tag': 'off',
-      'sonar/pseudo-random': 'off',
-      'sonar/mouse-events-a11y': 'off',
-      'sonar/unnecessary-character-escapes': 'off',
-      'sonar/anchor-is-valid': 'off',
-      'sonar/no-unknown-property': 'off',
-    }
-  }
 );
 `);
 
