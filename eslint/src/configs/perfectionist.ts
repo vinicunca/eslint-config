@@ -54,6 +54,12 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
         ],
 
         'perfectionist/sort-vue-attributes': [OFF],
+
+        'perfectionist/sort-objects': OFF,
+
+        'perfectionist/sort-object-types': OFF,
+
+        'perfectionist/sort-interfaces': OFF,
       },
     },
   ];

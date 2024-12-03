@@ -92,5 +92,13 @@ export async function yaml(
         ...overrides,
       },
     },
+
+    {
+      files: ['pnpm-workspace.yaml'],
+
+      rules: {
+        'yaml/sort-keys': ERROR,
+      },
+    },
   ];
 }
