@@ -8,13 +8,13 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.278",
-    "@vinicunca/unocss-preset-vinicunca": "^0.2.10",
-    "fuse.js": "^7.0.0",
-    "postcss-nested": "^7.0.2",
-    "radix-vue": "^1.9.10",
-    "unocss": "^0.65.0",
-    "unplugin-vue-components": "^0.27.5",
-    "vitepress": "^1.5.0"
+    "@iconify/json": "catalog:",
+    "@vinicunca/unocss-preset": "catalog:",
+    "fuse.js": "catalog:",
+    "postcss-nested": "catalog:",
+    "radix-vue": "catalog:",
+    "unocss": "catalog:",
+    "unplugin-vue-components": "catalog:",
+    "vitepress": "catalog:"
   }
 }

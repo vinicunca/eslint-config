@@ -6,11 +6,11 @@ interface Person {
 
 // Create an array of objects with the defined interface
 const people: Array<Person> = [
-	{ age: 30, name: "Alice" },
-	{ age: 25, name: "Bob" },
+	{ name: "Alice", age: 30 },
+	{ name: "Bob", age: 25 },
 	{
-		age: 35,
 		name: "Charlie",
+		age: 35,
 	},
 ];
 
