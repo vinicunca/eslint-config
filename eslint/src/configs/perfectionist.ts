@@ -1,6 +1,6 @@
 import type { TypedFlatConfigItem } from '../types';
 
-import { ERROR, OFF } from '../flags';
+import { ERROR } from '../flags';
 import { pluginPerfectionist } from '../plugins';
 
 /**
@@ -17,8 +17,6 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
       },
 
       rules: {
-        ...pluginPerfectionist.configs['recommended-natural'].rules,
-
         'perfectionist/sort-exports': [
           ERROR,
           { order: 'asc', type: 'natural' },
@@ -52,14 +50,6 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
           ERROR,
           { order: 'asc', type: 'natural' },
         ],
-
-        'perfectionist/sort-vue-attributes': [OFF],
-
-        'perfectionist/sort-objects': OFF,
-
-        'perfectionist/sort-object-types': OFF,
-
-        'perfectionist/sort-interfaces': OFF,
       },
     },
   ];

@@ -16,6 +16,9 @@ export async function sonar(): Promise<Array<TypedFlatConfigItem>> {
 
         'sonar/todo-tag': OFF,
         'sonar/pseudo-random': OFF,
+        'sonar/slow-regex': OFF,
+        'sonar/cognitive-complexity': OFF,
+        'sonar/no-unused-vars': OFF,
       },
     },
   ];
