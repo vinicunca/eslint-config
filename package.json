@@ -3,7 +3,7 @@
   "type": "module",
   "version": "2.15.5",
   "private": true,
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@9.15.3",
   "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
     "lint": "TIMING=1 eslint .",
@@ -58,7 +58,7 @@
   },
   "resolutions": {
     "@eslint-community/eslint-utils": "^4.4.1",
-    "@typescript-eslint/utils": "^8.18.2",
+    "@typescript-eslint/utils": "^8.19.1",
     "eslint": "^9.17.0",
     "tsx": "^4.19.2"
   },
