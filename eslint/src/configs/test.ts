@@ -1,6 +1,6 @@
 import type { OptionsFiles, OptionsIsInEditor, OptionsOverrides, TypedFlatConfigItem } from '../types';
 
-import { ERROR, OFF } from '../flags';
+import { ERROR, OFF, WARN } from '../flags';
 import { GLOB_TESTS } from '../globs';
 import { interopDefault } from '../utils';
 
@@ -54,7 +54,7 @@ export async function test(
 
         'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],
         'test/no-identical-title': ERROR,
-        'test/no-only-tests': isInEditor ? OFF : ERROR,
+        'test/no-only-tests': isInEditor ? WARN : ERROR,
         'test/prefer-hooks-in-order': ERROR,
         'test/prefer-lowercase-title': ERROR,
 

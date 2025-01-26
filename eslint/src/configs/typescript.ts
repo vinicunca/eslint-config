@@ -1,6 +1,6 @@
-import process from 'node:process';
-
 import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsProjectType, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
+
+import process from 'node:process';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../globs';
@@ -151,7 +151,11 @@ export async function typescript(
 
         'ts/consistent-type-definitions': [ERROR, 'interface'],
 
-        'ts/consistent-type-imports': [ERROR, { disallowTypeAnnotations: false, prefer: 'type-imports' }],
+        'ts/consistent-type-imports': [ERROR, {
+          disallowTypeAnnotations: false,
+          fixStyle: 'separate-type-imports',
+          prefer: 'type-imports',
+        }],
 
         'ts/explicit-member-accessibility': OFF,
 

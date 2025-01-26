@@ -7,10 +7,6 @@
     "source.organizeImports": "never"
   },
 
-  "eslint.options": {
-    "flags": ["unstable_ts_config"]
-  },
-
   "eslint.runtime": "node",
 
   // Enable eslint for all supported languages

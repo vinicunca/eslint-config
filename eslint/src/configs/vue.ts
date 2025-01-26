@@ -1,7 +1,7 @@
-import { isBoolean } from '@vinicunca/perkakas';
-import { mergeProcessors } from 'eslint-merge-processors';
-
 import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, OptionsVue, TypedFlatConfigItem } from '../types';
+import { isBoolean } from '@vinicunca/perkakas';
+
+import { mergeProcessors } from 'eslint-merge-processors';
 
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 import { GLOB_VUE } from '../globs';
@@ -87,15 +87,15 @@ export async function vue(
       processor: sfcBlocks === false
         ? pluginVue.processors['.vue']
         : mergeProcessors([
-          pluginVue.processors['.vue'],
-          processorVueBlocks({
-            ...sfcBlocks,
-            blocks: {
-              styles: true,
-              ...sfcBlocks.blocks,
-            },
-          }),
-        ]),
+            pluginVue.processors['.vue'],
+            processorVueBlocks({
+              ...sfcBlocks,
+              blocks: {
+                styles: true,
+                ...sfcBlocks.blocks,
+              },
+            }),
+          ]),
 
       rules: {
         ...pluginVue.configs.base.rules as any,

@@ -25,6 +25,7 @@ export async function imports(
         'antfu/no-import-dist': ERROR,
         'antfu/no-import-node-modules-by-path': ERROR,
 
+        'import/consistent-type-specifier-style': [ERROR, 'prefer-top-level'],
         'import/export': ERROR,
         'import/first': ERROR,
         'import/no-duplicates': ERROR,

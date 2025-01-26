@@ -59,13 +59,13 @@
   "resolutions": {
     "@eslint-community/eslint-utils": "^4.4.1",
     "@typescript-eslint/utils": "^8.21.0",
-    "eslint": "^9.18.0",
+    "eslint": "^9.19.0",
     "tsx": "^4.19.2"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --flag unstable_ts_config --fix"
+    "*": "eslint --fix"
   }
 }

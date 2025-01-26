@@ -1,8 +1,8 @@
-import { isNumber } from '@vinicunca/perkakas';
-import { isPackageExists } from 'local-pkg';
-
 import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '../types';
 import type { VendoredPrettierOptions, VendoredPrettierRuleOptions } from '../vendor/prettier-types';
+
+import { isNumber } from '@vinicunca/perkakas';
+import { isPackageExists } from 'local-pkg';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_ASTRO, GLOB_ASTRO_TS, GLOB_CSS, GLOB_GRAPHQL, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '../globs';
@@ -237,9 +237,9 @@ export async function formatters(
           ERROR,
           formater === 'prettier'
             ? mergePrettierOptions(prettierOptions, {
-              embeddedLanguageFormatting: 'off',
-              parser: 'markdown',
-            })
+                embeddedLanguageFormatting: 'off',
+                parser: 'markdown',
+              })
             : {
                 ...dprintOptions,
                 language: 'markdown',

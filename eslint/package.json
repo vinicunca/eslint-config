@@ -41,10 +41,7 @@
     "style linter"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+    ".": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -57,8 +54,9 @@
   "scripts": {
     "lint": "eslint -v",
     "test": "vitest",
-    "build": "pnpm run typegen && tsup --format esm,cjs --clean --dts",
+    "build": "pnpm run typegen && tsup --clean --dts",
     "stub": "tsup --format esm --clean",
+    "watch": "tsup --watch",
     "typegen": "tsx scripts/typegen.ts",
     "publish:ci": "pnpm publish --access public --no-git-checks",
     "prepublishOnly": "pnpm build"
