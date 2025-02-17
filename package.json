@@ -1,9 +1,9 @@
 {
   "name": "@vinicunca/eslint-config-monorepo",
   "type": "module",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.4.1",
   "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
     "lint": "TIMING=1 eslint .",
@@ -58,8 +58,8 @@
   },
   "resolutions": {
     "@eslint-community/eslint-utils": "^4.4.1",
-    "@typescript-eslint/utils": "^8.21.0",
-    "eslint": "^9.19.0",
+    "@typescript-eslint/utils": "^8.24.0",
+    "eslint": "^9.20.1",
     "tsx": "^4.19.2"
   },
   "simple-git-hooks": {
