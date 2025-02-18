@@ -7,14 +7,14 @@ catalog:
   '@eslint/markdown': ^6.2.2
   '@iconify/json': ^2.2.307
   '@prettier/plugin-xml': ^3.4.1
-  '@stylistic/eslint-plugin': ^4.0.0-beta.1
-  '@stylistic/eslint-plugin-migrate': ^4.0.0-beta.1
+  '@stylistic/eslint-plugin': ^4.0.0
+  '@stylistic/eslint-plugin-migrate': ^4.0.0
   '@types/fs-extra': ^11.0.4
   '@types/node': ^22.13.4
   '@types/prompts': ^2.4.9
   '@types/yargs': ^17.0.33
-  '@typescript-eslint/eslint-plugin': ^8.24.0
-  '@typescript-eslint/parser': ^8.24.0
+  '@typescript-eslint/eslint-plugin': ^8.24.1
+  '@typescript-eslint/parser': ^8.24.1
   '@unocss/eslint-plugin': ^65.5.0
   '@vinicunca/perkakas': ^1.2.3
   '@vinicunca/unocss-preset': ^1.1.4
@@ -42,7 +42,7 @@ catalog:
   eslint-plugin-sonarjs: ^3.0.2
   eslint-plugin-svelte: ^2.46.1
   eslint-plugin-toml: ^0.12.0
-  eslint-plugin-unicorn: ^56.0.1
+  eslint-plugin-unicorn: ^57.0.0
   eslint-plugin-unused-imports: ^4.1.4
   eslint-plugin-vue: ^9.32.0
   eslint-plugin-yml: ^1.16.0
