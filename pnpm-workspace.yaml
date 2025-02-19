@@ -22,7 +22,7 @@ catalog:
   astro-eslint-parser: ^1.2.1
   bumpp: ^10.0.3
   eslint: ^9.20.1
-  eslint-config-flat-gitignore: ^2.0.0
+  eslint-config-flat-gitignore: ^2.1.0
   eslint-flat-config-utils: ^2.0.1
   eslint-merge-processors: ^2.0.0
   eslint-plugin-antfu: ^3.1.0
@@ -45,7 +45,7 @@ catalog:
   eslint-plugin-unicorn: ^57.0.0
   eslint-plugin-unused-imports: ^4.1.4
   eslint-plugin-vue: ^9.32.0
-  eslint-plugin-yml: ^1.16.0
+  eslint-plugin-yml: ^1.17.0
   eslint-processor-vue-blocks: ^2.0.0
   eslint-typegen: ^1.0.0
   execa: ^9.5.2

@@ -17,6 +17,7 @@
     "taze": "taze major -wIr"
   },
   "devDependencies": {
+    "@antfu/ni": "^23.3.1",
     "@eslint-react/eslint-plugin": "catalog:",
     "@eslint/config-inspector": "catalog:",
     "@prettier/plugin-xml": "catalog:",
