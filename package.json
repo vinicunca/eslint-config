@@ -61,7 +61,7 @@
     "@eslint-community/eslint-utils": "^4.4.1",
     "@typescript-eslint/utils": "^8.24.1",
     "eslint": "^9.20.1",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.3"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
