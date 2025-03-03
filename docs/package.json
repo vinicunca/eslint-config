@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/eslint-config-docs",
   "type": "module",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "scripts": {
     "dev": "vitepress dev --open",
     "build": "vitepress build",
