@@ -359,5 +359,5 @@ function resolveSubOptions<K extends keyof OptionsConfig>(
 ): ResolvedOptions<OptionsConfig[K]> {
   return isBoolean(options[key])
     ? {} as any
-    : options[key] || {};
+    : options[key] || {} as any;
 }
