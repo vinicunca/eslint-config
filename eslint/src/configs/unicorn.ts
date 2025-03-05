@@ -14,13 +14,15 @@ export async function unicorn(options: OptionsUnicorn = {}): Promise<Array<Typed
 
       rules: {
         ...(options.allRecommended
-          ? pluginUnicorn.configs['flat/recommended'].rules
+          ? pluginUnicorn.configs.recommended.rules
           : {
+              'unicorn/consistent-empty-array-spread': ERROR,
+
               'unicorn/error-message': ERROR,
 
               'unicorn/escape-case': ERROR,
 
-              'unicorn/no-instanceof-array': ERROR,
+              'unicorn/no-instanceof-builtins': ERROR,
 
               'unicorn/no-new-array': ERROR,
 
