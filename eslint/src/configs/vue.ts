@@ -100,11 +100,9 @@ export async function vue(
       rules: {
         ...pluginVue.configs.base.rules as any,
 
-        ...pluginVue.configs['vue3-essential'].rules as any,
-
-        ...pluginVue.configs['vue3-strongly-recommended'].rules as any,
-
-        ...pluginVue.configs['vue3-recommended'].rules as any,
+        ...pluginVue.configs['flat/essential'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
+        ...pluginVue.configs['flat/strongly-recommended'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
+        ...pluginVue.configs['flat/recommended'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
 
         'node/prefer-global/process': OFF,
 
