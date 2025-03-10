@@ -95,9 +95,34 @@ export async function yaml(
 
     {
       files: ['pnpm-workspace.yaml'],
-
+      name: 'vinicunca/yaml/pnpm-workspace',
       rules: {
-        'yaml/sort-keys': ERROR,
+        'yaml/sort-keys': [
+          ERROR,
+          {
+            order: [
+              'packages',
+              'overrides',
+              'patchedDependencies',
+              'hoistPattern',
+              'catalog',
+              'catalogs',
+
+              'allowedDeprecatedVersions',
+              'allowNonAppliedPatches',
+              'configDependencies',
+              'ignoredBuiltDependencies',
+              'ignoredOptionalDependencies',
+              'neverBuiltDependencies',
+              'onlyBuiltDependencies',
+              'onlyBuiltDependenciesFile',
+              'packageExtensions',
+              'peerDependencyRules',
+              'supportedArchitectures',
+            ],
+            pathPattern: '^$',
+          },
+        ],
       },
     },
   ];

@@ -1,12 +1,12 @@
 import type { FlatESLintConfigItem, RuleConfig } from '@antfu/eslint-define-config';
 import type { Rule } from 'eslint';
 
-import fs from 'fs-extra';
-import JITI from 'jiti';
+import type { ConfigInfo, RuleInfo } from '../metadata/src/types';
 import path from 'node:path';
 import process from 'node:process';
+import fs from 'fs-extra';
 
-import type { ConfigInfo, RuleInfo } from '../metadata/src/types';
+import JITI from 'jiti';
 
 import { GLOB_EXCLUDE } from '../eslint/src/globs';
 

@@ -1,5 +1,4 @@
-import type { TypedFlatConfigItem } from 'src/types';
-
+import type { TypedFlatConfigItem } from '../types';
 import { OFF } from '../flags';
 import { pluginSonar } from '../plugins';
 

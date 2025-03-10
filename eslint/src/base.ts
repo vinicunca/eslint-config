@@ -20,6 +20,7 @@ import {
   markdown,
   node,
   perfectionist,
+  pnpm,
   react,
   solid,
   sonar,
@@ -99,6 +100,7 @@ export function vinicuncaESLint(
     regexp: enableRegexp = true,
     solid: enableSolid = false,
     svelte: enableSvelte = false,
+    pnpm: enableCatalogs = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
     unicorn: enableUnicorn = true,
     unocss: enableUnoCSS = false,
@@ -270,6 +272,12 @@ export function vinicuncaESLint(
       }),
       sortPackageJson(),
       sortTsconfig(),
+    );
+  }
+
+  if (enableCatalogs) {
+    configs.push(
+      pnpm(),
     );
   }
 

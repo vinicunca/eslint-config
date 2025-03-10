@@ -8,6 +8,7 @@ export default vinicuncaESLint(
     typescript: true,
     formatters: true,
     type: 'lib',
+    pnpm: true,
 
     rules: {
       'perfectionist/sort-objects': 'off',

@@ -1,8 +1,8 @@
 import type { OptionsConfig, TypedFlatConfigItem } from '../src/types';
+import fs from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { execa } from 'execa';
-import fg from 'fast-glob';
-import fs from 'fs-extra';
+import { glob } from 'tinyglobby';
 
 import { afterAll, beforeAll, it } from 'vitest';
 
@@ -14,33 +14,21 @@ afterAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
 });
 
-runWithConfig(
-  'js',
-  {
-    typescript: false,
-    vue: false,
-  },
-);
-
-runWithConfig(
-  'all',
-  {
-    typescript: true,
-    vue: true,
-    svelte: true,
-    astro: true,
-  },
-);
-
-runWithConfig(
-  'no-style',
-  {
-    typescript: true,
-    vue: true,
-    stylistic: false,
-  },
-);
-
+runWithConfig('js', {
+  typescript: false,
+  vue: false,
+});
+runWithConfig('all', {
+  typescript: true,
+  vue: true,
+  svelte: true,
+  astro: true,
+});
+runWithConfig('no-style', {
+  typescript: true,
+  vue: true,
+  stylistic: false,
+});
 runWithConfig(
   'tab-double-quotes',
   {
@@ -131,7 +119,8 @@ function runWithConfig(
     const output = resolve('fixtures/output', name);
     const target = resolve('_fixtures', name);
 
-    await fs.copy(from, target, {
+    await fs.cp(from, target, {
+      recursive: true,
       filter: (src) => {
         return !src.includes('node_modules');
       },
@@ -152,7 +141,7 @@ export default vinicuncaESLint(
       stdio: 'pipe',
     });
 
-    const files = await fg('**/*', {
+    const files = await glob('**/*', {
       cwd: target,
       ignore: [
         'node_modules',
@@ -165,9 +154,7 @@ export default vinicuncaESLint(
       const source = await fs.readFile(join(from, file), 'utf-8');
       const outputPath = join(output, file);
       if (content === source) {
-        if (fs.existsSync(outputPath)) {
-          await fs.remove(outputPath);
-        };
+        await fs.rm(outputPath, { force: true });
         return;
       }
       await expect.soft(content).toMatchFileSnapshot(join(output, file));
