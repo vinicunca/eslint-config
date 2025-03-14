@@ -137,7 +137,6 @@ export async function typescript(
         'no-dupe-class-members': OFF,
         'no-invalid-this': OFF,
 
-        'no-loss-of-precision': OFF,
         'no-redeclare': OFF,
 
         'no-unused-vars': OFF,
@@ -170,8 +169,6 @@ export async function typescript(
 
         'ts/no-empty-function': OFF,
 
-        'ts/no-empty-interface': OFF,
-
         'ts/no-empty-object-type': [ERROR, { allowInterfaces: 'always' }],
 
         'ts/no-explicit-any': OFF,
@@ -181,8 +178,6 @@ export async function typescript(
         'ts/no-invalid-this': ERROR,
 
         'ts/no-invalid-void-type': OFF,
-
-        'ts/no-loss-of-precision': ERROR,
 
         'ts/no-non-null-assertion': OFF,
 
@@ -200,8 +195,6 @@ export async function typescript(
         'ts/no-use-before-define': [ERROR, { classes: false, functions: false, variables: true }],
 
         'ts/parameter-properties': OFF,
-
-        'ts/prefer-ts-expect-error': ERROR,
 
         'ts/triple-slash-reference': OFF,
 
@@ -262,7 +255,6 @@ export async function typescript(
 
       rules: {
         'ts/no-require-imports': OFF,
-        'ts/no-var-requires': OFF,
       },
     },
   ];

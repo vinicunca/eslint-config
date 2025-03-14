@@ -190,7 +190,7 @@ export async function javascript(
 
         'no-new-func': ERROR,
 
-        'no-new-symbol': ERROR,
+        'no-new-native-nonconstructor': ERROR,
 
         'no-new-wrappers': ERROR,
 

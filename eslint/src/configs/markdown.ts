@@ -1,6 +1,6 @@
-import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
-
 import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, TypedFlatConfigItem } from '../types';
+
+import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
 
 import { OFF } from '../flags';
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs';
@@ -86,7 +86,6 @@ export async function markdown(
         'ts/no-require-imports': OFF,
         'ts/no-unused-vars': OFF,
         'ts/no-use-before-define': OFF,
-        'ts/no-var-requires': OFF,
 
         'unicode-bom': OFF,
 

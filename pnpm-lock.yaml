@@ -109,8 +109,8 @@ catalogs:
       specifier: ^4.10.1
       version: 4.10.1
     eslint-plugin-pnpm:
-      specifier: ^0.1.2
-      version: 0.1.2
+      specifier: ^0.3.0
+      version: 0.3.1
     eslint-plugin-react-hooks:
       specifier: ^5.2.0
       version: 5.2.0
@@ -275,6 +275,9 @@ importers:
       bumpp:
         specifier: 'catalog:'
         version: 10.0.3
+      bundle-require:
+        specifier: ^5.1.0
+        version: 5.1.0(esbuild@0.25.0)
       eslint:
         specifier: ^9.22.0
         version: 9.22.0(jiti@2.4.2)
@@ -454,7 +457,7 @@ importers:
         version: 4.10.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
       eslint-plugin-pnpm:
         specifier: 'catalog:'
-        version: 0.1.2(eslint@9.22.0(jiti@2.4.2))
+        version: 0.3.1(eslint@9.22.0(jiti@2.4.2))
       eslint-plugin-react-hooks:
         specifier: ^5.0.0
         version: 5.0.0(eslint@9.22.0(jiti@2.4.2))
@@ -2527,8 +2530,8 @@ packages:
     peerDependencies:
       eslint: ^9.22.0
 
-  eslint-plugin-pnpm@0.1.2:
-    resolution: {integrity: sha512-Ta70r1MEUEv8Q5KqJBOklYE/Bal/qrCClu/jhLMC8US6emkYvYPgkoO4QCO/fmDECKU8GWZB8b91GIiapXbm2w==}
+  eslint-plugin-pnpm@0.3.1:
+    resolution: {integrity: sha512-vi5iHoELIAlBbX4AW8ZGzU3tUnfxuXhC/NKo3qRcI5o9igbz6zJUqSlQ03bPeMqWIGTPatZnbWsNR1RnlNERNQ==}
     peerDependencies:
       eslint: ^9.22.0
 
@@ -3869,6 +3872,9 @@ packages:
 
   pnpm-workspace-yaml@0.1.2:
     resolution: {integrity: sha512-FaSo51Psz+jHV8YtnuIVemTheOIO5EnMtw0HSPTUsASEdOf3ppM5OBxKO5Dpvx4fWKNZF44vEEMFKc5YZG4qjA==}
+
+  pnpm-workspace-yaml@0.3.1:
+    resolution: {integrity: sha512-3nW5RLmREmZ8Pm8MbPsO2RM+99RRjYd25ynj3NV0cFsN7CcEl4sDFzgoFmSyduFwxFQ2Qbu3y2UdCh6HlyUOeA==}
 
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
@@ -7151,12 +7157,15 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-pnpm@0.1.2(eslint@9.22.0(jiti@2.4.2)):
+  eslint-plugin-pnpm@0.3.1(eslint@9.22.0(jiti@2.4.2)):
     dependencies:
       eslint: 9.22.0(jiti@2.4.2)
       find-up-simple: 1.0.1
       jsonc-eslint-parser: 2.4.0
-      pnpm-workspace-yaml: 0.1.2
+      pathe: 2.0.3
+      pnpm-workspace-yaml: 0.3.1
+      tinyglobby: 0.2.12
+      yaml-eslint-parser: 1.3.0
 
   eslint-plugin-react-debug@1.26.2(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2):
     dependencies:
@@ -8864,6 +8873,10 @@ snapshots:
   pluralize@8.0.0: {}
 
   pnpm-workspace-yaml@0.1.2:
+    dependencies:
+      yaml: 2.7.0
+
+  pnpm-workspace-yaml@0.3.1:
     dependencies:
       yaml: 2.7.0
 

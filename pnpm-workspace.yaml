@@ -28,6 +28,7 @@ catalog:
   '@vitest/eslint-plugin': ^1.1.36
   astro-eslint-parser: ^1.2.1
   bumpp: ^10.0.3
+  bundle-require: ^5.1.0
   eslint: ^9.22.0
   eslint-config-flat-gitignore: ^2.1.0
   eslint-flat-config-utils: ^2.0.1
@@ -42,7 +43,7 @@ catalog:
   eslint-plugin-n: ^17.16.2
   eslint-plugin-no-only-tests: ^3.3.0
   eslint-plugin-perfectionist: ^4.10.1
-  eslint-plugin-pnpm: ^0.1.2
+  eslint-plugin-pnpm: ^0.3.0
   eslint-plugin-react-hooks: ^5.2.0
   eslint-plugin-react-refresh: ^0.4.19
   eslint-plugin-regexp: ^2.7.0
