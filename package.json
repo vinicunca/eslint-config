@@ -35,6 +35,7 @@
     "eslint-plugin-react-refresh": "catalog:",
     "eslint-plugin-solid": "catalog:",
     "eslint-plugin-svelte": "catalog:",
+    "eslint-plugin-vuejs-accessibility": "catalog:",
     "eslint-typegen": "catalog:",
     "execa": "catalog:",
     "is-ci": "catalog:",

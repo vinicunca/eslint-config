@@ -9,7 +9,7 @@ import type { VendoredPrettierOptions } from './vendor/prettier-types';
 
 export type Awaitable<T> = Promise<T> | T;
 
-export type Rules = RuleOptions;
+export interface Rules extends RuleOptions {}
 
 export type { ConfigNames };
 
@@ -45,6 +45,14 @@ export interface OptionsVue extends OptionsOverrides {
    * @default 3
    */
   vueVersion?: 2 | 3;
+
+  /**
+   * Vue accessibility plugin. Help check a11y issue in `.vue` files upon enabled
+   *
+   * @see https://vue-a11y.github.io/eslint-plugin-vuejs-accessibility/
+   * @default false
+   */
+  a11y?: boolean;
 }
 
 export type OptionsTypescript =
@@ -366,7 +374,7 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * Currently it's disabled by default, as it's still experimental.
    * In the future it will be smartly enabled based on the project usage.
    *
-  * @see https://github.com/antfu/pnpm-workspace-utils
+   * @see https://github.com/antfu/pnpm-workspace-utils
    * @experimental
    * @default false
    */

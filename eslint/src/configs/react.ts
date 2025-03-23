@@ -18,6 +18,13 @@ const RemixPackages = [
   '@remix-run/dev',
 ];
 
+const ReactRouterPackages = [
+  '@react-router/node',
+  '@react-router/react',
+  '@react-router/serve',
+  '@react-router/dev',
+];
+
 const NextJsPackages = [
   'next',
 ];
@@ -39,7 +46,7 @@ export async function react(
   const isTypeAware = !!tsconfigPath;
 
   const typeAwareRules: TypedFlatConfigItem['rules'] = {
-    'react/no-leaked-conditional-rendering': 'warn',
+    'react/no-leaked-conditional-rendering': WARN,
   };
 
   const [
@@ -54,6 +61,7 @@ export async function react(
 
   const isAllowConstantExport = ReactRefreshAllowConstantExportPackages.some((i) => isPackageExists(i));
   const isUsingRemix = RemixPackages.some((i) => isPackageExists(i));
+  const isUsingReactRouter = ReactRouterPackages.some((i) => isPackageExists(i));
   const isUsingNext = NextJsPackages.some((i) => isPackageExists(i));
 
   const plugins = pluginReact.configs.all.plugins;
@@ -69,6 +77,7 @@ export async function react(
         'react-hooks-extra': plugins['@eslint-react/hooks-extra'],
         'react-naming-convention': plugins['@eslint-react/naming-convention'],
         'react-refresh': pluginReactRefresh,
+        'react-web-api': plugins['@eslint-react/web-api'],
       },
     },
 
@@ -87,24 +96,78 @@ export async function react(
       name: 'vinicunca/react/rules',
 
       rules: {
-        // recommended rules from @eslint-react/dom
-        'react-dom/no-children-in-void-dom-elements': WARN,
+        // recommended rules from eslint-plugin-react-x https://eslint-react.xyz/docs/rules/overview#core-rules
+        'react/no-access-state-in-setstate': ERROR,
+        'react/no-array-index-key': WARN,
+        'react/no-children-count': WARN,
+        'react/no-children-for-each': WARN,
+        'react/no-children-map': WARN,
+        'react/no-children-only': WARN,
+        'react/no-children-to-array': WARN,
+        'react/no-clone-element': WARN,
+        'react/no-comment-textnodes': WARN,
+        'react/no-component-will-mount': ERROR,
+        'react/no-component-will-receive-props': ERROR,
+        'react/no-component-will-update': ERROR,
+        'react/no-context-provider': WARN,
+        'react/no-create-ref': ERROR,
+        'react/no-default-props': ERROR,
+        'react/no-direct-mutation-state': ERROR,
+        'react/no-duplicate-jsx-props': WARN,
+        'react/no-duplicate-key': WARN,
+        'react/no-forward-ref': WARN,
+        'react/no-implicit-key': WARN,
+        'react/no-missing-key': ERROR,
+        'react/no-nested-component-definitions': ERROR,
+        'react/no-prop-types': ERROR,
+        'react/no-redundant-should-component-update': ERROR,
+        'react/no-set-state-in-component-did-mount': WARN,
+        'react/no-set-state-in-component-did-update': WARN,
+        'react/no-set-state-in-component-will-update': WARN,
+        'react/no-string-refs': ERROR,
+        'react/no-unsafe-component-will-mount': WARN,
+        'react/no-unsafe-component-will-receive-props': WARN,
+        'react/no-unsafe-component-will-update': WARN,
+        'react/no-unstable-context-value': WARN,
+        'react/no-unstable-default-props': WARN,
+        'react/no-unused-class-component-members': WARN,
+        'react/no-unused-state': WARN,
+        'react/no-use-context': WARN,
+        'react/no-useless-forward-ref': WARN,
+        'react/use-jsx-vars': WARN,
+
+        // recommended rules from eslint-plugin-react-dom https://eslint-react.xyz/docs/rules/overview#dom-rule
         'react-dom/no-dangerously-set-innerhtml': WARN,
         'react-dom/no-dangerously-set-innerhtml-with-children': ERROR,
         'react-dom/no-find-dom-node': ERROR,
+        'react-dom/no-flush-sync': 'error',
+        'react-dom/no-hydrate': 'error',
         'react-dom/no-missing-button-type': WARN,
         'react-dom/no-missing-iframe-sandbox': WARN,
         'react-dom/no-namespace': ERROR,
+        'react-dom/no-render': 'error',
         'react-dom/no-render-return-value': ERROR,
         'react-dom/no-script-url': WARN,
         'react-dom/no-unsafe-iframe-sandbox': WARN,
         'react-dom/no-unsafe-target-blank': WARN,
+        'react-dom/no-use-form-state': 'error',
+        'react-dom/no-void-elements-with-children': 'error',
 
-        // recommended rules react-hooks
+        // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks/src/rules
         'react-hooks/exhaustive-deps': WARN,
         'react-hooks/rules-of-hooks': ERROR,
 
-        // react refresh
+        // recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
+        'react-hooks-extra/no-direct-set-state-in-use-effect': 'warn',
+        'react-hooks-extra/no-unnecessary-use-prefix': 'warn',
+
+        // recommended rules from eslint-plugin-react-web-api https://eslint-react.xyz/docs/rules/overview#web-api-rules
+        'react-web-api/no-leaked-event-listener': 'warn',
+        'react-web-api/no-leaked-interval': 'warn',
+        'react-web-api/no-leaked-resize-observer': 'warn',
+        'react-web-api/no-leaked-timeout': 'warn',
+
+        // preconfigured rules from eslint-plugin-react-refresh https://github.com/ArnaudBarre/eslint-plugin-react-refresh/tree/main/src
         'react-refresh/only-export-components': [
           WARN,
           {
@@ -112,6 +175,13 @@ export async function react(
             allowExportNames: [
               ...(isUsingNext
                 ? [
+                    'dynamic',
+                    'dynamicParams',
+                    'revalidate',
+                    'fetchCache',
+                    'runtime',
+                    'preferredRegion',
+                    'maxDuration',
                     'config',
                     'generateStaticParams',
                     'metadata',
@@ -120,7 +190,7 @@ export async function react(
                     'generateViewport',
                   ]
                 : []),
-              ...(isUsingRemix
+              ...(isUsingRemix || isUsingReactRouter
                 ? [
                     'meta',
                     'links',
@@ -132,44 +202,6 @@ export async function react(
             ],
           },
         ],
-
-        // recommended rules from @eslint-react
-        'react/ensure-forward-ref-using-ref': WARN,
-        'react/no-access-state-in-setstate': ERROR,
-        'react/no-array-index-key': WARN,
-        'react/no-children-count': WARN,
-        'react/no-children-for-each': WARN,
-        'react/no-children-map': WARN,
-        'react/no-children-only': WARN,
-        'react/no-children-prop': WARN,
-        'react/no-children-to-array': WARN,
-        'react/no-clone-element': WARN,
-        'react/no-comment-textnodes': WARN,
-        'react/no-component-will-mount': ERROR,
-        'react/no-component-will-receive-props': ERROR,
-        'react/no-component-will-update': ERROR,
-        'react/no-create-ref': ERROR,
-        'react/no-direct-mutation-state': ERROR,
-        'react/no-duplicate-key': ERROR,
-        'react/no-implicit-key': ERROR,
-        'react/no-missing-key': ERROR,
-        'react/no-nested-components': WARN,
-        'react/no-redundant-should-component-update': ERROR,
-        'react/no-set-state-in-component-did-mount': WARN,
-        'react/no-set-state-in-component-did-update': WARN,
-        'react/no-set-state-in-component-will-update': WARN,
-        'react/no-string-refs': ERROR,
-        'react/no-unsafe-component-will-mount': WARN,
-        'react/no-unsafe-component-will-receive-props': WARN,
-        'react/no-unsafe-component-will-update': WARN,
-        'react/no-unstable-context-value': ERROR,
-        'react/no-unstable-default-props': ERROR,
-        'react/no-unused-class-component-members': WARN,
-        'react/no-unused-state': WARN,
-        'react/no-useless-fragment': WARN,
-        'react/prefer-destructuring-assignment': WARN,
-        'react/prefer-shorthand-boolean': WARN,
-        'react/prefer-shorthand-fragment': WARN,
 
         // overrides
         ...overrides,

@@ -5,7 +5,7 @@ import { mergeProcessors } from 'eslint-merge-processors';
 
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 import { GLOB_VUE } from '../globs';
-import { interopDefault } from '../utils';
+import { ensurePackages, interopDefault } from '../utils';
 
 export async function vue(
   options: OptionsFiles & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsVue = {},
@@ -14,6 +14,7 @@ export async function vue(
     files = [GLOB_VUE],
     overrides = {},
     stylistic = true,
+    a11y = false,
   } = options;
 
   const sfcBlocks = options.sfcBlocks === true
@@ -24,14 +25,22 @@ export async function vue(
     indent = 2,
   } = isBoolean(stylistic) ? {} : stylistic;
 
+  if (a11y) {
+    await ensurePackages([
+      'eslint-plugin-vuejs-accessibility',
+    ]);
+  }
+
   const [
     pluginVue,
     parserVue,
     processorVueBlocks,
+    pluginVueA11y,
   ] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
     interopDefault(import('eslint-processor-vue-blocks')),
+    ...a11y ? [interopDefault(import('eslint-plugin-vuejs-accessibility'))] : [],
   ] as const);
 
   return [
@@ -40,6 +49,7 @@ export async function vue(
 
       plugins: {
         vue: pluginVue,
+        ...a11y ? { 'vue-a11y': pluginVueA11y } : {},
       },
 
       // This allows Vue plugin to work with auto imports
@@ -244,6 +254,33 @@ export async function vue(
               'vue/space-in-parens': [ERROR, NEVER],
 
               'vue/template-curly-spacing': ERROR,
+            }
+          : {},
+
+        ...a11y
+          ? {
+              'vue-a11y/alt-text': ERROR,
+              'vue-a11y/anchor-has-content': ERROR,
+              'vue-a11y/aria-props': ERROR,
+              'vue-a11y/aria-role': ERROR,
+              'vue-a11y/aria-unsupported-elements': ERROR,
+              'vue-a11y/click-events-have-key-events': ERROR,
+              'vue-a11y/form-control-has-label': ERROR,
+              'vue-a11y/heading-has-content': ERROR,
+              'vue-a11y/iframe-has-title': ERROR,
+              'vue-a11y/interactive-supports-focus': ERROR,
+              'vue-a11y/label-has-for': ERROR,
+              'vue-a11y/media-has-caption': WARN,
+              'vue-a11y/mouse-events-have-key-events': ERROR,
+              'vue-a11y/no-access-key': ERROR,
+              'vue-a11y/no-aria-hidden-on-focusable': ERROR,
+              'vue-a11y/no-autofocus': WARN,
+              'vue-a11y/no-distracting-elements': ERROR,
+              'vue-a11y/no-redundant-roles': ERROR,
+              'vue-a11y/no-role-presentation-on-focusable': ERROR,
+              'vue-a11y/no-static-element-interactions': ERROR,
+              'vue-a11y/role-has-required-aria-props': ERROR,
+              'vue-a11y/tabindex-no-positive': WARN,
             }
           : {},
 
