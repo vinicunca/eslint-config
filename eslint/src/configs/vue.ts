@@ -124,7 +124,14 @@ export async function vue(
 
         'vue/component-options-name-casing': [ERROR, 'PascalCase'],
 
-        'vue/custom-event-name-casing': [ERROR, 'camelCase'],
+        'vue/custom-event-name-casing': [
+          ERROR,
+          'camelCase',
+          {
+            // This will allow using lower case separated with a colon (e.g. click:row)
+            ignores: [/^[a-z]+(?:-[a-z]+)*:[a-z]+(?:-[a-z]+)*$/u],
+          },
+        ],
 
         'vue/define-macros-order': [ERROR, {
           order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
