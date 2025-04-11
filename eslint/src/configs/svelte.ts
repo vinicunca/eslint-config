@@ -1,8 +1,8 @@
-import { isBoolean } from '@vinicunca/perkakas';
-
 import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 
-import { ERROR, OFF } from '../flags';
+import { isBoolean } from '@vinicunca/perkakas';
+
+import { ERROR, OFF, WARN } from '../flags';
 import { GLOB_SVELTE } from '../globs';
 import { interopDefault } from '../utils';
 
@@ -65,7 +65,7 @@ export async function svelte(
         }],
 
         'svelte/comment-directive': ERROR,
-        'svelte/no-at-debug-tags': 'warn',
+        'svelte/no-at-debug-tags': WARN,
         'svelte/no-at-html-tags': ERROR,
         'svelte/no-dupe-else-if-blocks': ERROR,
         'svelte/no-dupe-style-properties': ERROR,

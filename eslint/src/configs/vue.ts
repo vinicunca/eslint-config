@@ -128,8 +128,9 @@ export async function vue(
           ERROR,
           'camelCase',
           {
-            // This will allow using lower case separated with a colon (e.g. click:row)
-            ignores: [/^[a-z]+(?:-[a-z]+)*:[a-z]+(?:-[a-z]+)*$/u],
+            ignores: [
+              '/^[a-z]+(?:-[a-z]+)*:[a-z]+(?:-[a-z]+)*$/u',
+            ],
           },
         ],
 

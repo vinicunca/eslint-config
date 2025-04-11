@@ -140,32 +140,32 @@ export async function react(
         'react-dom/no-dangerously-set-innerhtml': WARN,
         'react-dom/no-dangerously-set-innerhtml-with-children': ERROR,
         'react-dom/no-find-dom-node': ERROR,
-        'react-dom/no-flush-sync': 'error',
-        'react-dom/no-hydrate': 'error',
+        'react-dom/no-flush-sync': ERROR,
+        'react-dom/no-hydrate': ERROR,
         'react-dom/no-missing-button-type': WARN,
         'react-dom/no-missing-iframe-sandbox': WARN,
         'react-dom/no-namespace': ERROR,
-        'react-dom/no-render': 'error',
+        'react-dom/no-render': ERROR,
         'react-dom/no-render-return-value': ERROR,
         'react-dom/no-script-url': WARN,
         'react-dom/no-unsafe-iframe-sandbox': WARN,
         'react-dom/no-unsafe-target-blank': WARN,
-        'react-dom/no-use-form-state': 'error',
-        'react-dom/no-void-elements-with-children': 'error',
+        'react-dom/no-use-form-state': ERROR,
+        'react-dom/no-void-elements-with-children': ERROR,
 
         // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks/src/rules
         'react-hooks/exhaustive-deps': WARN,
         'react-hooks/rules-of-hooks': ERROR,
 
         // recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
-        'react-hooks-extra/no-direct-set-state-in-use-effect': 'warn',
-        'react-hooks-extra/no-unnecessary-use-prefix': 'warn',
+        'react-hooks-extra/no-direct-set-state-in-use-effect': WARN,
+        'react-hooks-extra/no-unnecessary-use-prefix': WARN,
 
         // recommended rules from eslint-plugin-react-web-api https://eslint-react.xyz/docs/rules/overview#web-api-rules
-        'react-web-api/no-leaked-event-listener': 'warn',
-        'react-web-api/no-leaked-interval': 'warn',
-        'react-web-api/no-leaked-resize-observer': 'warn',
-        'react-web-api/no-leaked-timeout': 'warn',
+        'react-web-api/no-leaked-event-listener': WARN,
+        'react-web-api/no-leaked-interval': WARN,
+        'react-web-api/no-leaked-resize-observer': WARN,
+        'react-web-api/no-leaked-timeout': WARN,
 
         // preconfigured rules from eslint-plugin-react-refresh https://github.com/ArnaudBarre/eslint-plugin-react-refresh/tree/main/src
         'react-refresh/only-export-components': [
