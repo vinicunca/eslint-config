@@ -52,7 +52,7 @@ catalogs:
       specifier: ^8.32.1
       version: 8.32.1
     '@unocss/eslint-plugin':
-      specifier: ^66.0.0
+      specifier: 66.0.0
       version: 66.0.0
     '@vinicunca/perkakas':
       specifier: ^1.5.0
@@ -220,7 +220,7 @@ catalogs:
       specifier: ^5.8.3
       version: 5.8.3
     unocss:
-      specifier: ^66.0.0
+      specifier: 66.0.0
       version: 66.0.0
     unplugin-vue-components:
       specifier: ^28.4.1
@@ -6506,7 +6506,7 @@ snapshots:
       magic-string: 0.30.17
       pathe: 2.0.3
       perfect-debounce: 1.0.0
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
       unplugin-utils: 0.2.4
 
   '@unocss/config@66.0.0':
@@ -6551,7 +6551,7 @@ snapshots:
       '@unocss/rule-utils': 66.0.0
       css-tree: 3.1.0
       postcss: 8.5.3
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
 
   '@unocss/preset-attributify@66.0.0':
     dependencies:
@@ -6635,7 +6635,7 @@ snapshots:
       '@unocss/inspector': 66.0.0(vue@3.5.13(typescript@5.8.3))
       chokidar: 3.6.0
       magic-string: 0.30.17
-      tinyglobby: 0.2.12
+      tinyglobby: 0.2.13
       unplugin-utils: 0.2.4
       vite: 5.4.14(@types/node@22.15.19)
     transitivePeerDependencies:

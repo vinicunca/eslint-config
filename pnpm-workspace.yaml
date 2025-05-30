@@ -22,7 +22,7 @@ catalog:
   '@types/yargs': ^17.0.33
   '@typescript-eslint/eslint-plugin': ^8.32.1
   '@typescript-eslint/parser': ^8.32.1
-  '@unocss/eslint-plugin': ^66.0.0
+  '@unocss/eslint-plugin': 66.0.0
   '@vinicunca/perkakas': ^1.5.0
   '@vinicunca/unocss-preset': ^1.14.0
   '@vitest/eslint-plugin': ^1.1.44
@@ -80,7 +80,7 @@ catalog:
   tsup: ^8.4.0
   tsx: ^4.19.4
   typescript: ^5.8.3
-  unocss: ^66.0.0
+  unocss: 66.0.0
   unplugin-vue-components: ^28.4.1
   vitepress: ^1.6.3
   vitest: ^3.1.3
