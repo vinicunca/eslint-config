@@ -1,10 +1,10 @@
-import styleMigrate from '@stylistic/eslint-plugin-migrate';
-
 import { vinicuncaESLint } from './eslint/src';
 
 export default vinicuncaESLint(
   {
-    vue: true,
+    vue: {
+      a11y: true,
+    },
     typescript: true,
     formatters: true,
     type: 'lib',
@@ -23,16 +23,6 @@ export default vinicuncaESLint(
       'eslint/fixtures',
       'eslint/_fixtures',
     ],
-  },
-
-  {
-    files: ['src/configs/*.ts'],
-    plugins: {
-      'style-migrate': styleMigrate,
-    },
-    rules: {
-      'style-migrate/migrate': ['error', { namespaceTo: 'style' }],
-    },
   },
 
   {

@@ -52,11 +52,11 @@
     "node": ">=22.0.0"
   },
   "scripts": {
-    "lint": "eslint -v",
+    "lint": "eslint --fix .",
     "test": "vitest",
-    "build": "pnpm run typegen && tsup --clean --dts",
-    "stub": "tsup --format esm --clean",
-    "watch": "tsup --watch",
+    "build": "pnpm run typegen && tsdown --clean --dts",
+    "stub": "tsdown",
+    "watch": "tsdown --watch",
     "typegen": "tsx scripts/typegen.ts",
     "publish:ci": "pnpm publish --access public --no-git-checks",
     "prepublishOnly": "pnpm build"
@@ -134,7 +134,6 @@
     "eslint-plugin-antfu": "catalog:",
     "eslint-plugin-command": "catalog:",
     "eslint-plugin-format": "catalog:",
-    "eslint-plugin-import-x": "catalog:",
     "eslint-plugin-jsdoc": "catalog:",
     "eslint-plugin-jsonc": "catalog:",
     "eslint-plugin-n": "catalog:",

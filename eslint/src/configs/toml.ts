@@ -1,6 +1,6 @@
-import { isBoolean } from '@vinicunca/perkakas';
-
 import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
+
+import { isBoolean } from '@vinicunca/perkakas';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_TOML } from '../globs';

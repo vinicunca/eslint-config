@@ -1,8 +1,8 @@
-import { isPackageExists } from 'local-pkg';
+import type { Awaitable, TypedFlatConfigItem } from './types';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
-import type { Awaitable, TypedFlatConfigItem } from './types';
+import { isPackageExists } from 'local-pkg';
 
 const scopeUrl = fileURLToPath(new URL('.', import.meta.url));
 const isCwdInScope = isPackageExists('@vinicunca/eslint-config');
@@ -79,7 +79,7 @@ export function renameRules(rules: Record<string, any>, map: Record<string, stri
  *
  * export default renamePluginInConfigs(someConfigs, {
  *   '@typescript-eslint': 'ts',
- *   'import-x': 'import',
+ *   '@stylistic': 'style',
  * })
  * ```
  */

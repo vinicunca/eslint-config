@@ -66,7 +66,7 @@ export async function stylistic(
 
         'style/brace-style': [ERROR],
 
-        'style/func-call-spacing': [ERROR, NEVER],
+        'style/function-call-spacing': [ERROR, NEVER],
 
         'style/member-delimiter-style': [ERROR],
 
@@ -74,7 +74,7 @@ export async function stylistic(
 
         'style/object-curly-spacing': [ERROR, ALWAYS],
 
-        'style/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
+        'style/object-property-newline': [ERROR, { allowAllPropertiesOnSameLine: true }],
 
         'style/operator-linebreak': [ERROR, 'before'],
 
@@ -89,6 +89,14 @@ export async function stylistic(
         'style/semi': [ERROR, semi ? ALWAYS : NEVER],
 
         'style/semi-spacing': [ERROR, { after: true, before: false }],
+
+        'style/generator-star-spacing': ['error', { after: true, before: false }],
+        'style/padding-line-between-statements': [
+          'error',
+          { blankLine: 'always', next: '*', prev: 'import' },
+          { blankLine: 'any', next: 'import', prev: 'import' },
+        ],
+        'style/yield-star-spacing': ['error', { after: true, before: false }],
 
         ...overrides,
       },

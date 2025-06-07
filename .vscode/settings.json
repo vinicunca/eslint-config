@@ -7,8 +7,6 @@
     "source.organizeImports": "never"
   },
 
-  "eslint.runtime": "node",
-
   // Enable eslint for all supported languages
   "eslint.validate": [
     "javascript",

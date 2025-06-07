@@ -66,8 +66,6 @@ export async function markdown(
       name: 'vinicunca/markdown/disables',
 
       rules: {
-        'import/newline-after-import': OFF,
-
         'no-alert': OFF,
         'no-console': OFF,
         'no-undef': OFF,
@@ -77,6 +75,7 @@ export async function markdown(
         'node/prefer-global/process': OFF,
 
         'style/comma-dangle': OFF,
+        'style/padding-line-between-statements': OFF,
 
         'style/eol-last': OFF,
 

@@ -54,7 +54,6 @@ export async function svelte(
       processor: pluginSvelte.processors['.svelte'],
 
       rules: {
-        'import/no-mutable-exports': OFF,
         'no-undef': OFF, // incompatible with most recent (attribute-form) generic types RFC
         'no-unused-vars': [ERROR, {
           args: 'none',

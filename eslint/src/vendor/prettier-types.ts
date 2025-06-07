@@ -2,31 +2,31 @@
  * Vendor types from Prettier so we don't rely on the dependency.
  */
 
-export type BuiltInParserName =
-  | 'acorn'
-  | 'angular'
-  | 'babel'
-  | 'babel-flow'
-  | 'babel-ts'
-  | 'css'
-  | 'espree'
-  | 'flow'
-  | 'glimmer'
-  | 'graphql'
-  | 'html'
-  | 'json5'
-  | 'json'
-  | 'json-stringify'
-  | 'less'
-  | 'lwc'
-  | 'markdown'
-  | 'mdx'
-  | 'meriyah'
-  | 'scss'
-  | 'typescript'
-  | 'vue'
-  | 'xml'
-  | 'yaml';
+export type BuiltInParserName
+  = | 'acorn'
+    | 'angular'
+    | 'babel'
+    | 'babel-flow'
+    | 'babel-ts'
+    | 'css'
+    | 'espree'
+    | 'flow'
+    | 'glimmer'
+    | 'graphql'
+    | 'html'
+    | 'json5'
+    | 'json'
+    | 'json-stringify'
+    | 'less'
+    | 'lwc'
+    | 'markdown'
+    | 'mdx'
+    | 'meriyah'
+    | 'scss'
+    | 'typescript'
+    | 'vue'
+    | 'xml'
+    | 'yaml';
 
 export type ExternalParserName = 'astro' | 'slidev';
 
@@ -37,9 +37,9 @@ export type ExternalParserName = 'astro' | 'slidev';
 //
 // It comes from this issue: microsoft/TypeScript#29729:
 //   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
-export type LiteralUnion<T extends U, U = string> =
-  | (Pick<U, never> & { _?: never | undefined })
-  | T;
+export type LiteralUnion<T extends U, U = string>
+  = | (Pick<U, never> & { _?: never | undefined })
+    | T;
 
 export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>;
 

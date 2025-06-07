@@ -55,9 +55,9 @@ export interface OptionsVue extends OptionsOverrides {
   a11y?: boolean;
 }
 
-export type OptionsTypescript =
-  (OptionsOverrides & OptionsTypeScriptParserOptions)
-  | (OptionsOverrides & OptionsTypeScriptWithTypes);
+export type OptionsTypescript
+  = (OptionsOverrides & OptionsTypeScriptParserOptions)
+    | (OptionsOverrides & OptionsTypeScriptWithTypes);
 
 export interface OptionsFormatters {
   /**

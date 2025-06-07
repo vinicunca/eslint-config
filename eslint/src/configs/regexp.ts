@@ -1,6 +1,6 @@
-import { configs } from 'eslint-plugin-regexp';
-
 import type { OptionsOverrides, OptionsRegExp, TypedFlatConfigItem } from '../types';
+
+import { configs } from 'eslint-plugin-regexp';
 
 import { ERROR, WARN } from '../flags';
 
