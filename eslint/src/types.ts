@@ -56,8 +56,8 @@ export interface OptionsVue extends OptionsOverrides {
 }
 
 export type OptionsTypescript
-  = (OptionsOverrides & OptionsTypeScriptParserOptions)
-    | (OptionsOverrides & OptionsTypeScriptWithTypes);
+  = (OptionsTypeScriptWithTypes & OptionsOverrides)
+    | (OptionsTypeScriptParserOptions & OptionsOverrides);
 
 export interface OptionsFormatters {
   /**
@@ -272,6 +272,13 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * @default true
    */
   unicorn?: boolean | OptionsUnicorn;
+
+  /**
+   * Options for eslint-plugin-import-lite.
+   *
+   * @default true
+   */
+  imports?: boolean | OptionsOverrides;
 
   /**
    * Enable test support.

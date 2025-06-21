@@ -64,6 +64,7 @@ export const defaultPluginRenaming = {
   '@eslint-react/naming-convention': 'react-naming-convention',
   '@stylistic': 'style',
   '@typescript-eslint': 'ts',
+  'import-lite': 'import',
   'n': 'node',
   'sonarjs': 'sonar',
   'vitest': 'test',
@@ -93,6 +94,7 @@ export function vinicuncaESLint(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
+    imports: enableImports = true,
     jsx: enableJsx = true,
     react: enableReact = false,
     regexp: enableRegexp = true,
@@ -173,6 +175,19 @@ export function vinicuncaESLint(
 
     sonar(),
   );
+
+  if (enableImports) {
+    configs.push(
+      imports(enableImports === true
+        ? {
+            stylistic: stylisticOptions,
+          }
+        : {
+            stylistic: stylisticOptions,
+            ...enableImports,
+          }),
+    );
+  }
 
   if (enableUnicorn) {
     configs.push(

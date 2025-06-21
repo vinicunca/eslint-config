@@ -134,6 +134,7 @@
     "eslint-plugin-antfu": "catalog:",
     "eslint-plugin-command": "catalog:",
     "eslint-plugin-format": "catalog:",
+    "eslint-plugin-import-lite": "catalog:",
     "eslint-plugin-jsdoc": "catalog:",
     "eslint-plugin-jsonc": "catalog:",
     "eslint-plugin-n": "catalog:",

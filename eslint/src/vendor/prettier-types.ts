@@ -5,18 +5,18 @@
 export type BuiltInParserName
   = | 'acorn'
     | 'angular'
-    | 'babel'
     | 'babel-flow'
     | 'babel-ts'
+    | 'babel'
     | 'css'
     | 'espree'
     | 'flow'
     | 'glimmer'
     | 'graphql'
     | 'html'
-    | 'json5'
-    | 'json'
     | 'json-stringify'
+    | 'json'
+    | 'json5'
     | 'less'
     | 'lwc'
     | 'markdown'
@@ -38,8 +38,8 @@ export type ExternalParserName = 'astro' | 'slidev';
 // It comes from this issue: microsoft/TypeScript#29729:
 //   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
 export type LiteralUnion<T extends U, U = string>
-  = | (Pick<U, never> & { _?: never | undefined })
-    | T;
+  = | T
+    | (Pick<U, never> & { _?: never | undefined });
 
 export type VendoredPrettierOptions = Partial<VendoredPrettierOptionsRequired>;
 

@@ -124,7 +124,6 @@ const cwd = process.cwd();
 
 async function writeJson(content: any) {
   const outputPath = path.join(cwd, 'docs', '.vitepress', 'data', 'metadata.ts');
-  // const outputFile = path.join(cwd, 'src', 'metadata.ts');
 
   await fs.writeFile(
     outputPath,
