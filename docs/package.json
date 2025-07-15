@@ -1,11 +1,13 @@
 {
   "name": "@vinicunca/eslint-config-docs",
   "type": "module",
-  "version": "3.17.0",
+  "version": "3.18.0",
   "scripts": {
     "dev": "vitepress dev --open",
-    "build": "vitepress build",
-    "preview": "vitepress preview"
+    "buildx": "pnpm run gen:meta && vitepress build",
+    "build": "pnpm run gen:meta",
+    "preview": "vitepress preview",
+    "gen:meta": "tsx .vitepress/data/scripts/gen-meta.ts"
   },
   "devDependencies": {
     "@iconify/json": "catalog:",

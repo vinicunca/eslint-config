@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/eslint-config-monorepo",
   "type": "module",
-  "version": "3.17.0",
+  "version": "3.18.0",
   "private": true,
   "packageManager": "pnpm@10.12.1",
   "author": "praburangki<https://github.com/praburangki>",
@@ -10,7 +10,6 @@
     "test": "pnpm -r run test",
     "postinstall": "is-ci || pnpm -r run stub",
     "release": "bumpp -r",
-    "gen:meta": "tsx scripts/gen-meta.ts",
     "build:docs": "pnpm --filter @vinicunca/eslint-config-docs build",
     "fb:deploy": "firebase deploy --only hosting:eslint",
     "publish:ci": "pnpm --filter @vinicunca/eslint-config publish:ci",
