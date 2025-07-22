@@ -53,6 +53,9 @@
     "vitest": "catalog:",
     "vue": "catalog:"
   },
+  "resolutions": {
+    "eslint": "catalog:"
+  },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
