@@ -109,6 +109,15 @@ runWithConfig(
   },
 );
 
+runWithConfig(
+  'unocss',
+  {
+    unocss: {
+      configPath: './play/uno.config.ts',
+    },
+  },
+);
+
 function runWithConfig(
   name: string,
   configs: OptionsConfig,

@@ -230,6 +230,10 @@ export interface OptionsUnoCSS extends OptionsOverrides {
    * @default false
    */
   strict?: boolean;
+  /**
+   * Custom path for the uno.config.ts file, useful for monorepo projects.
+   */
+  configPath?: string;
 }
 
 export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType {

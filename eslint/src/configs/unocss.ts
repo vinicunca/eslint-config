@@ -9,6 +9,7 @@ export async function unocss(
   const {
     attributify = false,
     strict = false,
+    configPath,
   } = options;
 
   const [
@@ -22,6 +23,11 @@ export async function unocss(
       name: 'vinicunca/unocss',
       plugins: {
         unocss: pluginUnoCSS,
+      },
+      settings: {
+        unocss: {
+          configPath,
+        },
       },
       rules: {
         'unocss/order': WARN,
