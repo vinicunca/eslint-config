@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/eslint-config-docs",
   "type": "module",
-  "version": "3.21.1",
+  "version": "3.22.0",
   "scripts": {
     "dev": "vitepress dev --open",
     "buildx": "pnpm run gen:meta && vitepress build",
