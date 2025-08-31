@@ -13,7 +13,7 @@
     "build:docs": "pnpm --filter @vinicunca/eslint-config-docs build",
     "fb:deploy": "firebase deploy --only hosting:eslint",
     "publish:ci": "pnpm --filter @vinicunca/eslint-config publish:ci",
-    "taze": "taze major -wIr"
+    "taze": "taze major -wIrl"
   },
   "devDependencies": {
     "@antfu/ni": "catalog:",
