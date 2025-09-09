@@ -48,9 +48,6 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=22.0.0"
-  },
   "scripts": {
     "lint": "eslint --fix .",
     "test": "vitest",
