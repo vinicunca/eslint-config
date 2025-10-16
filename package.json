@@ -3,7 +3,7 @@
   "type": "module",
   "version": "3.28.0",
   "private": true,
-  "packageManager": "pnpm@10.18.2",
+  "packageManager": "pnpm@10.18.3",
   "author": "praburangki<https://github.com/praburangki>",
   "scripts": {
     "lint": "TIMING=1 eslint .",
