@@ -86,7 +86,7 @@ export type ResolvedOptions<T> = T extends boolean
  *  The merged ESLint configurations.
  */
 export function vinicuncaESLint(
-  options: OptionsConfig & TypedFlatConfigItem = {},
+  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
   ...userConfigs: Array<Awaitable<Array<Linter.Config> | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | TypedFlatConfigItem>>
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
