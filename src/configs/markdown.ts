@@ -7,7 +7,7 @@ import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '..
 import { interopDefault, parserPlain } from '../utils';
 
 export async function markdown(
-  options: OptionsComponentExts & OptionsFiles & OptionsOverrides = {},
+  options: OptionsFiles & OptionsComponentExts & OptionsOverrides = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
@@ -75,9 +75,9 @@ export async function markdown(
         'node/prefer-global/process': OFF,
 
         'style/comma-dangle': OFF,
-        'style/padding-line-between-statements': OFF,
-
         'style/eol-last': OFF,
+
+        'style/padding-line-between-statements': OFF,
 
         'ts/consistent-type-imports': OFF,
         'ts/no-namespace': OFF,

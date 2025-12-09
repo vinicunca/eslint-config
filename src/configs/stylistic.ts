@@ -12,12 +12,14 @@ export const STYLISTIC_CONFIG_DEFAULTS: StylisticConfig = {
 };
 
 export interface StylisticOptions extends StylisticConfig, OptionsOverrides {
+  lessOpinionated?: boolean;
 }
 
 export async function stylistic(
   options: StylisticOptions = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
+    experimental,
     indent,
     jsx,
     overrides = {},
@@ -31,6 +33,7 @@ export async function stylistic(
   const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'));
 
   const config = pluginStylistic.configs.customize({
+    experimental,
     indent,
     jsx,
     pluginName: 'style',
@@ -50,8 +53,13 @@ export async function stylistic(
       rules: {
         ...config.rules,
 
+        ...experimental
+          ? {}
+          : {
+              'antfu/consistent-list-newline': ERROR,
+            },
+
         'antfu/consistent-chaining': ERROR,
-        'antfu/consistent-list-newline': ERROR,
         'antfu/top-level-function': ERROR,
 
         'curly': [ERROR, 'all'],
@@ -67,6 +75,8 @@ export async function stylistic(
         'style/brace-style': [ERROR],
 
         'style/function-call-spacing': [ERROR, NEVER],
+
+        'style/generator-star-spacing': [ERROR, { after: true, before: false }],
 
         'style/member-delimiter-style': [ERROR],
 
@@ -89,8 +99,6 @@ export async function stylistic(
         'style/semi': [ERROR, semi ? ALWAYS : NEVER],
 
         'style/semi-spacing': [ERROR, { after: true, before: false }],
-
-        'style/generator-star-spacing': ['error', { after: true, before: false }],
 
         'style/yield-star-spacing': ['error', { after: true, before: false }],
 

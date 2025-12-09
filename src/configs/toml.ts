@@ -7,7 +7,7 @@ import { GLOB_TOML } from '../globs';
 import { interopDefault } from '../utils';
 
 export async function toml(
-  options: OptionsFiles & OptionsOverrides & OptionsStylistic = {},
+  options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_TOML],

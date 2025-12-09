@@ -1,8 +1,7 @@
 import type { Linter } from 'eslint';
-
 import type { RuleOptions } from './typegen';
-import type { Awaitable, ConfigNames, OptionsConfig, OptionsStylistic, TypedFlatConfigItem } from './types';
-import { isBoolean, isPlainObject } from '@vinicunca/perkakas';
+import type { Awaitable, ConfigNames, OptionsConfig, TypedFlatConfigItem } from './types';
+import { isBoolean } from '@vinicunca/perkakas';
 
 import { FlatConfigComposer } from 'eslint-flat-config-utils';
 import { isPackageExists } from 'local-pkg';
@@ -18,6 +17,7 @@ import {
   jsonc,
   jsx,
   markdown,
+  nextjs,
   node,
   perfectionist,
   pnpm,
@@ -62,6 +62,7 @@ export const defaultPluginRenaming = {
   '@eslint-react/dom': 'react-dom',
   '@eslint-react/hooks-extra': 'react-hooks-extra',
   '@eslint-react/naming-convention': 'react-naming-convention',
+  '@next/next': 'next',
   '@stylistic': 'style',
   '@typescript-eslint': 'ts',
   'import-lite': 'import',
@@ -70,10 +71,6 @@ export const defaultPluginRenaming = {
   'vitest': 'test',
   'yml': 'yaml',
 };
-
-export type ResolvedOptions<T> = T extends boolean
-  ? never
-  : NonNullable<T>;
 
 /**
  * Construct an array of ESLint flat config items.
@@ -94,13 +91,15 @@ export function vinicuncaESLint(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
+    ignores: userIgnores = [],
     imports: enableImports = true,
     jsx: enableJsx = true,
+    nextjs: enableNextjs = false,
+    pnpm: enableCatalogs = false,
     react: enableReact = false,
     regexp: enableRegexp = true,
     solid: enableSolid = false,
     svelte: enableSvelte = false,
-    pnpm: enableCatalogs = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
     unicorn: enableUnicorn = true,
     unocss: enableUnoCSS = false,
@@ -116,18 +115,16 @@ export function vinicuncaESLint(
     }
   }
 
-  let stylisticOptions: OptionsStylistic['stylistic'] = {};
-
-  if (options.stylistic === false) {
-    stylisticOptions = false;
-  } else if (isPlainObject(options.stylistic)) {
-    stylisticOptions = options.stylistic;
-  } else {
-    stylisticOptions = {};
-  }
+  // eslint-disable-next-line no-nested-ternary
+  const stylisticOptions = options.stylistic === false
+    ? false
+    // eslint-disable-next-line sonar/no-nested-conditional
+    : typeof options.stylistic === 'object'
+      ? options.stylistic
+      : {};
 
   if (stylisticOptions && !('jsx' in stylisticOptions)) {
-    stylisticOptions.jsx = enableJsx;
+    stylisticOptions.jsx = typeof enableJsx === 'object' ? true : enableJsx;
   }
 
   const configs: Array<Awaitable<Array<TypedFlatConfigItem>>> = [];
@@ -150,7 +147,7 @@ export function vinicuncaESLint(
   const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined;
 
   configs.push(
-    ignores(options.ignores),
+    ignores(userIgnores),
 
     javascript({
       isInEditor,
@@ -200,7 +197,7 @@ export function vinicuncaESLint(
   }
 
   if (enableJsx) {
-    configs.push(jsx());
+    configs.push(jsx(enableJsx === true ? {} : enableJsx));
   }
 
   if (enableTypeScript) {
@@ -215,6 +212,7 @@ export function vinicuncaESLint(
   if (stylisticOptions) {
     configs.push(stylistic({
       ...stylisticOptions,
+      lessOpinionated: options.lessOpinionated,
       overrides: getOverrides(options, 'stylistic'),
     }));
   }
@@ -242,8 +240,15 @@ export function vinicuncaESLint(
   if (enableReact) {
     configs.push(react({
       ...typescriptOptions,
+      ...resolveSubOptions(options, 'react'),
       overrides: getOverrides(options, 'react'),
       tsconfigPath,
+    }));
+  }
+
+  if (enableNextjs) {
+    configs.push(nextjs({
+      overrides: getOverrides(options, 'nextjs'),
     }));
   }
 
@@ -290,7 +295,9 @@ export function vinicuncaESLint(
 
   if (enableCatalogs) {
     configs.push(
-      pnpm(),
+      pnpm({
+        isInEditor,
+      }),
     );
   }
 
@@ -358,6 +365,17 @@ export function vinicuncaESLint(
       .renamePlugins(defaultPluginRenaming);
   }
 
+  if (isInEditor) {
+    composer = composer
+      .disableRulesFix([
+        'unused-imports/no-unused-imports',
+        'test/no-only-tests',
+        'prefer-const',
+      ], {
+        builtinRules: () => import(['eslint', 'use-at-your-own-risk'].join('/')).then((r) => r.builtinRules),
+      });
+  }
+
   return composer;
 }
 
@@ -373,6 +391,10 @@ function getOverrides<K extends keyof OptionsConfig>(
       : {},
   };
 }
+
+export type ResolvedOptions<T> = T extends boolean
+  ? never
+  : NonNullable<T>;
 
 function resolveSubOptions<K extends keyof OptionsConfig>(
   options: OptionsConfig,

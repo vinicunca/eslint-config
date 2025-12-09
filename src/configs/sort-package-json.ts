@@ -76,15 +76,19 @@ export async function sortPackageJson(): Promise<Array<TypedFlatConfigItem>> {
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
+            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^resolutions$',
+            pathPattern: '^(?:resolutions|overrides|pnpm.overrides)$',
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^pnpm.overrides$',
+            pathPattern: '^workspaces\\.catalog$',
+          },
+          {
+            order: { type: 'asc' },
+            pathPattern: '^workspaces\\.catalogs\\.[^.]+$',
           },
           {
             order: [
@@ -125,7 +129,7 @@ export async function sortPackageJson(): Promise<Array<TypedFlatConfigItem>> {
 export function sortTsconfig(): Array<TypedFlatConfigItem> {
   return [
     {
-      files: ['**/tsconfig.json', '**/tsconfig.*.json'],
+      files: ['**/[jt]sconfig.json', '**/[jt]sconfig.*.json'],
 
       name: 'vinicunca/sort/tsconfig',
       rules: {
@@ -235,6 +239,7 @@ export function sortTsconfig(): Array<TypedFlatConfigItem> {
               'allowSyntheticDefaultImports',
               'esModuleInterop',
               'forceConsistentCasingInFileNames',
+              'isolatedDeclarations',
               'isolatedModules',
               'preserveSymlinks',
               'verbatimModuleSyntax',

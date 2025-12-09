@@ -186,6 +186,7 @@
     "bundle-require": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-astro": "catalog:",
+    "eslint-plugin-erasable-syntax-only": "catalog:",
     "eslint-plugin-jsx-a11y": "catalog:",
     "eslint-plugin-react-hooks": "catalog:",
     "eslint-plugin-react-refresh": "catalog:",

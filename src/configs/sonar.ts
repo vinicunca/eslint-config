@@ -13,11 +13,11 @@ export async function sonar(): Promise<Array<TypedFlatConfigItem>> {
       rules: {
         ...pluginSonar.configs.recommended.rules,
 
-        'sonar/todo-tag': OFF,
-        'sonar/pseudo-random': OFF,
-        'sonar/slow-regex': OFF,
         'sonar/cognitive-complexity': OFF,
         'sonar/no-unused-vars': OFF,
+        'sonar/pseudo-random': OFF,
+        'sonar/slow-regex': OFF,
+        'sonar/todo-tag': OFF,
       },
     },
   ];

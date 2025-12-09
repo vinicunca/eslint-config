@@ -5,7 +5,7 @@ import { configs } from 'eslint-plugin-regexp';
 import { ERROR, WARN } from '../flags';
 
 export async function regexp(
-  options: OptionsOverrides & OptionsRegExp = {},
+  options: OptionsRegExp & OptionsOverrides = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const config = configs['flat/recommended'] as TypedFlatConfigItem;
 

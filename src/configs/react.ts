@@ -1,10 +1,10 @@
-import type { OptionsFiles, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
+import type { OptionsFiles, OptionsReact, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
 
 import { isPackageExists } from 'local-pkg';
 
 import { ERROR, WARN } from '../flags';
 import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '../globs';
-import { interopDefault } from '../utils';
+import { ensurePackages, interopDefault } from '../utils';
 
 // react refresh
 const ReactRefreshAllowConstantExportPackages = [
@@ -29,8 +29,12 @@ const NextJsPackages = [
   'next',
 ];
 
+const ReactCompilerPackages = [
+  'babel-plugin-react-compiler',
+];
+
 export async function react(
-  options: OptionsFiles & OptionsOverrides & OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes = {},
+  options: OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes & OptionsReact & OptionsFiles = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_SRC],
@@ -40,8 +44,15 @@ export async function react(
       GLOB_ASTRO_TS,
     ],
     overrides = {},
+    reactCompiler = ReactCompilerPackages.some((i) => isPackageExists(i)),
     tsconfigPath,
   } = options;
+
+  await ensurePackages([
+    '@eslint-react/eslint-plugin',
+    'eslint-plugin-react-hooks',
+    'eslint-plugin-react-refresh',
+  ]);
 
   const isTypeAware = !!tsconfigPath;
 
@@ -64,7 +75,7 @@ export async function react(
   const isUsingReactRouter = ReactRouterPackages.some((i) => isPackageExists(i));
   const isUsingNext = NextJsPackages.some((i) => isPackageExists(i));
 
-  const plugins = pluginReact.configs.all.plugins;
+  const plugins = (pluginReact.configs.all as any).plugins;
 
   return [
     {
@@ -96,47 +107,7 @@ export async function react(
       name: 'vinicunca/react/rules',
 
       rules: {
-        // recommended rules from eslint-plugin-react-x https://eslint-react.xyz/docs/rules/overview#core-rules
-        'react/no-access-state-in-setstate': ERROR,
-        'react/no-array-index-key': WARN,
-        'react/no-children-count': WARN,
-        'react/no-children-for-each': WARN,
-        'react/no-children-map': WARN,
-        'react/no-children-only': WARN,
-        'react/no-children-to-array': WARN,
-        'react/no-clone-element': WARN,
-        'react/no-comment-textnodes': WARN,
-        'react/no-component-will-mount': ERROR,
-        'react/no-component-will-receive-props': ERROR,
-        'react/no-component-will-update': ERROR,
-        'react/no-context-provider': WARN,
-        'react/no-create-ref': ERROR,
-        'react/no-default-props': ERROR,
-        'react/no-direct-mutation-state': ERROR,
-        'react/no-duplicate-jsx-props': WARN,
-        'react/no-duplicate-key': WARN,
-        'react/no-forward-ref': WARN,
-        'react/no-implicit-key': WARN,
-        'react/no-missing-key': ERROR,
-        'react/no-nested-component-definitions': ERROR,
-        'react/no-prop-types': ERROR,
-        'react/no-redundant-should-component-update': ERROR,
-        'react/no-set-state-in-component-did-mount': WARN,
-        'react/no-set-state-in-component-did-update': WARN,
-        'react/no-set-state-in-component-will-update': WARN,
-        'react/no-string-refs': ERROR,
-        'react/no-unsafe-component-will-mount': WARN,
-        'react/no-unsafe-component-will-receive-props': WARN,
-        'react/no-unsafe-component-will-update': WARN,
-        'react/no-unstable-context-value': WARN,
-        'react/no-unstable-default-props': WARN,
-        'react/no-unused-class-component-members': WARN,
-        'react/no-unused-state': WARN,
-        'react/no-use-context': WARN,
-        'react/no-useless-forward-ref': WARN,
-        'react/use-jsx-vars': WARN,
-
-        // recommended rules from eslint-plugin-react-dom https://eslint-react.xyz/docs/rules/overview#dom-rule
+        // recommended rules from eslint-plugin-react-dom https://eslint-react.xyz/docs/rules/overview#dom-rules
         'react-dom/no-dangerously-set-innerhtml': WARN,
         'react-dom/no-dangerously-set-innerhtml-with-children': ERROR,
         'react-dom/no-find-dom-node': ERROR,
@@ -152,20 +123,77 @@ export async function react(
         'react-dom/no-unsafe-target-blank': WARN,
         'react-dom/no-use-form-state': ERROR,
         'react-dom/no-void-elements-with-children': ERROR,
-
-        // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks/src/rules
         'react-hooks/exhaustive-deps': WARN,
+        // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md
+        // Core hooks rules
         'react-hooks/rules-of-hooks': ERROR,
+        // recommended rules from eslint-plugin-react-x https://eslint-react.xyz/docs/rules/overview#core-rules
+        'react/jsx-no-comment-textnodes': WARN,
+        'react/jsx-no-duplicate-props': WARN,
+        'react/jsx-uses-vars': WARN,
+        'react/no-access-state-in-setstate': ERROR,
+        'react/no-array-index-key': WARN,
+        'react/no-children-count': WARN,
+        'react/no-children-for-each': WARN,
+        'react/no-children-map': WARN,
+        'react/no-children-only': WARN,
+        'react/no-children-to-array': WARN,
+        'react/no-clone-element': WARN,
+        'react/no-component-will-mount': ERROR,
+        'react/no-component-will-receive-props': ERROR,
+        'react/no-component-will-update': ERROR,
+        'react/no-context-provider': WARN,
+        'react/no-create-ref': ERROR,
+        'react/no-default-props': ERROR,
+        'react/no-direct-mutation-state': ERROR,
+        'react/no-duplicate-key': WARN,
+        'react/no-forward-ref': WARN,
+        'react/no-implicit-key': WARN,
+        'react/no-missing-key': ERROR,
+        'react/no-nested-component-definitions': ERROR,
+
+        'react/no-prop-types': ERROR,
+        'react/no-redundant-should-component-update': ERROR,
+        'react/no-set-state-in-component-did-mount': WARN,
+        'react/no-set-state-in-component-did-update': WARN,
+        'react/no-set-state-in-component-will-update': WARN,
+        'react/no-string-refs': ERROR,
+        'react/no-unnecessary-use-prefix': WARN,
+        'react/no-unsafe-component-will-mount': WARN,
+        'react/no-unsafe-component-will-receive-props': WARN,
+        'react/no-unsafe-component-will-update': WARN,
+        'react/no-unstable-context-value': WARN,
+        'react/no-unstable-default-props': WARN,
+        'react/no-unused-class-component-members': WARN,
+        'react/no-unused-state': WARN,
+        'react/no-use-context': WARN,
+
+        'react/no-useless-forward-ref': WARN,
+        'react/prefer-use-state-lazy-initialization': WARN,
+
+        // React Compiler rules
+        ...(reactCompiler
+          ? {
+              'react-hooks/component-hook-factories': ERROR,
+              'react-hooks/config': ERROR,
+              'react-hooks/error-boundaries': ERROR,
+              'react-hooks/gating': ERROR,
+              'react-hooks/globals': ERROR,
+              'react-hooks/immutability': ERROR,
+              'react-hooks/incompatible-library': WARN,
+              'react-hooks/preserve-manual-memoization': ERROR,
+              'react-hooks/purity': ERROR,
+              'react-hooks/refs': ERROR,
+              'react-hooks/set-state-in-effect': ERROR,
+              'react-hooks/set-state-in-render': ERROR,
+              'react-hooks/static-components': ERROR,
+              'react-hooks/unsupported-syntax': WARN,
+              'react-hooks/use-memo': ERROR,
+            }
+          : {}),
 
         // recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
         'react-hooks-extra/no-direct-set-state-in-use-effect': WARN,
-        'react-hooks-extra/no-unnecessary-use-prefix': WARN,
-
-        // recommended rules from eslint-plugin-react-web-api https://eslint-react.xyz/docs/rules/overview#web-api-rules
-        'react-web-api/no-leaked-event-listener': WARN,
-        'react-web-api/no-leaked-interval': WARN,
-        'react-web-api/no-leaked-resize-observer': WARN,
-        'react-web-api/no-leaked-timeout': WARN,
 
         // preconfigured rules from eslint-plugin-react-refresh https://github.com/ArnaudBarre/eslint-plugin-react-refresh/tree/main/src
         'react-refresh/only-export-components': [
@@ -197,11 +225,21 @@ export async function react(
                     'headers',
                     'loader',
                     'action',
+                    'clientLoader',
+                    'clientAction',
+                    'handle',
+                    'shouldRevalidate',
                   ]
                 : []),
             ],
           },
         ],
+        // recommended rules from eslint-plugin-react-web-api https://eslint-react.xyz/docs/rules/overview#web-api-rules
+        'react-web-api/no-leaked-event-listener': WARN,
+        'react-web-api/no-leaked-interval': WARN,
+        'react-web-api/no-leaked-resize-observer': WARN,
+
+        'react-web-api/no-leaked-timeout': WARN,
 
         // overrides
         ...overrides,
@@ -212,7 +250,7 @@ export async function react(
       ? [{
           files: filesTypeAware,
           ignores: ignoresTypeAware,
-          name: 'antfu/react/type-aware-rules',
+          name: 'vinicunca/react/type-aware-rules',
           rules: {
             ...typeAwareRules,
           },

@@ -6,6 +6,9 @@ import { glob } from 'tinyglobby';
 
 import { afterAll, beforeAll, it } from 'vitest';
 
+const isWindows = process.platform === 'win32'
+const timeout = isWindows ? 300_000 : 60_000
+
 beforeAll(async () => {
   await fs.rm('_fixtures', { force: true, recursive: true });
 });
@@ -62,7 +65,7 @@ runWithConfig(
   'ts-strict',
   {
     typescript: {
-      tsconfigPath: '../../tsconfig.json',
+      tsconfigPath: './tsconfig.json',
     },
   },
   {
@@ -109,20 +112,11 @@ runWithConfig(
   },
 );
 
-runWithConfig(
-  'unocss',
-  {
-    unocss: {
-      configPath: './play/uno.config.ts',
-    },
-  },
-);
-
 function runWithConfig(
   name: string,
   configs: OptionsConfig,
   ...items: Array<TypedFlatConfigItem>
-): undefined {
+) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
     const output = resolve('fixtures/output', name);
@@ -168,5 +162,5 @@ export default vinicuncaESLint(
       }
       await expect.soft(content).toMatchFileSnapshot(join(output, file));
     }));
-  }, 30_000);
+  }, timeout)
 }

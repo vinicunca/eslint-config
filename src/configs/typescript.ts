@@ -1,4 +1,15 @@
-import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, OptionsProjectType, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
+import type { Linter } from 'eslint';
+
+import type {
+  OptionsComponentExts,
+  OptionsFiles,
+  OptionsOverrides,
+  OptionsProjectType,
+  OptionsTypeScriptErasableOnly,
+  OptionsTypeScriptParserOptions,
+  OptionsTypeScriptWithTypes,
+  TypedFlatConfigItem,
+} from '../types';
 
 import process from 'node:process';
 
@@ -8,10 +19,11 @@ import { pluginAntfu } from '../plugins';
 import { interopDefault, renameRules } from '../utils';
 
 export async function typescript(
-  options: OptionsComponentExts & OptionsFiles & OptionsOverrides & OptionsProjectType & OptionsTypeScriptParserOptions & OptionsTypeScriptWithTypes = {},
+  options: OptionsFiles & OptionsComponentExts & OptionsOverrides & OptionsTypeScriptWithTypes & OptionsTypeScriptParserOptions & OptionsProjectType & OptionsTypeScriptErasableOnly = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
+    erasableOnly = false,
     overrides = {},
     overridesTypeAware = {},
     parserOptions = {},
@@ -172,7 +184,7 @@ export async function typescript(
         'ts/no-empty-object-type': [ERROR, { allowInterfaces: 'always' }],
 
         'ts/no-explicit-any': OFF,
-
+        'ts/no-extraneous-class': OFF,
         'ts/no-import-type-side-effects': ERROR,
 
         'ts/no-invalid-this': ERROR,
@@ -180,11 +192,13 @@ export async function typescript(
         'ts/no-invalid-void-type': OFF,
 
         'ts/no-non-null-assertion': OFF,
-
-        'ts/no-redeclare': ERROR,
-
+        'ts/no-redeclare': [ERROR, { builtinGlobals: false }],
         'ts/no-require-imports': ERROR,
-
+        'ts/no-unused-expressions': [ERROR, {
+          allowShortCircuit: true,
+          allowTaggedTemplates: true,
+          allowTernary: true,
+        }],
         'ts/no-unused-vars': [ERROR, {
           argsIgnorePattern: '^_',
           destructuredArrayIgnorePattern: '^_',
@@ -223,6 +237,23 @@ export async function typescript(
             ...overridesTypeAware,
           },
         }]
+      : [],
+
+    ...erasableOnly
+      ? [
+          {
+            name: 'antfu/typescript/erasable-syntax-only',
+            plugins: {
+              'erasable-syntax-only': await interopDefault(import('eslint-plugin-erasable-syntax-only')),
+            },
+            rules: {
+              'erasable-syntax-only/enums': 'error',
+              'erasable-syntax-only/import-aliases': 'error',
+              'erasable-syntax-only/namespaces': 'error',
+              'erasable-syntax-only/parameter-properties': 'error',
+            } as Record<string, Linter.RuleEntry>,
+          },
+        ]
       : [],
 
     {

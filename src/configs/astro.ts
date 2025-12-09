@@ -5,7 +5,7 @@ import { GLOB_ASTRO } from '../globs';
 import { interopDefault } from '../utils';
 
 export async function astro(
-  options: OptionsFiles & OptionsOverrides & OptionsStylistic = {},
+  options: OptionsOverrides & OptionsStylistic & OptionsFiles = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_ASTRO],
@@ -48,6 +48,10 @@ export async function astro(
       processor: 'astro/client-side-ts',
 
       rules: {
+        // Astro uses top level await for e.g. data fetching
+        // https://docs.astro.build/en/guides/data-fetching/#fetch-in-astro
+        'antfu/no-top-level-await': OFF,
+
         // use recommended rules
         'astro/missing-client-only-directive-value': ERROR,
         'astro/no-conflict-set-directives': ERROR,

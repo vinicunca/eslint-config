@@ -3,25 +3,35 @@ import type { ParserOptions } from '@typescript-eslint/parser';
 import type { Linter } from 'eslint';
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore';
 import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks';
-
 import type { ConfigNames, RuleOptions } from './typegen';
 import type { VendoredPrettierOptions } from './vendor/prettier-types';
 
 export type Awaitable<T> = Promise<T> | T;
 
-export interface Rules extends RuleOptions {}
+export type Rules = Record<string, Linter.RuleEntry<any> | undefined> & RuleOptions;
 
 export type { ConfigNames };
 
-export type TypedFlatConfigItem = {
-  // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
+/**
+ * An updated version of ESLint's `Linter.Config`, which provides autocompletion
+ * for `rules` and relaxes type limitations for `plugins` and `rules`, because
+ * many plugins still lack proper type definitions.
+ */
+export type TypedFlatConfigItem = Omit<Linter.Config, 'plugins' | 'rules'> & {
   /**
-   * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
+   * An object containing a name-value mapping of plugin names to plugin objects.
+   * When `files` is specified, these plugins are only available to the matching files.
    *
    * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
    */
   plugins?: Record<string, any>;
-} & Omit<Linter.Config<Linter.RulesRecord & Rules>, 'plugins'>;
+
+  /**
+   * An object containing the configured rules. When `files` or `ignores` are
+   * specified, these rule configurations are only available to the matching files.
+   */
+  rules?: Rules;
+};
 
 export interface OptionsFiles {
   /**
@@ -55,9 +65,26 @@ export interface OptionsVue extends OptionsOverrides {
   a11y?: boolean;
 }
 
+export interface OptionsJSXA11y extends OptionsOverrides {
+  // Add future a11y-specific options here
+}
+
+export interface OptionsJSX {
+  /**
+   * Enable JSX accessibility rules.
+   *
+   * Requires installing:
+   * - `eslint-plugin-jsx-a11y`
+   *
+   * Can be a boolean or an object for custom options and overrides.
+   * @default false
+   */
+  a11y?: boolean | OptionsJSXA11y;
+}
+
 export type OptionsTypescript
-  = (OptionsTypeScriptWithTypes & OptionsOverrides)
-    | (OptionsTypeScriptParserOptions & OptionsOverrides);
+  = (OptionsTypeScriptWithTypes & OptionsOverrides & OptionsTypeScriptErasableOnly)
+    | (OptionsTypeScriptParserOptions & OptionsOverrides & OptionsTypeScriptErasableOnly);
 
 export interface OptionsFormatters {
   /**
@@ -143,9 +170,9 @@ export interface OptionsComponentExts {
   componentExts?: Array<string>;
 }
 
-export interface OptionsUnicorn {
+export interface OptionsUnicorn extends OptionsOverrides {
   /**
-   * Include all rules recommended by `eslint-plugin-unicorn`, instead of only ones picked by Anthony.
+   * Include all rules recommended by `eslint-plugin-unicorn`.
    *
    * @default false
    */
@@ -192,7 +219,8 @@ export interface OptionsStylistic {
   stylistic?: boolean | StylisticConfig;
 }
 
-export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'jsx' | 'quotes' | 'semi'> {
+export interface StylisticConfig
+  extends Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi' | 'experimental'> {
 }
 
 export interface OptionsOverrides {
@@ -206,6 +234,16 @@ export interface OptionsProjectType {
    * @default 'app'
    */
   type?: 'app' | 'lib';
+}
+
+export interface OptionsTypeScriptErasableOnly {
+  /**
+   * Enable erasable syntax only rules.
+   *
+   * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only
+   * @default false
+   */
+  erasableOnly?: boolean;
 }
 
 export interface OptionsRegExp {
@@ -236,6 +274,10 @@ export interface OptionsUnoCSS extends OptionsOverrides {
   configPath?: string;
 }
 
+export interface OptionsReact extends OptionsOverrides {
+  reactCompiler?: boolean;
+}
+
 export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType {
   /**
    * Enable gitignore support.
@@ -246,6 +288,27 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * @default true
    */
   gitignore?: boolean | FlatGitignoreOptions;
+
+  /**
+   * Extend the global ignores.
+   *
+   * Passing an array to extends the ignores.
+   * Passing a function to modify the default ignores.
+   *
+   * @default []
+   */
+  ignores?: Array<string> | ((originals: Array<string>) => Array<string>);
+
+  /**
+   * Disable some opinionated rules to Anthony's preference.
+   *
+   * Including:
+   * - `antfu/top-level-function`
+   * - `antfu/if-newline`
+   *
+   * @default false
+   */
+  lessOpinionated?: boolean;
 
   /**
    * Core rules. Can't be disabled.
@@ -268,7 +331,7 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    *
    * @default true
    */
-  jsx?: boolean;
+  jsx?: boolean | OptionsJSX;
 
   /**
    * Options for eslint-plugin-unicorn.
@@ -354,12 +417,30 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
   /**
    * Enable react rules.
    *
+   * Requires installing:
+   * - `@eslint-react/eslint-plugin`
+   * - `eslint-plugin-react-hooks`
+   * - `eslint-plugin-react-refresh`
+   *
    * @default false
    */
-  react?: boolean | OptionsOverrides;
+  react?: boolean | OptionsReact;
+
+  /**
+   * Enable nextjs rules.
+   *
+   * Requires installing:
+   * - `@next/eslint-plugin-next`
+   *
+   * @default false
+   */
+  nextjs?: boolean | OptionsOverrides;
 
   /**
    * Enable solid rules.
+   *
+   * Requires installing:
+   * - `eslint-plugin-solid`
    *
    * @default false
    */
@@ -368,9 +449,12 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
   /**
    * Enable svelte rules.
    *
+   * Requires installing:
+   * - `eslint-plugin-svelte`
+   *
    * @default false
    */
-  svelte?: boolean;
+  svelte?: boolean | OptionsOverrides;
 
   /**
    * Enable unocss rules.
@@ -393,6 +477,9 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
 
   /**
    * Use external formatters to format files.
+   *
+   * Requires installing:
+   * - `eslint-plugin-format`
    *
    * When set to `true`, it will enable all formatters.
    *

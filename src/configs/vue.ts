@@ -8,13 +8,13 @@ import { GLOB_VUE } from '../globs';
 import { ensurePackages, interopDefault } from '../utils';
 
 export async function vue(
-  options: OptionsFiles & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsVue = {},
+  options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
+    a11y = false,
     files = [GLOB_VUE],
     overrides = {},
     stylistic = true,
-    a11y = false,
   } = options;
 
   const sfcBlocks = options.sfcBlocks === true
@@ -45,13 +45,6 @@ export async function vue(
 
   return [
     {
-      name: 'vinicunca/vue/setup',
-
-      plugins: {
-        vue: pluginVue,
-        ...a11y ? { 'vue-a11y': pluginVueA11y } : {},
-      },
-
       // This allows Vue plugin to work with auto imports
       // https://github.com/vuejs/eslint-plugin-vue/pull/2422
       languageOptions: {
@@ -71,6 +64,13 @@ export async function vue(
           watch: 'readonly',
           watchEffect: 'readonly',
         },
+      },
+
+      name: 'vinicunca/vue/setup',
+
+      plugins: {
+        vue: pluginVue,
+        ...a11y ? { 'vue-a11y': pluginVueA11y } : {},
       },
     },
 
@@ -114,7 +114,9 @@ export async function vue(
         ...pluginVue.configs['flat/strongly-recommended'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
         ...pluginVue.configs['flat/recommended'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
 
+        'antfu/no-top-level-await': OFF,
         'node/prefer-global/process': OFF,
+        'ts/explicit-function-return-type': OFF,
 
         'vue/block-order': [ERROR, {
           order: ['script', 'template', 'style'],
@@ -145,6 +147,8 @@ export async function vue(
         'vue/eqeqeq': [ERROR, 'smart'],
 
         'vue/html-indent': [ERROR, indent],
+
+        'vue/html-quotes': ['error', 'double'],
 
         'vue/max-attributes-per-line': [ERROR],
 
@@ -194,6 +198,8 @@ export async function vue(
         'vue/prefer-separate-static-class': ERROR,
 
         'vue/prefer-template': ERROR,
+
+        'vue/prop-name-casing': ['error', 'camelCase'],
 
         'vue/require-default-prop': OFF,
 

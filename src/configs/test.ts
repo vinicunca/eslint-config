@@ -49,14 +49,22 @@ export async function test(
       name: 'vinicunca/test/rules',
 
       rules: {
-        'node/prefer-global/process': OFF,
         'sonar/no-duplicate-string': OFF,
 
         'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],
         'test/no-identical-title': ERROR,
+        'test/no-import-node-test': ERROR,
         'test/no-only-tests': isInEditor ? WARN : ERROR,
         'test/prefer-hooks-in-order': ERROR,
         'test/prefer-lowercase-title': ERROR,
+
+        // Disables
+        ...{
+          'antfu/no-top-level-await': OFF,
+          'no-unused-expressions': OFF,
+          'node/prefer-global/process': OFF,
+          'ts/explicit-function-return-type': OFF,
+        },
 
         ...overrides,
       },

@@ -10,8 +10,9 @@
   },
   "include": [
     "**/*.ts"
-, "../scripts/typegen.ts"  ],
+  ],
   "exclude": [
-    "./fixtures/**/*.*"
+    "./fixtures/**/*.*",
+    "./_fixtures/**/*.*"
   ]
 }

@@ -2,16 +2,20 @@ import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsTypeS
 
 import { ERROR, OFF, WARN } from '../flags';
 import { GLOB_JSX, GLOB_TSX } from '../globs';
-import { interopDefault, toArray } from '../utils';
+import { ensurePackages, interopDefault, toArray } from '../utils';
 
 export async function solid(
-  options: OptionsFiles & OptionsHasTypeScript & OptionsOverrides & OptionsTypeScriptWithTypes = {},
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles & OptionsTypeScriptWithTypes = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_JSX, GLOB_TSX],
     overrides = {},
     typescript = true,
   } = options;
+
+  await ensurePackages([
+    'eslint-plugin-solid',
+  ]);
 
   const tsconfigPath = options?.tsconfigPath
     ? toArray(options.tsconfigPath)

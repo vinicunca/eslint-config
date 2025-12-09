@@ -4,10 +4,10 @@ import { isBoolean } from '@vinicunca/perkakas';
 
 import { ERROR, OFF, WARN } from '../flags';
 import { GLOB_SVELTE } from '../globs';
-import { interopDefault } from '../utils';
+import { ensurePackages, interopDefault } from '../utils';
 
 export async function svelte(
-  options: OptionsFiles & OptionsHasTypeScript & OptionsOverrides & OptionsStylistic = {},
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     files = [GLOB_SVELTE],
@@ -19,6 +19,10 @@ export async function svelte(
     indent = 2,
     quotes = 'single',
   } = isBoolean(stylistic) ? {} : stylistic;
+
+  await ensurePackages([
+    'eslint-plugin-svelte',
+  ]);
 
   const [
     pluginSvelte,

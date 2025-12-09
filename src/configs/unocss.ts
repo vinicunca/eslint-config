@@ -1,16 +1,20 @@
 import type { OptionsUnoCSS, TypedFlatConfigItem } from '../types';
 
 import { ERROR, WARN } from '../flags';
-import { interopDefault } from '../utils';
+import { ensurePackages, interopDefault } from '../utils';
 
 export async function unocss(
   options: OptionsUnoCSS = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     attributify = false,
-    strict = false,
     configPath,
+    strict = false,
   } = options;
+
+  await ensurePackages([
+    '@unocss/eslint-plugin',
+  ]);
 
   const [
     pluginUnoCSS,
@@ -24,11 +28,6 @@ export async function unocss(
       plugins: {
         unocss: pluginUnoCSS,
       },
-      settings: {
-        unocss: {
-          configPath,
-        },
-      },
       rules: {
         'unocss/order': WARN,
         ...attributify
@@ -41,6 +40,11 @@ export async function unocss(
               'unocss/blocklist': ERROR,
             }
           : {},
+      },
+      settings: {
+        unocss: {
+          configPath,
+        },
       },
     },
   ];
