@@ -8,7 +8,7 @@ import fs from 'fs-extra';
 
 import JITI from 'jiti';
 
-import { GLOB_EXCLUDE } from '../eslint/src/globs';
+import { GLOB_EXCLUDE } from '../src/globs';
 
 /**
  * First we store the rules into a Map

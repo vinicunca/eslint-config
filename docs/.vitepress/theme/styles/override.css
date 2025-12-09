@@ -1,6 +1,0 @@
-/* This is to display the icons in sidebar links */
-.VPLink p:has(i) {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}

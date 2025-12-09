@@ -6,4 +6,5 @@ export default defineConfig({
   ],
   shims: true,
   format: ['esm'],
+  exports: true,
 });

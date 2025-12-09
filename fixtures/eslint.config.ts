@@ -1,6 +1,6 @@
-import { vinicuncaESLint } from './src';
+import { antfu } from './src'
 
-export default vinicuncaESLint(
+export default antfu(
   {
     vue: {
       a11y: true,
@@ -9,21 +9,10 @@ export default vinicuncaESLint(
     solid: true,
     svelte: true,
     astro: true,
-    nextjs: false,
-    typescript: {
-      erasableOnly: true,
-    },
-    markdown: {
-      overrides: {
-        'no-dupe-keys': 'off',
-      },
-    },
+    typescript: true,
     formatters: true,
     pnpm: true,
     type: 'lib',
-    jsx: {
-      a11y: true,
-    },
   },
   {
     ignores: [
@@ -38,4 +27,4 @@ export default vinicuncaESLint(
       'perfectionist/sort-objects': 'error',
     },
   },
-);
+)
