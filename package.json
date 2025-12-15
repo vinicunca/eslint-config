@@ -54,7 +54,7 @@
   "scripts": {
     "lint": "TIMING=1 eslint .",
     "test": "vitest",
-    "postinstall": "is-ci || pnpm run stub",
+    "prepare": "is-ci || pnpm run stub",
     "release": "bumpp",
     "build": "pnpm run typegen && tsdown --clean --dts",
     "stub": "tsdown",
