@@ -78,7 +78,7 @@ catalog:
   taze: ^19.9.2
   tinyglobby: ^0.2.15
   toml-eslint-parser: ^0.10.1
-  tsdown: ^0.17.2
+  tsdown: ^0.18.2
   tsx: ^4.21.0
   typescript: ^5.9.3
   vitest: ^4.0.15
