@@ -654,6 +654,11 @@ export interface RuleOptions {
    */
   'import/consistent-type-specifier-style'?: Linter.RuleEntry<ImportConsistentTypeSpecifierStyle>
   /**
+   * Ensure all exports appear after other statements.
+   * @see https://github.com/9romise/eslint-plugin-import-lite/blob/main/src/rules/exports-last/README.md
+   */
+  'import/exports-last'?: Linter.RuleEntry<[]>
+  /**
    * Ensure all imports appear before other statements.
    * @see https://github.com/9romise/eslint-plugin-import-lite/blob/main/src/rules/first/README.md
    */
@@ -6394,6 +6399,11 @@ export interface RuleOptions {
    */
   'test/no-test-return-statement'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unnecessary async function wrapper for expected promises
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-unneeded-async-expect-function.md
+   */
+  'test/no-unneeded-async-expect-function'?: Linter.RuleEntry<[]>
+  /**
    * Enforce padding around `afterAll` blocks
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/padding-around-after-all-blocks.md
    */
@@ -6502,7 +6512,7 @@ export interface RuleOptions {
    * prefer dynamic import in mock
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-import-in-mock.md
    */
-  'test/prefer-import-in-mock'?: Linter.RuleEntry<[]>
+  'test/prefer-import-in-mock'?: Linter.RuleEntry<TestPreferImportInMock>
   /**
    * enforce importing Vitest globals
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-importing-vitest-globals.md
@@ -6564,6 +6574,11 @@ export interface RuleOptions {
    */
   'test/prefer-to-contain'?: Linter.RuleEntry<[]>
   /**
+   * Suggest using `toHaveBeenCalledTimes()`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-have-been-called-times.md
+   */
+  'test/prefer-to-have-been-called-times'?: Linter.RuleEntry<[]>
+  /**
    * enforce using toHaveLength()
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-have-length.md
    */
@@ -6588,11 +6603,6 @@ export interface RuleOptions {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-hook.md
    */
   'test/require-hook'?: Linter.RuleEntry<TestRequireHook>
-  /**
-   * require usage of import in vi.mock()
-   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-import-vi-mock.md
-   */
-  'test/require-import-vi-mock'?: Linter.RuleEntry<[]>
   /**
    * require local Test Context for concurrent snapshot tests
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-local-test-context-for-concurrent-snapshots.md
@@ -7212,6 +7222,11 @@ export interface RuleOptions {
    * @see https://typescript-eslint.io/rules/no-useless-constructor
    */
   'ts/no-useless-constructor'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow default values that will never be used
+   * @see https://typescript-eslint.io/rules/no-useless-default-assignment
+   */
+  'ts/no-useless-default-assignment'?: Linter.RuleEntry<[]>
   /**
    * Disallow empty exports that don't change anything in a module file
    * @see https://typescript-eslint.io/rules/no-useless-empty-export
@@ -17606,6 +17621,10 @@ type TestPreferExpectAssertions = []|[{
   onlyFunctionsWithAsyncKeyword?: boolean
   onlyFunctionsWithExpectInLoop?: boolean
   onlyFunctionsWithExpectInCallback?: boolean
+}]
+// ----- test/prefer-import-in-mock -----
+type TestPreferImportInMock = []|[{
+  fixable?: boolean
 }]
 // ----- test/prefer-lowercase-title -----
 type TestPreferLowercaseTitle = []|[{
