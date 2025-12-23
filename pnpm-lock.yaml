@@ -193,8 +193,8 @@ catalogs:
       specifier: ^2.13.1
       version: 2.13.1
     svelte:
-      specifier: ^5.45.8
-      version: 5.45.8
+      specifier: ^5.46.0
+      version: 5.46.0
     svelte-eslint-parser:
       specifier: ^1.4.1
       version: 1.4.1
@@ -404,7 +404,7 @@ importers:
         version: 0.14.5(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       eslint-plugin-svelte:
         specifier: 'catalog:'
-        version: 3.13.1(eslint@9.39.2(jiti@2.6.1))(svelte@5.45.8)
+        version: 3.13.1(eslint@9.39.2(jiti@2.6.1))(svelte@5.46.0)
       eslint-plugin-vuejs-accessibility:
         specifier: 'catalog:'
         version: 2.4.1(eslint@9.39.2(jiti@2.6.1))
@@ -437,10 +437,10 @@ importers:
         version: 2.13.1
       svelte:
         specifier: 'catalog:'
-        version: 5.45.8
+        version: 5.46.0
       svelte-eslint-parser:
         specifier: 'catalog:'
-        version: 1.4.1(svelte@5.45.8)
+        version: 1.4.1(svelte@5.46.0)
       taze:
         specifier: 'catalog:'
         version: 19.9.2
@@ -3631,8 +3631,8 @@ packages:
       svelte:
         optional: true
 
-  svelte@5.45.8:
-    resolution: {integrity: sha512-1Jh7FwVh/2Uxg0T7SeE1qFKMhwYH45b2v53bcZpW7qHa6O8iU1ByEj56PF0IQ6dU4HE5gRkic6h+vx+tclHeiw==}
+  svelte@5.46.0:
+    resolution: {integrity: sha512-ZhLtvroYxUxr+HQJfMZEDRsGsmU46x12RvAv/zi9584f5KOX7bUrEbhPJ7cKFmUvZTJXi/CFZUYwDC6M1FigPw==}
     engines: {node: '>=18'}
 
   synckit@0.11.11:
@@ -6065,7 +6065,7 @@ snapshots:
       semver: 7.7.2
       typescript: 5.9.3
 
-  eslint-plugin-svelte@3.13.1(eslint@9.39.2(jiti@2.6.1))(svelte@5.45.8):
+  eslint-plugin-svelte@3.13.1(eslint@9.39.2(jiti@2.6.1))(svelte@5.46.0):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.2(jiti@2.6.1))
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -6077,9 +6077,9 @@ snapshots:
       postcss-load-config: 3.1.4(postcss@8.5.6)
       postcss-safe-parser: 7.0.1(postcss@8.5.6)
       semver: 7.7.3
-      svelte-eslint-parser: 1.4.1(svelte@5.45.8)
+      svelte-eslint-parser: 1.4.1(svelte@5.46.0)
     optionalDependencies:
-      svelte: 5.45.8
+      svelte: 5.46.0
     transitivePeerDependencies:
       - ts-node
 
@@ -7661,7 +7661,7 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svelte-eslint-parser@1.4.1(svelte@5.45.8):
+  svelte-eslint-parser@1.4.1(svelte@5.46.0):
     dependencies:
       eslint-scope: 8.4.0
       eslint-visitor-keys: 4.2.1
@@ -7670,9 +7670,9 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.6)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
-      svelte: 5.45.8
+      svelte: 5.46.0
 
-  svelte@5.45.8:
+  svelte@5.46.0:
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
