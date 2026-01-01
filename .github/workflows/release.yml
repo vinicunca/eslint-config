@@ -10,7 +10,6 @@ jobs:
     uses: sxzz/workflows/.github/workflows/release.yml@v1
     with:
       publish: true
-    secrets: inherit
     permissions:
       contents: write
       id-token: write

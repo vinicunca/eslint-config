@@ -38,4 +38,9 @@ export default vinicuncaESLint(
       'perfectionist/sort-objects': 'error',
     },
   },
+  {
+    rules: {
+      'pnpm/yaml-enforce-settings': 'off',
+    },
+  },
 );
