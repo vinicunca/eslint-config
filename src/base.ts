@@ -117,6 +117,7 @@ export function vinicuncaESLint(
     }
   }
 
+  // eslint-disable-next-line no-nested-ternary
   const stylisticOptions = options.stylistic === false
     ? false
     // eslint-disable-next-line sonar/no-nested-conditional

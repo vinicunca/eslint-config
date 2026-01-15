@@ -1,8 +1,14 @@
-import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, OptionsVue, TypedFlatConfigItem } from '../types';
+import type {
+  OptionsFiles,
+  OptionsHasTypeScript,
+  OptionsOverrides,
+  OptionsStylistic,
+  OptionsVue,
+  TypedFlatConfigItem,
+} from '../types';
+
 import { isBoolean } from '@vinicunca/perkakas';
-
 import { mergeProcessors } from 'eslint-merge-processors';
-
 import { ALWAYS, ERROR, NEVER, OFF, WARN } from '../flags';
 import { GLOB_VUE } from '../globs';
 import { ensurePackages, interopDefault } from '../utils';
@@ -126,6 +132,9 @@ export async function vue(
 
         'vue/component-options-name-casing': [ERROR, 'PascalCase'],
 
+        // this is deprecated
+        'vue/component-tags-order': OFF,
+
         'vue/custom-event-name-casing': [
           ERROR,
           'camelCase',
@@ -148,7 +157,7 @@ export async function vue(
 
         'vue/html-indent': [ERROR, indent],
 
-        'vue/html-quotes': ['error', 'double'],
+        'vue/html-quotes': [ERROR, 'double'],
 
         'vue/max-attributes-per-line': [ERROR],
 
@@ -159,8 +168,6 @@ export async function vue(
         'vue/no-dupe-keys': OFF,
 
         'vue/no-empty-pattern': ERROR,
-
-        'vue/no-extra-parens': [ERROR, 'functions'],
 
         'vue/no-irregular-whitespace': ERROR,
 
@@ -199,7 +206,7 @@ export async function vue(
 
         'vue/prefer-template': ERROR,
 
-        'vue/prop-name-casing': ['error', 'camelCase'],
+        'vue/prop-name-casing': [ERROR, 'camelCase'],
 
         'vue/require-default-prop': OFF,
 
@@ -257,7 +264,9 @@ export async function vue(
 
               'vue/object-curly-spacing': [ERROR, ALWAYS],
 
-              'vue/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
+              'vue/object-property-newline': [ERROR, {
+                allowAllPropertiesOnSameLine: true,
+              }],
 
               'vue/operator-linebreak': [ERROR, 'before'],
 
