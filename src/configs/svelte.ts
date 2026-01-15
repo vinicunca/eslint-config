@@ -1,6 +1,6 @@
 import type { OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 
-import { isBoolean } from '@vinicunca/perkakas';
+import { isBoolean, isNumber } from '@vinicunca/perkakas';
 
 import { ERROR, OFF, WARN } from '../flags';
 import { GLOB_SVELTE } from '../globs';
@@ -106,7 +106,11 @@ export async function svelte(
               'svelte/html-closing-bracket-spacing': ERROR,
               // quotes only supports single and double quotes but in options we have backtick as well
               'svelte/html-quotes': [ERROR, { prefer: quotes as any }],
-              'svelte/indent': [ERROR, { alignAttributesVertically: true, indent }],
+              'svelte/indent': [ERROR, {
+                alignAttributesVertically: true,
+                // eslint-disable-next-line no-nested-ternary, sonar/no-nested-conditional
+                indent: isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2,
+              }],
               'svelte/mustache-spacing': ERROR,
               'svelte/no-spaces-around-equal-signs-in-attribute': ERROR,
               'svelte/no-trailing-spaces': ERROR,

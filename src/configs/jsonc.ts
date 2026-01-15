@@ -1,6 +1,6 @@
 import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 
-import { isBoolean } from '@vinicunca/perkakas';
+import { isBoolean, isNumber } from '@vinicunca/perkakas';
 
 import { ERROR, NEVER } from '../flags';
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs';
@@ -106,7 +106,8 @@ export async function jsonc(
 
               'jsonc/comma-style': [ERROR, 'last'],
 
-              'jsonc/indent': [ERROR, indent],
+              // eslint-disable-next-line no-nested-ternary, sonar/no-nested-conditional
+              'jsonc/indent': [ERROR, isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2],
 
               'jsonc/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],
 

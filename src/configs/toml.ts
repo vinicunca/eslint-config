@@ -1,6 +1,6 @@
 import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 
-import { isBoolean } from '@vinicunca/perkakas';
+import { isBoolean, isNumber } from '@vinicunca/perkakas';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_TOML } from '../globs';
@@ -62,7 +62,8 @@ export async function toml(
               'toml/array-bracket-newline': ERROR,
               'toml/array-bracket-spacing': ERROR,
               'toml/array-element-newline': ERROR,
-              'toml/indent': [ERROR, indent === 'tab' ? 2 : indent],
+              // eslint-disable-next-line no-nested-ternary, sonar/no-nested-conditional
+              'toml/indent': [ERROR, isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2],
               'toml/inline-table-curly-spacing': ERROR,
               'toml/key-spacing': ERROR,
               'toml/padding-line-between-pairs': ERROR,

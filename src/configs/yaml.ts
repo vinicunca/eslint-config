@@ -1,6 +1,6 @@
 import type { OptionsFiles, OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 
-import { isBoolean } from '@vinicunca/perkakas';
+import { isBoolean, isNumber } from '@vinicunca/perkakas';
 
 import { ERROR, OFF } from '../flags';
 import { GLOB_YAML } from '../globs';
@@ -64,7 +64,7 @@ export async function yaml(
               'yaml/flow-mapping-curly-spacing': ERROR,
               'yaml/flow-sequence-bracket-newline': ERROR,
               'yaml/flow-sequence-bracket-spacing': ERROR,
-              'yaml/indent': [ERROR, indent === 'tab' ? 2 : indent],
+              'yaml/indent': [ERROR, isNumber(indent) ? indent : 2],
               'yaml/key-spacing': ERROR,
               'yaml/no-tab-indent': ERROR,
               'yaml/quotes': [ERROR, { avoidEscape: true, prefer: quotes === 'backtick' ? 'single' : quotes }],
