@@ -26,15 +26,15 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
           ERROR,
           {
             groups: [
-              'type',
-              ['parent-type', 'sibling-type', 'index-type', 'internal-type'],
+              'type-import',
+              ['type-parent', 'type-sibling', 'type-index', 'type-internal'],
 
-              'builtin',
-              'external',
-              'internal',
-              ['parent', 'sibling', 'index'],
+              'value-builtin',
+              'value-external',
+              'value-internal',
+              ['value-parent', 'value-sibling', 'value-index'],
               'side-effect',
-              'object',
+              'ts-equals-import',
               'unknown',
             ],
             newlinesBetween: 'ignore',
