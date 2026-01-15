@@ -56,8 +56,7 @@ export async function typescript(
     'ts/no-floating-promises': ERROR,
     'ts/no-for-in-array': ERROR,
     'ts/no-implied-eval': ERROR,
-    // Temporary turning it off due to performance
-    'ts/no-misused-promises': OFF,
+    'ts/no-misused-promises': ERROR,
     'ts/no-unnecessary-type-assertion': ERROR,
     'ts/no-unsafe-argument': ERROR,
     'ts/no-unsafe-assignment': ERROR,
@@ -123,8 +122,12 @@ export async function typescript(
     // assign type-aware parser for type-aware files and type-unaware parser for the rest
     ...isTypeAware
       ? [
-          makeParser({ files: filesTypeAware, ignores: ignoresTypeAware, typeAware: true }),
-          makeParser({ files, ignores: filesTypeAware, typeAware: false }),
+          makeParser({ files, typeAware: false }),
+          makeParser({
+            files: filesTypeAware,
+            ignores: ignoresTypeAware,
+            typeAware: true,
+          }),
         ]
       : [
           makeParser({ files, typeAware: false }),
@@ -147,11 +150,9 @@ export async function typescript(
         ),
 
         'no-dupe-class-members': OFF,
-        'no-invalid-this': OFF,
 
         'no-redeclare': OFF,
 
-        'no-unused-vars': OFF,
         'no-use-before-define': OFF,
 
         'no-useless-constructor': OFF,
@@ -247,45 +248,13 @@ export async function typescript(
               'erasable-syntax-only': await interopDefault(import('eslint-plugin-erasable-syntax-only')),
             },
             rules: {
-              'erasable-syntax-only/enums': 'error',
-              'erasable-syntax-only/import-aliases': 'error',
-              'erasable-syntax-only/namespaces': 'error',
-              'erasable-syntax-only/parameter-properties': 'error',
+              'erasable-syntax-only/enums': ERROR,
+              'erasable-syntax-only/import-aliases': ERROR,
+              'erasable-syntax-only/namespaces': ERROR,
+              'erasable-syntax-only/parameter-properties': ERROR,
             } as Record<string, Linter.RuleEntry>,
           },
         ]
       : [],
-
-    {
-      files: ['**/*.d.?([cm])ts'],
-
-      name: 'vinicunca/typescript/disables/dts',
-
-      rules: {
-        'eslint-comments/no-unlimited-disable': OFF,
-        'no-restricted-syntax': OFF,
-        'unused-imports/no-unused-vars': OFF,
-      },
-    },
-
-    {
-      files: ['**/*.{test,spec}.ts?(x)'],
-
-      name: 'vinicunca/typescript/disables/tests',
-
-      rules: {
-        'no-unused-expressions': OFF,
-      },
-    },
-
-    {
-      files: ['**/*.js', '**/*.cjs'],
-
-      name: 'vinicunca/typescript/disables/javascript',
-
-      rules: {
-        'ts/no-require-imports': OFF,
-      },
-    },
   ];
 }
