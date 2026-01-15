@@ -2,14 +2,14 @@ import type { Linter } from 'eslint';
 import type { RuleOptions } from './typegen';
 import type { Awaitable, ConfigNames, OptionsConfig, TypedFlatConfigItem } from './types';
 import { isBoolean } from '@vinicunca/perkakas';
-
 import { FlatConfigComposer } from 'eslint-flat-config-utils';
+import { findUpSync } from 'find-up-simple';
 import { isPackageExists } from 'local-pkg';
-
 import {
   astro,
   command,
   comments,
+  disables,
   ignores,
   imports,
   javascript,
@@ -83,8 +83,8 @@ export const defaultPluginRenaming = {
  *  The merged ESLint configurations.
  */
 export function vinicuncaESLint(
-  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
-  ...userConfigs: Array<Awaitable<Array<Linter.Config> | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | TypedFlatConfigItem>>
+  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files' | 'ignores'> = {},
+  ...userConfigs: Array<Awaitable<TypedFlatConfigItem | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | Array<Linter.Config>>>
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
     astro: enableAstro = false,
@@ -93,9 +93,11 @@ export function vinicuncaESLint(
     gitignore: enableGitignore = true,
     ignores: userIgnores = [],
     imports: enableImports = true,
+    jsdoc: enableJsdoc = true,
     jsx: enableJsx = true,
     nextjs: enableNextjs = false,
-    pnpm: enableCatalogs = false,
+    node: enableNode = true,
+    pnpm: enableCatalogs = !!findUpSync('pnpm-workspace.yaml'),
     react: enableReact = false,
     regexp: enableRegexp = true,
     solid: enableSolid = false,
@@ -115,7 +117,6 @@ export function vinicuncaESLint(
     }
   }
 
-  // eslint-disable-next-line no-nested-ternary
   const stylisticOptions = options.stylistic === false
     ? false
     // eslint-disable-next-line sonar/no-nested-conditional
@@ -131,15 +132,19 @@ export function vinicuncaESLint(
 
   if (enableGitignore) {
     if (!isBoolean(enableGitignore)) {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
-        name: 'vinicunca/gitignore',
-        ...enableGitignore,
-      })]));
+      configs.push(
+        interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
+          name: 'vinicunca/gitignore',
+          ...enableGitignore,
+        })]),
+      );
     } else {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
-        name: 'vinicunca/gitignore',
-        strict: false,
-      })]));
+      configs.push(
+        interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
+          name: 'vinicunca/gitignore',
+          strict: false,
+        })]),
+      );
     }
   }
 
@@ -156,12 +161,6 @@ export function vinicuncaESLint(
 
     comments(),
 
-    node(),
-
-    jsdoc({
-      stylistic: stylisticOptions,
-    }),
-
     imports({
       stylistic: stylisticOptions,
     }),
@@ -173,16 +172,26 @@ export function vinicuncaESLint(
     sonar(),
   );
 
+  if (enableNode) {
+    configs.push(
+      node(),
+    );
+  }
+
+  if (enableJsdoc) {
+    configs.push(
+      jsdoc({
+        stylistic: stylisticOptions,
+      }),
+    );
+  }
+
   if (enableImports) {
     configs.push(
-      imports(enableImports === true
-        ? {
-            stylistic: stylisticOptions,
-          }
-        : {
-            stylistic: stylisticOptions,
-            ...enableImports,
-          }),
+      imports({
+        stylistic: stylisticOptions,
+        ...resolveSubOptions(options, 'imports'),
+      }),
     );
   }
 
@@ -201,12 +210,14 @@ export function vinicuncaESLint(
   }
 
   if (enableTypeScript) {
-    configs.push(typescript({
-      ...typescriptOptions,
-      componentExts,
-      overrides: getOverrides(options, 'typescript'),
-      type: options.type,
-    }));
+    configs.push(
+      typescript({
+        ...typescriptOptions,
+        componentExts,
+        overrides: getOverrides(options, 'typescript'),
+        type: options.type,
+      }),
+    );
   }
 
   if (stylisticOptions) {
@@ -218,68 +229,86 @@ export function vinicuncaESLint(
   }
 
   if (enableRegexp) {
-    configs.push(regexp(isBoolean(enableRegexp) ? {} : enableRegexp));
+    configs.push(
+      regexp(isBoolean(enableRegexp) ? {} : enableRegexp),
+    );
   }
 
   if (options.test ?? true) {
-    configs.push(test({
-      isInEditor,
-      overrides: getOverrides(options, 'test'),
-    }));
+    configs.push(
+      test({
+        isInEditor,
+        overrides: getOverrides(options, 'test'),
+      }),
+    );
   }
 
   if (enableVue) {
-    configs.push(vue({
-      ...resolveSubOptions(options, 'vue'),
-      overrides: getOverrides(options, 'vue'),
-      stylistic: stylisticOptions,
-      typescript: !!enableTypeScript,
-    }));
+    configs.push(
+      vue({
+        ...resolveSubOptions(options, 'vue'),
+        overrides: getOverrides(options, 'vue'),
+        stylistic: stylisticOptions,
+        typescript: !!enableTypeScript,
+      }),
+    );
   }
 
   if (enableReact) {
-    configs.push(react({
-      ...typescriptOptions,
-      ...resolveSubOptions(options, 'react'),
-      overrides: getOverrides(options, 'react'),
-      tsconfigPath,
-    }));
+    configs.push(
+      react({
+        ...typescriptOptions,
+        ...resolveSubOptions(options, 'react'),
+        overrides: getOverrides(options, 'react'),
+        tsconfigPath,
+      }),
+    );
   }
 
   if (enableNextjs) {
-    configs.push(nextjs({
-      overrides: getOverrides(options, 'nextjs'),
-    }));
+    configs.push(
+      nextjs({
+        overrides: getOverrides(options, 'nextjs'),
+      }),
+    );
   }
 
   if (enableSolid) {
-    configs.push(solid({
-      overrides: getOverrides(options, 'solid'),
-      tsconfigPath,
-      typescript: !!enableTypeScript,
-    }));
+    configs.push(
+      solid({
+        overrides: getOverrides(options, 'solid'),
+        tsconfigPath,
+        typescript: !!enableTypeScript,
+      }),
+    );
   }
 
   if (enableSvelte) {
-    configs.push(svelte({
-      overrides: getOverrides(options, 'svelte'),
-      stylistic: stylisticOptions,
-      typescript: !!enableTypeScript,
-    }));
+    configs.push(
+      svelte({
+        overrides: getOverrides(options, 'svelte'),
+        stylistic: stylisticOptions,
+        typescript: !!enableTypeScript,
+      }),
+    );
   }
 
   if (enableUnoCSS) {
-    configs.push(unocss({
-      ...resolveSubOptions(options, 'unocss'),
-      overrides: getOverrides(options, 'unocss'),
-    }));
+    configs.push(
+      unocss({
+        ...resolveSubOptions(options, 'unocss'),
+        overrides: getOverrides(options, 'unocss'),
+      }),
+    );
   }
 
   if (enableAstro) {
-    configs.push(astro({
-      overrides: getOverrides(options, 'astro'),
-      stylistic: stylisticOptions,
-    }));
+    configs.push(
+      astro({
+        overrides: getOverrides(options, 'astro'),
+        stylistic: stylisticOptions,
+      }),
+    );
   }
 
   if (options.jsonc ?? true) {
@@ -294,25 +323,33 @@ export function vinicuncaESLint(
   }
 
   if (enableCatalogs) {
+    const optionsPnpm = resolveSubOptions(options, 'pnpm');
     configs.push(
       pnpm({
         isInEditor,
+        json: options.jsonc !== false,
+        yaml: options.yaml !== false,
+        ...optionsPnpm,
       }),
     );
   }
 
   if (options.yaml ?? true) {
-    configs.push(yaml({
-      overrides: getOverrides(options, 'yaml'),
-      stylistic: stylisticOptions,
-    }));
+    configs.push(
+      yaml({
+        overrides: getOverrides(options, 'yaml'),
+        stylistic: stylisticOptions,
+      }),
+    );
   }
 
   if (options.toml ?? true) {
-    configs.push(toml({
-      overrides: getOverrides(options, 'toml'),
-      stylistic: stylisticOptions,
-    }));
+    configs.push(
+      toml({
+        overrides: getOverrides(options, 'toml'),
+        stylistic: stylisticOptions,
+      }),
+    );
   }
 
   if (options.markdown ?? true) {
@@ -327,11 +364,17 @@ export function vinicuncaESLint(
   }
 
   if (options.formatters) {
-    configs.push(formatters(
-      options.formatters,
-      isBoolean(stylisticOptions) ? {} : stylisticOptions,
-    ));
+    configs.push(
+      formatters(
+        options.formatters,
+        isBoolean(stylisticOptions) ? {} : stylisticOptions,
+      ),
+    );
   }
+
+  configs.push(
+    disables(),
+  );
 
   if ('files' in options) {
     throw new Error('[@vinicunca/eslint-config] The first argument should not contain the "files" property as the options are supposed to be global. Place it in the second or later config instead.');

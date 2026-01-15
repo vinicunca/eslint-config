@@ -1,50 +1,85 @@
-import type { OptionsIsInEditor, TypedFlatConfigItem } from '../types';
+import type { OptionsPnpm, TypedFlatConfigItem } from '../types';
+import fs from 'node:fs/promises';
+import { findUp } from 'find-up-simple';
 import { ERROR } from '../flags';
-
 import { interopDefault } from '../utils';
 
+async function detectCatalogUsage(): Promise<boolean> {
+  const workspaceFile = await findUp('pnpm-workspace.yaml');
+  if (!workspaceFile) {
+    return false;
+  }
+
+  const yaml = await fs.readFile(workspaceFile, 'utf-8');
+  return yaml.includes('catalog:') || yaml.includes('catalogs:');
+}
+
 export async function pnpm(
-  options: OptionsIsInEditor,
+  options: OptionsPnpm,
 ): Promise<Array<TypedFlatConfigItem>> {
   const [
     pluginPnpm,
+    pluginYaml,
     yamlParser,
     jsoncParser,
   ] = await Promise.all([
     interopDefault(import('eslint-plugin-pnpm')),
+    interopDefault(import('eslint-plugin-yml')),
     interopDefault(import('yaml-eslint-parser')),
     interopDefault(import('jsonc-eslint-parser')),
   ]);
 
-  return [
-    {
-      files: [
-        'package.json',
-        '**/package.json',
-      ],
-      languageOptions: {
-        parser: jsoncParser,
-      },
-      name: 'vinicunca/pnpm/package.json',
-      plugins: {
-        pnpm: pluginPnpm,
-      },
-      rules: {
-        'pnpm/json-enforce-catalog': [
-          ERROR,
-          { autofix: !options.isInEditor },
+  const {
+    catalogs = await detectCatalogUsage(),
+    isInEditor = false,
+    json = true,
+    sort = true,
+    yaml = true,
+  } = options;
+
+  const configs: Array<TypedFlatConfigItem> = [];
+
+  if (json) {
+    configs.push(
+      {
+        files: [
+          'package.json',
+          '**/package.json',
         ],
-        'pnpm/json-prefer-workspace-settings': [
-          ERROR,
-          { autofix: !options.isInEditor },
-        ],
-        'pnpm/json-valid-catalog': [
-          ERROR,
-          { autofix: !options.isInEditor },
-        ],
+        languageOptions: {
+          parser: jsoncParser,
+        },
+        name: 'vinicunca/pnpm/package-json',
+        plugins: {
+          pnpm: pluginPnpm,
+        },
+        rules: {
+          ...(catalogs
+            ? {
+                'pnpm/json-enforce-catalog': [
+                  ERROR,
+                  {
+                    autofix: !isInEditor,
+                    ignores: ['@types/vscode'],
+                  },
+                ],
+              }
+            : {}),
+          'pnpm/json-prefer-workspace-settings': [
+            ERROR,
+            { autofix: !isInEditor },
+          ],
+          'pnpm/json-valid-catalog': [
+            ERROR,
+            { autofix: !isInEditor },
+          ],
+        },
       },
-    },
-    {
+    );
+  }
+
+  if (yaml) {
+    configs.push({
       files: ['pnpm-workspace.yaml'],
       languageOptions: {
         parser: yamlParser,
@@ -56,7 +91,6 @@ export async function pnpm(
       rules: {
         'pnpm/yaml-enforce-settings': [ERROR, {
           settings: {
-            catalogMode: 'prefer',
             shellEmulator: true,
             trustPolicy: 'no-downgrade',
           },
@@ -64,93 +98,102 @@ export async function pnpm(
         'pnpm/yaml-no-duplicate-catalog-item': ERROR,
         'pnpm/yaml-no-unused-catalog-item': ERROR,
       },
-    },
-    {
-      files: ['pnpm-workspace.yaml'],
+    });
 
-      name: 'vinicunca/pnpm/pnpm-workspace-yaml-sort',
+    if (sort) {
+      configs.push({
+        files: ['pnpm-workspace.yaml'],
+        languageOptions: {
+          parser: yamlParser,
+        },
+        name: 'vinicunca/pnpm/pnpm-workspace-yaml-sort',
+        plugins: {
+          yaml: pluginYaml,
+        },
+        rules: {
+          'yaml/sort-keys': [
+            ERROR,
+            {
+              order: [
+                // Settings
+                // @keep-sorted
+                ...[
+                  'cacheDir',
+                  'catalogMode',
+                  'cleanupUnusedCatalogs',
+                  'dedupeDirectDeps',
+                  'deployAllFiles',
+                  'enablePrePostScripts',
+                  'engineStrict',
+                  'extendNodePath',
+                  'hoist',
+                  'hoistPattern',
+                  'hoistWorkspacePackages',
+                  'ignoreCompatibilityDb',
+                  'ignoreDepScripts',
+                  'ignoreScripts',
+                  'ignoreWorkspaceRootCheck',
+                  'managePackageManagerVersions',
+                  'minimumReleaseAge',
+                  'minimumReleaseAgeExclude',
+                  'modulesDir',
+                  'nodeLinker',
+                  'nodeVersion',
+                  'optimisticRepeatInstall',
+                  'packageManagerStrict',
+                  'packageManagerStrictVersion',
+                  'preferSymlinkedExecutables',
+                  'preferWorkspacePackages',
+                  'publicHoistPattern',
+                  'registrySupportsTimeField',
+                  'requiredScripts',
+                  'resolutionMode',
+                  'savePrefix',
+                  'scriptShell',
+                  'shamefullyHoist',
+                  'shellEmulator',
+                  'stateDir',
+                  'supportedArchitectures',
+                  'symlink',
+                  'tag',
+                  'trustPolicy',
+                  'trustPolicyExclude',
+                  'updateNotifier',
+                ],
 
-      rules: {
-        'yaml/sort-keys': [
-          ERROR,
-          {
-            order: [
-              // Settings
-              // @keep-sorted
-              ...[
-                'cacheDir',
-                'catalogMode',
-                'cleanupUnusedCatalogs',
-                'dedupeDirectDeps',
-                'deployAllFiles',
-                'enablePrePostScripts',
-                'engineStrict',
-                'extendNodePath',
-                'hoist',
-                'hoistPattern',
-                'hoistWorkspacePackages',
-                'ignoreCompatibilityDb',
-                'ignoreDepScripts',
-                'ignoreScripts',
-                'ignoreWorkspaceRootCheck',
-                'managePackageManagerVersions',
-                'minimumReleaseAge',
-                'minimumReleaseAgeExclude',
-                'modulesDir',
-                'nodeLinker',
-                'nodeVersion',
-                'optimisticRepeatInstall',
-                'packageManagerStrict',
-                'packageManagerStrictVersion',
-                'preferSymlinkedExecutables',
-                'preferWorkspacePackages',
-                'publicHoistPattern',
-                'registrySupportsTimeField',
-                'requiredScripts',
-                'resolutionMode',
-                'savePrefix',
-                'scriptShell',
-                'shamefullyHoist',
-                'shellEmulator',
-                'stateDir',
-                'supportedArchitectures',
-                'symlink',
-                'tag',
-                'trustPolicy',
-                'trustPolicyExclude',
-                'updateNotifier',
+                // Packages and dependencies
+                'packages',
+                'overrides',
+                'patchedDependencies',
+                'catalog',
+                'catalogs',
+
+                // Other
+                // @keep-sorted
+                ...[
+                  'allowedDeprecatedVersions',
+                  'allowNonAppliedPatches',
+                  'configDependencies',
+                  'ignoredBuiltDependencies',
+                  'ignoredOptionalDependencies',
+                  'neverBuiltDependencies',
+                  'onlyBuiltDependencies',
+                  'onlyBuiltDependenciesFile',
+                  'packageExtensions',
+                  'peerDependencyRules',
+                ],
               ],
+              pathPattern: '^$',
+            },
+            {
+              order: { type: 'asc' },
+              pathPattern: '.*',
+            },
+          ],
+        },
+      });
+    }
+  }
 
-              // Packages and dependencies
-              'packages',
-              'overrides',
-              'patchedDependencies',
-              'catalog',
-              'catalogs',
-
-              // Other
-              // @keep-sorted
-              ...[
-                'allowedDeprecatedVersions',
-                'allowNonAppliedPatches',
-                'configDependencies',
-                'ignoredBuiltDependencies',
-                'ignoredOptionalDependencies',
-                'neverBuiltDependencies',
-                'onlyBuiltDependencies',
-                'onlyBuiltDependenciesFile',
-                'packageExtensions',
-                'peerDependencyRules',
-              ],
-            ],
-            pathPattern: '^$',
-          },
-          {
-            order: { type: 'asc' },
-            pathPattern: '.*',
-          },
-        ],
-      },
-    },
-  ];
+  return configs;
 }
