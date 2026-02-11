@@ -10,7 +10,7 @@ export type Awaitable<T> = Promise<T> | T;
 
 export type Rules = Record<string, Linter.RuleEntry<any> | undefined> & RuleOptions;
 
-export type { ConfigNames };
+export type { ConfigNames, RuleOptions };
 
 /**
  * An updated version of ESLint's `Linter.Config`, which provides autocompletion
@@ -263,28 +263,28 @@ export interface OptionsPnpm extends OptionsIsInEditor {
    *
    * Detects automatically based if `catalogs` is used in the pnpm-workspace.yaml file
    */
-  catalogs?: boolean
+  catalogs?: boolean;
 
   /**
    * Enable linting for package.json, will install the jsonc parser
    *
    * @default true
    */
-  json?: boolean
+  json?: boolean;
 
   /**
    * Enable linting for pnpm-workspace.yaml, will install the yaml parser
    *
    * @default true
    */
-  yaml?: boolean
+  yaml?: boolean;
 
   /**
    * Sort entries in pnpm-workspace.yaml
    *
    * @default false
    */
-  sort?: boolean
+  sort?: boolean;
 }
 
 export interface OptionsUnoCSS extends OptionsOverrides {

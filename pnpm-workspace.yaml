@@ -28,7 +28,7 @@ catalogs:
     find-up-simple: ^1.0.1
   peer:
     '@eslint-community/eslint-utils': ^4.9.1
-    '@eslint-react/eslint-plugin': ^2.6.4
+    '@eslint-react/eslint-plugin': ^2.11.0
     '@next/eslint-plugin-next': ^16.1.2
     '@prettier/plugin-xml': ^3.4.2
     '@typescript-eslint/types': ^8.53.0
