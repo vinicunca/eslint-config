@@ -1,18 +1,20 @@
-import type { OptionsComponentExts, OptionsFiles, OptionsOverrides, TypedFlatConfigItem } from '../types';
+import type { OptionsComponentExts, OptionsFiles, OptionsMarkdown, TypedFlatConfigItem } from '../types';
 
 import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
 
 import { OFF } from '../flags';
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs';
-import { interopDefault, parserPlain } from '../utils';
+import { interopDefault } from '../utils';
 
 export async function markdown(
-  options: OptionsFiles & OptionsComponentExts & OptionsOverrides = {},
+  options: OptionsFiles & OptionsComponentExts & OptionsMarkdown = {},
 ): Promise<Array<TypedFlatConfigItem>> {
   const {
     componentExts = [],
     files = [GLOB_MARKDOWN],
+    gfm = true,
     overrides = {},
+    overridesMarkdown = {},
   } = options;
 
   const markdown = await interopDefault(import('@eslint/markdown'));
@@ -43,10 +45,36 @@ export async function markdown(
 
     {
       files,
-      languageOptions: {
-        parser: parserPlain,
-      },
+      language: gfm ? 'markdown/gfm' : 'markdown/commonmark',
       name: 'vinicunca/markdown/parser',
+    },
+
+    {
+      files,
+      name: 'vinicunca/markdown/rules',
+      rules: {
+        ...markdown.configs.recommended.at(0)?.rules,
+        // https://github.com/eslint/markdown/issues/294
+        'markdown/no-missing-label-refs': OFF,
+        ...overridesMarkdown,
+      },
+    },
+
+    {
+      files,
+      name: 'vinicunca/markdown/disables/markdown',
+      rules: {
+        // Disable rules do not work with markdown sourcecode.
+        'command/command': OFF,
+        'no-irregular-whitespace': OFF,
+        'perfectionist/sort-exports': OFF,
+        'perfectionist/sort-imports': OFF,
+        'regexp/no-legacy-features': OFF,
+        'regexp/no-missing-g-flag': OFF,
+        'regexp/no-useless-dollar-replacements': OFF,
+        'regexp/no-useless-flag': OFF,
+        'style/indent': OFF,
+      },
     },
 
     {

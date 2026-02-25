@@ -9,7 +9,7 @@ catalogs:
     '@antfu/ni': ^28.2.0
     '@eslint/config-inspector': ^1.4.2
     '@types/eslint-plugin-jsx-a11y': ^6.10.1
-    '@types/node': ^25.2.3
+    '@types/node': ^25.3.0
     '@vinicunca/perkakas': ^1.13.0
     bumpp: ^10.4.1
     chokidar: ^5.0.0

@@ -1,43 +1,19 @@
 import fs from 'node:fs/promises';
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core';
 import { builtinRules } from 'eslint/use-at-your-own-risk';
+import { vinicuncaESLint } from '../src/base';
+import { CONFIG_PRESET_FULL_ON } from '../src/config-presets';
 
-import { astro, combineConfigs, comments, formatters, imports, javascript, jsdoc, jsonc, jsx, markdown, node, perfectionist, react, regexp, solid, sonar, sortPackageJson, stylistic, svelte, test, toml, typescript, unicorn, unocss, vue, yaml } from '../src';
-
-const configs = await combineConfigs(
-  {
-    plugins: {
-      '': {
-        rules: Object.fromEntries(builtinRules.entries()),
+const configs = await vinicuncaESLint(CONFIG_PRESET_FULL_ON)
+  .prepend(
+    {
+      plugins: {
+        '': {
+          rules: Object.fromEntries(builtinRules.entries()),
+        },
       },
     },
-  },
-  astro(),
-  comments(),
-  formatters(),
-  imports(),
-  javascript(),
-  jsx(),
-  jsdoc(),
-  jsonc(),
-  markdown(),
-  node(),
-  perfectionist(),
-  react(),
-  solid(),
-  sortPackageJson(),
-  stylistic(),
-  svelte(),
-  test(),
-  toml(),
-  regexp(),
-  sonar(),
-  typescript(),
-  unicorn(),
-  unocss(),
-  vue(),
-  yaml(),
-);
+  );
 
 const configNames = configs.map((i) => i.name).filter(Boolean) as Array<string>;
 
