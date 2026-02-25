@@ -473,10 +473,16 @@
     ],
   },
   {
-    "name": "vinicunca/jsdoc/rules",
+    "name": "vinicunca/jsdoc/setup",
     "plugins": [
       "jsdoc",
     ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
+    "name": "vinicunca/jsdoc/rules",
     "rules": [
       "jsdoc/check-access",
       "jsdoc/check-alignment",
@@ -1049,9 +1055,7 @@
       "**/*.json5",
       "**/*.jsonc",
     ],
-    "languageOptions": {
-      "parser": "jsonc-eslint-parser",
-    },
+    "language": "jsonc/x",
     "name": "vinicunca/jsonc/rules",
     "rules": [
       "jsonc/no-bigint-literals",
@@ -1117,9 +1121,7 @@
       "package.json",
       "**/package.json",
     ],
-    "languageOptions": {
-      "parser": "jsonc-eslint-parser",
-    },
+    "language": "jsonc/x",
     "name": "vinicunca/pnpm/package-json",
     "plugins": [
       "pnpm",

@@ -250,7 +250,6 @@ export async function react(
           },
         ],
 
-        // overrides
         ...overrides,
       },
     },

@@ -473,10 +473,16 @@
     ],
   },
   {
-    "name": "vinicunca/jsdoc/rules",
+    "name": "vinicunca/jsdoc/setup",
     "plugins": [
       "jsdoc",
     ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
+    "name": "vinicunca/jsdoc/rules",
     "rules": [
       "jsdoc/check-access",
       "jsdoc/check-alignment",

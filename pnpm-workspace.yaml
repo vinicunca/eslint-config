@@ -80,7 +80,6 @@ catalogs:
     eslint-plugin-yml: ^3.3.0
     eslint-processor-vue-blocks: ^2.0.0
     globals: ^17.3.0
-    jsonc-eslint-parser: ^3.1.0
     local-pkg: ^1.1.2
     toml-eslint-parser: ^1.0.3
     vue-eslint-parser: ^10.4.0

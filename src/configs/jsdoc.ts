@@ -1,6 +1,6 @@
 import type { OptionsStylistic, TypedFlatConfigItem } from '../types';
-
 import { WARN } from '../flags';
+import { GLOB_SRC } from '../globs';
 import { interopDefault } from '../utils';
 
 export async function jsdoc(options: OptionsStylistic = {}): Promise<Array<TypedFlatConfigItem>> {
@@ -10,11 +10,16 @@ export async function jsdoc(options: OptionsStylistic = {}): Promise<Array<Typed
 
   return [
     {
-      name: 'vinicunca/jsdoc/rules',
+      name: 'vinicunca/jsdoc/setup',
 
       plugins: {
         jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),
       },
+    },
+
+    {
+      files: [GLOB_SRC],
+      name: 'vinicunca/jsdoc/rules',
 
       rules: {
         'jsdoc/check-access': WARN,

@@ -19,13 +19,7 @@ export async function jsonc(
     indent = 2,
   } = isBoolean(stylistic) ? {} : stylistic;
 
-  const [
-    pluginJsonc,
-    parserJsonc,
-  ] = await Promise.all([
-    interopDefault(import('eslint-plugin-jsonc')),
-    interopDefault(import('jsonc-eslint-parser')),
-  ] as const);
+  const pluginJsonc = await interopDefault(import('eslint-plugin-jsonc'));
 
   return [
     {
@@ -39,9 +33,7 @@ export async function jsonc(
     {
       files,
 
-      languageOptions: {
-        parser: parserJsonc,
-      },
+      language: 'jsonc/x',
 
       name: 'vinicunca/jsonc/rules',
 
