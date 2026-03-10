@@ -10,6 +10,7 @@ import {
   command,
   comments,
   disables,
+  e18e,
   ignores,
   imports,
   javascript,
@@ -90,6 +91,7 @@ export function vinicuncaESLint(
     astro: enableAstro = false,
     autoRenamePlugins = true,
     componentExts = [],
+    e18e: enableE18e = true,
     gitignore: enableGitignore = true,
     ignores: userIgnores = [],
     imports: enableImports = true,
@@ -192,6 +194,15 @@ export function vinicuncaESLint(
       imports({
         stylistic: stylisticOptions,
         ...resolveSubOptions(options, 'imports'),
+      }),
+    );
+  }
+
+  if (enableE18e) {
+    configs.push(
+      e18e({
+        isInEditor,
+        ...enableE18e === true ? {} : enableE18e,
       }),
     );
   }
