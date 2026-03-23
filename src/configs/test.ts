@@ -49,6 +49,8 @@ export async function test(
       name: 'vinicunca/test/rules',
 
       rules: {
+        'e18e/prefer-static-regex': OFF,
+
         'sonar/no-duplicate-string': OFF,
 
         'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],

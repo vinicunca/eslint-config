@@ -6,7 +6,7 @@ shellEmulator: true
 
 catalogs:
   dev:
-    '@antfu/ni': ^28.2.0
+    '@antfu/ni': ^28.3.0
     '@eslint/config-inspector': ^1.5.0
     '@types/eslint-plugin-jsx-a11y': ^6.10.1
     '@types/node': ^25.4.0
@@ -16,11 +16,11 @@ catalogs:
     eslint-typegen: ^2.3.1
     execa: ^9.6.1
     jiti: ^2.6.1
-    lint-staged: ^16.3.2
+    lint-staged: ^16.3.3
     pnpm-workspace-yaml: ^1.6.0
     simple-git-hooks: ^2.13.1
     tinyglobby: ^0.2.15
-    tsdown: ^0.18.4
+    tsdown: ^0.21.2
     tsx: ^4.21.0
     typescript: ^5.9.3
     vitest: ^4.0.18
@@ -41,11 +41,11 @@ catalogs:
     eslint-plugin-react-hooks: ^7.0.1
     eslint-plugin-react-refresh: ^0.5.2
     eslint-plugin-solid: ^0.14.5
-    eslint-plugin-svelte: ^3.15.1
+    eslint-plugin-svelte: ^3.15.2
     eslint-plugin-vuejs-accessibility: ^2.5.0
     prettier-plugin-astro: ^0.14.1
     prettier-plugin-slidev: ^1.0.5
-    svelte: ^5.53.9
+    svelte: ^5.53.10
     svelte-eslint-parser: ^1.6.0
     vue: ^3.5.30
   prod:
@@ -57,7 +57,7 @@ catalogs:
     '@stylistic/eslint-plugin': ^5.10.0
     '@typescript-eslint/eslint-plugin': ^8.57.0
     '@typescript-eslint/parser': ^8.57.0
-    '@unocss/eslint-plugin': ^66.6.6
+    '@unocss/eslint-plugin': ^66.6.7
     '@vitest/eslint-plugin': ^1.6.10
     eslint-config-flat-gitignore: ^2.2.1
     eslint-flat-config-utils: ^3.0.2

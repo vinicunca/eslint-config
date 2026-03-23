@@ -1,13 +1,15 @@
 import type { Linter } from 'eslint';
+import type { OptionsE18e, OptionsIsInEditor, OptionsProjectType, TypedFlatConfigItem } from '../types';
 
-import type { OptionsE18e, OptionsIsInEditor, TypedFlatConfigItem } from '../types';
+import { OFF } from '../flags';
 import { pluginE18e } from '../plugins';
 
-export async function e18e(options: OptionsIsInEditor & OptionsE18e = {}): Promise<Array<TypedFlatConfigItem>> {
+export async function e18e(options: OptionsE18e & OptionsProjectType & OptionsIsInEditor = {}): Promise<Array<TypedFlatConfigItem>> {
   const {
     isInEditor = false,
     modernization = true,
-    moduleReplacements = isInEditor,
+    type = 'app',
+    moduleReplacements = type === 'lib' && isInEditor,
     overrides = {},
     performanceImprovements = true,
   } = options;
@@ -25,6 +27,13 @@ export async function e18e(options: OptionsIsInEditor & OptionsE18e = {}): Promi
         ...modernization ? { ...configs.modernization.rules } : {},
         ...moduleReplacements ? { ...configs.moduleReplacements!.rules } : {},
         ...performanceImprovements ? { ...configs.performanceImprovements!.rules } : {},
+
+        // these are a bit opinionated and dangerous, so we'll disable them for now
+        'e18e/prefer-array-to-reversed': OFF,
+        'e18e/prefer-array-to-sorted': OFF,
+        'e18e/prefer-array-to-spliced': OFF,
+        'e18e/prefer-spread-syntax': OFF,
+
         ...overrides,
       },
     },

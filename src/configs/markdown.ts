@@ -94,6 +94,8 @@ export async function markdown(
       name: 'vinicunca/markdown/disables',
 
       rules: {
+        'e18e/prefer-static-regex': OFF,
+
         'no-alert': OFF,
         'no-console': OFF,
         'no-undef': OFF,
