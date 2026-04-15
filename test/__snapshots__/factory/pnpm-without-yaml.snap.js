@@ -143,24 +143,6 @@
     ],
   },
   {
-    "name": "vinicunca/imports/rules",
-    "plugins": [
-      "antfu",
-      "import",
-    ],
-    "rules": [
-      "antfu/import-dedupe",
-      "antfu/no-import-dist",
-      "antfu/no-import-node-modules-by-path",
-      "import/consistent-type-specifier-style",
-      "import/first",
-      "import/no-duplicates",
-      "import/no-mutable-exports",
-      "import/no-named-default",
-      "import/newline-after-import",
-    ],
-  },
-  {
     "name": "vinicunca/command/rules",
     "plugins": [
       "command",
@@ -182,6 +164,9 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "vinicunca/sonar/rules",
     "plugins": [
       "sonar",
@@ -309,7 +294,6 @@
       "sonar/no-redundant-jump",
       "sonar/inconsistent-function-call",
       "sonar/no-use-of-empty-return-value",
-      "- sonar/enforce-trailing-comma",
       "sonar/void-use",
       "- sonar/operation-returning-nan",
       "- sonar/values-not-convertible-to-numbers",
@@ -322,7 +306,6 @@
       "sonar/function-return-type",
       "- sonar/no-inconsistent-returns",
       "- sonar/no-reference-error",
-      "sonar/super-invocation",
       "sonar/no-all-duplicated-branches",
       "sonar/no-same-line-conditional",
       "- sonar/conditional-indentation",
@@ -456,6 +439,8 @@
       "sonar/no-async-constructor",
       "sonar/review-blockchain-mnemonic",
       "sonar/dynamically-constructed-templates",
+      "sonar/no-session-cookies-on-static-assets",
+      "- sonar/no-unused-import",
     ],
   },
   {

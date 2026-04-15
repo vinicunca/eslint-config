@@ -1,6 +1,5 @@
 import type { OptionsOverrides, OptionsStylistic, TypedFlatConfigItem } from '../types';
 import { ERROR } from '../flags';
-
 import { pluginAntfu, pluginImportLite } from '../plugins';
 
 export async function imports(

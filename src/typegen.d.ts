@@ -4641,12 +4641,6 @@ export interface RuleOptions {
    */
   'sonar/encryption-secure-mode'?: Linter.RuleEntry<[]>
   /**
-   * Trailing commas should be used
-   * @see https://sonarsource.github.io/rspec/#/rspec/S3723/javascript
-   * @deprecated
-   */
-  'sonar/enforce-trailing-comma'?: Linter.RuleEntry<SonarEnforceTrailingComma>
-  /**
    * Replacement strings should reference existing regular expression groups
    * @see https://sonarsource.github.io/rspec/#/rspec/S6328/javascript
    */
@@ -4667,7 +4661,7 @@ export interface RuleOptions {
    */
   'sonar/file-name-differ-from-class'?: Linter.RuleEntry<[]>
   /**
-   * Setting loose POSIX file permissions is security-sensitive
+   * File permissions should not be set to world-accessible values
    * @see https://sonarsource.github.io/rspec/#/rspec/S2612/javascript
    */
   'sonar/file-permissions'?: Linter.RuleEntry<[]>
@@ -5238,6 +5232,11 @@ export interface RuleOptions {
    */
   'sonar/no-selector-parameter'?: Linter.RuleEntry<[]>
   /**
+   * Static Assets should not serve session cookies
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8441/javascript
+   */
+  'sonar/no-session-cookies-on-static-assets'?: Linter.RuleEntry<[]>
+  /**
    * Tests should not be skipped without providing a reason
    * @see https://sonarsource.github.io/rspec/#/rspec/S1607/javascript
    */
@@ -5558,11 +5557,6 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S3003/javascript
    */
   'sonar/strings-comparison'?: Linter.RuleEntry<[]>
-  /**
-   * "super()" should be invoked appropriately
-   * @see https://sonarsource.github.io/rspec/#/rspec/S3854/javascript
-   */
-  'sonar/super-invocation'?: Linter.RuleEntry<[]>
   /**
    * Tables should have headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S5256/javascript
@@ -18192,16 +18186,6 @@ type SonarContentLength = []|[{
 type SonarCyclomaticComplexity = []|[{
   threshold?: number
 }]
-// ----- sonar/enforce-trailing-comma -----
-type SonarEnforceTrailingComma = []|[(_SonarEnforceTrailingCommaValue | {
-  arrays?: _SonarEnforceTrailingCommaValueWithIgnore
-  objects?: _SonarEnforceTrailingCommaValueWithIgnore
-  imports?: _SonarEnforceTrailingCommaValueWithIgnore
-  exports?: _SonarEnforceTrailingCommaValueWithIgnore
-  functions?: _SonarEnforceTrailingCommaValueWithIgnore
-})]
-type _SonarEnforceTrailingCommaValue = ("always-multiline" | "always" | "never" | "only-multiline")
-type _SonarEnforceTrailingCommaValueWithIgnore = ("always-multiline" | "always" | "ignore" | "never" | "only-multiline")
 // ----- sonar/expression-complexity -----
 type SonarExpressionComplexity = []|[{
   max?: number
@@ -23235,4 +23219,4 @@ type Yoda = []|[("always" | "never")]|[("always" | "never"), {
   onlyEquality?: boolean
 }]
 // Names of all the configs
-export type ConfigNames = 'vinicunca/gitignore' | 'vinicunca/ignores' | 'vinicunca/javascript/setup' | 'vinicunca/javascript/rules' | 'vinicunca/eslint-comments/rules' | 'vinicunca/imports/rules' | 'vinicunca/command/rules' | 'vinicunca/perfectionist/rules' | 'vinicunca/sonar/rules' | 'vinicunca/node/rules' | 'vinicunca/jsdoc/setup' | 'vinicunca/jsdoc/rules' | 'vinicunca/imports/rules' | 'vinicunca/e18e/rules' | 'vinicunca/unicorn/rules' | 'antfu/jsx/setup' | 'vinicunca/typescript/setup' | 'vinicunca/typescript/parser' | 'vinicunca/typescript/type-aware-parser' | 'vinicunca/typescript/rules' | 'vinicunca/typescript/rules-type-aware' | 'antfu/typescript/erasable-syntax-only' | 'vinicunca/stylistic/rules' | 'vinicunca/regexp/rules' | 'vinicunca/test/setup' | 'vinicunca/test/rules' | 'vinicunca/vue/setup' | 'vinicunca/vue/rules' | 'vinicunca/react/setup' | 'vinicunca/react/rules' | 'vinicunca/react/typescript' | 'vinicunca/react/type-aware-rules' | 'vinicunca/nextjs/setup' | 'vinicunca/nextjs/rules' | 'vinicunca/solid/setup' | 'vinicunca/solid/rules' | 'vinicunca/svelte/setup' | 'vinicunca/svelte/rules' | 'vinicunca/unocss' | 'vinicunca/astro/setup' | 'vinicunca/astro/rules' | 'vinicunca/jsonc/setup' | 'vinicunca/jsonc/rules' | 'vinicunca/sort/package-json' | 'vinicunca/sort/tsconfig' | 'vinicunca/pnpm/package-json' | 'vinicunca/pnpm/pnpm-workspace-yaml' | 'vinicunca/pnpm/pnpm-workspace-yaml-sort' | 'vinicunca/yaml/setup' | 'vinicunca/yaml/rules' | 'vinicunca/toml/setup' | 'vinicunca/toml/rules' | 'vinicunca/markdown/setup' | 'vinicunca/markdown/processor' | 'vinicunca/markdown/parser' | 'vinicunca/markdown/rules' | 'vinicunca/markdown/disables/markdown' | 'vinicunca/markdown/disables' | 'vinicunca/formatter/setup' | 'vinicunca/formatter/css' | 'vinicunca/formatter/scss' | 'vinicunca/formatter/less' | 'vinicunca/formatter/html' | 'vinicunca/formatter/xml' | 'vinicunca/formatter/svg' | 'vinicunca/formatter/markdown' | 'vinicunca/formatter/astro' | 'vinicunca/formatter/astro/disables' | 'vinicunca/formatter/graphql' | 'vinicunca/disables/scripts' | 'vinicunca/disables/cli' | 'vinicunca/disables/bin' | 'vinicunca/disables/dts' | 'vinicunca/disables/cjs' | 'vinicunca/disables/config-files'
+export type ConfigNames = 'vinicunca/gitignore' | 'vinicunca/ignores' | 'vinicunca/javascript/setup' | 'vinicunca/javascript/rules' | 'vinicunca/eslint-comments/rules' | 'vinicunca/command/rules' | 'vinicunca/perfectionist/rules' | 'vinicunca/sonar/rules' | 'vinicunca/node/rules' | 'vinicunca/jsdoc/setup' | 'vinicunca/jsdoc/rules' | 'vinicunca/imports/rules' | 'vinicunca/e18e/rules' | 'vinicunca/unicorn/rules' | 'antfu/jsx/setup' | 'vinicunca/typescript/setup' | 'vinicunca/typescript/parser' | 'vinicunca/typescript/type-aware-parser' | 'vinicunca/typescript/rules' | 'vinicunca/typescript/rules-type-aware' | 'antfu/typescript/erasable-syntax-only' | 'vinicunca/stylistic/rules' | 'vinicunca/regexp/rules' | 'vinicunca/test/setup' | 'vinicunca/test/rules' | 'vinicunca/vue/setup' | 'vinicunca/vue/rules' | 'vinicunca/react/setup' | 'vinicunca/react/rules' | 'vinicunca/react/typescript' | 'vinicunca/react/type-aware-rules' | 'vinicunca/nextjs/setup' | 'vinicunca/nextjs/rules' | 'vinicunca/solid/setup' | 'vinicunca/solid/rules' | 'vinicunca/svelte/setup' | 'vinicunca/svelte/rules' | 'vinicunca/unocss' | 'vinicunca/astro/setup' | 'vinicunca/astro/rules' | 'vinicunca/jsonc/setup' | 'vinicunca/jsonc/rules' | 'vinicunca/sort/package-json' | 'vinicunca/sort/tsconfig' | 'vinicunca/pnpm/package-json' | 'vinicunca/pnpm/pnpm-workspace-yaml' | 'vinicunca/pnpm/pnpm-workspace-yaml-sort' | 'vinicunca/yaml/setup' | 'vinicunca/yaml/rules' | 'vinicunca/toml/setup' | 'vinicunca/toml/rules' | 'vinicunca/markdown/setup' | 'vinicunca/markdown/processor' | 'vinicunca/markdown/parser' | 'vinicunca/markdown/rules' | 'vinicunca/markdown/disables/markdown' | 'vinicunca/markdown/disables' | 'vinicunca/formatter/setup' | 'vinicunca/formatter/css' | 'vinicunca/formatter/scss' | 'vinicunca/formatter/less' | 'vinicunca/formatter/html' | 'vinicunca/formatter/xml' | 'vinicunca/formatter/svg' | 'vinicunca/formatter/markdown' | 'vinicunca/formatter/astro' | 'vinicunca/formatter/astro/disables' | 'vinicunca/formatter/graphql' | 'vinicunca/disables/scripts' | 'vinicunca/disables/cli' | 'vinicunca/disables/bin' | 'vinicunca/disables/dts' | 'vinicunca/disables/cjs' | 'vinicunca/disables/config-files'

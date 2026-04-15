@@ -20,17 +20,20 @@ runWithConfig('js', {
   typescript: false,
   vue: false,
 });
+
 runWithConfig('all', {
   typescript: true,
   vue: true,
   svelte: true,
   astro: true,
 });
+
 runWithConfig('no-style', {
   typescript: true,
   vue: true,
   stylistic: false,
 });
+
 runWithConfig(
   'tab-double-quotes',
   {
@@ -127,7 +130,6 @@ function runWithConfig(
         return !src.includes('node_modules');
       },
     });
-
     await fs.writeFile(join(target, 'eslint.config.js'), `
 // @eslint-disable
 import { vinicuncaESLint } from '@vinicunca/eslint-config';

@@ -157,7 +157,7 @@ export function vinicuncaESLint(
   const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined;
 
   configs.push(
-    ignores(userIgnores),
+    ignores(userIgnores, !enableTypeScript),
 
     javascript({
       isInEditor,
@@ -165,10 +165,6 @@ export function vinicuncaESLint(
     }),
 
     comments(),
-
-    imports({
-      stylistic: stylisticOptions,
-    }),
 
     command(),
 
