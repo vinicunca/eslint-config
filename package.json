@@ -2,7 +2,7 @@
   "name": "@vinicunca/eslint-config",
   "type": "module",
   "version": "5.0.0",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.4",
   "description": "Vinicunca ESLint config",
   "author": {
     "name": "praburangki",
@@ -61,7 +61,7 @@
     "release": "bumpp",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks && skills-npm"
   },
   "peerDependencies": {
     "@eslint-react/eslint-plugin": "^3.0.0",
@@ -168,6 +168,7 @@
     "@types/node": "catalog:dev",
     "@vinicunca/perkakas": "catalog:dev",
     "astro-eslint-parser": "catalog:peer",
+    "baseline-browser-mapping": "catalog:dev",
     "bumpp": "catalog:dev",
     "eslint": "catalog:peer",
     "eslint-plugin-astro": "catalog:peer",
@@ -186,10 +187,13 @@
     "prettier-plugin-astro": "catalog:peer",
     "prettier-plugin-slidev": "catalog:peer",
     "simple-git-hooks": "catalog:dev",
+    "skills-npm": "catalog:dev",
     "svelte": "catalog:peer",
     "svelte-eslint-parser": "catalog:peer",
     "tinyglobby": "catalog:dev",
     "tsdown": "catalog:dev",
+    "tsdown-stale-guard": "catalog:dev",
+    "tsnapi": "catalog:dev",
     "tsx": "catalog:dev",
     "typescript": "catalog:dev",
     "vitest": "catalog:dev",
@@ -211,13 +215,13 @@
   },
   "inlinedDependencies": {
     "@eslint-community/eslint-utils": "4.9.1",
-    "@typescript-eslint/scope-manager": "8.58.2",
-    "@typescript-eslint/types": "8.58.2",
-    "@typescript-eslint/utils": "8.58.2",
-    "@typescript-eslint/visitor-keys": "8.58.2",
+    "@typescript-eslint/scope-manager": "8.59.3",
+    "@typescript-eslint/types": "8.59.3",
+    "@typescript-eslint/utils": "8.59.3",
+    "@typescript-eslint/visitor-keys": "8.59.3",
     "@vinicunca/perkakas": "1.13.2",
-    "cached-factory": "0.1.0",
-    "eslint-plugin-erasable-syntax-only": "0.4.0",
+    "cached-factory": "0.2.0",
+    "eslint-plugin-erasable-syntax-only": "0.4.1",
     "eslint-visitor-keys": [
       "3.4.3",
       "5.0.1"
