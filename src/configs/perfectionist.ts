@@ -1,4 +1,4 @@
-import type { TypedFlatConfigItem } from '../types';
+import type { OptionsOverrides, TypedFlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
 import { pluginPerfectionist } from '../plugins';
@@ -8,7 +8,9 @@ import { pluginPerfectionist } from '../plugins';
  *
  * @see https://github.com/azat-io/eslint-plugin-perfectionist
  */
-export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
+export async function perfectionist(options: OptionsOverrides): Promise<Array<TypedFlatConfigItem>> {
+  const { overrides = {} } = options;
+
   return [
     {
       name: 'vinicunca/perfectionist/rules',
@@ -50,6 +52,8 @@ export async function perfectionist(): Promise<Array<TypedFlatConfigItem>> {
           ERROR,
           { order: 'asc', type: 'natural' },
         ],
+
+        ...overrides,
       },
     },
   ];

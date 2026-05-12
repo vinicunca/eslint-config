@@ -100,6 +100,7 @@ export function vinicuncaESLint(
     jsx: enableJsx = true,
     nextjs: enableNextjs = false,
     node: enableNode = true,
+    perfectionist: enablePerfectionist = true,
     pnpm: enableCatalogs = !!findUpSync('pnpm-workspace.yaml'),
     react: enableReact = false,
     regexp: enableRegexp = true,
@@ -168,10 +169,16 @@ export function vinicuncaESLint(
 
     command(),
 
-    perfectionist(),
-
     sonar(),
   );
+
+  if (enablePerfectionist) {
+    configs.push(
+      perfectionist({
+        overrides: getOverrides(options, 'perfectionist'),
+      }),
+    );
+  }
 
   if (enableNode) {
     configs.push(
