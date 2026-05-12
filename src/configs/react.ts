@@ -1,4 +1,3 @@
-/* eslint-disable perfectionist/sort-objects */
 import type { OptionsFiles, OptionsReact, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes, TypedFlatConfigItem } from '../types';
 
 import { isPackageExists } from 'local-pkg';
@@ -76,11 +75,7 @@ export async function react(
 
       plugins: {
         'react': plugins['@eslint-react'],
-        'react-dom': plugins['@eslint-react/dom'],
-        'react-naming-convention': plugins['@eslint-react/naming-convention'],
         'react-refresh': pluginReactRefresh,
-        'react-rsc': plugins['@eslint-react/rsc'],
-        'react-web-api': plugins['@eslint-react/web-api'],
       },
     },
 
@@ -100,8 +95,6 @@ export async function react(
 
       rules: {
         ...pluginReact.configs.recommended.rules,
-
-        'react/prefer-namespace-import': ERROR,
 
         // preconfigured rules from eslint-plugin-react-refresh https://github.com/ArnaudBarre/eslint-plugin-react-refresh/tree/main/src
         'react-refresh/only-export-components': [
@@ -159,8 +152,8 @@ export async function react(
       name: 'vinicunca/react/typescript',
       rules: {
         // Disables rules that are already handled by TypeScript
-        'react-dom/no-string-style-prop': OFF,
-        'react-dom/no-unknown-property': OFF,
+        'react/dom-no-string-style-prop': OFF,
+        'react/dom-no-unknown-property': OFF,
       },
     },
 

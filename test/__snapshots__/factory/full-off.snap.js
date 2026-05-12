@@ -151,18 +151,6 @@
     ],
   },
   {
-    "name": "vinicunca/perfectionist/rules",
-    "plugins": [
-      "perfectionist",
-    ],
-    "rules": [
-      "perfectionist/sort-exports",
-      "perfectionist/sort-imports",
-      "perfectionist/sort-named-exports",
-      "perfectionist/sort-named-imports",
-    ],
-  },
-  {
     "files": [
       "**/*.?([cm])[jt]s?(x)",
     ],

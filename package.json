@@ -64,7 +64,7 @@
     "prepare": "simple-git-hooks && skills-npm"
   },
   "peerDependencies": {
-    "@eslint-react/eslint-plugin": "^3.0.0",
+    "@eslint-react/eslint-plugin": "^5.6.0",
     "@next/eslint-plugin-next": ">=15.0.0",
     "@prettier/plugin-xml": "^3.4.1",
     "astro-eslint-parser": "^1.0.2",
