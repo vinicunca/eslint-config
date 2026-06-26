@@ -52,8 +52,8 @@
   "scripts": {
     "build": "nr typegen && tsdown --clean --dts",
     "stub": "tsdown",
-    "dev": "npx @eslint/config-inspector --config eslint.config.ts",
-    "build:inspector": "pnpm build && npx @eslint/config-inspector build",
+    "dev": "pnpx @eslint/config-inspector --config eslint.config.ts",
+    "build:inspector": "pnpm build && pnpx @eslint/config-inspector build",
     "watch": "tsdown --watch",
     "lint": "eslint",
     "typegen": "tsx scripts/typegen.ts",
@@ -208,7 +208,7 @@
     "tsx": "catalog:dev"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+    "pre-commit": "pnpx lint-staged"
   },
   "lint-staged": {
     "*": "eslint --fix"
