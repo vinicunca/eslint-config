@@ -140,7 +140,7 @@ export default vinicuncaESLint(
 );
 `);
 
-    await execa('npx', ['eslint', '.', '--fix'], {
+    await execa('pnpm', ['eslint', '.', '--fix'], {
       cwd: target,
       stdio: 'pipe',
     });

@@ -1,17 +1,21 @@
 import type { OptionsUnicorn, TypedFlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
+import { GLOB_SRC } from '../globs';
 import { pluginUnicorn } from '../plugins';
 
 export async function unicorn(options: OptionsUnicorn = {}): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
-      name: 'vinicunca/unicorn/rules',
+      name: 'vinicunca/unicorn/setup',
 
       plugins: {
         unicorn: pluginUnicorn,
       },
-
+    },
+    {
+      files: [GLOB_SRC],
+      name: 'vinicunca/unicorn/rules',
       rules: {
         ...(options.allRecommended
           ? pluginUnicorn.configs.recommended.rules
