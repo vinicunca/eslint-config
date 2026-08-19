@@ -1,7 +1,7 @@
 {
   "name": "@vinicunca/eslint-config",
   "type": "module",
-  "version": "5.6.0",
+  "version": "5.6.1",
   "packageManager": "pnpm@11.22.0",
   "description": "Vinicunca ESLint config",
   "author": {
