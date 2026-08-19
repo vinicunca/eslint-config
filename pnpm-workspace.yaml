@@ -2,6 +2,10 @@ ignoreWorkspaceRootCheck: true
 minimumReleaseAgeExclude:
   - eslint-plugin-yml@3.5.0
   - svelte@5.56.4
+  - '@unocss/config@66.8.0'
+  - '@unocss/core@66.8.0'
+  - '@unocss/eslint-plugin@66.8.0'
+  - '@unocss/rule-utils@66.8.0'
 
 shamefullyHoist: true
 shellEmulator: true
