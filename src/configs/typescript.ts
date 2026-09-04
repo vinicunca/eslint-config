@@ -243,12 +243,13 @@ export async function typescript(
     ...erasableOnly
       ? [
           {
-            name: 'antfu/typescript/erasable-syntax-only',
+            name: 'vinicunca/typescript/erasable-syntax-only',
             plugins: {
               'erasable-syntax-only': await interopDefault(import('eslint-plugin-erasable-syntax-only')),
             },
             rules: {
               'erasable-syntax-only/enums': ERROR,
+              'erasable-syntax-only/export-aliases': ERROR,
               'erasable-syntax-only/import-aliases': ERROR,
               'erasable-syntax-only/namespaces': ERROR,
               'erasable-syntax-only/parameter-properties': ERROR,

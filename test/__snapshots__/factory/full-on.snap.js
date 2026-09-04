@@ -787,12 +787,13 @@
     ],
   },
   {
-    "name": "antfu/typescript/erasable-syntax-only",
+    "name": "vinicunca/typescript/erasable-syntax-only",
     "plugins": [
       "erasable-syntax-only",
     ],
     "rules": [
       "erasable-syntax-only/enums",
+      "erasable-syntax-only/export-aliases",
       "erasable-syntax-only/import-aliases",
       "erasable-syntax-only/namespaces",
       "erasable-syntax-only/parameter-properties",
@@ -1622,6 +1623,21 @@
       "pnpm/yaml-enforce-settings",
       "pnpm/yaml-no-duplicate-catalog-item",
       "pnpm/yaml-no-unused-catalog-item",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "vinicunca/pnpm/pnpm-workspace-yaml-stylistic",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-blank-lines",
     ],
   },
   {

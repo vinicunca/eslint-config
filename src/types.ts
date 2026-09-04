@@ -296,7 +296,7 @@ export interface OptionsIsInEditor {
   isInEditor?: boolean;
 }
 
-export interface OptionsPnpm extends OptionsIsInEditor {
+export interface OptionsPnpm extends OptionsIsInEditor, OptionsStylistic {
   /**
    * Requires catalogs usage
    *

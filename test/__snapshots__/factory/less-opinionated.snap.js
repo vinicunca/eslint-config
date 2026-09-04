@@ -1187,6 +1187,21 @@
     "languageOptions": {
       "parser": "yaml-eslint-parser",
     },
+    "name": "vinicunca/pnpm/pnpm-workspace-yaml-stylistic",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-blank-lines",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
     "name": "vinicunca/pnpm/pnpm-workspace-yaml-sort",
     "plugins": [
       "yaml",

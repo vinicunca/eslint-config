@@ -1,7 +1,8 @@
 import type { OptionsConfig, TypedFlatConfigItem } from '../src/types';
+
 import fs from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import { execa } from 'execa';
+import { x } from 'tinyexec';
 import { glob } from 'tinyglobby';
 import { afterAll, beforeAll, it } from 'vitest';
 
@@ -9,11 +10,11 @@ const isWindows = process.platform === 'win32';
 const timeout = isWindows ? 300_000 : 60_000;
 
 beforeAll(async () => {
-  await fs.rm('_fixtures', { force: true, recursive: true });
+  await fs.rm('_fixtures', { recursive: true, force: true });
 });
 
 afterAll(async () => {
-  await fs.rm('_fixtures', { force: true, recursive: true });
+  await fs.rm('_fixtures', { recursive: true, force: true });
 });
 
 runWithConfig('js', {
@@ -39,6 +40,7 @@ runWithConfig(
   {
     typescript: true,
     vue: true,
+    toml: true,
     stylistic: {
       indent: 'tab',
       quotes: 'double',
@@ -77,6 +79,7 @@ runWithConfig(
   },
 );
 
+// https://github.com/antfu/eslint-config/issues/618
 runWithConfig(
   'ts-strict-with-react',
   {
@@ -114,11 +117,7 @@ runWithConfig(
   },
 );
 
-function runWithConfig(
-  name: string,
-  configs: OptionsConfig,
-  ...items: Array<TypedFlatConfigItem>
-) {
+function runWithConfig(name: string, configs: OptionsConfig, ...items: Array<TypedFlatConfigItem>) {
   it.concurrent(name, async ({ expect }) => {
     const from = resolve('fixtures/input');
     const output = resolve('fixtures/output', name);
@@ -140,17 +139,20 @@ export default vinicuncaESLint(
 );
 `);
 
-    await execa('pnpm', ['eslint', '.', '--fix'], {
-      cwd: target,
-      stdio: 'pipe',
+    await x('npx', ['eslint', '.', '--fix'], {
+      throwOnError: true,
+      nodeOptions: {
+        cwd: target,
+        stdio: 'pipe',
+      },
     });
 
     const files = await glob('**/*', {
-      cwd: target,
       ignore: [
         'node_modules',
         'eslint.config.js',
       ],
+      cwd: target,
     });
 
     await Promise.all(files.map(async (file) => {
