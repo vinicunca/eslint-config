@@ -93,7 +93,7 @@ export async function vue(
           },
           extraFileExtensions: ['.vue'],
           parser: options.typescript
-            ? await interopDefault(import('@typescript-eslint/parser')) as any
+            ? await interopDefault(import('@typescript-eslint/parser'))
             : null,
           sourceType: 'module',
         },

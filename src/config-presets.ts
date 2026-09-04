@@ -1,7 +1,8 @@
 import type { OptionsConfig } from './types';
 
-// @keep-sorted
+/** @keep-sorted */
 export const CONFIG_PRESET_FULL_ON: OptionsConfig = {
+  antislop: true,
   astro: true,
   formatters: true,
   gitignore: true,
@@ -38,6 +39,7 @@ export const CONFIG_PRESET_FULL_ON: OptionsConfig = {
 };
 
 export const CONFIG_PRESET_FULL_OFF: OptionsConfig = {
+  antislop: false,
   astro: false,
   formatters: false,
   gitignore: false,

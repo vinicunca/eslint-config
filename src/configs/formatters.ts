@@ -1,11 +1,8 @@
 import type { OptionsFormatters, StylisticConfig, TypedFlatConfigItem } from '../types';
 import type { VendoredPrettierOptions, VendoredPrettierRuleOptions } from '../vendor/prettier-types';
 
-import { isNumber } from '@vinicunca/perkakas';
 import { isPackageExists } from 'local-pkg';
-
-import { ERROR, OFF } from '../flags';
-import { GLOB_ASTRO, GLOB_ASTRO_TS, GLOB_CSS, GLOB_GRAPHQL, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '../globs';
+import { GLOB_ASTRO, GLOB_ASTRO_TS, GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from '../globs';
 import { ensurePackages, interopDefault, isPackageInScope, parserPlain } from '../utils';
 import { STYLISTIC_CONFIG_DEFAULTS } from './stylistic';
 
@@ -23,30 +20,224 @@ function mergePrettierOptions(
   };
 }
 
-export async function formatters(
-  options: OptionsFormatters | true = {},
-  stylistic: StylisticConfig = {},
-): Promise<Array<TypedFlatConfigItem>> {
-  if (options === true) {
-    const isPrettierPluginXmlInScope = isPackageInScope('@prettier/plugin-xml');
+function buildCssConfigs(prettierOptions: VendoredPrettierOptions): Array<TypedFlatConfigItem> {
+  return ([
+    [[GLOB_CSS, GLOB_POSTCSS], 'css', 'vinicunca/formatter/css'],
+    [[GLOB_SCSS], 'scss', 'vinicunca/formatter/scss'],
+    [[GLOB_LESS], 'less', 'vinicunca/formatter/less'],
+  ] as const).map(([files, parser, name]) => ({
+    files: [...files],
+    languageOptions: {
+      parser: parserPlain,
+    },
+    name,
+    rules: {
+      'format/prettier': [
+        'error',
+        mergePrettierOptions(prettierOptions, { parser }),
+      ],
+    },
+  }));
+}
 
-    options = {
-      astro: isPackageInScope('prettier-plugin-astro'),
-      css: true,
-      graphql: true,
-      html: true,
-      markdown: true,
-      slidev: isPackageExists('@slidev/cli'),
-      svg: isPrettierPluginXmlInScope,
-      xml: isPrettierPluginXmlInScope,
-    };
+function buildXmlLikeConfig(
+  prettierOptions: VendoredPrettierOptions,
+  prettierXmlOptions: VendoredPrettierOptions,
+  files: Array<string>,
+  name: string,
+): TypedFlatConfigItem {
+  return {
+    files,
+    languageOptions: {
+      parser: parserPlain,
+    },
+    name,
+    rules: {
+      'format/prettier': [
+        'error',
+        mergePrettierOptions({ ...prettierXmlOptions, ...prettierOptions }, {
+          parser: 'xml',
+          plugins: [
+            '@prettier/plugin-xml',
+          ],
+        }),
+      ],
+    },
+  };
+}
+
+function buildMarkdownConfigs(
+  options: OptionsFormatters,
+  prettierOptions: VendoredPrettierOptions,
+  dprintOptions: Record<string, unknown>,
+): Array<TypedFlatConfigItem> {
+  const formater = options.markdown === true
+    ? 'prettier'
+    : options.markdown;
+
+  // eslint-disable-next-line no-nested-ternary
+  const GLOB_SLIDEV = !options.slidev
+    ? []
+    : options.slidev === true
+      ? ['**/slides.md']
+      : options.slidev.files;
+
+  const configs: Array<TypedFlatConfigItem> = [
+    {
+      files: [GLOB_MARKDOWN],
+      ignores: GLOB_SLIDEV,
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'vinicunca/formatter/markdown',
+      rules: {
+        [`format/${formater}`]: [
+          'error',
+          formater === 'prettier'
+            ? mergePrettierOptions(prettierOptions, {
+                embeddedLanguageFormatting: 'off',
+                parser: 'markdown',
+              })
+            : {
+                ...dprintOptions,
+                language: 'markdown',
+              },
+        ],
+      },
+    },
+  ];
+
+  if (options.slidev) {
+    configs.push({
+      files: GLOB_SLIDEV,
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'vinicunca/formatter/slidev',
+      rules: {
+        'format/prettier': [
+          'error',
+          mergePrettierOptions(prettierOptions, {
+            embeddedLanguageFormatting: 'off',
+            parser: 'slidev',
+            plugins: [
+              'prettier-plugin-slidev',
+            ],
+          }),
+        ],
+      },
+    });
   }
 
-  await ensurePackages([
+  return configs;
+}
+
+function buildAstroConfigs(prettierOptions: VendoredPrettierOptions): Array<TypedFlatConfigItem> {
+  return [
+    {
+      files: [GLOB_ASTRO],
+      languageOptions: {
+        parser: parserPlain,
+      },
+      name: 'vinicunca/formatter/astro',
+      rules: {
+        'format/prettier': [
+          'error',
+          mergePrettierOptions(prettierOptions, {
+            parser: 'astro',
+            plugins: [
+              'prettier-plugin-astro',
+            ],
+          }),
+        ],
+      },
+    },
+    {
+      files: [GLOB_ASTRO, GLOB_ASTRO_TS],
+      name: 'vinicunca/formatter/astro/disables',
+      rules: {
+        'style/arrow-parens': 'off',
+        'style/block-spacing': 'off',
+        'style/comma-dangle': 'off',
+        'style/indent': 'off',
+        'style/no-multi-spaces': 'off',
+        'style/quotes': 'off',
+        'style/semi': 'off',
+      },
+    },
+  ];
+}
+
+function resolveFormattersOptions(options: OptionsFormatters | true): OptionsFormatters {
+  if (options !== true) {
+    return options;
+  }
+
+  const isPrettierPluginXmlInScope = isPackageInScope('@prettier/plugin-xml');
+  return {
+    astro: isPackageInScope('prettier-plugin-astro'),
+    css: true,
+    graphql: true,
+    html: true,
+    markdown: true,
+    slidev: isPackageExists('@slidev/cli'),
+    svg: isPrettierPluginXmlInScope,
+    xml: isPrettierPluginXmlInScope,
+  };
+}
+
+function buildHtmlConfig(prettierOptions: VendoredPrettierOptions): TypedFlatConfigItem {
+  return {
+    files: [GLOB_HTML],
+    languageOptions: {
+      parser: parserPlain,
+    },
+    name: 'vinicunca/formatter/html',
+    rules: {
+      'format/prettier': [
+        'error',
+        mergePrettierOptions(prettierOptions, {
+          parser: 'html',
+        }),
+      ],
+    },
+  };
+}
+
+function buildGraphqlConfig(prettierOptions: VendoredPrettierOptions): TypedFlatConfigItem {
+  return {
+    files: [GLOB_GRAPHQL],
+    languageOptions: {
+      parser: parserPlain,
+    },
+    name: 'vinicunca/formatter/graphql',
+    rules: {
+      'format/prettier': [
+        'error',
+        mergePrettierOptions(prettierOptions, {
+          parser: 'graphql',
+        }),
+      ],
+    },
+  };
+}
+
+function getFormattersPackagesToEnsure(options: OptionsFormatters): Array<string | undefined> {
+  return [
+    'eslint-plugin-format',
     options.markdown && options.slidev ? 'prettier-plugin-slidev' : undefined,
     options.astro ? 'prettier-plugin-astro' : undefined,
     (options.xml || options.svg) ? '@prettier/plugin-xml' : undefined,
-  ]);
+  ];
+}
+
+export async function formatters(
+  rawOptions: OptionsFormatters | true = {},
+  stylistic: StylisticConfig = {},
+): Promise<Array<TypedFlatConfigItem>> {
+  const options = resolveFormattersOptions(rawOptions);
+
+  await ensurePackages(getFormattersPackagesToEnsure(options));
 
   if (options.slidev && options.markdown !== true && options.markdown !== 'prettier') {
     throw new Error('`slidev` option only works when `markdown` is enabled with `prettier`');
@@ -64,9 +255,10 @@ export async function formatters(
   const prettierOptions: VendoredPrettierOptions = Object.assign(
     {
       endOfLine: 'auto',
+      printWidth: 120,
       semi,
       singleQuote: quotes === 'single',
-      tabWidth: isNumber(indent) ? indent : 2,
+      tabWidth: typeof indent === 'number' ? indent : 2,
       trailingComma: 'all',
       useTabs: indent === 'tab',
     } satisfies VendoredPrettierOptions,
@@ -81,7 +273,7 @@ export async function formatters(
   };
 
   const dprintOptions = {
-    indentWidth: isNumber(indent) ? indent : 2,
+    indentWidth: typeof indent === 'number' ? indent : 2,
     quoteStyle: quotes === 'single' ? 'preferSingle' : 'preferDouble',
     useTabs: indent === 'tab',
     // TODO: refine the type of `options.dprintOptions` in the future to avoid this ts comment.
@@ -101,227 +293,31 @@ export async function formatters(
   ];
 
   if (options.css) {
-    configs.push(
-      {
-        files: [GLOB_CSS, GLOB_POSTCSS],
-        languageOptions: {
-          parser: parserPlain,
-        },
-        name: 'vinicunca/formatter/css',
-        rules: {
-          'format/prettier': [
-            ERROR,
-            mergePrettierOptions(prettierOptions, {
-              parser: 'css',
-            }),
-          ],
-        },
-      },
-      {
-        files: [GLOB_SCSS],
-        languageOptions: {
-          parser: parserPlain,
-        },
-        name: 'vinicunca/formatter/scss',
-        rules: {
-          'format/prettier': [
-            ERROR,
-            mergePrettierOptions(prettierOptions, {
-              parser: 'scss',
-            }),
-          ],
-        },
-      },
-      {
-        files: [GLOB_LESS],
-        languageOptions: {
-          parser: parserPlain,
-        },
-        name: 'vinicunca/formatter/less',
-        rules: {
-          'format/prettier': [
-            ERROR,
-            mergePrettierOptions(prettierOptions, {
-              parser: 'less',
-            }),
-          ],
-        },
-      },
-    );
+    configs.push(...buildCssConfigs(prettierOptions));
   }
 
   if (options.html) {
-    configs.push({
-      files: ['**/*.html'],
-      languageOptions: {
-        parser: parserPlain,
-      },
-      name: 'vinicunca/formatter/html',
-      rules: {
-        'format/prettier': [
-          ERROR,
-          mergePrettierOptions(prettierOptions, {
-            parser: 'html',
-          }),
-        ],
-      },
-    });
+    configs.push(buildHtmlConfig(prettierOptions));
   }
 
   if (options.xml) {
-    configs.push({
-      files: [GLOB_XML],
-      languageOptions: {
-        parser: parserPlain,
-      },
-      name: 'vinicunca/formatter/xml',
-      rules: {
-        'format/prettier': [
-          ERROR,
-          mergePrettierOptions({ ...prettierXmlOptions, ...prettierOptions }, {
-            parser: 'xml',
-            plugins: [
-              '@prettier/plugin-xml',
-            ],
-          }),
-        ],
-      },
-    });
+    configs.push(buildXmlLikeConfig(prettierOptions, prettierXmlOptions, [GLOB_XML], 'vinicunca/formatter/xml'));
   }
 
   if (options.svg) {
-    configs.push({
-      files: [GLOB_SVG],
-      languageOptions: {
-        parser: parserPlain,
-      },
-      name: 'vinicunca/formatter/svg',
-      rules: {
-        'format/prettier': [
-          ERROR,
-          mergePrettierOptions({ ...prettierXmlOptions, ...prettierOptions }, {
-            parser: 'xml',
-            plugins: [
-              '@prettier/plugin-xml',
-            ],
-          }),
-        ],
-      },
-    });
+    configs.push(buildXmlLikeConfig(prettierOptions, prettierXmlOptions, [GLOB_SVG], 'vinicunca/formatter/svg'));
   }
 
   if (options.markdown) {
-    const formater = options.markdown === true
-      ? 'prettier'
-      : options.markdown;
-
-    let GLOB_SLIDEV;
-
-    if (options.slidev) {
-      GLOB_SLIDEV = options.slidev === true
-        ? ['**/slides.md']
-        : options.slidev.files;
-    } else {
-      GLOB_SLIDEV = [];
-    }
-
-    configs.push({
-      files: [GLOB_MARKDOWN],
-      ignores: GLOB_SLIDEV,
-      languageOptions: {
-        parser: parserPlain,
-      },
-      name: 'vinicunca/formatter/markdown',
-      rules: {
-        [`format/${formater}`]: [
-          ERROR,
-          formater === 'prettier'
-            ? mergePrettierOptions(prettierOptions, {
-                embeddedLanguageFormatting: 'off',
-                parser: 'markdown',
-              })
-            : {
-                ...dprintOptions,
-                language: 'markdown',
-              },
-        ],
-      },
-    });
-
-    if (options.slidev) {
-      configs.push({
-        files: GLOB_SLIDEV,
-        languageOptions: {
-          parser: parserPlain,
-        },
-        name: 'vinicunca/formatter/slidev',
-        rules: {
-          'format/prettier': [
-            ERROR,
-            mergePrettierOptions(prettierOptions, {
-              embeddedLanguageFormatting: 'off',
-              parser: 'slidev',
-              plugins: [
-                'prettier-plugin-slidev',
-              ],
-            }),
-          ],
-        },
-      });
-    }
+    configs.push(...buildMarkdownConfigs(options, prettierOptions, dprintOptions));
   }
 
   if (options.astro) {
-    configs.push({
-      files: [GLOB_ASTRO],
-      languageOptions: {
-        parser: parserPlain,
-      },
-      name: 'vinicunca/formatter/astro',
-      rules: {
-        'format/prettier': [
-          ERROR,
-          mergePrettierOptions(prettierOptions, {
-            parser: 'astro',
-            plugins: [
-              'prettier-plugin-astro',
-            ],
-          }),
-        ],
-      },
-    });
-
-    configs.push({
-      files: [GLOB_ASTRO, GLOB_ASTRO_TS],
-      name: 'vinicunca/formatter/astro/disables',
-      rules: {
-        'style/arrow-parens': OFF,
-        'style/block-spacing': OFF,
-        'style/comma-dangle': OFF,
-        'style/indent': OFF,
-        'style/no-multi-spaces': OFF,
-        'style/quotes': OFF,
-        'style/semi': OFF,
-      },
-    });
+    configs.push(...buildAstroConfigs(prettierOptions));
   }
 
   if (options.graphql) {
-    configs.push({
-      files: [GLOB_GRAPHQL],
-      languageOptions: {
-        parser: parserPlain,
-      },
-      name: 'vinicunca/formatter/graphql',
-      rules: {
-        'format/prettier': [
-          ERROR,
-          mergePrettierOptions(prettierOptions, {
-            parser: 'graphql',
-          }),
-        ],
-      },
-    });
+    configs.push(buildGraphqlConfig(prettierOptions));
   }
 
   return configs;

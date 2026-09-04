@@ -26,7 +26,7 @@ export async function jsonc(
       name: 'vinicunca/jsonc/setup',
 
       plugins: {
-        jsonc: pluginJsonc as any,
+        jsonc: pluginJsonc,
       },
     },
 
@@ -98,7 +98,7 @@ export async function jsonc(
 
               'jsonc/comma-style': [ERROR, 'last'],
 
-              // eslint-disable-next-line no-nested-ternary, sonar/no-nested-conditional
+              // eslint-disable-next-line no-nested-ternary
               'jsonc/indent': [ERROR, isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2],
 
               'jsonc/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],

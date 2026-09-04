@@ -72,7 +72,9 @@
     "eslint-plugin-astro": "^1.2.0",
     "eslint-plugin-jsx-a11y": ">=6.10.2",
     "eslint-plugin-react-refresh": "^0.5.0",
+    "eslint-plugin-slop": ">=0.1.1",
     "eslint-plugin-solid": "^0.14.3",
+    "eslint-plugin-sonarjs": ">=4.0.0",
     "eslint-plugin-svelte": ">=2.35.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "prettier-plugin-astro": "^0.14.0",
@@ -101,7 +103,13 @@
     "eslint-plugin-react-refresh": {
       "optional": true
     },
+    "eslint-plugin-slop": {
+      "optional": true
+    },
     "eslint-plugin-solid": {
+      "optional": true
+    },
+    "eslint-plugin-sonarjs": {
       "optional": true
     },
     "eslint-plugin-svelte": {
@@ -145,7 +153,6 @@
     "eslint-plugin-perfectionist": "catalog:prod",
     "eslint-plugin-pnpm": "catalog:prod",
     "eslint-plugin-regexp": "catalog:prod",
-    "eslint-plugin-sonarjs": "catalog:prod",
     "eslint-plugin-toml": "catalog:prod",
     "eslint-plugin-unicorn": "catalog:prod",
     "eslint-plugin-unused-imports": "catalog:prod",
@@ -175,7 +182,9 @@
     "eslint-plugin-erasable-syntax-only": "catalog:peer",
     "eslint-plugin-jsx-a11y": "catalog:peer",
     "eslint-plugin-react-refresh": "catalog:peer",
+    "eslint-plugin-slop": "catalog:peer",
     "eslint-plugin-solid": "catalog:peer",
+    "eslint-plugin-sonarjs": "catalog:peer",
     "eslint-plugin-svelte": "catalog:peer",
     "eslint-plugin-vuejs-accessibility": "catalog:peer",
     "eslint-typegen": "catalog:dev",
@@ -215,13 +224,13 @@
   },
   "inlinedDependencies": {
     "@eslint-community/eslint-utils": "4.9.1",
-    "@typescript-eslint/scope-manager": "8.60.0",
-    "@typescript-eslint/types": "8.60.0",
-    "@typescript-eslint/utils": "8.60.0",
-    "@typescript-eslint/visitor-keys": "8.60.0",
+    "@typescript-eslint/scope-manager": "8.67.0",
+    "@typescript-eslint/types": "8.67.0",
+    "@typescript-eslint/utils": "8.67.0",
+    "@typescript-eslint/visitor-keys": "8.67.0",
     "@vinicunca/perkakas": "1.16.0",
     "cached-factory": "0.3.0",
-    "eslint-plugin-erasable-syntax-only": "0.4.2",
+    "eslint-plugin-erasable-syntax-only": "0.7.1",
     "eslint-visitor-keys": [
       "3.4.3",
       "5.0.1"

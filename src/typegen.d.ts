@@ -321,6 +321,7 @@ export interface RuleOptions {
   /**
    * disallow omitted end tags
    * @see https://ota-meshi.github.io/eslint-plugin-astro/rules/no-omitted-end-tags/
+   * @deprecated
    */
   'astro/no-omitted-end-tags'?: Linter.RuleEntry<[]>
   /**
@@ -381,6 +382,7 @@ export interface RuleOptions {
   /**
    * disallow warnings when compiling.
    * @see https://ota-meshi.github.io/eslint-plugin-astro/rules/valid-compile/
+   * @deprecated
    */
   'astro/valid-compile'?: Linter.RuleEntry<[]>
   /**
@@ -546,6 +548,10 @@ export interface RuleOptions {
    */
   'e18e/prefer-array-to-spliced'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `charCodeAt()` over indexed string access for single-character comparisons inside loops
+   */
+  'e18e/prefer-charcode-at-in-loop'?: Linter.RuleEntry<[]>
+  /**
    * Prefer Date.now() over new Date().getTime() and +new Date()
    */
   'e18e/prefer-date-now'?: Linter.RuleEntry<[]>
@@ -586,6 +592,10 @@ export interface RuleOptions {
    */
   'e18e/prefer-regex-test'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `indexOf(needle)` and `slice(...)` over `split()[N]` when splitting a string into two pieces.
+   */
+  'e18e/prefer-slice-over-split-index'?: Linter.RuleEntry<[]>
+  /**
    * Prefer spread syntax over Array.concat(), Array.from(), Object.assign({}, ...), and Function.apply()
    */
   'e18e/prefer-spread-syntax'?: Linter.RuleEntry<[]>
@@ -601,6 +611,10 @@ export interface RuleOptions {
    * Prefer String.fromCharCode() over String.fromCodePoint() for code points below 0x10000
    */
   'e18e/prefer-string-fromcharcode'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `{throwIfNoEntry: false}` over relying on a thrown error for missing fs entries from sync stat calls
+   */
+  'e18e/prefer-throw-if-no-entry'?: Linter.RuleEntry<[]>
   /**
    * Prefer passing function and arguments directly to setTimeout/setInterval instead of wrapping in an arrow function or using bind
    */
@@ -625,6 +639,11 @@ export interface RuleOptions {
    * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only/blob/main/docs/rules/enums.md
    */
   'erasable-syntax-only/enums'?: Linter.RuleEntry<[]>
+  /**
+   * Avoid using TypeScript's export aliases.
+   * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only/blob/main/docs/rules/export-aliases.md
+   */
+  'erasable-syntax-only/export-aliases'?: Linter.RuleEntry<[]>
   /**
    * Avoid using TypeScript's import aliases.
    * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only/blob/main/docs/rules/import-aliases.md
@@ -1013,6 +1032,15 @@ export interface RuleOptions {
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-undefined-types.md#repos-sticky-header
    */
   'jsdoc/no-undefined-types'?: Linter.RuleEntry<JsdocNoUndefinedTypes>
+  /**
+   * Reports redundant @type tags that match or broaden the naturally inferred TypeScript type.
+   */
+  'jsdoc/no-unnecessary-type-assertion'?: Linter.RuleEntry<JsdocNoUnnecessaryTypeAssertion>
+  /**
+   * Normalizes labeled links in `@see` tags to a canonical `{@link}` form.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/normalize-see-links.md#repos-sticky-header
+   */
+  'jsdoc/normalize-see-links'?: Linter.RuleEntry<JsdocNormalizeSeeLinks>
   /**
    * Prefer `@import` tags to inline `import()` statements.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/prefer-import-tag.md#repos-sticky-header
@@ -1968,6 +1996,11 @@ export interface RuleOptions {
    */
   'next/no-img-element'?: Linter.RuleEntry<[]>
   /**
+   * Prevent usage of `location.assign` or `location.href` assignment to navigate to internal Next.js pages.
+   * @see https://nextjs.org/docs/messages/no-location-assign-relative-destination
+   */
+  'next/no-location-assign-relative-destination'?: Linter.RuleEntry<[]>
+  /**
    * Prevent page-only custom fonts.
    * @see https://nextjs.org/docs/messages/no-page-custom-font
    */
@@ -2083,7 +2116,7 @@ export interface RuleOptions {
    * Disallow expressions where the operation doesn't affect the value
    * @see https://eslint.org/docs/latest/rules/no-constant-binary-expression
    */
-  'no-constant-binary-expression'?: Linter.RuleEntry<[]>
+  'no-constant-binary-expression'?: Linter.RuleEntry<NoConstantBinaryExpression>
   /**
    * Disallow constant expressions in conditions
    * @see https://eslint.org/docs/latest/rules/no-constant-condition
@@ -2675,7 +2708,7 @@ export interface RuleOptions {
    * Disallow unmodified loop conditions
    * @see https://eslint.org/docs/latest/rules/no-unmodified-loop-condition
    */
-  'no-unmodified-loop-condition'?: Linter.RuleEntry<[]>
+  'no-unmodified-loop-condition'?: Linter.RuleEntry<NoUnmodifiedLoopCondition>
   /**
    * Disallow ternary operators when simpler alternatives exist
    * @see https://eslint.org/docs/latest/rules/no-unneeded-ternary
@@ -2889,7 +2922,7 @@ export interface RuleOptions {
    */
   'node/no-new-require'?: Linter.RuleEntry<[]>
   /**
-   * disallow string concatenation with `__dirname` and `__filename`
+   * disallow string concatenation with `__dirname`, `__filename`, and `import.meta` paths
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-path-concat.md
    */
   'node/no-path-concat'?: Linter.RuleEntry<[]>
@@ -2999,10 +3032,20 @@ export interface RuleOptions {
    */
   'node/prefer-global/url-search-params'?: Linter.RuleEntry<NodePreferGlobalUrlSearchParams>
   /**
+   * enforce using `node:assert/strict` instead of `node:assert`.
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-import/assert-strict.md
+   */
+  'node/prefer-import/assert-strict'?: Linter.RuleEntry<[]>
+  /**
    * enforce using the `node:` protocol when importing Node.js builtin modules.
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-node-protocol.md
    */
   'node/prefer-node-protocol'?: Linter.RuleEntry<NodePreferNodeProtocol>
+  /**
+   * enforce using `process.getBuiltinModule()` to load Node.js built-in modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-process-get-builtin-module.md
+   */
+  'node/prefer-process-get-builtin-module'?: Linter.RuleEntry<NodePreferProcessGetBuiltinModule>
   /**
    * enforce `require("dns").promises`
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-promises/dns.md
@@ -3218,10 +3261,20 @@ export interface RuleOptions {
    */
   'pnpm/json-valid-catalog'?: Linter.RuleEntry<PnpmJsonValidCatalog>
   /**
+   * Require blank lines around multi-line entries in `pnpm-workspace.yaml`, and disallow them between single-line entries
+   * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-blank-lines.test.ts
+   */
+  'pnpm/yaml-blank-lines'?: Linter.RuleEntry<[]>
+  /**
    * Enforce settings in `pnpm-workspace.yaml`
    * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-enforce-settings.test.ts
    */
   'pnpm/yaml-enforce-settings'?: Linter.RuleEntry<PnpmYamlEnforceSettings>
+  /**
+   * Disallow the anonymous `catalog:` in `pnpm-workspace.yaml` in favor of named catalogs
+   * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-no-anonymous-catalog.test.ts
+   */
+  'pnpm/yaml-no-anonymous-catalog'?: Linter.RuleEntry<[]>
   /**
    * Disallow duplicate catalog items in `pnpm-workspace.yaml`
    * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-no-duplicate-catalog-item.test.ts
@@ -3427,7 +3480,7 @@ export interface RuleOptions {
    */
   'react/globals'?: Linter.RuleEntry<[]>
   /**
-   * Validates against mutating props, state, and other values that are immutable.
+   * Validates against passing functions that mutate captured local variables into frozen contexts such as JSX props, hook arguments, and hook return values.
    * @see https://eslint-react.xyz/docs/rules/immutability
    */
   'react/immutability'?: Linter.RuleEntry<[]>
@@ -3782,7 +3835,7 @@ export interface RuleOptions {
    */
   'react/x-globals'?: Linter.RuleEntry<[]>
   /**
-   * Validates against mutating props, state, and other values that are immutable.
+   * Validates against passing functions that mutate captured local variables into frozen contexts such as JSX props, hook arguments, and hook return values.
    * @see https://eslint-react.xyz/docs/rules/immutability
    */
   'react/x-immutability'?: Linter.RuleEntry<[]>
@@ -4486,6 +4539,38 @@ export interface RuleOptions {
    */
   'semi-style'?: Linter.RuleEntry<SemiStyle>
   /**
+   * Limit comments by word count.
+   */
+  'slop/max-comment-length'?: Linter.RuleEntry<SlopMaxCommentLength>
+  /**
+   * Disallow chains of TypeScript type assertions.
+   */
+  'slop/no-chained-type-assertions'?: Linter.RuleEntry<SlopNoChainedTypeAssertions>
+  /**
+   * Disallow em dashes in source text.
+   */
+  'slop/no-em-dash'?: Linter.RuleEntry<SlopNoEmDash>
+  /**
+   * Disallow inflated vocabulary in comments.
+   */
+  'slop/no-jargon'?: Linter.RuleEntry<SlopNoJargon>
+  /**
+   * Disallow classes that group only static members.
+   */
+  'slop/no-static-only-class'?: Linter.RuleEntry<SlopNoStaticOnlyClass>
+  /**
+   * Disallow low-use top-level forwarding and property-access functions.
+   */
+  'slop/no-trivial-functions'?: Linter.RuleEntry<SlopNoTrivialFunctions>
+  /**
+   * Disallow type aliases that resolve only to a primitive or unknown.
+   */
+  'slop/no-trivial-type-aliases'?: Linter.RuleEntry<SlopNoTrivialTypeAliases>
+  /**
+   * Require /** *\/ rather than // for the comment documenting an export or member.
+   */
+  'slop/prefer-jsdoc'?: Linter.RuleEntry<SlopPreferJsdoc>
+  /**
    * Disallow early returns in components. Solid components only run once, and so conditionals should be inside JSX.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/components-return-once.md
    */
@@ -4521,10 +4606,20 @@ export interface RuleOptions {
    */
   'solid/jsx-uses-vars'?: Linter.RuleEntry<[]>
   /**
+   * Disallow passing uncalled signal accessors or other functions as value-typed DOM element attributes.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-accessor-as-prop.md
+   */
+  'solid/no-accessor-as-prop'?: Linter.RuleEntry<[]>
+  /**
    * Disallow usage of type-unsafe event handlers.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-array-handlers.md
    */
   'solid/no-array-handlers'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow browser-only globals inside server functions, which run exclusively on the server.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-browser-globals-in-server-function.md
+   */
+  'solid/no-browser-globals-in-server-function'?: Linter.RuleEntry<[]>
   /**
    * Disallow destructuring props. In Solid, props must be used with property accesses (`props.foo`) to preserve reactivity. This rule only tracks destructuring in the parameter list.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-destructure.md
@@ -4535,6 +4630,16 @@ export interface RuleOptions {
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-innerhtml.md
    */
   'solid/no-innerhtml'?: Linter.RuleEntry<SolidNoInnerhtml>
+  /**
+   * Disallow server functions from capturing variables in enclosing non-module scopes, mirroring the compiler's build-time validation.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-invalid-server-capture.md
+   */
+  'solid/no-invalid-server-capture'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow reactive primitives at module scope, where state is shared across SSR requests.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-module-scope-reactive-primitive.md
+   */
+  'solid/no-module-scope-reactive-primitive'?: Linter.RuleEntry<[]>
   /**
    * Disallow usage of APIs that use ES6 Proxies, only to target environments that don't support them.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-proxy-apis.md
@@ -4550,6 +4655,16 @@ export interface RuleOptions {
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-react-specific-props.md
    */
   'solid/no-react-specific-props'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow restating a prop or option value that is already the default.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-restated-default-options.md
+   */
+  'solid/no-restated-default-options'?: Linter.RuleEntry<[]>
+  /**
+   * Require the two-argument `createEffect(compute, effect)` form used by Solid 2.0.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-single-arg-create-effect.md
+   */
+  'solid/no-single-arg-create-effect'?: Linter.RuleEntry<[]>
   /**
    * Enforce using only Solid-specific namespaced attribute names (i.e. `'on:'` in `<div on:click={...} />`).
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-unknown-namespaces.md
@@ -4567,15 +4682,35 @@ export interface RuleOptions {
    */
   'solid/prefer-for'?: Linter.RuleEntry<[]>
   /**
+   * Enforce running side-effectful setup (timers, global listeners, observers) inside `onSettled` instead of the component body.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-onSettled-for-side-effects.md
+   */
+  'solid/prefer-onSettled-for-side-effects'?: Linter.RuleEntry<[]>
+  /**
    * Enforce using Solid's `<Show />` component for conditionally showing content. Solid's compiler covers this case, so it's a stylistic rule only.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-show.md
    */
   'solid/prefer-show'?: Linter.RuleEntry<[]>
   /**
+   * Enforce using the structured array/object forms of the `class` prop over manually-built class strings.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-structured-class.md
+   */
+  'solid/prefer-structured-class'?: Linter.RuleEntry<[]>
+  /**
    * Enforce that reactivity (props, signals, memos, etc.) is properly used, so changes in those values will be tracked and update the view as expected.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/reactivity.md
    */
   'solid/reactivity'?: Linter.RuleEntry<SolidReactivity>
+  /**
+   * Disallow Solid 1.x APIs that were removed or renamed in Solid 2.0, with migration guidance.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/removed-api.md
+   */
+  'solid/removed-api'?: Linter.RuleEntry<[]>
+  /**
+   * Require server functions to be async, matching their client-side contract.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/require-async-server-function.md
+   */
+  'solid/require-async-server-function'?: Linter.RuleEntry<[]>
   /**
    * Disallow extra closing tags for components without children.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/self-closing-comp.md
@@ -4587,1358 +4722,1418 @@ export interface RuleOptions {
    */
   'solid/style-prop'?: Linter.RuleEntry<SolidStyleProp>
   /**
+   * Enforce that "use server" directives are placed where the compiler honors them, and that module-level directive files export working server functions.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/valid-use-server.md
+   */
+  'solid/valid-use-server'?: Linter.RuleEntry<SolidValidUseServer>
+  /**
    * Alternatives in regular expressions should be grouped when used with anchors
    * @see https://sonarsource.github.io/rspec/#/rspec/S5850/javascript
    */
-  'sonar/anchor-precedence'?: Linter.RuleEntry<[]>
+  'sonarjs/anchor-precedence'?: Linter.RuleEntry<[]>
   /**
    * Arguments to built-in functions should match documented types
    * @see https://sonarsource.github.io/rspec/#/rspec/S3782/javascript
    */
-  'sonar/argument-type'?: Linter.RuleEntry<[]>
+  'sonarjs/argument-type'?: Linter.RuleEntry<[]>
   /**
    * Parameters should be passed in the correct order
    * @see https://sonarsource.github.io/rspec/#/rspec/S2234/javascript
    */
-  'sonar/arguments-order'?: Linter.RuleEntry<[]>
+  'sonarjs/arguments-order'?: Linter.RuleEntry<[]>
   /**
    * "arguments" should not be accessed directly
    * @see https://sonarsource.github.io/rspec/#/rspec/S3513/javascript
    */
-  'sonar/arguments-usage'?: Linter.RuleEntry<[]>
+  'sonarjs/arguments-usage'?: Linter.RuleEntry<[]>
   /**
    * Callbacks of array methods should have return statements
    * @see https://sonarsource.github.io/rspec/#/rspec/S3796/javascript
    */
-  'sonar/array-callback-without-return'?: Linter.RuleEntry<[]>
+  'sonarjs/array-callback-without-return'?: Linter.RuleEntry<[]>
   /**
    * Array constructors should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S1528/javascript
    */
-  'sonar/array-constructor'?: Linter.RuleEntry<[]>
+  'sonarjs/array-constructor'?: Linter.RuleEntry<[]>
   /**
    * Braces and parentheses should be used consistently with arrow functions
    * @see https://sonarsource.github.io/rspec/#/rspec/S3524/javascript
    */
-  'sonar/arrow-function-convention'?: Linter.RuleEntry<SonarArrowFunctionConvention>
+  'sonarjs/arrow-function-convention'?: Linter.RuleEntry<SonarjsArrowFunctionConvention>
+  /**
+   * Assertions should be placed inside test cases or hooks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8784/javascript
+   */
+  'sonarjs/assertions-in-test-cases'?: Linter.RuleEntry<[]>
   /**
    * Tests should include assertions
    * @see https://sonarsource.github.io/rspec/#/rspec/S2699/javascript
    */
-  'sonar/assertions-in-tests'?: Linter.RuleEntry<[]>
+  'sonarjs/assertions-in-tests'?: Linter.RuleEntry<[]>
   /**
    * Async test assertions should be awaited or returned
    * @see https://sonarsource.github.io/rspec/#/rspec/S8780/javascript
    */
-  'sonar/async-test-assertions'?: Linter.RuleEntry<[]>
+  'sonarjs/async-test-assertions'?: Linter.RuleEntry<[]>
   /**
    * AWS API Gateway should require authentication
    * @see https://sonarsource.github.io/rspec/#/rspec/S6333/javascript
    */
-  'sonar/aws-apigateway-public-api'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-apigateway-public-api'?: Linter.RuleEntry<[]>
   /**
    * Public network access to cloud resources should be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6329/javascript
    */
-  'sonar/aws-ec2-rds-dms-public'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-ec2-rds-dms-public'?: Linter.RuleEntry<[]>
   /**
    * EBS volumes should be encrypted
    * @see https://sonarsource.github.io/rspec/#/rspec/S6275/javascript
    */
-  'sonar/aws-ec2-unencrypted-ebs-volume'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-ec2-unencrypted-ebs-volume'?: Linter.RuleEntry<[]>
   /**
    * Amazon EFS file systems should be encrypted
    * @see https://sonarsource.github.io/rspec/#/rspec/S6332/javascript
    */
-  'sonar/aws-efs-unencrypted'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-efs-unencrypted'?: Linter.RuleEntry<[]>
   /**
    * Policies should not grant all privileges
    * @see https://sonarsource.github.io/rspec/#/rspec/S6302/javascript
    */
-  'sonar/aws-iam-all-privileges'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-iam-all-privileges'?: Linter.RuleEntry<[]>
   /**
    * IAM policies should not grant access to all account resources
    * @see https://sonarsource.github.io/rspec/#/rspec/S6304/javascript
    */
-  'sonar/aws-iam-all-resources-accessible'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-iam-all-resources-accessible'?: Linter.RuleEntry<[]>
   /**
    * AWS IAM policies should limit the scope of permissions given
    * @see https://sonarsource.github.io/rspec/#/rspec/S6317/javascript
    */
-  'sonar/aws-iam-privilege-escalation'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-iam-privilege-escalation'?: Linter.RuleEntry<[]>
   /**
    * AWS resource-based policies should not grant public access
    * @see https://sonarsource.github.io/rspec/#/rspec/S6270/javascript
    */
-  'sonar/aws-iam-public-access'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-iam-public-access'?: Linter.RuleEntry<[]>
   /**
    * OpenSearch domains should have encryption at rest enabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6308/javascript
    */
-  'sonar/aws-opensearchservice-domain'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-opensearchservice-domain'?: Linter.RuleEntry<[]>
   /**
    * Amazon RDS resources should be encrypted at rest
    * @see https://sonarsource.github.io/rspec/#/rspec/S6303/javascript
    */
-  'sonar/aws-rds-unencrypted-databases'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-rds-unencrypted-databases'?: Linter.RuleEntry<[]>
   /**
    * Administration services access should be restricted to specific IP addresses
    * @see https://sonarsource.github.io/rspec/#/rspec/S6321/javascript
    */
-  'sonar/aws-restricted-ip-admin-access'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-restricted-ip-admin-access'?: Linter.RuleEntry<[]>
   /**
    * S3 buckets should not grant access to all users or authenticated users
    * @see https://sonarsource.github.io/rspec/#/rspec/S6265/javascript
    */
-  'sonar/aws-s3-bucket-granted-access'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-s3-bucket-granted-access'?: Linter.RuleEntry<[]>
   /**
    * S3 buckets should enforce HTTPS-only access
    * @see https://sonarsource.github.io/rspec/#/rspec/S6249/javascript
    */
-  'sonar/aws-s3-bucket-insecure-http'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-s3-bucket-insecure-http'?: Linter.RuleEntry<[]>
   /**
    * Amazon S3 bucket public access should be fully blocked
    * @see https://sonarsource.github.io/rspec/#/rspec/S6281/javascript
    */
-  'sonar/aws-s3-bucket-public-access'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-s3-bucket-public-access'?: Linter.RuleEntry<[]>
   /**
    * Amazon S3 buckets should have versioning enabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6252/javascript
    */
-  'sonar/aws-s3-bucket-versioning'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-s3-bucket-versioning'?: Linter.RuleEntry<[]>
   /**
    * SageMaker notebook instances should be encrypted at rest
    * @see https://sonarsource.github.io/rspec/#/rspec/S6319/javascript
    */
-  'sonar/aws-sagemaker-unencrypted-notebook'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-sagemaker-unencrypted-notebook'?: Linter.RuleEntry<[]>
   /**
    * Amazon SNS topics should be encrypted at rest
    * @see https://sonarsource.github.io/rspec/#/rspec/S6327/javascript
    */
-  'sonar/aws-sns-unencrypted-topics'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-sns-unencrypted-topics'?: Linter.RuleEntry<[]>
   /**
    * SQS queues should be encrypted
    * @see https://sonarsource.github.io/rspec/#/rspec/S6330/javascript
    */
-  'sonar/aws-sqs-unencrypted-queue'?: Linter.RuleEntry<[]>
+  'sonarjs/aws-sqs-unencrypted-queue'?: Linter.RuleEntry<[]>
   /**
    * Bitwise operators should not be used in boolean contexts
    * @see https://sonarsource.github.io/rspec/#/rspec/S1529/javascript
    */
-  'sonar/bitwise-operators'?: Linter.RuleEntry<[]>
+  'sonarjs/bitwise-operators'?: Linter.RuleEntry<[]>
   /**
    * Variables should be used in the blocks where they are declared
    * @see https://sonarsource.github.io/rspec/#/rspec/S2392/javascript
    */
-  'sonar/block-scoped-var'?: Linter.RuleEntry<[]>
+  'sonarjs/block-scoped-var'?: Linter.RuleEntry<[]>
   /**
    * Optional boolean parameters should have default value
    * @see https://sonarsource.github.io/rspec/#/rspec/S4798/javascript
    */
-  'sonar/bool-param-default'?: Linter.RuleEntry<[]>
+  'sonarjs/bool-param-default'?: Linter.RuleEntry<[]>
   /**
    * Function call arguments should not start on new lines
    * @see https://sonarsource.github.io/rspec/#/rspec/S1472/javascript
    */
-  'sonar/call-argument-line'?: Linter.RuleEntry<[]>
+  'sonarjs/call-argument-line'?: Linter.RuleEntry<[]>
   /**
    * Chai assertions should have only one reason to succeed
    * @see https://sonarsource.github.io/rspec/#/rspec/S6092/javascript
    */
-  'sonar/chai-determinate-assertion'?: Linter.RuleEntry<[]>
+  'sonarjs/chai-determinate-assertion'?: Linter.RuleEntry<[]>
   /**
    * Class names should comply with a naming convention
    * @see https://sonarsource.github.io/rspec/#/rspec/S101/javascript
    */
-  'sonar/class-name'?: Linter.RuleEntry<SonarClassName>
+  'sonarjs/class-name'?: Linter.RuleEntry<SonarjsClassName>
   /**
    * Class methods should be used instead of "prototype" assignments
    * @see https://sonarsource.github.io/rspec/#/rspec/S3525/javascript
    */
-  'sonar/class-prototype'?: Linter.RuleEntry<[]>
+  'sonarjs/class-prototype'?: Linter.RuleEntry<[]>
   /**
    * Dynamic code execution should not use user-controlled data
    * @see https://sonarsource.github.io/rspec/#/rspec/S1523/javascript
    */
-  'sonar/code-eval'?: Linter.RuleEntry<[]>
+  'sonarjs/code-eval'?: Linter.RuleEntry<[]>
   /**
    * Cognitive Complexity of functions should not be too high
    * @see https://sonarsource.github.io/rspec/#/rspec/S3776/javascript
    */
-  'sonar/cognitive-complexity'?: Linter.RuleEntry<SonarCognitiveComplexity>
+  'sonarjs/cognitive-complexity'?: Linter.RuleEntry<SonarjsCognitiveComplexity>
   /**
    * Comma and logical OR operators should not be used in switch cases
    * @see https://sonarsource.github.io/rspec/#/rspec/S3616/javascript
    */
-  'sonar/comma-or-logical-or-case'?: Linter.RuleEntry<[]>
+  'sonarjs/comma-or-logical-or-case'?: Linter.RuleEntry<[]>
   /**
    * Track comments matching a regular expression
    * @see https://sonarsource.github.io/rspec/#/rspec/S124/javascript
    */
-  'sonar/comment-regex'?: Linter.RuleEntry<SonarCommentRegex>
+  'sonarjs/comment-regex'?: Linter.RuleEntry<SonarjsCommentRegex>
   /**
    * Regular expression quantifiers and character classes should be used concisely
    * @see https://sonarsource.github.io/rspec/#/rspec/S6353/javascript
    */
-  'sonar/concise-regex'?: Linter.RuleEntry<[]>
+  'sonarjs/concise-regex'?: Linter.RuleEntry<[]>
   /**
    * A conditionally executed single line should be denoted by indentation
    * @see https://sonarsource.github.io/rspec/#/rspec/S3973/javascript
    * @deprecated
    */
-  'sonar/conditional-indentation'?: Linter.RuleEntry<[]>
+  'sonarjs/conditional-indentation'?: Linter.RuleEntry<[]>
   /**
    * Confidential information should not be logged
    * @see https://sonarsource.github.io/rspec/#/rspec/S5757/javascript
    * @deprecated
    */
-  'sonar/confidential-information-logging'?: Linter.RuleEntry<[]>
+  'sonarjs/confidential-information-logging'?: Linter.RuleEntry<[]>
   /**
    * Objects should not be created to be dropped immediately without being used
    * @see https://sonarsource.github.io/rspec/#/rspec/S1848/javascript
    */
-  'sonar/constructor-for-side-effects'?: Linter.RuleEntry<[]>
+  'sonarjs/constructor-for-side-effects'?: Linter.RuleEntry<[]>
   /**
    * HTTP request content length should be limited
    * @see https://sonarsource.github.io/rspec/#/rspec/S5693/javascript
    */
-  'sonar/content-length'?: Linter.RuleEntry<SonarContentLength>
+  'sonarjs/content-length'?: Linter.RuleEntry<SonarjsContentLength>
   /**
    * Content security policy fetch directives should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5728/javascript
    */
-  'sonar/content-security-policy'?: Linter.RuleEntry<[]>
+  'sonarjs/content-security-policy'?: Linter.RuleEntry<[]>
   /**
    * Cookies should have the "HttpOnly" flag
    * @see https://sonarsource.github.io/rspec/#/rspec/S3330/javascript
    */
-  'sonar/cookie-no-httponly'?: Linter.RuleEntry<[]>
+  'sonarjs/cookie-no-httponly'?: Linter.RuleEntry<[]>
   /**
    * Cross-Origin Resource Sharing (CORS) policy should be restricted to trusted origins
    * @see https://sonarsource.github.io/rspec/#/rspec/S5122/javascript
    */
-  'sonar/cors'?: Linter.RuleEntry<[]>
+  'sonarjs/cors'?: Linter.RuleEntry<[]>
   /**
    * CSRF protections should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S4502/javascript
    */
-  'sonar/csrf'?: Linter.RuleEntry<[]>
+  'sonarjs/csrf'?: Linter.RuleEntry<[]>
   /**
    * Cyclomatic Complexity of functions should not be too high
    * @see https://sonarsource.github.io/rspec/#/rspec/S1541/javascript
    */
-  'sonar/cyclomatic-complexity'?: Linter.RuleEntry<SonarCyclomaticComplexity>
+  'sonarjs/cyclomatic-complexity'?: Linter.RuleEntry<SonarjsCyclomaticComplexity>
   /**
    * Variables and functions should not be declared in the global scope
    * @see https://sonarsource.github.io/rspec/#/rspec/S3798/javascript
    */
-  'sonar/declarations-in-global-scope'?: Linter.RuleEntry<[]>
+  'sonarjs/declarations-in-global-scope'?: Linter.RuleEntry<[]>
   /**
    * Deprecated APIs should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S1874/javascript
    */
-  'sonar/deprecation'?: Linter.RuleEntry<[]>
+  'sonarjs/deprecation'?: Linter.RuleEntry<[]>
   /**
    * Destructuring syntax should be used for assignments
    * @see https://sonarsource.github.io/rspec/#/rspec/S3514/javascript
    */
-  'sonar/destructuring-assignment-syntax'?: Linter.RuleEntry<[]>
+  'sonarjs/destructuring-assignment-syntax'?: Linter.RuleEntry<[]>
   /**
    * Strict equality operators should not be used with dissimilar types
    * @see https://sonarsource.github.io/rspec/#/rspec/S3403/javascript
    */
-  'sonar/different-types-comparison'?: Linter.RuleEntry<[]>
+  'sonarjs/different-types-comparison'?: Linter.RuleEntry<[]>
   /**
    * Auto-escaping in HTML template engines should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5247/javascript
    */
-  'sonar/disabled-auto-escaping'?: Linter.RuleEntry<[]>
+  'sonarjs/disabled-auto-escaping'?: Linter.RuleEntry<[]>
   /**
    * Remote artifacts should not be used without integrity checks
    * @see https://sonarsource.github.io/rspec/#/rspec/S5725/javascript
    */
-  'sonar/disabled-resource-integrity'?: Linter.RuleEntry<[]>
+  'sonarjs/disabled-resource-integrity'?: Linter.RuleEntry<[]>
   /**
    * Disabling Mocha timeouts should be explicit
    * @see https://sonarsource.github.io/rspec/#/rspec/S6080/javascript
    */
-  'sonar/disabled-timeout'?: Linter.RuleEntry<[]>
+  'sonarjs/disabled-timeout'?: Linter.RuleEntry<[]>
   /**
    * DOMPurify configuration should not be bypassable
    * @see https://sonarsource.github.io/rspec/#/rspec/S8479/javascript
    */
-  'sonar/dompurify-unsafe-config'?: Linter.RuleEntry<[]>
+  'sonarjs/dompurify-unsafe-config'?: Linter.RuleEntry<[]>
   /**
    * Character classes in regular expressions should not contain the same character twice
    * @see https://sonarsource.github.io/rspec/#/rspec/S5869/javascript
    */
-  'sonar/duplicates-in-character-class'?: Linter.RuleEntry<[]>
+  'sonarjs/duplicates-in-character-class'?: Linter.RuleEntry<[]>
   /**
    * Templates should not be constructed dynamically
    * @see https://sonarsource.github.io/rspec/#/rspec/S7790/javascript
    */
-  'sonar/dynamically-constructed-templates'?: Linter.RuleEntry<[]>
+  'sonarjs/dynamically-constructed-templates'?: Linter.RuleEntry<[]>
   /**
    * "if ... else if" constructs should end with "else" clauses
    * @see https://sonarsource.github.io/rspec/#/rspec/S126/javascript
    */
-  'sonar/elseif-without-else'?: Linter.RuleEntry<[]>
+  'sonarjs/elseif-without-else'?: Linter.RuleEntry<[]>
   /**
    * Repeated patterns in regular expressions should not match the empty string
    * @see https://sonarsource.github.io/rspec/#/rspec/S5842/javascript
    */
-  'sonar/empty-string-repetition'?: Linter.RuleEntry<[]>
+  'sonarjs/empty-string-repetition'?: Linter.RuleEntry<[]>
   /**
    * Encryption algorithms should be used with secure mode and padding scheme
    * @see https://sonarsource.github.io/rspec/#/rspec/S5542/javascript
    */
-  'sonar/encryption-secure-mode'?: Linter.RuleEntry<[]>
+  'sonarjs/encryption-secure-mode'?: Linter.RuleEntry<[]>
   /**
    * Replacement strings should reference existing regular expression groups
    * @see https://sonarsource.github.io/rspec/#/rspec/S6328/javascript
    */
-  'sonar/existing-groups'?: Linter.RuleEntry<[]>
+  'sonarjs/existing-groups'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should be skipped explicitly
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8968/javascript
+   */
+  'sonarjs/explicit-test-skip'?: Linter.RuleEntry<[]>
   /**
    * Expressions should not be too complex
    * @see https://sonarsource.github.io/rspec/#/rspec/S1067/javascript
    */
-  'sonar/expression-complexity'?: Linter.RuleEntry<SonarExpressionComplexity>
+  'sonarjs/expression-complexity'?: Linter.RuleEntry<SonarjsExpressionComplexity>
   /**
    * Track lack of copyright and license headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S1451/javascript
    */
-  'sonar/file-header'?: Linter.RuleEntry<SonarFileHeader>
+  'sonarjs/file-header'?: Linter.RuleEntry<SonarjsFileHeader>
   /**
    * Default export names and file names should match
    * @see https://sonarsource.github.io/rspec/#/rspec/S3317/javascript
    */
-  'sonar/file-name-differ-from-class'?: Linter.RuleEntry<[]>
+  'sonarjs/file-name-differ-from-class'?: Linter.RuleEntry<[]>
   /**
    * File permissions should not be set to world-accessible values
    * @see https://sonarsource.github.io/rspec/#/rspec/S2612/javascript
    */
-  'sonar/file-permissions'?: Linter.RuleEntry<[]>
+  'sonarjs/file-permissions'?: Linter.RuleEntry<[]>
   /**
    * File uploads should be restricted
    * @see https://sonarsource.github.io/rspec/#/rspec/S2598/javascript
    */
-  'sonar/file-uploads'?: Linter.RuleEntry<[]>
+  'sonarjs/file-uploads'?: Linter.RuleEntry<[]>
   /**
    * Track uses of "FIXME" tags
    * @see https://sonarsource.github.io/rspec/#/rspec/S1134/javascript
    */
-  'sonar/fixme-tag'?: Linter.RuleEntry<[]>
+  'sonarjs/fixme-tag'?: Linter.RuleEntry<[]>
   /**
    * "for...in" loops should filter properties before acting on them
    * @see https://sonarsource.github.io/rspec/#/rspec/S1535/javascript
    */
-  'sonar/for-in'?: Linter.RuleEntry<[]>
+  'sonarjs/for-in'?: Linter.RuleEntry<[]>
   /**
    * A "for" loop update clause should move the counter in the right direction
    * @see https://sonarsource.github.io/rspec/#/rspec/S2251/javascript
    */
-  'sonar/for-loop-increment-sign'?: Linter.RuleEntry<[]>
+  'sonarjs/for-loop-increment-sign'?: Linter.RuleEntry<[]>
   /**
    * Content Security Policy frame-ancestors directive should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5732/javascript
    * @deprecated
    */
-  'sonar/frame-ancestors'?: Linter.RuleEntry<[]>
+  'sonarjs/frame-ancestors'?: Linter.RuleEntry<[]>
   /**
    * Functions should not be defined inside loops
    * @see https://sonarsource.github.io/rspec/#/rspec/S1515/javascript
    */
-  'sonar/function-inside-loop'?: Linter.RuleEntry<[]>
+  'sonarjs/function-inside-loop'?: Linter.RuleEntry<[]>
   /**
    * Function and method names should comply with a naming convention
    * @see https://sonarsource.github.io/rspec/#/rspec/S100/javascript
    */
-  'sonar/function-name'?: Linter.RuleEntry<SonarFunctionName>
+  'sonarjs/function-name'?: Linter.RuleEntry<SonarjsFunctionName>
   /**
    * Functions should always return the same type
    * @see https://sonarsource.github.io/rspec/#/rspec/S3800/javascript
    */
-  'sonar/function-return-type'?: Linter.RuleEntry<[]>
+  'sonarjs/function-return-type'?: Linter.RuleEntry<[]>
   /**
    * Future reserved words should not be used as identifiers
    * @see https://sonarsource.github.io/rspec/#/rspec/S1527/javascript
    */
-  'sonar/future-reserved-words'?: Linter.RuleEntry<[]>
+  'sonarjs/future-reserved-words'?: Linter.RuleEntry<[]>
   /**
    * Generators should explicitly "yield" a value
    * @see https://sonarsource.github.io/rspec/#/rspec/S3531/javascript
    */
-  'sonar/generator-without-yield'?: Linter.RuleEntry<[]>
+  'sonarjs/generator-without-yield'?: Linter.RuleEntry<[]>
   /**
    * Credentials should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S6437/javascript
    */
-  'sonar/hardcoded-secret-signatures'?: Linter.RuleEntry<[]>
+  'sonarjs/hardcoded-secret-signatures'?: Linter.RuleEntry<[]>
   /**
    * Weak hashing algorithms should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4790/javascript
    */
-  'sonar/hashing'?: Linter.RuleEntry<[]>
+  'sonarjs/hashing'?: Linter.RuleEntry<[]>
   /**
    * Hidden files should not be served statically
    * @see https://sonarsource.github.io/rspec/#/rspec/S5691/javascript
    * @deprecated
    */
-  'sonar/hidden-files'?: Linter.RuleEntry<[]>
+  'sonarjs/hidden-files'?: Linter.RuleEntry<[]>
   /**
    * Lifecycle hooks should not be interleaved with test cases or nested suites
    * @see https://sonarsource.github.io/rspec/#/rspec/S8782/javascript
    */
-  'sonar/hooks-before-test-cases'?: Linter.RuleEntry<[]>
+  'sonarjs/hooks-before-test-cases'?: Linter.RuleEntry<[]>
   /**
    * "in" should not be used with primitive types
    * @see https://sonarsource.github.io/rspec/#/rspec/S3785/javascript
    */
-  'sonar/in-operator-type-error'?: Linter.RuleEntry<[]>
+  'sonarjs/in-operator-type-error'?: Linter.RuleEntry<[]>
   /**
    * Functions should be called consistently with or without "new"
    * @see https://sonarsource.github.io/rspec/#/rspec/S3686/javascript
    */
-  'sonar/inconsistent-function-call'?: Linter.RuleEntry<[]>
+  'sonarjs/inconsistent-function-call'?: Linter.RuleEntry<[]>
   /**
    * "indexOf" checks should not be for positive numbers
    * @see https://sonarsource.github.io/rspec/#/rspec/S2692/javascript
    */
-  'sonar/index-of-compare-to-positive-number'?: Linter.RuleEntry<[]>
+  'sonarjs/index-of-compare-to-positive-number'?: Linter.RuleEntry<[]>
   /**
    * Cookies should have the "secure" flag
    * @see https://sonarsource.github.io/rspec/#/rspec/S2092/javascript
    */
-  'sonar/insecure-cookie'?: Linter.RuleEntry<[]>
+  'sonarjs/insecure-cookie'?: Linter.RuleEntry<[]>
   /**
    * JWT should be signed and verified with strong cipher algorithms
    * @see https://sonarsource.github.io/rspec/#/rspec/S5659/javascript
    */
-  'sonar/insecure-jwt-token'?: Linter.RuleEntry<[]>
+  'sonarjs/insecure-jwt-token'?: Linter.RuleEntry<[]>
   /**
    * Assertion arguments should be passed in the correct order
    * @see https://sonarsource.github.io/rspec/#/rspec/S3415/javascript
    */
-  'sonar/inverted-assertion-arguments'?: Linter.RuleEntry<[]>
+  'sonarjs/inverted-assertion-arguments'?: Linter.RuleEntry<[]>
   /**
    * React components should not render non-boolean condition values
    * @see https://sonarsource.github.io/rspec/#/rspec/S6439/javascript
    */
-  'sonar/jsx-no-leaked-render'?: Linter.RuleEntry<[]>
+  'sonarjs/jsx-no-leaked-render'?: Linter.RuleEntry<[]>
   /**
    * Only "while", "do", "for" and "switch" statements should be labelled
    * @see https://sonarsource.github.io/rspec/#/rspec/S1439/javascript
    */
-  'sonar/label-position'?: Linter.RuleEntry<[]>
+  'sonarjs/label-position'?: Linter.RuleEntry<[]>
   /**
    * Opened windows should not have access to the originating page
    * @see https://sonarsource.github.io/rspec/#/rspec/S5148/javascript
    */
-  'sonar/link-with-target-blank'?: Linter.RuleEntry<[]>
+  'sonarjs/link-with-target-blank'?: Linter.RuleEntry<[]>
   /**
    * Files should not have too many lines of code
    * @see https://sonarsource.github.io/rspec/#/rspec/S104/javascript
    */
-  'sonar/max-lines'?: Linter.RuleEntry<SonarMaxLines>
+  'sonarjs/max-lines'?: Linter.RuleEntry<SonarjsMaxLines>
   /**
    * Functions should not have too many lines of code
    * @see https://sonarsource.github.io/rspec/#/rspec/S138/javascript
    */
-  'sonar/max-lines-per-function'?: Linter.RuleEntry<SonarMaxLinesPerFunction>
+  'sonarjs/max-lines-per-function'?: Linter.RuleEntry<SonarjsMaxLinesPerFunction>
   /**
    * "switch" statements should not have too many "case" clauses
    * @see https://sonarsource.github.io/rspec/#/rspec/S1479/javascript
    */
-  'sonar/max-switch-cases'?: Linter.RuleEntry<SonarMaxSwitchCases>
+  'sonarjs/max-switch-cases'?: Linter.RuleEntry<SonarjsMaxSwitchCases>
   /**
    * Union types should not have too many elements
    * @see https://sonarsource.github.io/rspec/#/rspec/S4622/javascript
    */
-  'sonar/max-union-size'?: Linter.RuleEntry<SonarMaxUnionSize>
+  'sonarjs/max-union-size'?: Linter.RuleEntry<SonarjsMaxUnionSize>
+  /**
+   * Lodash and Underscore.js `memoize` calls on functions with multiple parameters should use an explicit cache key function
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8932/javascript
+   */
+  'sonarjs/memoize-cache-key'?: Linter.RuleEntry<[]>
   /**
    * "for" loop increment clauses should modify the loops' counters
    * @see https://sonarsource.github.io/rspec/#/rspec/S1994/javascript
    */
-  'sonar/misplaced-loop-counter'?: Linter.RuleEntry<[]>
+  'sonarjs/misplaced-loop-counter'?: Linter.RuleEntry<[]>
   /**
    * Control flow statements "if", "for", "while", "switch" and "try" should not be nested too deeply
    * @see https://sonarsource.github.io/rspec/#/rspec/S134/javascript
    */
-  'sonar/nested-control-flow'?: Linter.RuleEntry<SonarNestedControlFlow>
+  'sonarjs/nested-control-flow'?: Linter.RuleEntry<SonarjsNestedControlFlow>
   /**
    * "new" should only be used with functions and classes
    * @see https://sonarsource.github.io/rspec/#/rspec/S2999/javascript
    */
-  'sonar/new-operator-misuse'?: Linter.RuleEntry<SonarNewOperatorMisuse>
+  'sonarjs/new-operator-misuse'?: Linter.RuleEntry<SonarjsNewOperatorMisuse>
   /**
    * All branches in a conditional structure should not have exactly the same implementation
    * @see https://sonarsource.github.io/rspec/#/rspec/S3923/javascript
    */
-  'sonar/no-all-duplicated-branches'?: Linter.RuleEntry<[]>
+  'sonarjs/no-all-duplicated-branches'?: Linter.RuleEntry<[]>
   /**
    * "Array.prototype.sort()" and "Array.prototype.toSorted()" should use a compare function
    * @see https://sonarsource.github.io/rspec/#/rspec/S2871/javascript
    */
-  'sonar/no-alphabetical-sort'?: Linter.RuleEntry<[]>
+  'sonarjs/no-alphabetical-sort'?: Linter.RuleEntry<[]>
   /**
    * Angular built-in sanitization should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6268/javascript
    */
-  'sonar/no-angular-bypass-sanitization'?: Linter.RuleEntry<[]>
+  'sonarjs/no-angular-bypass-sanitization'?: Linter.RuleEntry<[]>
   /**
    * "delete" should not be used on arrays
    * @see https://sonarsource.github.io/rspec/#/rspec/S2870/javascript
    */
-  'sonar/no-array-delete'?: Linter.RuleEntry<[]>
+  'sonarjs/no-array-delete'?: Linter.RuleEntry<[]>
   /**
    * Array indexes should be numeric
    * @see https://sonarsource.github.io/rspec/#/rspec/S3579/javascript
    */
-  'sonar/no-associative-arrays'?: Linter.RuleEntry<[]>
+  'sonarjs/no-associative-arrays'?: Linter.RuleEntry<[]>
   /**
    * Constructors should not contain asynchronous operations
    * @see https://sonarsource.github.io/rspec/#/rspec/S7059/javascript
    */
-  'sonar/no-async-constructor'?: Linter.RuleEntry<[]>
+  'sonarjs/no-async-constructor'?: Linter.RuleEntry<[]>
   /**
    * Built-in objects should not be overridden
    * @see https://sonarsource.github.io/rspec/#/rspec/S2424/javascript
    */
-  'sonar/no-built-in-override'?: Linter.RuleEntry<[]>
+  'sonarjs/no-built-in-override'?: Linter.RuleEntry<[]>
   /**
    * "switch" statements should not contain non-case labels
    * @see https://sonarsource.github.io/rspec/#/rspec/S1219/javascript
    */
-  'sonar/no-case-label-in-switch'?: Linter.RuleEntry<[]>
+  'sonarjs/no-case-label-in-switch'?: Linter.RuleEntry<[]>
   /**
    * Clear-text protocols should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S5332/javascript
    */
-  'sonar/no-clear-text-protocols'?: Linter.RuleEntry<[]>
+  'sonarjs/no-clear-text-protocols'?: Linter.RuleEntry<[]>
   /**
    * Tests should not execute any code after "done()" is called
    * @see https://sonarsource.github.io/rspec/#/rspec/S6079/javascript
    */
-  'sonar/no-code-after-done'?: Linter.RuleEntry<[]>
+  'sonarjs/no-code-after-done'?: Linter.RuleEntry<[]>
   /**
    * Mergeable "if" statements should be combined
    * @see https://sonarsource.github.io/rspec/#/rspec/S1066/javascript
    */
-  'sonar/no-collapsible-if'?: Linter.RuleEntry<[]>
+  'sonarjs/no-collapsible-if'?: Linter.RuleEntry<[]>
   /**
    * Collection size and array length comparisons should make sense
    * @see https://sonarsource.github.io/rspec/#/rspec/S3981/javascript
    */
-  'sonar/no-collection-size-mischeck'?: Linter.RuleEntry<[]>
+  'sonarjs/no-collection-size-mischeck'?: Linter.RuleEntry<[]>
   /**
    * Sections of code should not be commented out
    * @see https://sonarsource.github.io/rspec/#/rspec/S125/javascript
    */
-  'sonar/no-commented-code'?: Linter.RuleEntry<[]>
+  'sonarjs/no-commented-code'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions should not contain control characters
    * @see https://sonarsource.github.io/rspec/#/rspec/S6324/javascript
    */
-  'sonar/no-control-regex'?: Linter.RuleEntry<[]>
+  'sonarjs/no-control-regex'?: Linter.RuleEntry<[]>
   /**
    * Unused assignments should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1854/javascript
    */
-  'sonar/no-dead-store'?: Linter.RuleEntry<[]>
+  'sonarjs/no-dead-store'?: Linter.RuleEntry<[]>
+  /**
+   * UI test debug commands should not be committed to version control
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8959/javascript
+   */
+  'sonarjs/no-debug-commands-in-ui-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Default imports from modular utility libraries should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8927/javascript
+   */
+  'sonarjs/no-default-utility-imports'?: Linter.RuleEntry<[]>
   /**
    * "delete" should be used only with object properties
    * @see https://sonarsource.github.io/rspec/#/rspec/S3001/javascript
    */
-  'sonar/no-delete-var'?: Linter.RuleEntry<[]>
+  'sonarjs/no-delete-var'?: Linter.RuleEntry<[]>
   /**
    * Union and intersection types should not include duplicated constituents
    * @see https://sonarsource.github.io/rspec/#/rspec/S4621/javascript
    */
-  'sonar/no-duplicate-in-composite'?: Linter.RuleEntry<[]>
+  'sonarjs/no-duplicate-in-composite'?: Linter.RuleEntry<[]>
   /**
    * String literals should not be duplicated
    * @see https://sonarsource.github.io/rspec/#/rspec/S1192/javascript
    */
-  'sonar/no-duplicate-string'?: Linter.RuleEntry<SonarNoDuplicateString>
+  'sonarjs/no-duplicate-string'?: Linter.RuleEntry<SonarjsNoDuplicateString>
   /**
    * Test titles should be unique within the same suite
    * @see https://sonarsource.github.io/rspec/#/rspec/S8754/javascript
    */
-  'sonar/no-duplicate-test-title'?: Linter.RuleEntry<[]>
+  'sonarjs/no-duplicate-test-title'?: Linter.RuleEntry<[]>
   /**
    * Two branches in a conditional structure should not have exactly the same implementation
    * @see https://sonarsource.github.io/rspec/#/rspec/S1871/javascript
    */
-  'sonar/no-duplicated-branches'?: Linter.RuleEntry<[]>
+  'sonarjs/no-duplicated-branches'?: Linter.RuleEntry<[]>
   /**
    * Collection elements should not be replaced unconditionally
    * @see https://sonarsource.github.io/rspec/#/rspec/S4143/javascript
    */
-  'sonar/no-element-overwrite'?: Linter.RuleEntry<[]>
+  'sonarjs/no-element-overwrite'?: Linter.RuleEntry<[]>
   /**
    * Reluctant quantifiers in regular expressions should be followed by an expression that can't match the empty string
    * @see https://sonarsource.github.io/rspec/#/rspec/S6019/javascript
    */
-  'sonar/no-empty-after-reluctant'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-after-reluctant'?: Linter.RuleEntry<[]>
   /**
    * Alternation in regular expressions should not contain empty alternatives
    * @see https://sonarsource.github.io/rspec/#/rspec/S6323/javascript
    */
-  'sonar/no-empty-alternatives'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-alternatives'?: Linter.RuleEntry<[]>
   /**
    * Empty character classes should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2639/javascript
    */
-  'sonar/no-empty-character-class'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-character-class'?: Linter.RuleEntry<[]>
   /**
    * Empty collections should not be accessed or iterated
    * @see https://sonarsource.github.io/rspec/#/rspec/S4158/javascript
    */
-  'sonar/no-empty-collection'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-collection'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions should not contain empty groups
    * @see https://sonarsource.github.io/rspec/#/rspec/S6331/javascript
    */
-  'sonar/no-empty-group'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-group'?: Linter.RuleEntry<[]>
   /**
    * Test files should contain at least one test case
    * @see https://sonarsource.github.io/rspec/#/rspec/S2187/javascript
    */
-  'sonar/no-empty-test-file'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-test-file'?: Linter.RuleEntry<[]>
   /**
    * Test and suite titles should not be empty or whitespace-only
    * @see https://sonarsource.github.io/rspec/#/rspec/S8781/javascript
    */
-  'sonar/no-empty-test-title'?: Linter.RuleEntry<[]>
+  'sonarjs/no-empty-test-title'?: Linter.RuleEntry<[]>
   /**
    * Equality operators should not be used in "for" loop termination conditions
    * @see https://sonarsource.github.io/rspec/#/rspec/S888/javascript
    */
-  'sonar/no-equals-in-for-termination'?: Linter.RuleEntry<[]>
+  'sonarjs/no-equals-in-for-termination'?: Linter.RuleEntry<[]>
   /**
    * Exclusive tests should not be committed to version control
    * @see https://sonarsource.github.io/rspec/#/rspec/S6426/javascript
    */
-  'sonar/no-exclusive-tests'?: Linter.RuleEntry<[]>
+  'sonarjs/no-exclusive-tests'?: Linter.RuleEntry<[]>
   /**
    * Function calls should not pass extra arguments
    * @see https://sonarsource.github.io/rspec/#/rspec/S930/javascript
    */
-  'sonar/no-extra-arguments'?: Linter.RuleEntry<[]>
+  'sonarjs/no-extra-arguments'?: Linter.RuleEntry<[]>
   /**
    * Switch cases should end with an unconditional "break" statement
    * @see https://sonarsource.github.io/rspec/#/rspec/S128/javascript
    */
-  'sonar/no-fallthrough'?: Linter.RuleEntry<[]>
+  'sonarjs/no-fallthrough'?: Linter.RuleEntry<[]>
+  /**
+   * Fixed waits should not be used in tests
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2925/javascript
+   */
+  'sonarjs/no-fixed-wait-in-tests'?: Linter.RuleEntry<[]>
   /**
    * Floating point numbers should not be tested for equality
    * @see https://sonarsource.github.io/rspec/#/rspec/S1244/javascript
    */
-  'sonar/no-floating-point-equality'?: Linter.RuleEntry<[]>
+  'sonarjs/no-floating-point-equality'?: Linter.RuleEntry<[]>
   /**
    * "for in" should not be used with iterables
    * @see https://sonarsource.github.io/rspec/#/rspec/S4139/javascript
    */
-  'sonar/no-for-in-iterable'?: Linter.RuleEntry<[]>
+  'sonarjs/no-for-in-iterable'?: Linter.RuleEntry<[]>
   /**
    * Forced browser interactions should not bypass actionability checks
    * @see https://sonarsource.github.io/rspec/#/rspec/S8783/javascript
    */
-  'sonar/no-forced-browser-interaction'?: Linter.RuleEntry<[]>
+  'sonarjs/no-forced-browser-interaction'?: Linter.RuleEntry<[]>
   /**
    * Function declarations should not be made within blocks
    * @see https://sonarsource.github.io/rspec/#/rspec/S1530/javascript
    */
-  'sonar/no-function-declaration-in-block'?: Linter.RuleEntry<[]>
+  'sonarjs/no-function-declaration-in-block'?: Linter.RuleEntry<[]>
   /**
    * The global "this" object should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2990/javascript
    */
-  'sonar/no-global-this'?: Linter.RuleEntry<[]>
+  'sonarjs/no-global-this'?: Linter.RuleEntry<[]>
   /**
    * Special identifiers should not be bound or assigned
    * @see https://sonarsource.github.io/rspec/#/rspec/S2137/javascript
    */
-  'sonar/no-globals-shadowing'?: Linter.RuleEntry<[]>
+  'sonarjs/no-globals-shadowing'?: Linter.RuleEntry<[]>
   /**
    * Boolean expressions should not be gratuitous
    * @see https://sonarsource.github.io/rspec/#/rspec/S2589/javascript
    */
-  'sonar/no-gratuitous-expressions'?: Linter.RuleEntry<[]>
+  'sonarjs/no-gratuitous-expressions'?: Linter.RuleEntry<[]>
   /**
    * IP addresses should not be hardcoded
    * @see https://sonarsource.github.io/rspec/#/rspec/S1313/javascript
    */
-  'sonar/no-hardcoded-ip'?: Linter.RuleEntry<[]>
+  'sonarjs/no-hardcoded-ip'?: Linter.RuleEntry<[]>
   /**
    * Credentials should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S2068/javascript
    */
-  'sonar/no-hardcoded-passwords'?: Linter.RuleEntry<SonarNoHardcodedPasswords>
+  'sonarjs/no-hardcoded-passwords'?: Linter.RuleEntry<SonarjsNoHardcodedPasswords>
   /**
    * Secrets should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S6418/javascript
    */
-  'sonar/no-hardcoded-secrets'?: Linter.RuleEntry<SonarNoHardcodedSecrets>
+  'sonarjs/no-hardcoded-secrets'?: Linter.RuleEntry<SonarjsNoHardcodedSecrets>
   /**
    * React's useState hook should not be used directly in the render function or body of a component
    * @see https://sonarsource.github.io/rspec/#/rspec/S6442/javascript
    */
-  'sonar/no-hook-setter-in-body'?: Linter.RuleEntry<[]>
+  'sonarjs/no-hook-setter-in-body'?: Linter.RuleEntry<[]>
   /**
    * "if/else if" chains and "switch" cases should not have the same condition
    * @see https://sonarsource.github.io/rspec/#/rspec/S1862/javascript
    */
-  'sonar/no-identical-conditions'?: Linter.RuleEntry<[]>
+  'sonarjs/no-identical-conditions'?: Linter.RuleEntry<[]>
   /**
    * Identical expressions should not be used on both sides of a binary operator
    * @see https://sonarsource.github.io/rspec/#/rspec/S1764/javascript
    */
-  'sonar/no-identical-expressions'?: Linter.RuleEntry<[]>
+  'sonarjs/no-identical-expressions'?: Linter.RuleEntry<[]>
   /**
    * Functions should not have identical implementations
    * @see https://sonarsource.github.io/rspec/#/rspec/S4144/javascript
    */
-  'sonar/no-identical-functions'?: Linter.RuleEntry<SonarNoIdenticalFunctions>
+  'sonarjs/no-identical-functions'?: Linter.RuleEntry<SonarjsNoIdenticalFunctions>
   /**
    * Exceptions should not be ignored
    * @see https://sonarsource.github.io/rspec/#/rspec/S2486/javascript
    */
-  'sonar/no-ignored-exceptions'?: Linter.RuleEntry<[]>
+  'sonarjs/no-ignored-exceptions'?: Linter.RuleEntry<[]>
   /**
    * Return values from functions without side effects should not be ignored
    * @see https://sonarsource.github.io/rspec/#/rspec/S2201/javascript
    */
-  'sonar/no-ignored-return'?: Linter.RuleEntry<[]>
+  'sonarjs/no-ignored-return'?: Linter.RuleEntry<[]>
   /**
    * Dependencies should be explicit
    * @see https://sonarsource.github.io/rspec/#/rspec/S4328/javascript
    */
-  'sonar/no-implicit-dependencies'?: Linter.RuleEntry<SonarNoImplicitDependencies>
+  'sonarjs/no-implicit-dependencies'?: Linter.RuleEntry<SonarjsNoImplicitDependencies>
   /**
    * Variables should be declared explicitly
    * @see https://sonarsource.github.io/rspec/#/rspec/S2703/javascript
    */
-  'sonar/no-implicit-global'?: Linter.RuleEntry<[]>
+  'sonarjs/no-implicit-global'?: Linter.RuleEntry<[]>
   /**
    * "in" should not be used on arrays
    * @see https://sonarsource.github.io/rspec/#/rspec/S4619/javascript
    */
-  'sonar/no-in-misuse'?: Linter.RuleEntry<[]>
+  'sonarjs/no-in-misuse'?: Linter.RuleEntry<[]>
   /**
    * Assertions comparing incompatible types should not be made
    * @see https://sonarsource.github.io/rspec/#/rspec/S5845/javascript
    */
-  'sonar/no-incompatible-assertion-types'?: Linter.RuleEntry<[]>
+  'sonarjs/no-incompatible-assertion-types'?: Linter.RuleEntry<[]>
   /**
    * Assertions should be complete
    * @see https://sonarsource.github.io/rspec/#/rspec/S2970/javascript
    */
-  'sonar/no-incomplete-assertions'?: Linter.RuleEntry<[]>
+  'sonarjs/no-incomplete-assertions'?: Linter.RuleEntry<[]>
   /**
    * Functions should use "return" consistently
    * @see https://sonarsource.github.io/rspec/#/rspec/S3801/javascript
    */
-  'sonar/no-inconsistent-returns'?: Linter.RuleEntry<[]>
+  'sonarjs/no-inconsistent-returns'?: Linter.RuleEntry<[]>
   /**
    * Strings and non-strings should not be added
    * @see https://sonarsource.github.io/rspec/#/rspec/S3402/javascript
    */
-  'sonar/no-incorrect-string-concat'?: Linter.RuleEntry<[]>
+  'sonarjs/no-incorrect-string-concat'?: Linter.RuleEntry<[]>
   /**
    * Users should not use internal APIs
    * @see https://sonarsource.github.io/rspec/#/rspec/S6627/javascript
    */
-  'sonar/no-internal-api-use'?: Linter.RuleEntry<[]>
+  'sonarjs/no-internal-api-use'?: Linter.RuleEntry<[]>
+  /**
+   * Inline snapshots should not contain interpolations
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8967/javascript
+   */
+  'sonarjs/no-interpolation-in-inline-snapshots'?: Linter.RuleEntry<[]>
   /**
    * Sensitive permissions should not be requested unnecessarily
    * @see https://sonarsource.github.io/rspec/#/rspec/S5604/javascript
    * @deprecated
    */
-  'sonar/no-intrusive-permissions'?: Linter.RuleEntry<SonarNoIntrusivePermissions>
+  'sonarjs/no-intrusive-permissions'?: Linter.RuleEntry<SonarjsNoIntrusivePermissions>
   /**
    * Regular expressions should be syntactically valid
    * @see https://sonarsource.github.io/rspec/#/rspec/S5856/javascript
    */
-  'sonar/no-invalid-regexp'?: Linter.RuleEntry<[]>
+  'sonarjs/no-invalid-regexp'?: Linter.RuleEntry<[]>
   /**
    * Function returns should not be invariant
    * @see https://sonarsource.github.io/rspec/#/rspec/S3516/javascript
    */
-  'sonar/no-invariant-returns'?: Linter.RuleEntry<[]>
+  'sonarjs/no-invariant-returns'?: Linter.RuleEntry<[]>
   /**
    * Boolean checks should not be inverted
    * @see https://sonarsource.github.io/rspec/#/rspec/S1940/javascript
    */
-  'sonar/no-inverted-boolean-check'?: Linter.RuleEntry<[]>
+  'sonarjs/no-inverted-boolean-check'?: Linter.RuleEntry<[]>
   /**
    * Client IP address should not be forwarded to proxies
    * @see https://sonarsource.github.io/rspec/#/rspec/S5759/javascript
    * @deprecated
    */
-  'sonar/no-ip-forward'?: Linter.RuleEntry<[]>
+  'sonarjs/no-ip-forward'?: Linter.RuleEntry<[]>
   /**
    * Labels should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S1119/javascript
    */
-  'sonar/no-labels'?: Linter.RuleEntry<[]>
+  'sonarjs/no-labels'?: Linter.RuleEntry<[]>
   /**
    * Literals should not be used as functions
    * @see https://sonarsource.github.io/rspec/#/rspec/S6958/javascript
    */
-  'sonar/no-literal-call'?: Linter.RuleEntry<[]>
+  'sonarjs/no-literal-call'?: Linter.RuleEntry<[]>
   /**
    * Browsers should not be allowed to perform MIME type sniffing
    * @see https://sonarsource.github.io/rspec/#/rspec/S5734/javascript
    */
-  'sonar/no-mime-sniff'?: Linter.RuleEntry<[]>
+  'sonarjs/no-mime-sniff'?: Linter.RuleEntry<[]>
   /**
    * Array-mutating methods should not be used misleadingly
    * @see https://sonarsource.github.io/rspec/#/rspec/S4043/javascript
    */
-  'sonar/no-misleading-array-reverse'?: Linter.RuleEntry<[]>
+  'sonarjs/no-misleading-array-reverse'?: Linter.RuleEntry<[]>
   /**
    * Unicode Grapheme Clusters should be avoided inside regex character classes
    * @see https://sonarsource.github.io/rspec/#/rspec/S5868/javascript
    */
-  'sonar/no-misleading-character-class'?: Linter.RuleEntry<[]>
+  'sonarjs/no-misleading-character-class'?: Linter.RuleEntry<[]>
+  /**
+   * Test and hook callbacks should use a single completion style
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8960/javascript
+   */
+  'sonarjs/no-mixed-completion-style'?: Linter.RuleEntry<[]>
   /**
    * Content Security Policy should block mixed-content
    * @see https://sonarsource.github.io/rspec/#/rspec/S5730/javascript
    * @deprecated
    */
-  'sonar/no-mixed-content'?: Linter.RuleEntry<[]>
+  'sonarjs/no-mixed-content'?: Linter.RuleEntry<[]>
   /**
    * Assignments should not be made from within sub-expressions
    * @see https://sonarsource.github.io/rspec/#/rspec/S1121/javascript
    */
-  'sonar/no-nested-assignment'?: Linter.RuleEntry<[]>
+  'sonarjs/no-nested-assignment'?: Linter.RuleEntry<[]>
   /**
    * Ternary operators should not be nested
    * @see https://sonarsource.github.io/rspec/#/rspec/S3358/javascript
    */
-  'sonar/no-nested-conditional'?: Linter.RuleEntry<[]>
+  'sonarjs/no-nested-conditional'?: Linter.RuleEntry<[]>
   /**
    * Functions should not be nested too deeply
    * @see https://sonarsource.github.io/rspec/#/rspec/S2004/javascript
    */
-  'sonar/no-nested-functions'?: Linter.RuleEntry<SonarNoNestedFunctions>
+  'sonarjs/no-nested-functions'?: Linter.RuleEntry<SonarjsNoNestedFunctions>
   /**
    * Increment (++) and decrement (--) operators should not be used in a method call or mixed with other operators in an expression
    * @see https://sonarsource.github.io/rspec/#/rspec/S881/javascript
    */
-  'sonar/no-nested-incdec'?: Linter.RuleEntry<[]>
+  'sonarjs/no-nested-incdec'?: Linter.RuleEntry<[]>
   /**
    * "switch" statements should not be nested
    * @see https://sonarsource.github.io/rspec/#/rspec/S1821/javascript
    */
-  'sonar/no-nested-switch'?: Linter.RuleEntry<[]>
+  'sonarjs/no-nested-switch'?: Linter.RuleEntry<[]>
   /**
    * Template literals should not be nested
    * @see https://sonarsource.github.io/rspec/#/rspec/S4624/javascript
    */
-  'sonar/no-nested-template-literals'?: Linter.RuleEntry<[]>
+  'sonarjs/no-nested-template-literals'?: Linter.RuleEntry<[]>
   /**
    * OS commands should not rely on PATH resolution
    * @see https://sonarsource.github.io/rspec/#/rspec/S4036/javascript
    */
-  'sonar/no-os-command-from-path'?: Linter.RuleEntry<[]>
+  'sonarjs/no-os-command-from-path'?: Linter.RuleEntry<[]>
   /**
    * Initial values of parameters, caught exceptions, and loop variables should not be ignored
    * @see https://sonarsource.github.io/rspec/#/rspec/S1226/javascript
    */
-  'sonar/no-parameter-reassignment'?: Linter.RuleEntry<[]>
+  'sonarjs/no-parameter-reassignment'?: Linter.RuleEntry<[]>
   /**
    * Wrapper objects should not be used for primitive types
    * @see https://sonarsource.github.io/rspec/#/rspec/S1533/javascript
    */
-  'sonar/no-primitive-wrappers'?: Linter.RuleEntry<[]>
+  'sonarjs/no-primitive-wrappers'?: Linter.RuleEntry<[]>
   /**
    * Assignments should not be redundant
    * @see https://sonarsource.github.io/rspec/#/rspec/S4165/javascript
    */
-  'sonar/no-redundant-assignments'?: Linter.RuleEntry<[]>
+  'sonarjs/no-redundant-assignments'?: Linter.RuleEntry<[]>
   /**
    * Boolean literals should not be used in comparisons
    * @see https://sonarsource.github.io/rspec/#/rspec/S1125/javascript
    */
-  'sonar/no-redundant-boolean'?: Linter.RuleEntry<[]>
+  'sonarjs/no-redundant-boolean'?: Linter.RuleEntry<[]>
   /**
    * Jump statements should not be redundant
    * @see https://sonarsource.github.io/rspec/#/rspec/S3626/javascript
    */
-  'sonar/no-redundant-jump'?: Linter.RuleEntry<[]>
+  'sonarjs/no-redundant-jump'?: Linter.RuleEntry<[]>
   /**
    * Optional property declarations should not use both '?' and 'undefined' syntax
    * @see https://sonarsource.github.io/rspec/#/rspec/S4782/javascript
    */
-  'sonar/no-redundant-optional'?: Linter.RuleEntry<[]>
+  'sonarjs/no-redundant-optional'?: Linter.RuleEntry<[]>
   /**
-   * Redundant pairs of parentheses should be removed
+   * Unnecessary parentheses should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1110/javascript
    * @deprecated
    */
-  'sonar/no-redundant-parentheses'?: Linter.RuleEntry<[]>
+  'sonarjs/no-redundant-parentheses'?: Linter.RuleEntry<[]>
   /**
    * Variables should be defined before being used
    * @see https://sonarsource.github.io/rspec/#/rspec/S3827/javascript
    */
-  'sonar/no-reference-error'?: Linter.RuleEntry<[]>
+  'sonarjs/no-reference-error'?: Linter.RuleEntry<[]>
   /**
    * HTTP Referrer-Policy should not be set to an unsafe value
    * @see https://sonarsource.github.io/rspec/#/rspec/S5736/javascript
    */
-  'sonar/no-referrer-policy'?: Linter.RuleEntry<[]>
+  'sonarjs/no-referrer-policy'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions should not contain multiple spaces
    * @see https://sonarsource.github.io/rspec/#/rspec/S6326/javascript
    */
-  'sonar/no-regex-spaces'?: Linter.RuleEntry<[]>
+  'sonarjs/no-regex-spaces'?: Linter.RuleEntry<[]>
   /**
    * "import" should be used to include external code
    * @see https://sonarsource.github.io/rspec/#/rspec/S3533/javascript
    */
-  'sonar/no-require-or-define'?: Linter.RuleEntry<[]>
+  'sonarjs/no-require-or-define'?: Linter.RuleEntry<[]>
   /**
    * Primitive return types should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4324/javascript
    */
-  'sonar/no-return-type-any'?: Linter.RuleEntry<[]>
+  'sonarjs/no-return-type-any'?: Linter.RuleEntry<[]>
   /**
    * Assertions should not be given twice the same argument
    * @see https://sonarsource.github.io/rspec/#/rspec/S5863/javascript
    */
-  'sonar/no-same-argument-assert'?: Linter.RuleEntry<[]>
+  'sonarjs/no-same-argument-assert'?: Linter.RuleEntry<[]>
   /**
    * Conditionals should start on new lines
    * @see https://sonarsource.github.io/rspec/#/rspec/S3972/javascript
    */
-  'sonar/no-same-line-conditional'?: Linter.RuleEntry<[]>
+  'sonarjs/no-same-line-conditional'?: Linter.RuleEntry<[]>
   /**
    * Methods should not contain selector parameters
    * @see https://sonarsource.github.io/rspec/#/rspec/S2301/javascript
    */
-  'sonar/no-selector-parameter'?: Linter.RuleEntry<[]>
+  'sonarjs/no-selector-parameter'?: Linter.RuleEntry<[]>
   /**
    * Static Assets should not serve session cookies
    * @see https://sonarsource.github.io/rspec/#/rspec/S8441/javascript
    */
-  'sonar/no-session-cookies-on-static-assets'?: Linter.RuleEntry<[]>
+  'sonarjs/no-session-cookies-on-static-assets'?: Linter.RuleEntry<[]>
   /**
    * Tests should not be skipped without providing a reason
    * @see https://sonarsource.github.io/rspec/#/rspec/S1607/javascript
    */
-  'sonar/no-skipped-tests'?: Linter.RuleEntry<[]>
+  'sonarjs/no-skipped-tests'?: Linter.RuleEntry<[]>
   /**
    * "if" statements should be preferred over "switch" when simpler
    * @see https://sonarsource.github.io/rspec/#/rspec/S1301/javascript
    */
-  'sonar/no-small-switch'?: Linter.RuleEntry<[]>
+  'sonarjs/no-small-switch'?: Linter.RuleEntry<[]>
   /**
    * Track uses of "NOSONAR" comments
    * @see https://sonarsource.github.io/rspec/#/rspec/S1291/javascript
    */
-  'sonar/no-sonar-comments'?: Linter.RuleEntry<[]>
+  'sonarjs/no-sonar-comments'?: Linter.RuleEntry<[]>
   /**
    * Tabulation characters should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S105/javascript
    * @deprecated
    */
-  'sonar/no-tab'?: Linter.RuleEntry<[]>
+  'sonarjs/no-tab'?: Linter.RuleEntry<[]>
   /**
    * HTML "<table>" should not be used for layout purposes
    * @see https://sonarsource.github.io/rspec/#/rspec/S5257/javascript
    */
-  'sonar/no-table-as-layout'?: Linter.RuleEntry<[]>
+  'sonarjs/no-table-as-layout'?: Linter.RuleEntry<[]>
   /**
-   * Assertions should not fail or succeed unconditionally
+   * Assertions should not be trivially true
    * @see https://sonarsource.github.io/rspec/#/rspec/S5914/javascript
    */
-  'sonar/no-trivial-assertions'?: Linter.RuleEntry<[]>
+  'sonarjs/no-trivial-assertions'?: Linter.RuleEntry<[]>
   /**
    * Promise rejections should not be caught by "try" blocks
    * @see https://sonarsource.github.io/rspec/#/rspec/S4822/javascript
    */
-  'sonar/no-try-promise'?: Linter.RuleEntry<[]>
+  'sonarjs/no-try-promise'?: Linter.RuleEntry<[]>
   /**
    * "undefined" should not be passed as the value of optional parameters
    * @see https://sonarsource.github.io/rspec/#/rspec/S4623/javascript
    */
-  'sonar/no-undefined-argument'?: Linter.RuleEntry<[]>
+  'sonarjs/no-undefined-argument'?: Linter.RuleEntry<[]>
   /**
    * "undefined" should not be assigned
    * @see https://sonarsource.github.io/rspec/#/rspec/S2138/javascript
    */
-  'sonar/no-undefined-assignment'?: Linter.RuleEntry<[]>
+  'sonarjs/no-undefined-assignment'?: Linter.RuleEntry<[]>
   /**
    * Multiline blocks should be enclosed in curly braces
    * @see https://sonarsource.github.io/rspec/#/rspec/S2681/javascript
    */
-  'sonar/no-unenclosed-multiline-block'?: Linter.RuleEntry<[]>
+  'sonarjs/no-unenclosed-multiline-block'?: Linter.RuleEntry<[]>
   /**
    * JSX list components keys should match up between renders
    * @see https://sonarsource.github.io/rspec/#/rspec/S6486/javascript
    */
-  'sonar/no-uniq-key'?: Linter.RuleEntry<[]>
+  'sonarjs/no-uniq-key'?: Linter.RuleEntry<[]>
   /**
    * Expanding archive files should not be done without controlling resource consumption
    * @see https://sonarsource.github.io/rspec/#/rspec/S5042/javascript
    * @deprecated
    */
-  'sonar/no-unsafe-unzip'?: Linter.RuleEntry<[]>
+  'sonarjs/no-unsafe-unzip'?: Linter.RuleEntry<[]>
   /**
    * Errors should not be created without being thrown
    * @see https://sonarsource.github.io/rspec/#/rspec/S3984/javascript
    */
-  'sonar/no-unthrown-error'?: Linter.RuleEntry<[]>
+  'sonarjs/no-unthrown-error'?: Linter.RuleEntry<[]>
   /**
    * Collection contents should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4030/javascript
    */
-  'sonar/no-unused-collection'?: Linter.RuleEntry<[]>
+  'sonarjs/no-unused-collection'?: Linter.RuleEntry<[]>
   /**
    * Unused function parameters should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1172/javascript
    */
-  'sonar/no-unused-function-argument'?: Linter.RuleEntry<[]>
+  'sonarjs/no-unused-function-argument'?: Linter.RuleEntry<[]>
   /**
    * Unused local variables and functions should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1481/javascript
    */
-  'sonar/no-unused-vars'?: Linter.RuleEntry<[]>
+  'sonarjs/no-unused-vars'?: Linter.RuleEntry<[]>
   /**
    * The return value of void functions should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S3699/javascript
    */
-  'sonar/no-use-of-empty-return-value'?: Linter.RuleEntry<[]>
+  'sonarjs/no-use-of-empty-return-value'?: Linter.RuleEntry<[]>
   /**
    * "catch" clauses should do more than rethrow
    * @see https://sonarsource.github.io/rspec/#/rspec/S2737/javascript
    */
-  'sonar/no-useless-catch'?: Linter.RuleEntry<[]>
+  'sonarjs/no-useless-catch'?: Linter.RuleEntry<[]>
   /**
    * Values should not be uselessly incremented
    * @see https://sonarsource.github.io/rspec/#/rspec/S2123/javascript
    */
-  'sonar/no-useless-increment'?: Linter.RuleEntry<[]>
+  'sonarjs/no-useless-increment'?: Linter.RuleEntry<[]>
   /**
    * Type intersections should use meaningful types
    * @see https://sonarsource.github.io/rspec/#/rspec/S4335/javascript
    */
-  'sonar/no-useless-intersection'?: Linter.RuleEntry<[]>
+  'sonarjs/no-useless-intersection'?: Linter.RuleEntry<[]>
   /**
    * React state setter function should not be called with its matching state variable
    * @see https://sonarsource.github.io/rspec/#/rspec/S6443/javascript
    */
-  'sonar/no-useless-react-setstate'?: Linter.RuleEntry<[]>
+  'sonarjs/no-useless-react-setstate'?: Linter.RuleEntry<[]>
   /**
    * Variables declared with "var" should be declared before they are used
    * @see https://sonarsource.github.io/rspec/#/rspec/S1526/javascript
    */
-  'sonar/no-variable-usage-before-declaration'?: Linter.RuleEntry<[]>
+  'sonarjs/no-variable-usage-before-declaration'?: Linter.RuleEntry<[]>
   /**
    * Cipher algorithms should be robust
    * @see https://sonarsource.github.io/rspec/#/rspec/S5547/javascript
    */
-  'sonar/no-weak-cipher'?: Linter.RuleEntry<[]>
+  'sonarjs/no-weak-cipher'?: Linter.RuleEntry<[]>
   /**
    * Cryptographic keys should be robust
    * @see https://sonarsource.github.io/rspec/#/rspec/S4426/javascript
    */
-  'sonar/no-weak-keys'?: Linter.RuleEntry<[]>
+  'sonarjs/no-weak-keys'?: Linter.RuleEntry<[]>
   /**
    * Wildcard imports should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2208/javascript
    */
-  'sonar/no-wildcard-import'?: Linter.RuleEntry<[]>
+  'sonarjs/no-wildcard-import'?: Linter.RuleEntry<[]>
   /**
    * Non-existent operators '=+', '=-' and '=!' should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2757/javascript
    */
-  'sonar/non-existent-operator'?: Linter.RuleEntry<[]>
+  'sonarjs/non-existent-operator'?: Linter.RuleEntry<[]>
   /**
    * Arithmetic operators should only have numbers as operands
    * @see https://sonarsource.github.io/rspec/#/rspec/S3760/javascript
    */
-  'sonar/non-number-in-arithmetic-expression'?: Linter.RuleEntry<[]>
+  'sonarjs/non-number-in-arithmetic-expression'?: Linter.RuleEntry<[]>
   /**
    * Properties of variables with "null" or "undefined" values should not be accessed
    * @see https://sonarsource.github.io/rspec/#/rspec/S2259/javascript
    */
-  'sonar/null-dereference'?: Linter.RuleEntry<[]>
+  'sonarjs/null-dereference'?: Linter.RuleEntry<[]>
   /**
    * "<object>" tags should provide an alternative content
    * @see https://sonarsource.github.io/rspec/#/rspec/S5264/javascript
    */
-  'sonar/object-alt-content'?: Linter.RuleEntry<[]>
+  'sonarjs/object-alt-content'?: Linter.RuleEntry<[]>
   /**
    * Arithmetic operations should not result in "NaN"
    * @see https://sonarsource.github.io/rspec/#/rspec/S3757/javascript
    */
-  'sonar/operation-returning-nan'?: Linter.RuleEntry<[]>
+  'sonarjs/operation-returning-nan'?: Linter.RuleEntry<[]>
   /**
    * OS commands should not be executed using a shell interpreter
    * @see https://sonarsource.github.io/rspec/#/rspec/S4721/javascript
    * @deprecated
    */
-  'sonar/os-command'?: Linter.RuleEntry<[]>
+  'sonarjs/os-command'?: Linter.RuleEntry<[]>
+  /**
+   * Similar tests should be grouped in a single Parameterized test
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5976/javascript
+   */
+  'sonarjs/parameterized-tests'?: Linter.RuleEntry<[]>
   /**
    * Origins should be verified during cross-origin communications
    * @see https://sonarsource.github.io/rspec/#/rspec/S2819/javascript
    */
-  'sonar/post-message'?: Linter.RuleEntry<[]>
+  'sonarjs/post-message'?: Linter.RuleEntry<[]>
   /**
    * "default" clauses should be last
    * @see https://sonarsource.github.io/rspec/#/rspec/S4524/javascript
    */
-  'sonar/prefer-default-last'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-default-last'?: Linter.RuleEntry<[]>
   /**
    * Local variables should not be declared and then immediately returned or thrown
    * @see https://sonarsource.github.io/rspec/#/rspec/S1488/javascript
    */
-  'sonar/prefer-immediate-return'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-immediate-return'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over Lodash and Underscore.js methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8907/javascript
+   */
+  'sonarjs/prefer-native-lodash-alternative'?: Linter.RuleEntry<[]>
   /**
    * Object literal syntax should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2428/javascript
    */
-  'sonar/prefer-object-literal'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-object-literal'?: Linter.RuleEntry<[]>
   /**
    * Shorthand promises should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4634/javascript
    */
-  'sonar/prefer-promise-shorthand'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-promise-shorthand'?: Linter.RuleEntry<[]>
   /**
    * React props should be read-only
    * @see https://sonarsource.github.io/rspec/#/rspec/S6759/javascript
    */
-  'sonar/prefer-read-only-props'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-read-only-props'?: Linter.RuleEntry<[]>
   /**
    * "RegExp.exec()" should be preferred over "String.match()"
    * @see https://sonarsource.github.io/rspec/#/rspec/S6594/javascript
    */
-  'sonar/prefer-regexp-exec'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-regexp-exec'?: Linter.RuleEntry<[]>
   /**
    * Return of boolean expressions should not be wrapped into an "if-then-else" statement
    * @see https://sonarsource.github.io/rspec/#/rspec/S1126/javascript
    */
-  'sonar/prefer-single-boolean-return'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-single-boolean-return'?: Linter.RuleEntry<[]>
   /**
    * The most specific assertion should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S5906/javascript
    */
-  'sonar/prefer-specific-assertions'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-specific-assertions'?: Linter.RuleEntry<[]>
   /**
    * Type predicates should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4322/javascript
    */
-  'sonar/prefer-type-guard'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-type-guard'?: Linter.RuleEntry<[]>
   /**
    * A "while" loop should be used instead of a "for" loop
    * @see https://sonarsource.github.io/rspec/#/rspec/S1264/javascript
    */
-  'sonar/prefer-while'?: Linter.RuleEntry<[]>
+  'sonarjs/prefer-while'?: Linter.RuleEntry<[]>
   /**
    * Debugging features should not be enabled in production
    * @see https://sonarsource.github.io/rspec/#/rspec/S4507/javascript
    */
-  'sonar/production-debug'?: Linter.RuleEntry<[]>
+  'sonarjs/production-debug'?: Linter.RuleEntry<[]>
   /**
    * Pseudorandom number generators (PRNGs) should not be used in security contexts
    * @see https://sonarsource.github.io/rspec/#/rspec/S2245/javascript
    */
-  'sonar/pseudo-random'?: Linter.RuleEntry<[]>
+  'sonarjs/pseudo-random'?: Linter.RuleEntry<[]>
   /**
    * Public "static" fields should be read-only
    * @see https://sonarsource.github.io/rspec/#/rspec/S1444/javascript
    */
-  'sonar/public-static-readonly'?: Linter.RuleEntry<[]>
+  'sonarjs/public-static-readonly'?: Linter.RuleEntry<[]>
   /**
    * Temporary files should not be created in publicly writable directories
    * @see https://sonarsource.github.io/rspec/#/rspec/S5443/javascript
    */
-  'sonar/publicly-writable-directories'?: Linter.RuleEntry<[]>
+  'sonarjs/publicly-writable-directories'?: Linter.RuleEntry<[]>
   /**
    * "Array.reduce()" calls should include an initial value
    * @see https://sonarsource.github.io/rspec/#/rspec/S6959/javascript
    */
-  'sonar/reduce-initial-value'?: Linter.RuleEntry<[]>
+  'sonarjs/reduce-initial-value'?: Linter.RuleEntry<[]>
   /**
    * Redundant type aliases should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S6564/javascript
    */
-  'sonar/redundant-type-aliases'?: Linter.RuleEntry<[]>
+  'sonarjs/redundant-type-aliases'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions should not be too complicated
    * @see https://sonarsource.github.io/rspec/#/rspec/S5843/javascript
    */
-  'sonar/regex-complexity'?: Linter.RuleEntry<SonarRegexComplexity>
+  'sonarjs/regex-complexity'?: Linter.RuleEntry<SonarjsRegexComplexity>
   /**
    * Wallet phrases should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S7639/javascript
    */
-  'sonar/review-blockchain-mnemonic'?: Linter.RuleEntry<[]>
+  'sonarjs/review-blockchain-mnemonic'?: Linter.RuleEntry<[]>
   /**
    * A new session should be created during user authentication
    * @see https://sonarsource.github.io/rspec/#/rspec/S5876/javascript
    */
-  'sonar/session-regeneration'?: Linter.RuleEntry<[]>
+  'sonarjs/session-regeneration'?: Linter.RuleEntry<[]>
   /**
    * Shorthand object properties should be grouped at the beginning or end of an object declaration
    * @see https://sonarsource.github.io/rspec/#/rspec/S3499/javascript
    */
-  'sonar/shorthand-property-grouping'?: Linter.RuleEntry<[]>
+  'sonarjs/shorthand-property-grouping'?: Linter.RuleEntry<[]>
   /**
    * Character classes in regular expressions should not contain only one character
    * @see https://sonarsource.github.io/rspec/#/rspec/S6397/javascript
    */
-  'sonar/single-char-in-character-classes'?: Linter.RuleEntry<[]>
+  'sonarjs/single-char-in-character-classes'?: Linter.RuleEntry<[]>
   /**
    * Single-character alternations in regular expressions should be replaced with character classes
    * @see https://sonarsource.github.io/rspec/#/rspec/S6035/javascript
    */
-  'sonar/single-character-alternation'?: Linter.RuleEntry<[]>
+  'sonarjs/single-character-alternation'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions should not cause catastrophic backtracking
    * @see https://sonarsource.github.io/rspec/#/rspec/S5852/javascript
    */
-  'sonar/slow-regex'?: Linter.RuleEntry<[]>
+  'sonarjs/slow-regex'?: Linter.RuleEntry<[]>
   /**
    * SQL queries should not be dynamically formatted
    * @see https://sonarsource.github.io/rspec/#/rspec/S2077/javascript
    */
-  'sonar/sql-queries'?: Linter.RuleEntry<[]>
+  'sonarjs/sql-queries'?: Linter.RuleEntry<[]>
   /**
    * Tests should be stable
    * @see https://sonarsource.github.io/rspec/#/rspec/S5973/javascript
    */
-  'sonar/stable-tests'?: Linter.RuleEntry<[]>
+  'sonarjs/stable-tests'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions with the global flag should be used with caution
    * @see https://sonarsource.github.io/rspec/#/rspec/S6351/javascript
    */
-  'sonar/stateful-regex'?: Linter.RuleEntry<[]>
+  'sonarjs/stateful-regex'?: Linter.RuleEntry<[]>
   /**
    * HTTP Strict-Transport-Security policy should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5739/javascript
    */
-  'sonar/strict-transport-security'?: Linter.RuleEntry<[]>
+  'sonarjs/strict-transport-security'?: Linter.RuleEntry<[]>
   /**
    * Comparison operators should not be used with strings
    * @see https://sonarsource.github.io/rspec/#/rspec/S3003/javascript
    */
-  'sonar/strings-comparison'?: Linter.RuleEntry<[]>
+  'sonarjs/strings-comparison'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions should not cause non-linear backtracking
    * @see https://sonarsource.github.io/rspec/#/rspec/S8786/javascript
    */
-  'sonar/super-linear-regex'?: Linter.RuleEntry<[]>
+  'sonarjs/super-linear-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should not be registered asynchronously in suite callbacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8785/javascript
+   */
+  'sonarjs/synchronous-suite-callback'?: Linter.RuleEntry<[]>
   /**
    * Tables should have headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S5256/javascript
    */
-  'sonar/table-header'?: Linter.RuleEntry<[]>
+  'sonarjs/table-header'?: Linter.RuleEntry<[]>
   /**
    * Table cells should reference their headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S5260/javascript
    */
-  'sonar/table-header-reference'?: Linter.RuleEntry<[]>
+  'sonarjs/table-header-reference'?: Linter.RuleEntry<[]>
   /**
    * Tests should check which exception is thrown
    * @see https://sonarsource.github.io/rspec/#/rspec/S5958/javascript
    */
-  'sonar/test-check-exception'?: Linter.RuleEntry<[]>
+  'sonarjs/test-check-exception'?: Linter.RuleEntry<[]>
   /**
    * Track uses of "TODO" tags
    * @see https://sonarsource.github.io/rspec/#/rspec/S1135/javascript
    */
-  'sonar/todo-tag'?: Linter.RuleEntry<[]>
+  'sonarjs/todo-tag'?: Linter.RuleEntry<[]>
   /**
    * Loops should not contain more than a single "break" or "continue" statement
    * @see https://sonarsource.github.io/rspec/#/rspec/S135/javascript
    */
-  'sonar/too-many-break-or-continue-in-loop'?: Linter.RuleEntry<[]>
+  'sonarjs/too-many-break-or-continue-in-loop'?: Linter.RuleEntry<[]>
   /**
    * Regular expressions using Unicode character classes or property escapes should enable the unicode flag
    * @see https://sonarsource.github.io/rspec/#/rspec/S5867/javascript
    */
-  'sonar/unicode-aware-regex'?: Linter.RuleEntry<[]>
+  'sonarjs/unicode-aware-regex'?: Linter.RuleEntry<[]>
   /**
    * Unnecessary imports should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1128/javascript
    */
-  'sonar/unused-import'?: Linter.RuleEntry<[]>
+  'sonarjs/unused-import'?: Linter.RuleEntry<[]>
   /**
    * Names of regular expressions named groups should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S5860/javascript
    */
-  'sonar/unused-named-groups'?: Linter.RuleEntry<[]>
+  'sonarjs/unused-named-groups'?: Linter.RuleEntry<[]>
   /**
    * Server certificates should be verified during SSL/TLS connections
    * @see https://sonarsource.github.io/rspec/#/rspec/S4830/javascript
    */
-  'sonar/unverified-certificate'?: Linter.RuleEntry<[]>
+  'sonarjs/unverified-certificate'?: Linter.RuleEntry<[]>
   /**
    * Server hostnames should be verified during SSL/TLS connections
    * @see https://sonarsource.github.io/rspec/#/rspec/S5527/javascript
    */
-  'sonar/unverified-hostname'?: Linter.RuleEntry<[]>
+  'sonarjs/unverified-hostname'?: Linter.RuleEntry<[]>
   /**
    * "const" variables should not be reassigned
    * @see https://sonarsource.github.io/rspec/#/rspec/S3500/javascript
    */
-  'sonar/updated-const-var'?: Linter.RuleEntry<[]>
+  'sonarjs/updated-const-var'?: Linter.RuleEntry<[]>
   /**
    * Loop counters should not be assigned within the loop body
    * @see https://sonarsource.github.io/rspec/#/rspec/S2310/javascript
    */
-  'sonar/updated-loop-counter'?: Linter.RuleEntry<[]>
+  'sonarjs/updated-loop-counter'?: Linter.RuleEntry<[]>
   /**
    * Type aliases should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4323/javascript
    */
-  'sonar/use-type-alias'?: Linter.RuleEntry<[]>
+  'sonarjs/use-type-alias'?: Linter.RuleEntry<[]>
   /**
    * Results of operations on strings should not be ignored
    * @see https://sonarsource.github.io/rspec/#/rspec/S1154/javascript
    * @deprecated
    */
-  'sonar/useless-string-operation'?: Linter.RuleEntry<[]>
+  'sonarjs/useless-string-operation'?: Linter.RuleEntry<[]>
   /**
    * Values not convertible to numbers should not be used in numeric comparisons
    * @see https://sonarsource.github.io/rspec/#/rspec/S3758/javascript
    */
-  'sonar/values-not-convertible-to-numbers'?: Linter.RuleEntry<[]>
+  'sonarjs/values-not-convertible-to-numbers'?: Linter.RuleEntry<[]>
   /**
    * Variable, property and parameter names should comply with a naming convention
    * @see https://sonarsource.github.io/rspec/#/rspec/S117/javascript
    */
-  'sonar/variable-name'?: Linter.RuleEntry<SonarVariableName>
+  'sonarjs/variable-name'?: Linter.RuleEntry<SonarjsVariableName>
   /**
    * "void" should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S3735/javascript
    */
-  'sonar/void-use'?: Linter.RuleEntry<[]>
+  'sonarjs/void-use'?: Linter.RuleEntry<[]>
   /**
    * Weak SSL/TLS protocols should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4423/javascript
    */
-  'sonar/weak-ssl'?: Linter.RuleEntry<[]>
+  'sonarjs/weak-ssl'?: Linter.RuleEntry<[]>
   /**
    * Web SQL databases should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2817/javascript
    * @deprecated
    */
-  'sonar/web-sql-database'?: Linter.RuleEntry<[]>
+  'sonarjs/web-sql-database'?: Linter.RuleEntry<[]>
   /**
    * Web application technologies should not disclose version information
    * @see https://sonarsource.github.io/rspec/#/rspec/S5689/javascript
    */
-  'sonar/x-powered-by'?: Linter.RuleEntry<[]>
+  'sonarjs/x-powered-by'?: Linter.RuleEntry<[]>
   /**
    * XML parsers should not be vulnerable to XXE attacks
    * @see https://sonarsource.github.io/rspec/#/rspec/S2755/javascript
    */
-  'sonar/xml-parser-xxe'?: Linter.RuleEntry<[]>
+  'sonarjs/xml-parser-xxe'?: Linter.RuleEntry<[]>
   /**
    * Enforce sorted `import` declarations within modules
    * @see https://eslint.org/docs/latest/rules/sort-imports
@@ -6580,6 +6775,11 @@ export interface RuleOptions {
    */
   'svelte/no-add-event-listener'?: Linter.RuleEntry<[]>
   /**
+   * disallow the use of `{@const}` in favor of `{const ...}` declaration tags
+   * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/no-at-const-tags/
+   */
+  'svelte/no-at-const-tags'?: Linter.RuleEntry<[]>
+  /**
    * disallow the use of `{@debug}`
    * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/no-at-debug-tags/
    */
@@ -6589,6 +6789,16 @@ export interface RuleOptions {
    * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/no-at-html-tags/
    */
   'svelte/no-at-html-tags'?: Linter.RuleEntry<[]>
+  /**
+   * disallow useless `bind:value` on `<input type="checkbox">` and `<input type="radio">`
+   * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/no-bind-value-on-checkable-inputs/
+   */
+  'svelte/no-bind-value-on-checkable-inputs'?: Linter.RuleEntry<[]>
+  /**
+   * disallow a `.svelte` component and a same-named runes module (e.g. `Foo.svelte` and `Foo.svelte.ts`) from coexisting
+   * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/no-conflicting-module-names/
+   */
+  'svelte/no-conflicting-module-names'?: Linter.RuleEntry<[]>
   /**
    * disallow DOM manipulating
    * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/no-dom-manipulating/
@@ -6783,6 +6993,11 @@ export interface RuleOptions {
    */
   'svelte/no-useless-mustaches'?: Linter.RuleEntry<SvelteNoUselessMustaches>
   /**
+   * require attribute interpolation instead of template literals
+   * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/prefer-attribute-interpolation/
+   */
+  'svelte/prefer-attribute-interpolation'?: Linter.RuleEntry<[]>
+  /**
    * require class directives instead of ternary expressions
    * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/prefer-class-directive/
    */
@@ -6888,7 +7103,7 @@ export interface RuleOptions {
    */
   'svelte/valid-each-key'?: Linter.RuleEntry<[]>
   /**
-   * disallow props other than data or errors in SvelteKit page components.
+   * disallow invalid props in SvelteKit route components.
    * @see https://sveltejs.github.io/eslint-plugin-svelte/rules/valid-prop-names-in-kit-pages/
    */
   'svelte/valid-prop-names-in-kit-pages'?: Linter.RuleEntry<[]>
@@ -7696,6 +7911,7 @@ export interface RuleOptions {
   /**
    * Disallow function declarations that contain unsafe references inside loop statements
    * @see https://typescript-eslint.io/rules/no-loop-func
+   * @deprecated
    */
   'ts/no-loop-func'?: Linter.RuleEntry<[]>
   /**
@@ -7772,6 +7988,7 @@ export interface RuleOptions {
   /**
    * Disallow specified modules when loaded by `import`
    * @see https://typescript-eslint.io/rules/no-restricted-imports
+   * @deprecated
    */
   'ts/no-restricted-imports'?: Linter.RuleEntry<TsNoRestrictedImports>
   /**
@@ -8141,1620 +8358,1740 @@ export interface RuleOptions {
   'unicode-bom'?: Linter.RuleEntry<UnicodeBom>
   /**
    * Prefer better DOM traversal APIs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/better-dom-traversing.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/better-dom-traversing.md
    */
   'unicorn/better-dom-traversing'?: Linter.RuleEntry<[]>
   /**
    * Removed. Prefer `eslint-plugin-regexp`
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#better-regex
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#better-regex
    * @deprecated
    */
   'unicorn/better-regex'?: Linter.RuleEntry<[]>
   /**
    * Enforce a specific parameter name in catch clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/catch-error-name.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/catch-error-name.md
    */
   'unicorn/catch-error-name'?: Linter.RuleEntry<UnicornCatchErrorName>
   /**
    * Enforce consistent class references in static methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/class-reference-in-static-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/class-reference-in-static-methods.md
    */
   'unicorn/class-reference-in-static-methods'?: Linter.RuleEntry<UnicornClassReferenceInStaticMethods>
   /**
    * Enforce better comment content.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/comment-content.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/comment-content.md
    */
   'unicorn/comment-content'?: Linter.RuleEntry<UnicornCommentContent>
   /**
+   * Enforce a consistent return style for multiline arrow function bodies.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-arrow-return-style.md
+   */
+  'unicorn/consistent-arrow-return-style'?: Linter.RuleEntry<[]>
+  /**
    * Enforce consistent assertion style with `node:assert`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-assert.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-assert.md
    */
   'unicorn/consistent-assert'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent naming for boolean names.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-boolean-name.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-boolean-name.md
    */
   'unicorn/consistent-boolean-name'?: Linter.RuleEntry<UnicornConsistentBooleanName>
   /**
    * Enforce consistent class member order.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-class-member-order.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-class-member-order.md
    */
   'unicorn/consistent-class-member-order'?: Linter.RuleEntry<UnicornConsistentClassMemberOrder>
   /**
    * Enforce consistent spelling of compound words in identifiers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-compound-words.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-compound-words.md
    */
   'unicorn/consistent-compound-words'?: Linter.RuleEntry<UnicornConsistentCompoundWords>
   /**
    * Enforce consistent conditional object spread style.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-conditional-object-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-conditional-object-spread.md
    */
   'unicorn/consistent-conditional-object-spread'?: Linter.RuleEntry<UnicornConsistentConditionalObjectSpread>
   /**
    * Prefer passing `Date` directly to the constructor when cloning.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-date-clone.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-date-clone.md
    */
   'unicorn/consistent-date-clone'?: Linter.RuleEntry<[]>
   /**
    * Use destructured variables over properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-destructuring.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-destructuring.md
    */
   'unicorn/consistent-destructuring'?: Linter.RuleEntry<[]>
   /**
    * Prefer consistent types when spreading a ternary in an array literal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-empty-array-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-empty-array-spread.md
    */
   'unicorn/consistent-empty-array-spread'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent style for element existence checks with `indexOf()`, `lastIndexOf()`, `findIndex()`, and `findLastIndex()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-existence-index-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-existence-index-check.md
    */
   'unicorn/consistent-existence-index-check'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent decorator position on exported classes.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-export-decorator-position.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-export-decorator-position.md
    */
   'unicorn/consistent-export-decorator-position'?: Linter.RuleEntry<UnicornConsistentExportDecoratorPosition>
   /**
    * Move function definitions to the highest possible scope.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-function-scoping.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-function-scoping.md
    */
   'unicorn/consistent-function-scoping'?: Linter.RuleEntry<UnicornConsistentFunctionScoping>
   /**
    * Enforce function syntax by role.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-function-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-function-style.md
    */
   'unicorn/consistent-function-style'?: Linter.RuleEntry<UnicornConsistentFunctionStyle>
   /**
    * Enforce consistent JSON file reads before `JSON.parse()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-json-file-read.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-json-file-read.md
    */
   'unicorn/consistent-json-file-read'?: Linter.RuleEntry<UnicornConsistentJsonFileRead>
   /**
    * Enforce consistent optional chaining for same-base member access.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-optional-chaining.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-optional-chaining.md
    */
   'unicorn/consistent-optional-chaining'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent style for escaping `${` in template literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-template-literal-escape.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-template-literal-escape.md
    */
   'unicorn/consistent-template-literal-escape'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent labels on tuple type elements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/consistent-tuple-labels.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-tuple-labels.md
    */
   'unicorn/consistent-tuple-labels'?: Linter.RuleEntry<[]>
   /**
    * Enforce correct `Error` subclassing.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/custom-error-definition.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/custom-error-definition.md
    */
   'unicorn/custom-error-definition'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent default export declarations.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/default-export-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/default-export-style.md
    */
   'unicorn/default-export-style'?: Linter.RuleEntry<UnicornDefaultExportStyle>
   /**
    * Enforce consistent style for DOM element dataset access.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/dom-node-dataset.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/dom-node-dataset.md
    */
   'unicorn/dom-node-dataset'?: Linter.RuleEntry<UnicornDomNodeDataset>
   /**
    * Enforce no spaces between braces.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/empty-brace-spaces.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/empty-brace-spaces.md
    */
   'unicorn/empty-brace-spaces'?: Linter.RuleEntry<[]>
   /**
    * Enforce passing a `message` value when creating a built-in error.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/error-message.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/error-message.md
    */
   'unicorn/error-message'?: Linter.RuleEntry<[]>
   /**
    * Require escape sequences to use uppercase or lowercase values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/escape-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/escape-case.md
    */
   'unicorn/escape-case'?: Linter.RuleEntry<UnicornEscapeCase>
   /**
    * Add expiration conditions to TODO comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/expiring-todo-comments.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/expiring-todo-comments.md
    */
   'unicorn/expiring-todo-comments'?: Linter.RuleEntry<UnicornExpiringTodoComments>
   /**
    * Enforce explicitly comparing the `length` or `size` property of a value.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/explicit-length-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/explicit-length-check.md
    */
   'unicorn/explicit-length-check'?: Linter.RuleEntry<UnicornExplicitLengthCheck>
   /**
    * Enforce or disallow explicit `delay` argument for `setTimeout()` and `setInterval()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/explicit-timer-delay.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/explicit-timer-delay.md
    */
   'unicorn/explicit-timer-delay'?: Linter.RuleEntry<UnicornExplicitTimerDelay>
   /**
    * Enforce a case style for filenames and directory names.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/filename-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/filename-case.md
    */
   'unicorn/filename-case'?: Linter.RuleEntry<UnicornFilenameCase>
   /**
    * Require identifiers to match a specified regular expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/id-match.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/id-match.md
    */
   'unicorn/id-match'?: Linter.RuleEntry<UnicornIdMatch>
   /**
    * Enforce specific import styles per module.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/import-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/import-style.md
    */
   'unicorn/import-style'?: Linter.RuleEntry<UnicornImportStyle>
   /**
    * Prevent usage of variables from outside the scope of isolated functions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/isolated-functions.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/isolated-functions.md
    */
   'unicorn/isolated-functions'?: Linter.RuleEntry<UnicornIsolatedFunctions>
   /**
+   * Enforce a consistent style for optional loop sources.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/iteration-fallback-style.md
+   */
+  'unicorn/iteration-fallback-style'?: Linter.RuleEntry<UnicornIterationFallbackStyle>
+  /**
    * Require or disallow logical assignment operator shorthand
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/logical-assignment-operators.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/logical-assignment-operators.md
    */
   'unicorn/logical-assignment-operators'?: Linter.RuleEntry<UnicornLogicalAssignmentOperators>
   /**
    * Limit the depth of nested calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/max-nested-calls.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/max-nested-calls.md
    */
   'unicorn/max-nested-calls'?: Linter.RuleEntry<UnicornMaxNestedCalls>
   /**
    * Enforce replacements for variable, property, and filenames.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/name-replacements.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/name-replacements.md
    */
   'unicorn/name-replacements'?: Linter.RuleEntry<UnicornNameReplacements>
   /**
    * Enforce correct use of `new` for builtin constructors.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/new-for-builtins.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/new-for-builtins.md
    */
   'unicorn/new-for-builtins'?: Linter.RuleEntry<[]>
   /**
    * Enforce specifying rules to disable in `eslint-disable` comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-abusive-eslint-disable.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-abusive-eslint-disable.md
    */
   'unicorn/no-abusive-eslint-disable'?: Linter.RuleEntry<[]>
   /**
    * Disallow recursive access to `this` within getters and setters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-accessor-recursion.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-accessor-recursion.md
    */
   'unicorn/no-accessor-recursion'?: Linter.RuleEntry<[]>
   /**
    * Disallow bitwise operators where a logical operator was likely intended.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-accidental-bitwise-operator.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-accidental-bitwise-operator.md
    */
   'unicorn/no-accidental-bitwise-operator'?: Linter.RuleEntry<[]>
   /**
    * Disallow anonymous functions and classes as the default export.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-anonymous-default-export.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-anonymous-default-export.md
    */
   'unicorn/no-anonymous-default-export'?: Linter.RuleEntry<[]>
   /**
    * Prevent passing a function reference directly to iterator methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-callback-reference.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-callback-reference.md
    */
   'unicorn/no-array-callback-reference'?: Linter.RuleEntry<UnicornNoArrayCallbackReference>
   /**
    * Disallow array accumulation with `Array#concat()` in loops.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-concat-in-loop.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-concat-in-loop.md
    */
   'unicorn/no-array-concat-in-loop'?: Linter.RuleEntry<[]>
   /**
    * Disallow using reference values as `Array#fill()` values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-fill-with-reference-type.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-fill-with-reference-type.md
    */
   'unicorn/no-array-fill-with-reference-type'?: Linter.RuleEntry<[]>
   /**
    * Disallow `.fill()` after `Array.from({length: …})`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-from-fill.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-from-fill.md
    */
   'unicorn/no-array-from-fill'?: Linter.RuleEntry<[]>
   /**
    * Disallow front-of-array mutation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-front-mutation.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-front-mutation.md
    */
   'unicorn/no-array-front-mutation'?: Linter.RuleEntry<[]>
   /**
    * Disallow using the `this` argument in array methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-method-this-argument.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-method-this-argument.md
    */
   'unicorn/no-array-method-this-argument'?: Linter.RuleEntry<[]>
   /**
    * Replaced by `unicorn/prefer-single-call` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#no-array-push-push
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-array-push-push
    * @deprecated
    */
   'unicorn/no-array-push-push'?: Linter.RuleEntry<[]>
   /**
    * Disallow `Array#reduce()` and `Array#reduceRight()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-reduce.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-reduce.md
    */
   'unicorn/no-array-reduce'?: Linter.RuleEntry<UnicornNoArrayReduce>
   /**
    * Prefer `Array#toReversed()` over `Array#reverse()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-reverse.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-reverse.md
    */
   'unicorn/no-array-reverse'?: Linter.RuleEntry<UnicornNoArrayReverse>
   /**
    * Prefer `Array#toSorted()` over `Array#sort()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-sort.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-sort.md
    */
   'unicorn/no-array-sort'?: Linter.RuleEntry<UnicornNoArraySort>
   /**
    * Disallow sorting arrays to get the minimum or maximum value.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-sort-for-min-max.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-sort-for-min-max.md
    */
   'unicorn/no-array-sort-for-min-max'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Array#toSpliced()` over `Array#splice()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-array-splice.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-splice.md
    */
   'unicorn/no-array-splice'?: Linter.RuleEntry<[]>
   /**
    * Disallow asterisk prefixes in documentation comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-asterisk-prefix-in-documentation-comments.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-asterisk-prefix-in-documentation-comments.md
    */
   'unicorn/no-asterisk-prefix-in-documentation-comments'?: Linter.RuleEntry<[]>
   /**
+   * Disallow async functions as `Promise#finally()` callbacks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-async-promise-finally.md
+   */
+  'unicorn/no-async-promise-finally'?: Linter.RuleEntry<[]>
+  /**
    * Disallow member access from await expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-await-expression-member.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-await-expression-member.md
    */
   'unicorn/no-await-expression-member'?: Linter.RuleEntry<[]>
   /**
    * Disallow using `await` in `Promise` method parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-await-in-promise-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-await-in-promise-methods.md
    */
   'unicorn/no-await-in-promise-methods'?: Linter.RuleEntry<[]>
   /**
+   * Disallow barrel files.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-barrel-files.md
+   */
+  'unicorn/no-barrel-files'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unnecessary `Blob` to `File` conversion.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-blob-to-file.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-blob-to-file.md
    */
   'unicorn/no-blob-to-file'?: Linter.RuleEntry<[]>
   /**
    * Disallow boolean-returning sort comparators.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-boolean-sort-comparator.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-boolean-sort-comparator.md
    */
   'unicorn/no-boolean-sort-comparator'?: Linter.RuleEntry<[]>
   /**
    * Disallow `break` and `continue` in nested loops and switches inside loops.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-break-in-nested-loop.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-break-in-nested-loop.md
    */
   'unicorn/no-break-in-nested-loop'?: Linter.RuleEntry<[]>
   /**
    * Prefer drawing canvases directly instead of converting them to images.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-canvas-to-image.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-canvas-to-image.md
    */
   'unicorn/no-canvas-to-image'?: Linter.RuleEntry<[]>
   /**
    * Disallow chained comparisons such as `a < b < c`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-chained-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-chained-comparison.md
    */
   'unicorn/no-chained-comparison'?: Linter.RuleEntry<[]>
   /**
    * Disallow accessing `Map`, `Set`, `WeakMap`, and `WeakSet` entries with bracket notation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-collection-bracket-access.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-collection-bracket-access.md
    */
   'unicorn/no-collection-bracket-access'?: Linter.RuleEntry<[]>
   /**
    * Disallow dynamic object property existence checks.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-computed-property-existence-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-computed-property-existence-check.md
    */
   'unicorn/no-computed-property-existence-check'?: Linter.RuleEntry<[]>
   /**
    * Disallow confusing uses of `Array#{splice,toSpliced}()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-confusing-array-splice.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-confusing-array-splice.md
    */
   'unicorn/no-confusing-array-splice'?: Linter.RuleEntry<[]>
   /**
    * Disallow confusing uses of `Array#with()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-confusing-array-with.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-confusing-array-with.md
    */
   'unicorn/no-confusing-array-with'?: Linter.RuleEntry<[]>
   /**
    * Do not use leading/trailing space between `console.log` parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-console-spaces.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-console-spaces.md
    */
   'unicorn/no-console-spaces'?: Linter.RuleEntry<[]>
   /**
    * Disallow arithmetic and bitwise operations that always evaluate to `0`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-constant-zero-expression.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-constant-zero-expression.md
    */
   'unicorn/no-constant-zero-expression'?: Linter.RuleEntry<[]>
   /**
    * Disallow declarations before conditional early exits when they are only used after the exit.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-declarations-before-early-exit.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-declarations-before-early-exit.md
    */
   'unicorn/no-declarations-before-early-exit'?: Linter.RuleEntry<[]>
   /**
    * Do not use `document.cookie` directly.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-document-cookie.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-document-cookie.md
    */
   'unicorn/no-document-cookie'?: Linter.RuleEntry<[]>
   /**
    * Disallow two comparisons of the same operands that can be combined into one.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-double-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-double-comparison.md
    */
   'unicorn/no-double-comparison'?: Linter.RuleEntry<[]>
   /**
    * Disallow duplicate adjacent branches in if chains.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-duplicate-if-branches.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-if-branches.md
    */
   'unicorn/no-duplicate-if-branches'?: Linter.RuleEntry<[]>
   /**
    * Disallow adjacent duplicate operands in logical expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-duplicate-logical-operands.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-logical-operands.md
    */
   'unicorn/no-duplicate-logical-operands'?: Linter.RuleEntry<[]>
   /**
    * Disallow `.map()` and `.filter()` in `for…of` and `for await…of` loop headers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-duplicate-loops.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-loops.md
    */
   'unicorn/no-duplicate-loops'?: Linter.RuleEntry<[]>
   /**
    * Disallow duplicate values in `Set` constructor array literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-duplicate-set-values.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-set-values.md
    */
   'unicorn/no-duplicate-set-values'?: Linter.RuleEntry<[]>
   /**
    * Disallow empty files.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-empty-file.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-empty-file.md
    */
   'unicorn/no-empty-file'?: Linter.RuleEntry<UnicornNoEmptyFile>
   /**
    * Disallow assigning to built-in error properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-error-property-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-error-property-assignment.md
    */
   'unicorn/no-error-property-assignment'?: Linter.RuleEntry<[]>
   /**
    * Disallow exports in scripts.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-exports-in-scripts.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-exports-in-scripts.md
    */
   'unicorn/no-exports-in-scripts'?: Linter.RuleEntry<[]>
   /**
    * Prefer `for…of` over the `forEach` method.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-for-each.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-for-each.md
    */
   'unicorn/no-for-each'?: Linter.RuleEntry<[]>
   /**
    * Do not use a `for` loop that can be replaced with a `for-of` loop.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-for-loop.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-for-loop.md
    */
   'unicorn/no-for-loop'?: Linter.RuleEntry<[]>
   /**
    * Disallow assigning properties on the global object.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-global-object-property-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-global-object-property-assignment.md
    */
   'unicorn/no-global-object-property-assignment'?: Linter.RuleEntry<[]>
   /**
    * Replaced by `unicorn/prefer-unicode-code-point-escapes` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#no-hex-escape
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-hex-escape
    * @deprecated
    */
   'unicorn/no-hex-escape'?: Linter.RuleEntry<[]>
   /**
    * Disallow immediate mutation after variable assignment.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-immediate-mutation.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-immediate-mutation.md
    */
   'unicorn/no-immediate-mutation'?: Linter.RuleEntry<[]>
   /**
    * Disallow impossible comparisons against `.length` or `.size`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-impossible-length-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-impossible-length-comparison.md
    */
   'unicorn/no-impossible-length-comparison'?: Linter.RuleEntry<[]>
   /**
    * Disallow incorrect `querySelector()` and `querySelectorAll()` usage.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-incorrect-query-selector.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-incorrect-query-selector.md
    */
   'unicorn/no-incorrect-query-selector'?: Linter.RuleEntry<[]>
   /**
    * Disallow incorrect template literal interpolation syntax.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-incorrect-template-string-interpolation.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-incorrect-template-string-interpolation.md
    */
   'unicorn/no-incorrect-template-string-interpolation'?: Linter.RuleEntry<[]>
   /**
    * Replaced by `unicorn/no-instanceof-builtins` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#no-instanceof-array
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-instanceof-array
    * @deprecated
    */
   'unicorn/no-instanceof-array'?: Linter.RuleEntry<[]>
   /**
    * Disallow `instanceof` with built-in objects
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-instanceof-builtins.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-instanceof-builtins.md
    */
   'unicorn/no-instanceof-builtins'?: Linter.RuleEntry<UnicornNoInstanceofBuiltins>
   /**
    * Disallow calling functions and constructors with an invalid number of arguments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-invalid-argument-count.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-argument-count.md
    */
   'unicorn/no-invalid-argument-count'?: Linter.RuleEntry<UnicornNoInvalidArgumentCount>
   /**
    * Disallow comparing a single character from a string to a multi-character string.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-invalid-character-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-character-comparison.md
    */
   'unicorn/no-invalid-character-comparison'?: Linter.RuleEntry<[]>
   /**
    * Disallow invalid options in `fetch()` and `new Request()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-invalid-fetch-options.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-fetch-options.md
    */
   'unicorn/no-invalid-fetch-options'?: Linter.RuleEntry<[]>
   /**
    * Disallow invalid `accept` values on file inputs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-invalid-file-input-accept.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-file-input-accept.md
    */
   'unicorn/no-invalid-file-input-accept'?: Linter.RuleEntry<[]>
   /**
    * Prevent calling `EventTarget#removeEventListener()` with the result of an expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-invalid-remove-event-listener.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-remove-event-listener.md
    */
   'unicorn/no-invalid-remove-event-listener'?: Linter.RuleEntry<[]>
   /**
    * Disallow invalid implementations of well-known symbol methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-invalid-well-known-symbol-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-well-known-symbol-methods.md
    */
   'unicorn/no-invalid-well-known-symbol-methods'?: Linter.RuleEntry<[]>
   /**
    * Disallow identifiers starting with `new` or `class`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-keyword-prefix.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-keyword-prefix.md
    */
   'unicorn/no-keyword-prefix'?: Linter.RuleEntry<UnicornNoKeywordPrefix>
   /**
    * Disallow accessing `event.currentTarget` after the synchronous event dispatch has finished.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-late-current-target-access.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-late-current-target-access.md
    */
   'unicorn/no-late-current-target-access'?: Linter.RuleEntry<[]>
   /**
    * Disallow event-control method calls after the synchronous event dispatch has finished.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-late-event-control.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-late-event-control.md
    */
   'unicorn/no-late-event-control'?: Linter.RuleEntry<[]>
   /**
    * Replaced by `unicorn/no-unnecessary-slice-end` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#no-length-as-slice-end
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-length-as-slice-end
    * @deprecated
    */
   'unicorn/no-length-as-slice-end'?: Linter.RuleEntry<[]>
   /**
    * Disallow `if` statements as the only statement in `if` blocks without `else`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-lonely-if.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-lonely-if.md
    */
   'unicorn/no-lonely-if'?: Linter.RuleEntry<[]>
   /**
    * Disallow mutating a loop iterable during iteration.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-loop-iterable-mutation.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-loop-iterable-mutation.md
    */
   'unicorn/no-loop-iterable-mutation'?: Linter.RuleEntry<[]>
   /**
    * Disallow a magic number as the `depth` argument in `Array#flat(…).`
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-magic-array-flat-depth.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-magic-array-flat-depth.md
    */
   'unicorn/no-magic-array-flat-depth'?: Linter.RuleEntry<[]>
   /**
    * Disallow manually wrapped comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-manually-wrapped-comments.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-manually-wrapped-comments.md
    */
   'unicorn/no-manually-wrapped-comments'?: Linter.RuleEntry<[]>
   /**
    * Disallow checking a Map key before accessing a different key.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-mismatched-map-key.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-mismatched-map-key.md
    */
   'unicorn/no-mismatched-map-key'?: Linter.RuleEntry<[]>
   /**
    * Disallow misrefactored compound assignments where the target is duplicated in the right-hand side.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-misrefactored-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-misrefactored-assignment.md
    */
   'unicorn/no-misrefactored-assignment'?: Linter.RuleEntry<[]>
   /**
+   * Disallow references to missing local resources.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-missing-local-resource.md
+   */
+  'unicorn/no-missing-local-resource'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow calling Promise executor resolver functions more than once on the same execution path.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-multiple-promise-resolver-calls.md
+   */
+  'unicorn/no-multiple-promise-resolver-calls'?: Linter.RuleEntry<[]>
+  /**
    * Disallow named usage of default import and export.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-named-default.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-named-default.md
    */
   'unicorn/no-named-default'?: Linter.RuleEntry<[]>
   /**
    * Disallow negated array predicate calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-negated-array-predicate.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negated-array-predicate.md
    */
   'unicorn/no-negated-array-predicate'?: Linter.RuleEntry<[]>
   /**
    * Disallow negated comparisons.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-negated-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negated-comparison.md
    */
   'unicorn/no-negated-comparison'?: Linter.RuleEntry<UnicornNoNegatedComparison>
   /**
    * Disallow negated conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-negated-condition.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negated-condition.md
    */
   'unicorn/no-negated-condition'?: Linter.RuleEntry<[]>
   /**
    * Disallow negated expression in equality check.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-negation-in-equality-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negation-in-equality-check.md
    */
   'unicorn/no-negation-in-equality-check'?: Linter.RuleEntry<[]>
   /**
    * Disallow nested ternary expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-nested-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-nested-ternary.md
    */
   'unicorn/no-nested-ternary'?: Linter.RuleEntry<[]>
   /**
    * Disallow `new Array()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-new-array.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-new-array.md
    */
   'unicorn/no-new-array'?: Linter.RuleEntry<[]>
   /**
    * Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-new-buffer.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-new-buffer.md
    */
   'unicorn/no-new-buffer'?: Linter.RuleEntry<[]>
   /**
    * Disallow non-function values with function-style verb prefixes.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-non-function-verb-prefix.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-non-function-verb-prefix.md
    */
   'unicorn/no-non-function-verb-prefix'?: Linter.RuleEntry<UnicornNoNonFunctionVerbPrefix>
   /**
    * Disallow non-standard properties on built-in objects.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-nonstandard-builtin-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-nonstandard-builtin-properties.md
    */
   'unicorn/no-nonstandard-builtin-properties'?: Linter.RuleEntry<[]>
   /**
    * Disallow the use of the `null` literal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-null.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-null.md
    */
   'unicorn/no-null'?: Linter.RuleEntry<UnicornNoNull>
   /**
    * Disallow the use of objects as default parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-object-as-default-parameter.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-object-as-default-parameter.md
    */
   'unicorn/no-object-as-default-parameter'?: Linter.RuleEntry<[]>
   /**
    * Disallow `Object` methods with `Map` or `Set`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-object-methods-with-collections.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-object-methods-with-collections.md
    */
   'unicorn/no-object-methods-with-collections'?: Linter.RuleEntry<[]>
   /**
    * Disallow optional chaining on undeclared variables.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-optional-chaining-on-undeclared-variable.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-optional-chaining-on-undeclared-variable.md
    */
   'unicorn/no-optional-chaining-on-undeclared-variable'?: Linter.RuleEntry<[]>
   /**
    * Disallow `process.exit()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-process-exit.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-process-exit.md
    */
   'unicorn/no-process-exit'?: Linter.RuleEntry<[]>
   /**
    * Disallow comparisons made redundant by an equality check in the same logical AND.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-redundant-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-redundant-comparison.md
    */
   'unicorn/no-redundant-comparison'?: Linter.RuleEntry<[]>
   /**
    * Disallow using the return value of `Array#push()` and `Array#unshift()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-return-array-push.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-return-array-push.md
    */
   'unicorn/no-return-array-push'?: Linter.RuleEntry<[]>
   /**
    * Disallow selector syntax in DOM names.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-selector-as-dom-name.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-selector-as-dom-name.md
    */
   'unicorn/no-selector-as-dom-name'?: Linter.RuleEntry<[]>
   /**
+   * Disallow shorthand properties that override related longhand properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-shorthand-property-overrides.md
+   */
+  'unicorn/no-shorthand-property-overrides'?: Linter.RuleEntry<[]>
+  /**
    * Disallow passing single-element arrays to `Promise` methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-single-promise-in-promise-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-single-promise-in-promise-methods.md
    */
   'unicorn/no-single-promise-in-promise-methods'?: Linter.RuleEntry<[]>
   /**
    * Disallow classes that only have static members.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-static-only-class.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-static-only-class.md
    */
   'unicorn/no-static-only-class'?: Linter.RuleEntry<[]>
   /**
    * Prefer comparing values directly over subtracting and comparing to `0`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-subtraction-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-subtraction-comparison.md
    */
   'unicorn/no-subtraction-comparison'?: Linter.RuleEntry<[]>
   /**
    * Disallow `then` property.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-thenable.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-thenable.md
    */
   'unicorn/no-thenable'?: Linter.RuleEntry<[]>
   /**
    * Disallow assigning `this` to a variable.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-this-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-this-assignment.md
    */
   'unicorn/no-this-assignment'?: Linter.RuleEntry<[]>
   /**
    * Disallow `this` outside of classes.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-this-outside-of-class.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-this-outside-of-class.md
    */
   'unicorn/no-this-outside-of-class'?: Linter.RuleEntry<[]>
   /**
    * Disallow assigning to top-level variables from inside functions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-top-level-assignment-in-function.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-top-level-assignment-in-function.md
    */
   'unicorn/no-top-level-assignment-in-function'?: Linter.RuleEntry<[]>
   /**
    * Disallow top-level side effects in exported modules.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-top-level-side-effects.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-top-level-side-effects.md
    */
   'unicorn/no-top-level-side-effects'?: Linter.RuleEntry<[]>
   /**
+   * Disallow `all` as a transition property.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-transition-all.md
+   */
+  'unicorn/no-transition-all'?: Linter.RuleEntry<[]>
+  /**
    * Disallow comparing `undefined` using `typeof`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-typeof-undefined.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-typeof-undefined.md
    */
   'unicorn/no-typeof-undefined'?: Linter.RuleEntry<UnicornNoTypeofUndefined>
   /**
    * Disallow referencing methods without calling them.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-uncalled-method.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-uncalled-method.md
    */
   'unicorn/no-uncalled-method'?: Linter.RuleEntry<[]>
   /**
    * Require class members to be declared.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-undeclared-class-members.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-undeclared-class-members.md
    */
   'unicorn/no-undeclared-class-members'?: Linter.RuleEntry<[]>
   /**
    * Disallow using `1` as the `depth` argument of `Array#flat()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-array-flat-depth.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-array-flat-depth.md
    */
   'unicorn/no-unnecessary-array-flat-depth'?: Linter.RuleEntry<[]>
   /**
+   * Disallow `Array#flatMap()` callbacks that only wrap a single item.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-array-flat-map.md
+   */
+  'unicorn/no-unnecessary-array-flat-map'?: Linter.RuleEntry<[]>
+  /**
    * Disallow using `.length` or `Infinity` as the `deleteCount` or `skipCount` argument of `Array#{splice,toSpliced}()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-array-splice-count.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-array-splice-count.md
    */
   'unicorn/no-unnecessary-array-splice-count'?: Linter.RuleEntry<[]>
   /**
    * Disallow awaiting non-promise values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-await.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-await.md
    */
   'unicorn/no-unnecessary-await'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary comparisons against boolean literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-boolean-comparison.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-boolean-comparison.md
    */
   'unicorn/no-unnecessary-boolean-comparison'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unnecessary options in `fetch()` and `new Request()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-fetch-options.md
+   */
+  'unicorn/no-unnecessary-fetch-options'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unnecessary `globalThis` references.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-global-this.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-global-this.md
    */
   'unicorn/no-unnecessary-global-this'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary nested ternary expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-nested-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-nested-ternary.md
    */
   'unicorn/no-unnecessary-nested-ternary'?: Linter.RuleEntry<[]>
   /**
    * Enforce the use of built-in methods instead of unnecessary polyfills.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-polyfills.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-polyfills.md
    */
   'unicorn/no-unnecessary-polyfills'?: Linter.RuleEntry<UnicornNoUnnecessaryPolyfills>
   /**
    * Disallow using `.length` or `Infinity` as the `end` argument of `{Array,String,TypedArray}#slice()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-slice-end.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-slice-end.md
    */
   'unicorn/no-unnecessary-slice-end'?: Linter.RuleEntry<[]>
   /**
    * Disallow `Array#splice()` when simpler alternatives exist.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unnecessary-splice.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-splice.md
    */
   'unicorn/no-unnecessary-splice'?: Linter.RuleEntry<[]>
   /**
+   * Disallow `String#trim()` before `String#startsWith()` or `String#endsWith()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-string-trim.md
+   */
+  'unicorn/no-unnecessary-string-trim'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unreadable array destructuring.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unreadable-array-destructuring.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-array-destructuring.md
    */
   'unicorn/no-unreadable-array-destructuring'?: Linter.RuleEntry<UnicornNoUnreadableArrayDestructuring>
   /**
    * Disallow unreadable iterable expressions in `for…of` and `for await…of` loop headers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unreadable-for-of-expression.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-for-of-expression.md
    */
   'unicorn/no-unreadable-for-of-expression'?: Linter.RuleEntry<[]>
   /**
    * Disallow unreadable IIFEs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unreadable-iife.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-iife.md
    */
   'unicorn/no-unreadable-iife'?: Linter.RuleEntry<[]>
   /**
    * Disallow unreadable `new` expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unreadable-new-expression.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-new-expression.md
    */
   'unicorn/no-unreadable-new-expression'?: Linter.RuleEntry<[]>
   /**
    * Disallow unreadable object destructuring.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unreadable-object-destructuring.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-object-destructuring.md
    */
   'unicorn/no-unreadable-object-destructuring'?: Linter.RuleEntry<[]>
   /**
    * Prevent unsafe use of ArrayBuffer view `.buffer`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unsafe-buffer-conversion.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-buffer-conversion.md
    */
   'unicorn/no-unsafe-buffer-conversion'?: Linter.RuleEntry<[]>
   /**
    * Disallow unsafe DOM HTML APIs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unsafe-dom-html.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-dom-html.md
    */
   'unicorn/no-unsafe-dom-html'?: Linter.RuleEntry<[]>
   /**
+   * Disallow reading `.value` from `Promise.allSettled()` results without a fulfilled status guard.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-promise-all-settled-values.md
+   */
+  'unicorn/no-unsafe-promise-all-settled-values'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unsafe values as property keys.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unsafe-property-key.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-property-key.md
    */
   'unicorn/no-unsafe-property-key'?: Linter.RuleEntry<[]>
   /**
+   * Disallow interpolation into SQL strings passed to Node’s `node:sqlite` APIs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-sqlite-interpolation.md
+   */
+  'unicorn/no-unsafe-sqlite-interpolation'?: Linter.RuleEntry<[]>
+  /**
    * Disallow non-literal replacement values in `String#replace()` and `String#replaceAll()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unsafe-string-replacement.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-string-replacement.md
    */
   'unicorn/no-unsafe-string-replacement'?: Linter.RuleEntry<[]>
   /**
    * Disallow ignoring the return value of selected array methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unused-array-method-return.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unused-array-method-return.md
    */
   'unicorn/no-unused-array-method-return'?: Linter.RuleEntry<[]>
   /**
    * Disallow unused object properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-unused-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unused-properties.md
    */
   'unicorn/no-unused-properties'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary `Boolean()` casts in array predicate callbacks.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-boolean-cast.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-boolean-cast.md
    */
   'unicorn/no-useless-boolean-cast'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless type coercions of values that are already of the target type.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-coercion.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-coercion.md
    */
   'unicorn/no-useless-coercion'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless values or fallbacks in `Set`, `Map`, `WeakSet`, or `WeakMap`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-collection-argument.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-collection-argument.md
    */
   'unicorn/no-useless-collection-argument'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless compound assignments such as `x += 0`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-compound-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-compound-assignment.md
    */
   'unicorn/no-useless-compound-assignment'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless concatenation of literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-concat.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-concat.md
    */
   'unicorn/no-useless-concat'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless `continue` statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-continue.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-continue.md
    */
   'unicorn/no-useless-continue'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary existence checks before deletion.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-delete-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-delete-check.md
    */
   'unicorn/no-useless-delete-check'?: Linter.RuleEntry<[]>
   /**
    * Disallow `else` after a statement that exits.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-else.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-else.md
    */
   'unicorn/no-useless-else'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary `Error.captureStackTrace(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-error-capture-stack-trace.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-error-capture-stack-trace.md
    */
   'unicorn/no-useless-error-capture-stack-trace'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless fallback when spreading in object literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-fallback-in-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-fallback-in-spread.md
    */
   'unicorn/no-useless-fallback-in-spread'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary `.toArray()` on iterators.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-iterator-to-array.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-iterator-to-array.md
    */
   'unicorn/no-useless-iterator-to-array'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless array length check.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-length-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-length-check.md
    */
   'unicorn/no-useless-length-check'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary operands in logical expressions involving boolean literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-logical-operand.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-logical-operand.md
    */
   'unicorn/no-useless-logical-operand'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless overrides of class methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-override.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-override.md
    */
   'unicorn/no-useless-override'?: Linter.RuleEntry<[]>
   /**
    * Disallow returning/yielding `Promise.resolve/reject()` in async functions or promise callbacks
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-promise-resolve-reject.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-promise-resolve-reject.md
    */
   'unicorn/no-useless-promise-resolve-reject'?: Linter.RuleEntry<[]>
   /**
+   * Disallow redundant re-exports.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-re-export.md
+   */
+  'unicorn/no-useless-re-export'?: Linter.RuleEntry<[]>
+  /**
    * Disallow simple recursive function calls that can be replaced with a loop.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-recursion.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-recursion.md
    */
   'unicorn/no-useless-recursion'?: Linter.RuleEntry<[]>
   /**
    * Disallow unnecessary spread.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-spread.md
    */
   'unicorn/no-useless-spread'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless case in switch statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-switch-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-switch-case.md
    */
   'unicorn/no-useless-switch-case'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless template literal expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-template-literals.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-template-literals.md
    */
   'unicorn/no-useless-template-literals'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless `undefined`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-useless-undefined.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-undefined.md
    */
   'unicorn/no-useless-undefined'?: Linter.RuleEntry<UnicornNoUselessUndefined>
   /**
    * Disallow the bitwise XOR operator where exponentiation was likely intended.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-xor-as-exponentiation.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-xor-as-exponentiation.md
    */
   'unicorn/no-xor-as-exponentiation'?: Linter.RuleEntry<[]>
   /**
    * Disallow number literals with zero fractions or dangling dots.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/no-zero-fractions.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-zero-fractions.md
    */
   'unicorn/no-zero-fractions'?: Linter.RuleEntry<[]>
   /**
    * Enforce proper case for numeric literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/number-literal-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/number-literal-case.md
    */
   'unicorn/number-literal-case'?: Linter.RuleEntry<UnicornNumberLiteralCase>
   /**
    * Enforce the style of numeric separators by correctly grouping digits.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/numeric-separators-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/numeric-separators-style.md
    */
   'unicorn/numeric-separators-style'?: Linter.RuleEntry<UnicornNumericSeparatorsStyle>
   /**
    * Require assignment operator shorthand where possible.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/operator-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/operator-assignment.md
    */
   'unicorn/operator-assignment'?: Linter.RuleEntry<UnicornOperatorAssignment>
   /**
+   * Prefer `AbortSignal.any()` over manually forwarding abort events between signals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-abort-signal-any.md
+   */
+  'unicorn/prefer-abort-signal-any'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `AbortSignal.timeout()` over manually aborting an `AbortController` with `setTimeout()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-abort-signal-timeout.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-abort-signal-timeout.md
    */
   'unicorn/prefer-abort-signal-timeout'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.addEventListener()` and `.removeEventListener()` over `on`-functions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-add-event-listener.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-add-event-listener.md
    */
   'unicorn/prefer-add-event-listener'?: Linter.RuleEntry<UnicornPreferAddEventListener>
   /**
    * Prefer an options object over a boolean in `.addEventListener()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-add-event-listener-options.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-add-event-listener-options.md
    */
   'unicorn/prefer-add-event-listener-options'?: Linter.RuleEntry<[]>
   /**
    * Prefer `AggregateError` when throwing collected errors.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-aggregate-error.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-aggregate-error.md
    */
   'unicorn/prefer-aggregate-error'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.find(…)` and `.findLast(…)` over the first or last element from `.filter(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-find.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-find.md
    */
   'unicorn/prefer-array-find'?: Linter.RuleEntry<UnicornPreferArrayFind>
   /**
    * Prefer `Array#flat()` over legacy techniques to flatten arrays.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-flat.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-flat.md
    */
   'unicorn/prefer-array-flat'?: Linter.RuleEntry<UnicornPreferArrayFlat>
   /**
    * Prefer `.flatMap(…)` over `.map(…).flat()` and `.filter(…).flatMap(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-flat-map.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-flat-map.md
    */
   'unicorn/prefer-array-flat-map'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Array.fromAsync()` over `for await…of` array accumulation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-from-async.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-from-async.md
    */
   'unicorn/prefer-array-from-async'?: Linter.RuleEntry<[]>
   /**
    * Prefer using the `Array.from()` mapping function argument.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-from-map.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-from-map.md
    */
   'unicorn/prefer-array-from-map'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `Array.from({length}, …)` when creating range arrays.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-from-range.md
+   */
+  'unicorn/prefer-array-from-range'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `Array#{indexOf,lastIndexOf}()` over `Array#{findIndex,findLastIndex}()` when looking for the index of an item.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-index-of.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-index-of.md
    */
   'unicorn/prefer-array-index-of'?: Linter.RuleEntry<[]>
   /**
    * Prefer iterating an array directly or with `Array#keys()` over `Array#entries()` when the index or value is unused.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-iterable-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-iterable-methods.md
    */
   'unicorn/prefer-array-iterable-methods'?: Linter.RuleEntry<[]>
   /**
    * Prefer last-oriented array methods over `Array#reverse()` or `Array#toReversed()` followed by a method.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-last-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-last-methods.md
    */
   'unicorn/prefer-array-last-methods'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Array#slice()` over `Array#splice()` when reading from the returned array.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-slice.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-slice.md
    */
   'unicorn/prefer-array-slice'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.some(…)` over `.filter(…).length` check and `.{find,findLast,findIndex,findLastIndex}(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-array-some.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-some.md
    */
   'unicorn/prefer-array-some'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.at()` method for index access and `String#charAt()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-at.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-at.md
    */
   'unicorn/prefer-at'?: Linter.RuleEntry<UnicornPreferAt>
   /**
    * Prefer `await` over promise chaining.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-await.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-await.md
    */
   'unicorn/prefer-await'?: Linter.RuleEntry<[]>
   /**
    * Prefer `BigInt` literals over the constructor.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-bigint-literals.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-bigint-literals.md
    */
   'unicorn/prefer-bigint-literals'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Blob#arrayBuffer()` over `FileReader#readAsArrayBuffer(…)` and `Blob#text()` over `FileReader#readAsText(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-blob-reading-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-blob-reading-methods.md
    */
   'unicorn/prefer-blob-reading-methods'?: Linter.RuleEntry<[]>
   /**
+   * Prefer block statements over IIFEs used only for scoping.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-block-statement-over-iife.md
+   */
+  'unicorn/prefer-block-statement-over-iife'?: Linter.RuleEntry<[]>
+  /**
    * Prefer directly returning boolean expressions over `if` statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-boolean-return.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-boolean-return.md
    */
   'unicorn/prefer-boolean-return'?: Linter.RuleEntry<[]>
   /**
    * Prefer class field declarations over `this` assignments in constructors.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-class-fields.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-class-fields.md
    */
   'unicorn/prefer-class-fields'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `Element#classList.toggle()` to toggle class names.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-classlist-toggle.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-classlist-toggle.md
    */
   'unicorn/prefer-classlist-toggle'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#codePointAt(…)` over `String#charCodeAt(…)` and `String.fromCodePoint(…)` over `String.fromCharCode(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-code-point.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-code-point.md
    */
   'unicorn/prefer-code-point'?: Linter.RuleEntry<[]>
   /**
    * Prefer early continues over whole-loop conditional wrapping.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-continue.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-continue.md
    */
   'unicorn/prefer-continue'?: Linter.RuleEntry<UnicornPreferContinue>
   /**
    * Prefer `Date.now()` to get the number of milliseconds since the Unix Epoch.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-date-now.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-date-now.md
    */
   'unicorn/prefer-date-now'?: Linter.RuleEntry<[]>
   /**
    * Prefer default parameters over reassignment.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-default-parameters.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-default-parameters.md
    */
   'unicorn/prefer-default-parameters'?: Linter.RuleEntry<[]>
   /**
    * Prefer direct iteration over default iterator method calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-direct-iteration.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-direct-iteration.md
    */
   'unicorn/prefer-direct-iteration'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `using`/`await using` over manual `try`/`finally` resource disposal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-dispose.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dispose.md
    */
   'unicorn/prefer-dispose'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Element#append()` over `Node#appendChild()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-dom-node-append.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-append.md
    */
   'unicorn/prefer-dom-node-append'?: Linter.RuleEntry<[]>
   /**
    * Renamed to `unicorn/dom-node-dataset`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#prefer-dom-node-dataset
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#prefer-dom-node-dataset
    * @deprecated
    */
   'unicorn/prefer-dom-node-dataset'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.getHTML()` and `.setHTML()` over `.innerHTML`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-dom-node-html-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-html-methods.md
    */
-  'unicorn/prefer-dom-node-html-methods'?: Linter.RuleEntry<[]>
+  'unicorn/prefer-dom-node-html-methods'?: Linter.RuleEntry<UnicornPreferDomNodeHtmlMethods>
   /**
    * Prefer `childNode.remove()` over `parentNode.removeChild(childNode)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-dom-node-remove.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-remove.md
    */
   'unicorn/prefer-dom-node-remove'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.replaceChildren()` when emptying DOM children.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-dom-node-replace-children.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-replace-children.md
    */
   'unicorn/prefer-dom-node-replace-children'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.textContent` over `.innerText`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-dom-node-text-content.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-text-content.md
    */
   'unicorn/prefer-dom-node-text-content'?: Linter.RuleEntry<[]>
   /**
    * Prefer early returns over full-function conditional wrapping.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-early-return.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-early-return.md
    */
   'unicorn/prefer-early-return'?: Linter.RuleEntry<UnicornPreferEarlyReturn>
   /**
    * Prefer `else if` over adjacent `if` statements with related conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-else-if.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-else-if.md
    */
   'unicorn/prefer-else-if'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Error.isError()` when checking for errors.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-error-is-error.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-error-is-error.md
    */
   'unicorn/prefer-error-is-error'?: Linter.RuleEntry<[]>
   /**
    * Prefer `EventTarget` over `EventEmitter`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-event-target.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-event-target.md
    */
   'unicorn/prefer-event-target'?: Linter.RuleEntry<[]>
   /**
+   * Prefer explicit viewport units.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-explicit-viewport-units.md
+   */
+  'unicorn/prefer-explicit-viewport-units'?: Linter.RuleEntry<UnicornPreferExplicitViewportUnits>
+  /**
    * Prefer `export…from` when re-exporting.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-export-from.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-export-from.md
    */
   'unicorn/prefer-export-from'?: Linter.RuleEntry<UnicornPreferExportFrom>
   /**
    * Prefer flat `Math.min()` and `Math.max()` calls over nested calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-flat-math-min-max.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-flat-math-min-max.md
    */
   'unicorn/prefer-flat-math-min-max'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.getOrInsertComputed()` when the default value has side effects.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-get-or-insert-computed.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-get-or-insert-computed.md
    */
   'unicorn/prefer-get-or-insert-computed'?: Linter.RuleEntry<[]>
   /**
    * Prefer global numeric constants over `Number` static properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-global-number-constants.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-global-number-constants.md
    */
   'unicorn/prefer-global-number-constants'?: Linter.RuleEntry<[]>
   /**
    * Prefer `globalThis` over `window`, `self`, and `global`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-global-this.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-global-this.md
    */
   'unicorn/prefer-global-this'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `Object.groupBy()` or `Map.groupBy()` over reduce-based grouping.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-group-by.md
+   */
+  'unicorn/prefer-group-by'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `.has()` when checking existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-has-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-has-check.md
    */
   'unicorn/prefer-has-check'?: Linter.RuleEntry<[]>
   /**
    * Prefer moving code shared by all branches of an `if` statement out of the branches.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-hoisting-branch-code.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-hoisting-branch-code.md
    */
   'unicorn/prefer-hoisting-branch-code'?: Linter.RuleEntry<[]>
   /**
    * Prefer HTTPS over HTTP.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-https.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-https.md
    */
-  'unicorn/prefer-https'?: Linter.RuleEntry<[]>
+  'unicorn/prefer-https'?: Linter.RuleEntry<UnicornPreferHttps>
   /**
    * Prefer identifiers over string literals in import and export specifiers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-identifier-import-export-specifiers.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-identifier-import-export-specifiers.md
    */
   'unicorn/prefer-identifier-import-export-specifiers'?: Linter.RuleEntry<[]>
   /**
    * Prefer `import.meta.{dirname,filename}` over legacy techniques for getting file paths.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-import-meta-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-import-meta-properties.md
    */
   'unicorn/prefer-import-meta-properties'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-includes.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-includes.md
    */
   'unicorn/prefer-includes'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.includes()` over repeated equality comparisons.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-includes-over-repeated-comparisons.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-includes-over-repeated-comparisons.md
    */
   'unicorn/prefer-includes-over-repeated-comparisons'?: Linter.RuleEntry<UnicornPreferIncludesOverRepeatedComparisons>
   /**
    * Prefer passing iterables directly to constructors instead of filling empty collections.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-iterable-in-constructor.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterable-in-constructor.md
    */
   'unicorn/prefer-iterable-in-constructor'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Iterator.concat(…)` over temporary spread arrays.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-iterator-concat.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-concat.md
    */
   'unicorn/prefer-iterator-concat'?: Linter.RuleEntry<[]>
   /**
+   * Prefer iterator helpers over temporary arrays from iterators.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-helpers.md
+   */
+  'unicorn/prefer-iterator-helpers'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `Iterator#toArray()` over temporary arrays from iterator spreads.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-iterator-to-array.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-to-array.md
    */
   'unicorn/prefer-iterator-to-array'?: Linter.RuleEntry<[]>
   /**
    * Prefer moving `.toArray()` to the end of iterator helper chains.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-iterator-to-array-at-end.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-to-array-at-end.md
    */
   'unicorn/prefer-iterator-to-array-at-end'?: Linter.RuleEntry<[]>
   /**
    * Renamed to `unicorn/consistent-json-file-read`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#prefer-json-parse-buffer
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#prefer-json-parse-buffer
    * @deprecated
    */
   'unicorn/prefer-json-parse-buffer'?: Linter.RuleEntry<[]>
   /**
    * Prefer `KeyboardEvent#key` over deprecated keyboard event properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-keyboard-event-key.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-keyboard-event-key.md
    */
   'unicorn/prefer-keyboard-event-key'?: Linter.RuleEntry<[]>
   /**
    * Prefer `location.assign()` over assigning to `location.href`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-location-assign.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-location-assign.md
    */
   'unicorn/prefer-location-assign'?: Linter.RuleEntry<[]>
   /**
    * Prefer using a logical operator over a ternary.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-logical-operator-over-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-logical-operator-over-ternary.md
    */
   'unicorn/prefer-logical-operator-over-ternary'?: Linter.RuleEntry<[]>
   /**
    * Prefer `new Map()` over `Object.fromEntries()` when using the result as a map.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-map-from-entries.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-map-from-entries.md
    */
   'unicorn/prefer-map-from-entries'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Math.abs()` over manual absolute value expressions and symmetric range checks.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-math-abs.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-abs.md
    */
   'unicorn/prefer-math-abs'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Math` constants over their approximate numeric values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-math-constants.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-constants.md
    */
   'unicorn/prefer-math-constants'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Math.min()` and `Math.max()` over ternaries for simple comparisons.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-math-min-max.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-min-max.md
    */
   'unicorn/prefer-math-min-max'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Math.trunc()` for truncating numbers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-math-trunc.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-trunc.md
    */
   'unicorn/prefer-math-trunc'?: Linter.RuleEntry<[]>
   /**
    * Prefer moving ternaries into the minimal varying part of an expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-minimal-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-minimal-ternary.md
    */
   'unicorn/prefer-minimal-ternary'?: Linter.RuleEntry<UnicornPreferMinimalTernary>
   /**
    * Prefer modern DOM APIs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-modern-dom-apis.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-modern-dom-apis.md
    */
   'unicorn/prefer-modern-dom-apis'?: Linter.RuleEntry<[]>
   /**
    * Prefer modern `Math` APIs over legacy patterns.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-modern-math-apis.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-modern-math-apis.md
    */
   'unicorn/prefer-modern-math-apis'?: Linter.RuleEntry<[]>
   /**
    * Prefer JavaScript modules (ESM) over CommonJS.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-module.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-module.md
    */
   'unicorn/prefer-module'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `String`, `Number`, `BigInt`, `Boolean`, and `Symbol` directly.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-native-coercion-functions.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-native-coercion-functions.md
    */
   'unicorn/prefer-native-coercion-functions'?: Linter.RuleEntry<[]>
   /**
    * Prefer negative index over `.length - index` when possible.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-negative-index.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-negative-index.md
    */
   'unicorn/prefer-negative-index'?: Linter.RuleEntry<[]>
   /**
    * Prefer using the `node:` protocol when importing Node.js builtin modules.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-node-protocol.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-node-protocol.md
    */
   'unicorn/prefer-node-protocol'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Number()` over `parseFloat()` and base-10 `parseInt()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-number-coercion.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-number-coercion.md
    */
   'unicorn/prefer-number-coercion'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Number.isSafeInteger()` over integer checks.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-number-is-safe-integer.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-number-is-safe-integer.md
    */
   'unicorn/prefer-number-is-safe-integer'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Number` static methods over global functions and optionally static properties over global constants.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-number-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-number-properties.md
    */
   'unicorn/prefer-number-properties'?: Linter.RuleEntry<UnicornPreferNumberProperties>
   /**
    * Prefer `Object.defineProperties()` over multiple `Object.defineProperty()` calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-object-define-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-define-properties.md
    */
   'unicorn/prefer-object-define-properties'?: Linter.RuleEntry<[]>
   /**
    * Prefer object destructuring defaults over default object literals with spread.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-object-destructuring-defaults.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-destructuring-defaults.md
    */
   'unicorn/prefer-object-destructuring-defaults'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `Object.fromEntries(…)` to transform a list of key-value pairs into an object.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-object-from-entries.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-from-entries.md
    */
   'unicorn/prefer-object-from-entries'?: Linter.RuleEntry<UnicornPreferObjectFromEntries>
   /**
    * Prefer the most specific `Object` iterable method.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-object-iterable-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-iterable-methods.md
    */
   'unicorn/prefer-object-iterable-methods'?: Linter.RuleEntry<[]>
   /**
    * Prefer observer APIs over resize and scroll listeners with layout reads.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-observer-apis.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-observer-apis.md
    */
   'unicorn/prefer-observer-apis'?: Linter.RuleEntry<[]>
   /**
    * Prefer omitting the `catch` binding parameter.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-optional-catch-binding.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-optional-catch-binding.md
    */
   'unicorn/prefer-optional-catch-binding'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Path2D` for repeatedly drawn canvas paths.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-path2d.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-path2d.md
    */
   'unicorn/prefer-path2d'?: Linter.RuleEntry<[]>
   /**
    * Prefer private class fields over the underscore-prefix convention.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-private-class-fields.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-private-class-fields.md
    */
   'unicorn/prefer-private-class-fields'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Promise.try()` over promise-wrapping boilerplate.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-promise-try.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-promise-try.md
    */
   'unicorn/prefer-promise-try'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Promise.withResolvers()` when extracting resolver functions from `new Promise()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-promise-with-resolvers.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-promise-with-resolvers.md
    */
   'unicorn/prefer-promise-with-resolvers'?: Linter.RuleEntry<[]>
   /**
    * Prefer borrowing methods from the prototype instead of the instance.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-prototype-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-prototype-methods.md
    */
   'unicorn/prefer-prototype-methods'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.querySelector()` and `.querySelectorAll()` over older DOM query methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-query-selector.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-query-selector.md
    */
   'unicorn/prefer-query-selector'?: Linter.RuleEntry<UnicornPreferQuerySelector>
   /**
    * Prefer `queueMicrotask()` over `process.nextTick()`, `setImmediate()`, and `setTimeout(…, 0)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-queue-microtask.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-queue-microtask.md
    */
   'unicorn/prefer-queue-microtask'?: Linter.RuleEntry<UnicornPreferQueueMicrotask>
   /**
    * Prefer `Reflect.apply()` over `Function#apply()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-reflect-apply.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-reflect-apply.md
    */
   'unicorn/prefer-reflect-apply'?: Linter.RuleEntry<[]>
   /**
    * Prefer `RegExp.escape()` for escaping strings to use in regular expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-regexp-escape.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-regexp-escape.md
    */
   'unicorn/prefer-regexp-escape'?: Linter.RuleEntry<[]>
   /**
    * Prefer `RegExp#test()` over `String#match()`, `String#search()`, and `RegExp#exec()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-regexp-test.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-regexp-test.md
    */
   'unicorn/prefer-regexp-test'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Response.json()` over `new Response(JSON.stringify())`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-response-static-json.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-response-static-json.md
    */
   'unicorn/prefer-response-static-json'?: Linter.RuleEntry<[]>
   /**
    * Prefer `:scope` when using element query selector methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-scoped-selector.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-scoped-selector.md
    */
   'unicorn/prefer-scoped-selector'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-set-has.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-set-has.md
    */
   'unicorn/prefer-set-has'?: Linter.RuleEntry<UnicornPreferSetHas>
   /**
    * Prefer `Set` methods for Set operations.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-set-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-set-methods.md
    */
   'unicorn/prefer-set-methods'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `Set#size` instead of `Array#length`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-set-size.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-set-size.md
    */
   'unicorn/prefer-set-size'?: Linter.RuleEntry<[]>
   /**
    * Prefer arrow function properties over methods with a single return.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-short-arrow-method.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-short-arrow-method.md
    */
-  'unicorn/prefer-short-arrow-method'?: Linter.RuleEntry<[]>
+  'unicorn/prefer-short-arrow-method'?: Linter.RuleEntry<UnicornPreferShortArrowMethod>
   /**
    * Prefer simple conditions first in logical expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-simple-condition-first.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-simple-condition-first.md
    */
   'unicorn/prefer-simple-condition-first'?: Linter.RuleEntry<[]>
   /**
    * Prefer a simple comparison function for `Array#sort()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-simple-sort-comparator.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-simple-sort-comparator.md
    */
   'unicorn/prefer-simple-sort-comparator'?: Linter.RuleEntry<[]>
   /**
+   * Prefer simplified conditions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-simplified-conditions.md
+   */
+  'unicorn/prefer-simplified-conditions'?: Linter.RuleEntry<[]>
+  /**
    * Prefer a single `Array#some()` or `Array#every()` with a combined predicate.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-single-array-predicate.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-array-predicate.md
    */
   'unicorn/prefer-single-array-predicate'?: Linter.RuleEntry<[]>
   /**
    * Enforce combining multiple `Array#{push,unshift}()`, `Element#classList.{add,remove}()`, and `importScripts()` into one call.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-single-call.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-call.md
    */
   'unicorn/prefer-single-call'?: Linter.RuleEntry<UnicornPreferSingleCall>
   /**
    * Prefer a single object destructuring declaration per local const source.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-single-object-destructuring.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-object-destructuring.md
    */
   'unicorn/prefer-single-object-destructuring'?: Linter.RuleEntry<[]>
   /**
    * Enforce combining multiple single-character replacements into a single `String#replaceAll()` with a regular expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-single-replace.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-replace.md
    */
   'unicorn/prefer-single-replace'?: Linter.RuleEntry<[]>
   /**
    * Prefer declaring variables in the smallest possible scope.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-smaller-scope.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-smaller-scope.md
    */
   'unicorn/prefer-smaller-scope'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#split()` with a limit.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-split-limit.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-split-limit.md
    */
   'unicorn/prefer-split-limit'?: Linter.RuleEntry<[]>
   /**
    * Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()`, and trivial `for…of` copies.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-spread.md
    */
   'unicorn/prefer-spread'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#matchAll()` over `RegExp#exec()` loops.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-match-all.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-match-all.md
    */
   'unicorn/prefer-string-match-all'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#padStart()` and `String#padEnd()` over manual string padding.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-pad-start-end.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-pad-start-end.md
    */
   'unicorn/prefer-string-pad-start-end'?: Linter.RuleEntry<[]>
   /**
    * Prefer using the `String.raw` tag to avoid escaping `\`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-raw.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-raw.md
    */
   'unicorn/prefer-string-raw'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#repeat()` for repeated whitespace.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-repeat.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-repeat.md
    */
   'unicorn/prefer-string-repeat'?: Linter.RuleEntry<UnicornPreferStringRepeat>
   /**
    * Prefer `String#replaceAll()` over regex searches with the global flag and `String#split().join()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-replace-all.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-replace-all.md
    */
   'unicorn/prefer-string-replace-all'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#slice()` over `String#substr()` and `String#substring()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-slice.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-slice.md
    */
   'unicorn/prefer-string-slice'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()` and `String#indexOf() === 0`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-starts-ends-with.md
+   * Prefer `String#startsWith()` & `String#endsWith()` over regexes, `String#indexOf() === 0`, and slice checks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-starts-ends-with.md
    */
   'unicorn/prefer-string-starts-ends-with'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#trimStart()` / `String#trimEnd()` over `String#trimLeft()` / `String#trimRight()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-string-trim-start-end.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-trim-start-end.md
    */
   'unicorn/prefer-string-trim-start-end'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `structuredClone` to create a deep clone.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-structured-clone.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-structured-clone.md
    */
   'unicorn/prefer-structured-clone'?: Linter.RuleEntry<UnicornPreferStructuredClone>
   /**
    * Prefer `switch` over multiple `else-if`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-switch.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-switch.md
    */
   'unicorn/prefer-switch'?: Linter.RuleEntry<UnicornPreferSwitch>
   /**
    * Prefer `Temporal` over `Date`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-temporal.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-temporal.md
    */
   'unicorn/prefer-temporal'?: Linter.RuleEntry<UnicornPreferTemporal>
   /**
    * Prefer ternary expressions over simple `if` statements that return or assign values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-ternary.md
    */
   'unicorn/prefer-ternary'?: Linter.RuleEntry<UnicornPreferTernary>
   /**
+   * Prefer `.then().catch()` over `.then(…, …)` for error handling.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-then-catch.md
+   */
+  'unicorn/prefer-then-catch'?: Linter.RuleEntry<[]>
+  /**
    * Prefer using `Element#toggleAttribute()` to toggle attributes.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-toggle-attribute.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-toggle-attribute.md
    */
   'unicorn/prefer-toggle-attribute'?: Linter.RuleEntry<[]>
   /**
    * Prefer top-level await over top-level promises and async function calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-top-level-await.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-top-level-await.md
    */
   'unicorn/prefer-top-level-await'?: Linter.RuleEntry<[]>
   /**
    * Enforce throwing `TypeError` in type checking conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-type-error.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-type-error.md
    */
   'unicorn/prefer-type-error'?: Linter.RuleEntry<[]>
   /**
    * Require type literals to be last in union types.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-type-literal-last.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-type-literal-last.md
    */
   'unicorn/prefer-type-literal-last'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Uint8Array#toBase64()` and `Uint8Array.fromBase64()` over `atob()`, `btoa()`, and `Buffer` base64 conversions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-uint8array-base64.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-uint8array-base64.md
    */
   'unicorn/prefer-uint8array-base64'?: Linter.RuleEntry<[]>
   /**
    * Prefer the unary minus operator over multiplying or dividing by `-1`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-unary-minus.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-unary-minus.md
    */
   'unicorn/prefer-unary-minus'?: Linter.RuleEntry<[]>
   /**
    * Prefer Unicode code point escapes over legacy escape sequences.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-unicode-code-point-escapes.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-unicode-code-point-escapes.md
    */
   'unicorn/prefer-unicode-code-point-escapes'?: Linter.RuleEntry<[]>
   /**
    * Prefer `URL.canParse()` over constructing a `URL` in a try/catch for validation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-url-can-parse.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-url-can-parse.md
    */
   'unicorn/prefer-url-can-parse'?: Linter.RuleEntry<[]>
   /**
    * Prefer `URL#href` over stringifying a `URL`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-url-href.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-url-href.md
    */
   'unicorn/prefer-url-href'?: Linter.RuleEntry<[]>
   /**
    * Prefer `URLSearchParams` over manually splitting query strings.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-url-search-parameters.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-url-search-parameters.md
    */
   'unicorn/prefer-url-search-parameters'?: Linter.RuleEntry<[]>
   /**
    * Prefer putting the condition in the while statement.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/prefer-while-loop-condition.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-while-loop-condition.md
    */
   'unicorn/prefer-while-loop-condition'?: Linter.RuleEntry<[]>
   /**
    * Renamed to `unicorn/name-replacements`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/deleted-and-deprecated-rules.md#prevent-abbreviations
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#prevent-abbreviations
    * @deprecated
    */
   'unicorn/prevent-abbreviations'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent relative URL style.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/relative-url-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/relative-url-style.md
    */
   'unicorn/relative-url-style'?: Linter.RuleEntry<UnicornRelativeUrlStyle>
   /**
    * Enforce using the separator argument with `Array#join()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-array-join-separator.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-array-join-separator.md
    */
   'unicorn/require-array-join-separator'?: Linter.RuleEntry<[]>
   /**
    * Require a compare function when calling `Array#sort()` or `Array#toSorted()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-array-sort-compare.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-array-sort-compare.md
    */
   'unicorn/require-array-sort-compare'?: Linter.RuleEntry<[]>
   /**
    * Require `CSS.escape()` for interpolated values in CSS selectors.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-css-escape.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-css-escape.md
    */
   'unicorn/require-css-escape'?: Linter.RuleEntry<UnicornRequireCssEscape>
   /**
+   * Require configured YAML frontmatter fields.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-frontmatter-fields.md
+   */
+  'unicorn/require-frontmatter-fields'?: Linter.RuleEntry<UnicornRequireFrontmatterFields>
+  /**
    * Require non-empty module attributes for imports and exports
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-module-attributes.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-module-attributes.md
    */
   'unicorn/require-module-attributes'?: Linter.RuleEntry<[]>
   /**
    * Require non-empty specifier list in import and export statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-module-specifiers.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-module-specifiers.md
    */
   'unicorn/require-module-specifiers'?: Linter.RuleEntry<[]>
   /**
    * Enforce using the digits argument with `Number#toFixed()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-number-to-fixed-digits-argument.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-number-to-fixed-digits-argument.md
    */
   'unicorn/require-number-to-fixed-digits-argument'?: Linter.RuleEntry<[]>
   /**
    * Require passive event listeners for high-frequency events.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-passive-events.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-passive-events.md
    */
   'unicorn/require-passive-events'?: Linter.RuleEntry<[]>
   /**
    * Enforce using the `targetOrigin` argument with `window.postMessage()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-post-message-target-origin.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-post-message-target-origin.md
    */
   'unicorn/require-post-message-target-origin'?: Linter.RuleEntry<[]>
   /**
    * Require boolean-returning Proxy traps to return booleans.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/require-proxy-trap-boolean-return.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-proxy-trap-boolean-return.md
    */
   'unicorn/require-proxy-trap-boolean-return'?: Linter.RuleEntry<[]>
   /**
+   * Enforce a consistent style for single-line block comments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/single-line-block-comment-style.md
+   */
+  'unicorn/single-line-block-comment-style'?: Linter.RuleEntry<UnicornSingleLineBlockCommentStyle>
+  /**
    * Enforce better string content.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/string-content.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/string-content.md
    */
   'unicorn/string-content'?: Linter.RuleEntry<UnicornStringContent>
   /**
    * Enforce consistent brace style for `case` clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/switch-case-braces.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/switch-case-braces.md
    */
   'unicorn/switch-case-braces'?: Linter.RuleEntry<UnicornSwitchCaseBraces>
   /**
    * Enforce consistent `break`/`return`/`continue`/`throw` position in `case` clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/switch-case-break-position.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/switch-case-break-position.md
    */
   'unicorn/switch-case-break-position'?: Linter.RuleEntry<[]>
   /**
    * Fix whitespace-insensitive template indentation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/template-indent.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/template-indent.md
    */
   'unicorn/template-indent'?: Linter.RuleEntry<UnicornTemplateIndent>
   /**
    * Enforce consistent case for text encoding identifiers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/text-encoding-identifier-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/text-encoding-identifier-case.md
    */
   'unicorn/text-encoding-identifier-case'?: Linter.RuleEntry<UnicornTextEncodingIdentifierCase>
   /**
    * Require `new` when creating an error.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/throw-new-error.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/throw-new-error.md
    */
   'unicorn/throw-new-error'?: Linter.RuleEntry<[]>
   /**
    * Limit the complexity of `try` blocks.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v69.0.0/docs/rules/try-complexity.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/try-complexity.md
    */
   'unicorn/try-complexity'?: Linter.RuleEntry<UnicornTryComplexity>
   /**
@@ -11237,6 +11574,11 @@ export interface RuleOptions {
    */
   'yaml/key-spacing'?: Linter.RuleEntry<YamlKeySpacing>
   /**
+   * disallow boolean mapping keys
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-boolean-key.html
+   */
+  'yaml/no-boolean-key'?: Linter.RuleEntry<[]>
+  /**
    * disallow empty document
    * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-document.html
    */
@@ -11988,6 +12330,10 @@ type JsdocCheckParamNames = []|[{
   
   allowExtraTrailingParamDocs?: boolean
   
+  badParamNames?: boolean
+  
+  badParamOrder?: boolean
+  
   checkDestructured?: boolean
   
   checkRestProperty?: boolean
@@ -11998,7 +12344,11 @@ type JsdocCheckParamNames = []|[{
   
   disableMissingParamChecks?: boolean
   
+  duplicateParams?: boolean
+  
   enableFixer?: boolean
+  
+  extraParams?: boolean
   
   useDefaultObjectProperties?: boolean
 }]
@@ -12252,6 +12602,26 @@ type JsdocNoUndefinedTypes = []|[{
   disableReporting?: boolean
   
   markVariablesAsUsed?: boolean
+}]
+// ----- jsdoc/no-unnecessary-type-assertion -----
+type JsdocNoUnnecessaryTypeAssertion = []|[{
+  
+  checkLiteralConstAssertions?: boolean
+  
+  enableFixer?: boolean
+  
+  treatAnyAsRedundant?: boolean
+  
+  typesToIgnore?: string[]
+}]
+// ----- jsdoc/normalize-see-links -----
+type JsdocNormalizeSeeLinks = []|[{
+  
+  canonicalForm?: ("pipe" | "prefix")
+  
+  enableFixer?: boolean
+  
+  wrapBareUrls?: boolean
 }]
 // ----- jsdoc/prefer-import-tag -----
 type JsdocPreferImportTag = []|[{
@@ -12913,11 +13283,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 }, ...({
@@ -12928,11 +13300,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 })[]]
@@ -12942,15 +13316,19 @@ type JsoncSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -12959,15 +13337,19 @@ type JsoncSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -13746,6 +14128,7 @@ type MaxLinesPerFunction = []|[({
 type MaxNestedCallbacks = []|[(number | {
   maximum?: number
   max?: number
+  checkConstructorCallCallbacks?: boolean
 })]
 // ----- max-params -----
 type MaxParams = []|[(number | {
@@ -13812,6 +14195,10 @@ type NoConfusingArrow = []|[{
 type NoConsole = []|[{
   
   allow?: [string, ...(string)[]]
+}]
+// ----- no-constant-binary-expression -----
+type NoConstantBinaryExpression = []|[{
+  checkRelationalComparisons?: boolean
 }]
 // ----- no-constant-condition -----
 type NoConstantCondition = []|[{
@@ -14110,6 +14497,10 @@ type NoUnderscoreDangle = []|[{
   enforceInClassFields?: boolean
   allowInArrayDestructuring?: boolean
   allowInObjectDestructuring?: boolean
+}]
+// ----- no-unmodified-loop-condition -----
+type NoUnmodifiedLoopCondition = []|[{
+  checkConditionalExpressions?: boolean
 }]
 // ----- no-unneeded-ternary -----
 type NoUnneededTernary = []|[{
@@ -14470,6 +14861,10 @@ type NodePreferGlobalUrlSearchParams = []|[("always" | "never")]
 type NodePreferNodeProtocol = []|[{
   version?: string
 }]
+// ----- node/prefer-process-get-builtin-module -----
+type NodePreferProcessGetBuiltinModule = []|[{
+  version?: string
+}]
 // ----- node/shebang -----
 type NodeShebang = []|[{
   convertPath?: ({
@@ -14771,7 +15166,7 @@ type PerfectionistSortArrayIncludes = {
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-arrays -----
-type PerfectionistSortArrays = {
+type PerfectionistSortArrays = [{
   
   fallbackSort?: {
     
@@ -14947,7 +15342,183 @@ type PerfectionistSortArrays = {
   })
   
   partitionByNewLine?: boolean
-}[]
+}, ...({
+  
+  fallbackSort?: {
+    
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    
+    order?: ("asc" | "desc")
+  }
+  
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+  
+  specialCharacters?: ("remove" | "trim" | "keep")
+  
+  ignoreCase?: boolean
+  
+  alphabet?: string
+  
+  locales?: (string | string[])
+  
+  order?: ("asc" | "desc")
+  
+  customGroups?: ({
+    
+    fallbackSort?: {
+      
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+      
+      order?: ("asc" | "desc")
+    }
+    
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+    
+    order?: ("asc" | "desc")
+    
+    anyOf: [{
+      
+      elementNamePattern?: (({
+        
+        pattern: string
+        
+        flags?: string
+      } | string)[] | ({
+        
+        pattern: string
+        
+        flags?: string
+      } | string))
+      
+      selector?: "literal"
+    }, ...({
+      
+      elementNamePattern?: (({
+        
+        pattern: string
+        
+        flags?: string
+      } | string)[] | ({
+        
+        pattern: string
+        
+        flags?: string
+      } | string))
+      
+      selector?: "literal"
+    })[]]
+  } | {
+    
+    fallbackSort?: {
+      
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+      
+      order?: ("asc" | "desc")
+    }
+    
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+    
+    order?: ("asc" | "desc")
+    
+    elementNamePattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    selector?: "literal"
+  })[]
+  newlinesInside?: (("ignore" | number) | "newlinesBetween")
+  
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number)
+  } | {
+    group: (string | [string, ...(string)[]])
+    
+    fallbackSort?: {
+      
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+      
+      order?: ("asc" | "desc")
+    }
+    
+    commentAbove?: string
+    
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    newlinesInside?: ("ignore" | number)
+    
+    order?: ("asc" | "desc")
+  })[]
+  newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
+  
+  partitionByComment?: (boolean | (({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)[] | ({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)) | {
+    
+    block?: (boolean | (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)))
+    
+    line?: (boolean | (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)))
+  })
+  
+  partitionByNewLine?: boolean
+})[]]
 // ----- perfectionist/sort-classes -----
 type PerfectionistSortClasses = {
   
@@ -15536,6 +16107,8 @@ type PerfectionistSortEnums = {
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  sortByValue?: ("always" | "ifNumericEnum" | "never")
+  
   useConfigurationIf?: {
     
     allNamesMatchPattern?: (({
@@ -15552,8 +16125,6 @@ type PerfectionistSortEnums = {
     
     matchesAstSelector?: string
   }
-  
-  sortByValue?: ("always" | "ifNumericEnum" | "never")
   
   useExperimentalDependencyDetection?: boolean
   
@@ -16414,12 +16985,6 @@ type PerfectionistSortImports = {
     sortBy?: ("specifier" | "path")
   })[]
   newlinesBetween?: ("ignore" | number)
-  tsconfig?: {
-    
-    rootDir: string
-    
-    filename?: string
-  }
   
   maxLineLength?: number
   
@@ -16479,6 +17044,12 @@ type PerfectionistSortImports = {
     
     flags?: string
   } | string))
+  tsconfig?: {
+    
+    rootDir: string
+    
+    filename?: string
+  }
 }[]
 // ----- perfectionist/sort-interfaces -----
 type PerfectionistSortInterfaces = {
@@ -16915,6 +17486,7 @@ type PerfectionistSortIntersectionTypes = {
   })
   
   partitionByNewLine?: boolean
+  ignoreCallableTypes?: boolean
 }[]
 // ----- perfectionist/sort-jsx-props -----
 type PerfectionistSortJsxProps = {
@@ -17447,6 +18019,8 @@ type PerfectionistSortModules = []|[{
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  additionalModuleBlockTypes?: string[]
+  
   useExperimentalDependencyDetection?: boolean
   newlinesBetweenOverloadSignatures?: ("ignore" | number)
   
@@ -17488,6 +18062,12 @@ type PerfectionistSortModules = []|[{
   })
   
   partitionByNewLine?: boolean
+  tsconfig?: {
+    
+    rootDir: string
+    
+    filename?: string
+  }
 }]
 // ----- perfectionist/sort-named-exports -----
 type PerfectionistSortNamedExports = {
@@ -18360,6 +18940,18 @@ type PerfectionistSortObjects = {
   
   useExperimentalDependencyDetection?: boolean
   
+  ignoreCallbackDependenciesPatterns?: (({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)[] | ({
+    
+    pattern: string
+    
+    flags?: string
+  } | string))
+  
   partitionByComment?: (boolean | (({
     
     pattern: string
@@ -18918,6 +19510,18 @@ type PerfectionistSortVariableDeclarations = {
   
   useExperimentalDependencyDetection?: boolean
   
+  ignoreCallbackDependenciesPatterns?: (({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)[] | ({
+    
+    pattern: string
+    
+    flags?: string
+  } | string))
+  
   partitionByComment?: (boolean | (({
     
     pattern: string
@@ -19065,6 +19669,11 @@ type PreferRegexLiterals = []|[{
 type PreserveCaughtError = []|[{
   
   requireCatchParameter?: boolean
+  
+  errorClassNames?: (string | {
+    name: string
+    argumentPosition: number
+  })[]
 }]
 // ----- quote-props -----
 type QuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent-as-needed")] | []|[("always" | "as-needed" | "consistent" | "consistent-as-needed")]|[("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
@@ -19286,6 +19895,77 @@ type SemiSpacing = []|[{
 }]
 // ----- semi-style -----
 type SemiStyle = []|[("last" | "first")]
+// ----- slop/max-comment-length -----
+type SlopMaxCommentLength = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+  ignoreJSDoc?: boolean
+  maximumWords?: number
+}]
+// ----- slop/no-chained-type-assertions -----
+type SlopNoChainedTypeAssertions = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/no-em-dash -----
+type SlopNoEmDash = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/no-jargon -----
+type SlopNoJargon = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+  allow?: string[]
+  extraWords?: string[]
+  ignoreJSDoc?: boolean
+  words?: string[]
+}]
+// ----- slop/no-static-only-class -----
+type SlopNoStaticOnlyClass = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/no-trivial-functions -----
+type SlopNoTrivialFunctions = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+  minimumReferences?: number
+}]
+// ----- slop/no-trivial-type-aliases -----
+type SlopNoTrivialTypeAliases = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/prefer-jsdoc -----
+type SlopPreferJsdoc = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
 // ----- solid/event-handlers -----
 type SolidEventHandlers = []|[{
   
@@ -19297,7 +19977,6 @@ type SolidEventHandlers = []|[{
 type SolidJsxNoDuplicateProps = []|[{
   
   ignoreCase?: boolean
-  [k: string]: unknown | undefined
 }]
 // ----- solid/jsx-no-undef -----
 type SolidJsxNoUndef = []|[{
@@ -19342,101 +20021,106 @@ type SolidStyleProp = []|[{
   
   allowString?: boolean
 }]
-// ----- sonar/arrow-function-convention -----
-type SonarArrowFunctionConvention = []|[{
+// ----- solid/valid-use-server -----
+type SolidValidUseServer = []|[{
+  
+  clientWrappers?: string[]
+}]
+// ----- sonarjs/arrow-function-convention -----
+type SonarjsArrowFunctionConvention = []|[{
   requireParameterParentheses?: boolean
   requireBodyBraces?: boolean
 }]
-// ----- sonar/class-name -----
-type SonarClassName = []|[{
+// ----- sonarjs/class-name -----
+type SonarjsClassName = []|[{
   format?: string
 }]
-// ----- sonar/cognitive-complexity -----
-type SonarCognitiveComplexity = []|[(number | "silence-issues")]|[(number | "silence-issues"), "silence-issues"]
-// ----- sonar/comment-regex -----
-type SonarCommentRegex = []|[{
+// ----- sonarjs/cognitive-complexity -----
+type SonarjsCognitiveComplexity = []|[(number | "silence-issues")]|[(number | "silence-issues"), "silence-issues"]
+// ----- sonarjs/comment-regex -----
+type SonarjsCommentRegex = []|[{
   regularExpression?: string
   message?: string
   flags?: string
 }]
-// ----- sonar/content-length -----
-type SonarContentLength = []|[{
+// ----- sonarjs/content-length -----
+type SonarjsContentLength = []|[{
   fileUploadSizeLimit?: number
   standardSizeLimit?: number
 }]
-// ----- sonar/cyclomatic-complexity -----
-type SonarCyclomaticComplexity = []|[{
+// ----- sonarjs/cyclomatic-complexity -----
+type SonarjsCyclomaticComplexity = []|[{
   threshold?: number
 }]
-// ----- sonar/expression-complexity -----
-type SonarExpressionComplexity = []|[{
+// ----- sonarjs/expression-complexity -----
+type SonarjsExpressionComplexity = []|[{
   max?: number
 }]
-// ----- sonar/file-header -----
-type SonarFileHeader = []|[{
+// ----- sonarjs/file-header -----
+type SonarjsFileHeader = []|[{
   headerFormat?: string
   isRegularExpression?: boolean
 }]
-// ----- sonar/function-name -----
-type SonarFunctionName = []|[{
+// ----- sonarjs/function-name -----
+type SonarjsFunctionName = []|[{
   format?: string
 }]
-// ----- sonar/max-lines -----
-type SonarMaxLines = []|[{
+// ----- sonarjs/max-lines -----
+type SonarjsMaxLines = []|[{
   maximum?: number
 }]
-// ----- sonar/max-lines-per-function -----
-type SonarMaxLinesPerFunction = []|[{
+// ----- sonarjs/max-lines-per-function -----
+type SonarjsMaxLinesPerFunction = []|[{
   maximum?: number
 }]
-// ----- sonar/max-switch-cases -----
-type SonarMaxSwitchCases = []|[number]
-// ----- sonar/max-union-size -----
-type SonarMaxUnionSize = []|[{
+// ----- sonarjs/max-switch-cases -----
+type SonarjsMaxSwitchCases = []|[number]
+// ----- sonarjs/max-union-size -----
+type SonarjsMaxUnionSize = []|[{
   threshold?: number
 }]
-// ----- sonar/nested-control-flow -----
-type SonarNestedControlFlow = []|[{
+// ----- sonarjs/nested-control-flow -----
+type SonarjsNestedControlFlow = []|[{
   maximumNestingLevel?: number
 }]
-// ----- sonar/new-operator-misuse -----
-type SonarNewOperatorMisuse = []|[{
+// ----- sonarjs/new-operator-misuse -----
+type SonarjsNewOperatorMisuse = []|[{
   considerJSDoc?: boolean
 }]
-// ----- sonar/no-duplicate-string -----
-type SonarNoDuplicateString = []|[{
+// ----- sonarjs/no-duplicate-string -----
+type SonarjsNoDuplicateString = []|[{
   threshold?: number
   ignoreStrings?: string
 }]
-// ----- sonar/no-hardcoded-passwords -----
-type SonarNoHardcodedPasswords = []|[{
+// ----- sonarjs/no-hardcoded-passwords -----
+type SonarjsNoHardcodedPasswords = []|[{
   passwordWords?: string[]
 }]
-// ----- sonar/no-hardcoded-secrets -----
-type SonarNoHardcodedSecrets = []|[{
+// ----- sonarjs/no-hardcoded-secrets -----
+type SonarjsNoHardcodedSecrets = []|[{
   secretWords?: string
   randomnessSensibility?: number
 }]
-// ----- sonar/no-identical-functions -----
-type SonarNoIdenticalFunctions = []|[number]
-// ----- sonar/no-implicit-dependencies -----
-type SonarNoImplicitDependencies = []|[{
+// ----- sonarjs/no-identical-functions -----
+type SonarjsNoIdenticalFunctions = []|[number]
+// ----- sonarjs/no-implicit-dependencies -----
+type SonarjsNoImplicitDependencies = []|[{
   whitelist?: string[]
 }]
-// ----- sonar/no-intrusive-permissions -----
-type SonarNoIntrusivePermissions = []|[{
+// ----- sonarjs/no-intrusive-permissions -----
+type SonarjsNoIntrusivePermissions = []|[{
   permissions?: string[]
 }]
-// ----- sonar/no-nested-functions -----
-type SonarNoNestedFunctions = []|[{
+// ----- sonarjs/no-nested-functions -----
+type SonarjsNoNestedFunctions = []|[{
   threshold?: number
 }]
-// ----- sonar/regex-complexity -----
-type SonarRegexComplexity = []|[{
+// ----- sonarjs/regex-complexity -----
+type SonarjsRegexComplexity = []|[{
   threshold?: number
 }]
-// ----- sonar/variable-name -----
-type SonarVariableName = []|[{
+// ----- sonarjs/variable-name -----
+type SonarjsVariableName = []|[{
   format?: string
 }]
 // ----- sort-imports -----
@@ -21045,7 +21729,7 @@ type TestNoFocusedTests = []|[{
 // ----- test/no-hooks -----
 type TestNoHooks = []|[{
   
-  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach")[]
+  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach" | "aroundAll" | "aroundEach")[]
 }]
 // ----- test/no-large-snapshots -----
 type TestNoLargeSnapshots = []|[{
@@ -21086,6 +21770,8 @@ type TestPreferExpectAssertions = []|[{
   onlyFunctionsWithExpectInLoop?: boolean
   
   onlyFunctionsWithExpectInCallback?: boolean
+  
+  disallowHasAssertions?: boolean
 }]
 // ----- test/prefer-import-in-mock -----
 type TestPreferImportInMock = []|[{
@@ -21948,7 +22634,10 @@ type TsNoMeaninglessVoidOperator = []|[{
 // ----- ts/no-misused-promises -----
 type TsNoMisusedPromises = []|[{
   
-  checksConditionals?: boolean
+  checksConditionals?: (boolean | {
+    
+    flagUnions?: ("all" | "strict" | "none")
+  })
   
   checksSpreads?: boolean
   
@@ -22513,7 +23202,9 @@ type UnicornCatchErrorName = []|[{
   
   name?: string
   
-  ignore?: unknown[]
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- unicorn/class-reference-in-static-methods -----
 type UnicornClassReferenceInStaticMethods = []|[{
@@ -22539,14 +23230,28 @@ type UnicornCommentContent = []|[{
 // ----- unicorn/consistent-boolean-name -----
 type UnicornConsistentBooleanName = []|[{
   
-  checkProperties?: boolean
+  checkVariables?: ("always" | "prohibit" | "never")
+  
+  checkArguments?: ("always" | "prohibit" | "never")
+  
+  checkFunctions?: ("always" | "prohibit" | "never")
+  
+  checkMethods?: ("always" | "prohibit" | "never")
+  
+  checkFields?: ("always" | "prohibit" | "never")
   
   prefixes?: {
     
     [k: string]: boolean | undefined
   }
   
+  wrappers?: {
+    
+    [k: string]: string | undefined
+  }
+  
   ignore?: unknown[]
+  [k: string]: unknown
 }]
 // ----- unicorn/consistent-class-member-order -----
 type UnicornConsistentClassMemberOrder = []|[{
@@ -22588,6 +23293,7 @@ type UnicornConsistentFunctionScoping = []|[{
 // ----- unicorn/consistent-function-style -----
 type UnicornConsistentFunctionStyle = []|[{
   default?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
+  defaultExport?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
   namedFunctions?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
   namedExports?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
   callbacks?: ("function-expression" | "arrow-function" | "ignore")
@@ -22614,7 +23320,9 @@ type UnicornExpiringTodoComments = []|[{
   
   terms?: string[]
   
-  ignore?: unknown[]
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
   
   checkDates?: boolean
   
@@ -22635,7 +23343,9 @@ type UnicornFilenameCase = []|[({
   
   case?: ("camelCase" | "camelCaseWithAcronyms" | "snakeCase" | "kebabCase" | "pascalCase")
   
-  ignore?: unknown[]
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
   
   multipleFileExtensions?: boolean
   
@@ -22655,7 +23365,9 @@ type UnicornFilenameCase = []|[({
     pascalCase?: boolean
   }
   
-  ignore?: unknown[]
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
   
   multipleFileExtensions?: boolean
   
@@ -22704,6 +23416,8 @@ type UnicornIsolatedFunctions = []|[{
   
   comments?: string[]
 }]
+// ----- unicorn/iteration-fallback-style -----
+type UnicornIterationFallbackStyle = []|[("guard" | "fallback")]
 // ----- unicorn/logical-assignment-operators -----
 type UnicornLogicalAssignmentOperators = (([]|["always"]|["always", {
   enforceForIfStatements?: boolean
@@ -22734,7 +23448,9 @@ type UnicornNameReplacements = []|[{
   extendDefaultAllowList?: boolean
   allowList?: _UnicornNameReplacements_BooleanObject
   
-  ignore?: unknown[]
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
 type _UnicornNameReplacementsReplacements = (false | _UnicornNameReplacements_BooleanObject) | undefined
 interface _UnicornNameReplacements_NameReplacements {
@@ -22786,7 +23502,7 @@ type UnicornNoInvalidArgumentCount = []|[{
 // ----- unicorn/no-keyword-prefix -----
 type UnicornNoKeywordPrefix = []|[{
   
-  disallowedPrefixes?: []|[string]
+  disallowedPrefixes?: string[]
   
   checkProperties?: boolean
   
@@ -22801,6 +23517,10 @@ type UnicornNoNegatedComparison = []|[{
 type UnicornNoNonFunctionVerbPrefix = []|[{
   
   verbs?: string[]
+  
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- unicorn/no-null -----
 type UnicornNoNull = []|[{
@@ -22817,7 +23537,7 @@ type UnicornNoTypeofUndefined = []|[{
 // ----- unicorn/no-unnecessary-polyfills -----
 type UnicornNoUnnecessaryPolyfills = []|[{
   
-  targets?: (string | unknown[] | {
+  targets?: (string | string[] | {
     [k: string]: unknown | undefined
   })
 }]
@@ -22891,12 +23611,12 @@ type UnicornPreferArrayFind = []|[{
 // ----- unicorn/prefer-array-flat -----
 type UnicornPreferArrayFlat = []|[{
   
-  functions?: unknown[]
+  functions?: string[]
 }]
 // ----- unicorn/prefer-at -----
 type UnicornPreferAt = []|[{
   
-  getLastElementFunctions?: unknown[]
+  getLastElementFunctions?: string[]
   
   checkAllIndexAccess?: boolean
 }]
@@ -22905,15 +23625,34 @@ type UnicornPreferContinue = []|[{
   
   maximumStatements?: number
 }]
+// ----- unicorn/prefer-dom-node-html-methods -----
+type UnicornPreferDomNodeHtmlMethods = []|[{
+  
+  checkGetHTML?: boolean
+  
+  checkSetHTML?: boolean
+}]
 // ----- unicorn/prefer-early-return -----
 type UnicornPreferEarlyReturn = []|[{
   
   maximumStatements?: number
 }]
+// ----- unicorn/prefer-explicit-viewport-units -----
+type UnicornPreferExplicitViewportUnits = []|[{
+  
+  unit?: ("dvh" | "svh" | "lvh")
+}]
 // ----- unicorn/prefer-export-from -----
 type UnicornPreferExportFrom = []|[{
   
   checkUsedVariables?: boolean
+}]
+// ----- unicorn/prefer-https -----
+type UnicornPreferHttps = []|[{
+  
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- unicorn/prefer-includes-over-repeated-comparisons -----
 type UnicornPreferIncludesOverRepeatedComparisons = []|[{
@@ -22923,7 +23662,7 @@ type UnicornPreferIncludesOverRepeatedComparisons = []|[{
 // ----- unicorn/prefer-minimal-ternary -----
 type UnicornPreferMinimalTernary = []|[{
   
-  checkVaryingCallee?: boolean
+  checkVaryingBase?: boolean
   
   checkComputedMemberAccess?: boolean
 }]
@@ -22937,7 +23676,7 @@ type UnicornPreferNumberProperties = []|[{
 // ----- unicorn/prefer-object-from-entries -----
 type UnicornPreferObjectFromEntries = []|[{
   
-  functions?: unknown[]
+  functions?: string[]
 }]
 // ----- unicorn/prefer-query-selector -----
 type UnicornPreferQuerySelector = []|[{
@@ -22956,10 +23695,12 @@ type UnicornPreferSetHas = []|[{
   
   minimumItems?: number
 }]
+// ----- unicorn/prefer-short-arrow-method -----
+type UnicornPreferShortArrowMethod = []|[("always" | "consistent-as-needed")]
 // ----- unicorn/prefer-single-call -----
 type UnicornPreferSingleCall = []|[{
   
-  ignore?: unknown[]
+  ignore?: string[]
 }]
 // ----- unicorn/prefer-string-repeat -----
 type UnicornPreferStringRepeat = []|[{
@@ -22969,7 +23710,7 @@ type UnicornPreferStringRepeat = []|[{
 // ----- unicorn/prefer-structured-clone -----
 type UnicornPreferStructuredClone = []|[{
   
-  functions?: unknown[]
+  functions?: string[]
 }]
 // ----- unicorn/prefer-switch -----
 type UnicornPreferSwitch = []|[{
@@ -22995,6 +23736,18 @@ type UnicornRelativeUrlStyle = []|[("never" | "always")]
 type UnicornRequireCssEscape = []|[{
   
   checkAllSelectors?: boolean
+}]
+// ----- unicorn/require-frontmatter-fields -----
+type UnicornRequireFrontmatterFields = []|[{
+  
+  fields?: string[]
+}]
+// ----- unicorn/single-line-block-comment-style -----
+type UnicornSingleLineBlockCommentStyle = []|[("multiline" | "single-line")]|[("multiline" | "single-line"), {
+  
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- unicorn/string-content -----
 type UnicornStringContent = []|[{
@@ -24403,6 +25156,7 @@ type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   ignoreGrandchildrenOf?: unknown[]
   minKeys?: number
   natural?: boolean
+  allowLineSeparatedGroups?: boolean
 }]
 // ----- vue/space-in-parens -----
 type VueSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {
@@ -24611,15 +25365,19 @@ type YamlSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -24628,15 +25386,19 @@ type YamlSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -24655,11 +25417,13 @@ type YamlSortSequenceValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 }, ...({
@@ -24670,11 +25434,13 @@ type YamlSortSequenceValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 })[]]
@@ -24694,4 +25460,4 @@ type Yoda = []|[("always" | "never")]|[("always" | "never"), {
   onlyEquality?: boolean
 }]
 // Names of all the configs
-export type ConfigNames = 'vinicunca/gitignore' | 'vinicunca/ignores' | 'vinicunca/javascript/setup' | 'vinicunca/javascript/rules' | 'vinicunca/eslint-comments/rules' | 'vinicunca/command/rules' | 'vinicunca/sonar/rules' | 'vinicunca/perfectionist/rules' | 'vinicunca/node/rules' | 'vinicunca/jsdoc/setup' | 'vinicunca/jsdoc/rules' | 'vinicunca/imports/rules' | 'vinicunca/e18e/rules' | 'vinicunca/unicorn/setup' | 'vinicunca/unicorn/rules' | 'antfu/jsx/setup' | 'vinicunca/typescript/setup' | 'vinicunca/typescript/parser' | 'vinicunca/typescript/type-aware-parser' | 'vinicunca/typescript/rules' | 'vinicunca/typescript/rules-type-aware' | 'antfu/typescript/erasable-syntax-only' | 'vinicunca/stylistic/rules' | 'vinicunca/regexp/rules' | 'vinicunca/test/setup' | 'vinicunca/test/rules' | 'vinicunca/vue/setup' | 'vinicunca/vue/rules' | 'vinicunca/react/setup' | 'vinicunca/react/rules' | 'vinicunca/react/typescript' | 'vinicunca/react/type-aware-rules' | 'vinicunca/nextjs/setup' | 'vinicunca/nextjs/rules' | 'vinicunca/solid/setup' | 'vinicunca/solid/rules' | 'vinicunca/svelte/setup' | 'vinicunca/svelte/rules' | 'vinicunca/unocss' | 'vinicunca/astro/setup' | 'vinicunca/astro/rules' | 'vinicunca/jsonc/setup' | 'vinicunca/jsonc/rules' | 'vinicunca/sort/package-json' | 'vinicunca/sort/tsconfig' | 'vinicunca/pnpm/package-json' | 'vinicunca/pnpm/pnpm-workspace-yaml' | 'vinicunca/pnpm/pnpm-workspace-yaml-sort' | 'vinicunca/yaml/setup' | 'vinicunca/yaml/rules' | 'vinicunca/toml/setup' | 'vinicunca/toml/rules' | 'vinicunca/markdown/setup' | 'vinicunca/markdown/processor' | 'vinicunca/markdown/parser' | 'vinicunca/markdown/rules' | 'vinicunca/markdown/disables/markdown' | 'vinicunca/markdown/disables' | 'vinicunca/formatter/setup' | 'vinicunca/formatter/css' | 'vinicunca/formatter/scss' | 'vinicunca/formatter/less' | 'vinicunca/formatter/html' | 'vinicunca/formatter/xml' | 'vinicunca/formatter/svg' | 'vinicunca/formatter/markdown' | 'vinicunca/formatter/astro' | 'vinicunca/formatter/astro/disables' | 'vinicunca/formatter/graphql' | 'vinicunca/disables/scripts' | 'vinicunca/disables/cli' | 'vinicunca/disables/bin' | 'vinicunca/disables/dts' | 'vinicunca/disables/cjs' | 'vinicunca/disables/config-files'
+export type ConfigNames = 'vinicunca/gitignore' | 'vinicunca/ignores' | 'vinicunca/javascript/setup' | 'vinicunca/javascript/rules' | 'vinicunca/eslint-comments/rules' | 'vinicunca/command/rules' | 'vinicunca/perfectionist/rules' | 'vinicunca/node/rules' | 'vinicunca/jsdoc/setup' | 'vinicunca/jsdoc/rules' | 'vinicunca/imports/rules' | 'vinicunca/e18e/rules' | 'vinicunca/unicorn/setup' | 'vinicunca/unicorn/rules' | 'antfu/jsx/setup' | 'vinicunca/typescript/setup' | 'vinicunca/typescript/parser' | 'vinicunca/typescript/type-aware-parser' | 'vinicunca/typescript/rules' | 'vinicunca/typescript/rules-type-aware' | 'vinicunca/typescript/erasable-syntax-only' | 'vinicunca/antislop/setup' | 'vinicunca/antislop/rules/universal' | 'vinicunca/antislop/rules/javascript' | 'vinicunca/stylistic/rules' | 'vinicunca/regexp/rules' | 'vinicunca/test/setup' | 'vinicunca/test/rules' | 'vinicunca/vue/setup' | 'vinicunca/vue/rules' | 'vinicunca/react/setup' | 'vinicunca/react/rules' | 'vinicunca/react/typescript' | 'vinicunca/react/type-aware-rules' | 'vinicunca/nextjs/setup' | 'vinicunca/nextjs/rules' | 'vinicunca/solid/setup' | 'vinicunca/solid/rules' | 'vinicunca/svelte/setup' | 'vinicunca/svelte/rules' | 'vinicunca/unocss' | 'vinicunca/astro/setup' | 'vinicunca/astro/rules' | 'vinicunca/jsonc/setup' | 'vinicunca/jsonc/rules' | 'vinicunca/sort/package-json' | 'vinicunca/sort/tsconfig' | 'vinicunca/pnpm/package-json' | 'vinicunca/pnpm/pnpm-workspace-yaml' | 'vinicunca/pnpm/pnpm-workspace-yaml-stylistic' | 'vinicunca/pnpm/pnpm-workspace-yaml-sort' | 'vinicunca/yaml/setup' | 'vinicunca/yaml/rules' | 'vinicunca/toml/setup' | 'vinicunca/toml/rules' | 'vinicunca/markdown/setup' | 'vinicunca/markdown/processor' | 'vinicunca/markdown/parser' | 'vinicunca/markdown/rules' | 'vinicunca/markdown/disables/markdown' | 'vinicunca/markdown/disables' | 'vinicunca/formatter/setup' | 'vinicunca/formatter/css' | 'vinicunca/formatter/scss' | 'vinicunca/formatter/less' | 'vinicunca/formatter/html' | 'vinicunca/formatter/xml' | 'vinicunca/formatter/svg' | 'vinicunca/formatter/markdown' | 'vinicunca/formatter/astro' | 'vinicunca/formatter/astro/disables' | 'vinicunca/formatter/graphql' | 'vinicunca/disables/scripts' | 'vinicunca/disables/cli' | 'vinicunca/disables/bin' | 'vinicunca/disables/dts' | 'vinicunca/disables/cjs' | 'vinicunca/disables/config-files'

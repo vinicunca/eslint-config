@@ -195,6 +195,46 @@ export interface OptionsE18e extends OptionsOverrides {
   performanceImprovements?: boolean;
 }
 
+export interface OptionsSlop {
+  cwd?: string;
+  inspection?: 'full' | 'uncommitted' | 'recent-changes' | {
+    mode: 'full' | 'uncommitted';
+  } | {
+    mode: 'recent-changes';
+    tracebackCommits?: number;
+  };
+}
+
+export interface OptionsAntislop extends OptionsOverrides {
+  /**
+   * Enable rules from `eslint-plugin-slop`.
+   *
+   * Passing an object enables the rules and forwards it to the plugin
+   * via `settings.slop`, controlling the working directory and inspection mode.
+   *
+   * @see https://github.com/antfu/eslint-plugin-slop
+   * @default true
+   */
+  slop?: boolean | OptionsSlop;
+
+  /**
+   * Enable the curated subset of rules from `eslint-plugin-sonarjs`.
+   *
+   * @see https://github.com/SonarSource/SonarJS
+   * @default true
+   */
+  sonarjs?: boolean;
+
+  /**
+   * Maximum allowed cognitive complexity for `sonarjs/cognitive-complexity`.
+   *
+   * Pass `false` to disable the rule entirely.
+   *
+   * @default 15
+   */
+  cognitiveComplexity?: number | false;
+}
+
 export interface OptionsUnicorn extends OptionsOverrides {
   /**
    * Include all rules recommended by `eslint-plugin-unicorn`.
@@ -484,6 +524,27 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * @default false
    */
   astro?: boolean | OptionsOverrides;
+
+  /**
+   * Enable anti-slop rules, guarding against low-value code patterns
+   * commonly introduced by AI agents.
+   *
+   * Enables [eslint-plugin-slop](https://github.com/antfu/eslint-plugin-slop) and
+   * a curated subset of [eslint-plugin-sonarjs](https://github.com/SonarSource/SonarJS).
+   *
+   * We also recommend pairing this with [jscpd](https://github.com/kucherenko/jscpd)
+   * and [knip](https://github.com/webpro-nl/knip) to catch copy-paste duplication
+   * and unused files, dependencies, and exports.
+   *
+   * Requires installing:
+   * - `eslint-plugin-slop`
+   * - `eslint-plugin-sonarjs`
+   *
+   * @experimental The enabled rule set is maintained in-house and may change
+   * in any release without following semver.
+   * @default false
+   */
+  antislop?: boolean | OptionsAntislop;
 
   /**
    * Enable linting for **code snippets** in Markdown and the markdown content itself.

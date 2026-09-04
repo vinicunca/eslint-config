@@ -1,9 +1,9 @@
-import type { TypedFlatConfigItem } from '../types'
+import type { TypedFlatConfigItem } from '../types';
 
-import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
-import { OFF } from '../flags'
+import { OFF } from '../flags';
+import { GLOB_SRC, GLOB_SRC_EXT } from '../globs';
 
-export async function disables(): Promise<TypedFlatConfigItem[]> {
+export async function disables(): Promise<Array<TypedFlatConfigItem>> {
   return [
     {
       files: [`**/scripts/${GLOB_SRC}`],
@@ -55,5 +55,5 @@ export async function disables(): Promise<TypedFlatConfigItem[]> {
         'ts/explicit-function-return-type': OFF,
       },
     },
-  ]
+  ];
 }

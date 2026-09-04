@@ -101,7 +101,7 @@ export async function typescript(
                 tsconfigRootDir: process.cwd(),
               }
             : {},
-          ...parserOptions as any,
+          ...parserOptions,
         },
       },
       name: `vinicunca/typescript/${typeAware ? 'type-aware-parser' : 'parser'}`,
@@ -115,7 +115,7 @@ export async function typescript(
 
       plugins: {
         antfu: pluginAntfu,
-        ts: pluginTs as any,
+        ts: pluginTs,
       },
     },
 

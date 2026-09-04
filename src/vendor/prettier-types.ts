@@ -76,7 +76,7 @@ export interface VendoredPrettierOptionsRequired {
   /**
    * Provide ability to support new languages to prettier.
    */
-  plugins: Array<string | any>;
+  plugins: Array<string | Record<string, unknown>>;
   /**
    * How to handle whitespaces in HTML.
    * @default "css"
@@ -153,13 +153,15 @@ export type BuiltInParserName
 
 export type ExternalParserName = 'slidev' | 'astro';
 
-// This utility is here to handle the case where you have an explicit union
-// between string literals and the generic string type. It would normally
-// resolve out to just the string type, but this generic LiteralUnion maintains
-// the intellisense of the original union.
-//
-// It comes from this issue: microsoft/TypeScript#29729:
-//   https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
+/**
+ * This utility is here to handle the case where you have an explicit union
+ * between string literals and the generic string type. It would normally
+ * resolve out to just the string type, but this generic LiteralUnion maintains
+ * the intellisense of the original union.
+ *
+ * It comes from this issue: microsoft/TypeScript#29729:
+ * https://github.com/microsoft/TypeScript/issues/29729#issuecomment-700527227
+ */
 export type LiteralUnion<T extends U, U = string>
   = | T
     | (Pick<U, never> & { _?: never | undefined });

@@ -1,7 +1,6 @@
 import type { Awaitable, TypedFlatConfigItem } from './types';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
-
 import { isPackageExists } from 'local-pkg';
 
 const scopeUrl = fileURLToPath(new URL('.', import.meta.url));
@@ -31,9 +30,8 @@ export const parserPlain = {
 /**
  * Combine array and non-array configs into a single array.
  */
-export async function combineConfigs(...configs: Array<Awaitable<Array<TypedFlatConfigItem> | TypedFlatConfigItem>>): Promise<Array<TypedFlatConfigItem>> {
+export async function combine(...configs: Array<Awaitable<TypedFlatConfigItem | Array<TypedFlatConfigItem>>>): Promise<Array<TypedFlatConfigItem>> {
   const resolved = await Promise.all(configs);
-
   return resolved.flat();
 }
 
@@ -55,7 +53,12 @@ export async function combineConfigs(...configs: Array<Awaitable<Array<TypedFlat
  * }]
  * ```
  */
-export function renameRules(rules: Record<string, any>, map: Record<string, string>) {
+export function renameRules(
+
+  rules: Record<string, any>,
+  map: Record<string, string>,
+
+): Record<string, any> {
   return Object.fromEntries(
     Object.entries(rules)
       .map(([key, value]) => {
@@ -104,12 +107,13 @@ export function renamePluginInConfigs(configs: Array<TypedFlatConfigItem>, map: 
   });
 }
 
-export function toArray<T>(value: Array<T> | T): Array<T> {
+export function toArray<T>(value: T | Array<T>): Array<T> {
   return Array.isArray(value) ? value : [value];
 }
 
 export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> {
   const resolved = await m;
+
   return (resolved as any).default || resolved;
 }
 
@@ -129,13 +133,10 @@ export async function ensurePackages(packages: Array<string | undefined>): Promi
 
   const p = await import('@clack/prompts');
   const result = await p.confirm({
-    message: `${nonExistingPackages.length === 1
-      ? 'Package is'
-      : 'Packages are'} required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`,
+    message: `${nonExistingPackages.length === 1 ? 'Package is' : 'Packages are'} required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`,
   });
   if (result) {
-    await import('@antfu/install-pkg')
-      .then((i) => i.installPackage(nonExistingPackages, { dev: true }));
+    await import('@antfu/install-pkg').then((i) => i.installPackage(nonExistingPackages, { dev: true }));
   }
 }
 
@@ -143,25 +144,22 @@ export function isInEditorEnv(): boolean {
   if (process.env.CI) {
     return false;
   }
-
   if (isInGitHooksOrLintStaged()) {
     return false;
   }
-
-  // eslint-disable-next-line no-constant-binary-expression, sonar/no-redundant-boolean
-  return !!(false
-    || process.env.VSCODE_PID
+  return !!(
+    process.env.VSCODE_PID
     || process.env.VSCODE_CWD
     || process.env.JETBRAINS_IDE
     || process.env.VIM
     || process.env.NVIM
+    || (process.env.ZED_ENVIRONMENT && !process.env.ZED_TERM)
   );
 }
 
 export function isInGitHooksOrLintStaged(): boolean {
-  // eslint-disable-next-line no-constant-binary-expression, sonar/no-redundant-boolean
-  return !!(false
-    || process.env.GIT_PARAMS
+  return !!(
+    process.env.GIT_PARAMS
     || process.env.VSCODE_GIT_COMMAND
     || process.env.npm_lifecycle_script?.startsWith('lint-staged')
   );

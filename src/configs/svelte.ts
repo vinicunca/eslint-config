@@ -48,7 +48,7 @@ export async function svelte(
         parserOptions: {
           extraFileExtensions: ['.svelte'],
           parser: options.typescript
-            ? await interopDefault(import('@typescript-eslint/parser')) as any
+            ? await interopDefault(import('@typescript-eslint/parser'))
             : null,
         },
       },
@@ -108,7 +108,7 @@ export async function svelte(
               'svelte/html-quotes': [ERROR, { prefer: quotes as any }],
               'svelte/indent': [ERROR, {
                 alignAttributesVertically: true,
-                // eslint-disable-next-line no-nested-ternary, sonar/no-nested-conditional
+                // eslint-disable-next-line no-nested-ternary
                 indent: isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2,
               }],
               'svelte/mustache-spacing': ERROR,

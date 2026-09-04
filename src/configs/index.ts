@@ -1,3 +1,4 @@
+export * from './antislop';
 export * from './astro';
 export * from './command';
 export * from './comments';
@@ -18,7 +19,6 @@ export * from './pnpm';
 export * from './react';
 export * from './regexp';
 export * from './solid';
-export * from './sonar';
 export * from './sort-package-json';
 export * from './stylistic';
 export * from './svelte';

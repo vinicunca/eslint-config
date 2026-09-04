@@ -16,7 +16,7 @@ export async function jsx(options: OptionsJSX = {}): Promise<Array<TypedFlatConf
         },
       },
     },
-    name: 'antfu/jsx/setup',
+    name: 'vinicunca/jsx/setup',
     plugins: {},
     rules: {},
   };
@@ -55,5 +55,5 @@ export async function jsx(options: OptionsJSX = {}): Promise<Array<TypedFlatConf
         ...a11yRules,
       },
     },
-  ]
+  ];
 }

@@ -6,6 +6,7 @@ import { FlatConfigComposer } from 'eslint-flat-config-utils';
 import { findUpSync } from 'find-up-simple';
 import { isPackageExists } from 'local-pkg';
 import {
+  antislop,
   astro,
   command,
   comments,
@@ -24,7 +25,6 @@ import {
   pnpm,
   react,
   solid,
-  sonar,
   sortPackageJson,
   sortTsconfig,
   stylistic,
@@ -65,7 +65,6 @@ export const defaultPluginRenaming = {
   '@typescript-eslint': 'ts',
   'import-lite': 'import',
   'n': 'node',
-  'sonarjs': 'sonar',
   'vitest': 'test',
   'yml': 'yaml',
 };
@@ -80,11 +79,13 @@ export const defaultPluginRenaming = {
  * @returns
  *  The merged ESLint configurations.
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function vinicuncaESLint(
   options: OptionsConfig & Omit<TypedFlatConfigItem, 'files' | 'ignores'> = {},
   ...userConfigs: Array<Awaitable<TypedFlatConfigItem | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | Array<Linter.Config>>>
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
+    antislop: enableAntislop = false,
     astro: enableAstro = false,
     autoRenamePlugins = true,
     componentExts = [],
@@ -121,7 +122,7 @@ export function vinicuncaESLint(
   // eslint-disable-next-line no-nested-ternary
   const stylisticOptions = options.stylistic === false
     ? false
-    // eslint-disable-next-line sonar/no-nested-conditional
+
     : typeof options.stylistic === 'object'
       ? options.stylistic
       : {};
@@ -164,8 +165,6 @@ export function vinicuncaESLint(
     comments(),
 
     command(),
-
-    sonar(),
   );
 
   if (enablePerfectionist) {
@@ -229,6 +228,17 @@ export function vinicuncaESLint(
         componentExts,
         overrides: getOverrides(options, 'typescript'),
         type: appType,
+      }),
+    );
+  }
+
+  // Registered after the TypeScript config so its `ts/no-explicit-any` override takes effect
+  if (enableAntislop) {
+    configs.push(
+      antislop({
+        ...resolveSubOptions(options, 'antislop'),
+        overrides: getOverrides(options, 'antislop'),
+        typescript: !!enableTypeScript,
       }),
     );
   }
@@ -341,6 +351,7 @@ export function vinicuncaESLint(
       pnpm({
         isInEditor,
         json: options.jsonc !== false,
+        stylistic: stylisticOptions,
         yaml: options.yaml !== false,
         ...optionsPnpm,
       }),

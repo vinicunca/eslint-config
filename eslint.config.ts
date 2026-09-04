@@ -13,6 +13,7 @@ export default vinicuncaESLint(
     typescript: {
       erasableOnly: true,
     },
+    antislop: true,
     markdown: {
       overrides: {
         'no-dupe-keys': 'off',

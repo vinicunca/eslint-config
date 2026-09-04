@@ -402,6 +402,7 @@
       "ts/no-redeclare",
       "ts/no-use-before-define",
       "- ts/parameter-properties",
+      "ts/explicit-function-return-type",
     ],
   },
   {
@@ -870,6 +871,90 @@
       "pnpm/json-enforce-catalog",
       "pnpm/json-prefer-workspace-settings",
       "pnpm/json-valid-catalog",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "vinicunca/pnpm/pnpm-workspace-yaml",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-enforce-settings",
+      "pnpm/yaml-no-duplicate-catalog-item",
+      "pnpm/yaml-no-unused-catalog-item",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "vinicunca/pnpm/pnpm-workspace-yaml-stylistic",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-blank-lines",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "vinicunca/pnpm/pnpm-workspace-yaml-sort",
+    "plugins": [
+      "yaml",
+    ],
+    "rules": [
+      "yaml/sort-keys",
+    ],
+  },
+  {
+    "name": "vinicunca/yaml/setup",
+    "plugins": [
+      "yaml",
+    ],
+  },
+  {
+    "files": [
+      "**/*.y?(a)ml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "vinicunca/yaml/rules",
+    "rules": [
+      "- style/spaced-comment",
+      "yaml/block-mapping",
+      "yaml/block-sequence",
+      "yaml/no-empty-key",
+      "yaml/no-empty-sequence-entry",
+      "yaml/no-irregular-whitespace",
+      "yaml/plain-scalar",
+      "yaml/vue-custom-block/no-parsing-error",
+      "yaml/block-mapping-question-indicator-newline",
+      "yaml/block-sequence-hyphen-indicator-newline",
+      "yaml/flow-mapping-curly-newline",
+      "yaml/flow-mapping-curly-spacing",
+      "yaml/flow-sequence-bracket-newline",
+      "yaml/flow-sequence-bracket-spacing",
+      "yaml/indent",
+      "yaml/key-spacing",
+      "yaml/no-multiple-empty-lines",
+      "yaml/no-tab-indent",
+      "yaml/quotes",
+      "yaml/spaced-comment",
     ],
   },
   {

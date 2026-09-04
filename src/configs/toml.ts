@@ -62,7 +62,7 @@ export async function toml(
               'toml/array-bracket-newline': ERROR,
               'toml/array-bracket-spacing': ERROR,
               'toml/array-element-newline': ERROR,
-              // eslint-disable-next-line no-nested-ternary, sonar/no-nested-conditional
+              // eslint-disable-next-line no-nested-ternary
               'toml/indent': [ERROR, isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2],
               'toml/inline-table-curly-spacing': ERROR,
               'toml/key-spacing': ERROR,
