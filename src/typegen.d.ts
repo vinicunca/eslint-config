@@ -1232,6 +1232,11 @@ export interface RuleOptions {
    */
   'jsdoc/text-escaping'?: Linter.RuleEntry<JsdocTextEscaping>
   /**
+   * Disallows (or requires descriptions for) `@ts-<directive>` comments, mirroring `@typescript-eslint/ban-ts-comment`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-ban-ts-comment.md#repos-sticky-header
+   */
+  'jsdoc/ts-ban-ts-comment'?: Linter.RuleEntry<JsdocTsBanTsComment>
+  /**
    * Prefers either function properties or method signatures
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-method-signature-style.md#repos-sticky-header
    */
@@ -3480,7 +3485,7 @@ export interface RuleOptions {
    */
   'react/globals'?: Linter.RuleEntry<[]>
   /**
-   * Validates against passing functions that mutate captured local variables into frozen contexts such as JSX props, hook arguments, and hook return values.
+   * Validates against mutating props, state, and other immutable values, including through functions passed into frozen contexts such as JSX props, hook arguments, and hook return values.
    * @see https://eslint-react.xyz/docs/rules/immutability
    */
   'react/immutability'?: Linter.RuleEntry<[]>
@@ -3835,7 +3840,7 @@ export interface RuleOptions {
    */
   'react/x-globals'?: Linter.RuleEntry<[]>
   /**
-   * Validates against passing functions that mutate captured local variables into frozen contexts such as JSX props, hook arguments, and hook return values.
+   * Validates against mutating props, state, and other immutable values, including through functions passed into frozen contexts such as JSX props, hook arguments, and hook return values.
    * @see https://eslint-react.xyz/docs/rules/immutability
    */
   'react/x-immutability'?: Linter.RuleEntry<[]>
@@ -4616,6 +4621,11 @@ export interface RuleOptions {
    */
   'solid/no-array-handlers'?: Linter.RuleEntry<[]>
   /**
+   * Disallow boolean values on enumerated attributes like draggable and tristate aria-*, which take string tokens — a boolean false removes the attribute instead of writing "false".
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-boolean-enumerated-attribute.md
+   */
+  'solid/no-boolean-enumerated-attribute'?: Linter.RuleEntry<[]>
+  /**
    * Disallow browser-only globals inside server functions, which run exclusively on the server.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-browser-globals-in-server-function.md
    */
@@ -4666,10 +4676,25 @@ export interface RuleOptions {
    */
   'solid/no-single-arg-create-effect'?: Linter.RuleEntry<[]>
   /**
+   * Disallow mutating a store's read proxy; store state changes only through the setter's mutable draft.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-store-mutation-outside-setter.md
+   */
+  'solid/no-store-mutation-outside-setter'?: Linter.RuleEntry<[]>
+  /**
    * Enforce using only Solid-specific namespaced attribute names (i.e. `'on:'` in `<div on:click={...} />`).
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-unknown-namespaces.md
    */
   'solid/no-unknown-namespaces'?: Linter.RuleEntry<SolidNoUnknownNamespaces>
+  /**
+   * Disallow signals that are never written (use a plain value) or never read (dead state).
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-unused-signal.md
+   */
+  'solid/no-unused-signal'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow writing signals or stores inside `createMemo`, the compute half of `createEffect`, or a component body, which are pure owned scopes.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-write-in-pure-computation.md
+   */
+  'solid/no-write-in-pure-computation'?: Linter.RuleEntry<[]>
   /**
    * Enforce using the classlist prop over importing a classnames helper. The classlist prop accepts an object `{ [class: string]: boolean }` just like classnames.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-classlist.md
@@ -4776,6 +4801,11 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S8780/javascript
    */
   'sonarjs/async-test-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Nested properties of Lodash and Underscore.js clone results should not be mutated
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9135/javascript
+   */
+  'sonarjs/avoid-mutating-nested-properties-of-shallow-clones'?: Linter.RuleEntry<[]>
   /**
    * AWS API Gateway should require authentication
    * @see https://sonarsource.github.io/rspec/#/rspec/S6333/javascript
@@ -4921,6 +4951,11 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S124/javascript
    */
   'sonarjs/comment-regex'?: Linter.RuleEntry<SonarjsCommentRegex>
+  /**
+   * Composite assertions should be split
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9073/javascript
+   */
+  'sonarjs/composite-assertions'?: Linter.RuleEntry<[]>
   /**
    * Regular expression quantifiers and character classes should be used concisely
    * @see https://sonarsource.github.io/rspec/#/rspec/S6353/javascript
@@ -5301,6 +5336,11 @@ export interface RuleOptions {
    */
   'sonarjs/no-dead-store'?: Linter.RuleEntry<[]>
   /**
+   * Lodash and Underscore.js debounced or throttled functions should not be recreated on every React render
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9114/javascript
+   */
+  'sonarjs/no-debounce-throttle-in-render'?: Linter.RuleEntry<[]>
+  /**
    * UI test debug commands should not be committed to version control
    * @see https://sonarsource.github.io/rspec/#/rspec/S8959/javascript
    */
@@ -5320,6 +5360,11 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S4621/javascript
    */
   'sonarjs/no-duplicate-in-composite'?: Linter.RuleEntry<[]>
+  /**
+   * Parameterized tests should not contain duplicate test cases
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9078/javascript
+   */
+  'sonarjs/no-duplicate-parameterized-test-case'?: Linter.RuleEntry<[]>
   /**
    * String literals should not be duplicated
    * @see https://sonarsource.github.io/rspec/#/rspec/S1192/javascript
@@ -5365,6 +5410,11 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S6331/javascript
    */
   'sonarjs/no-empty-group'?: Linter.RuleEntry<[]>
+  /**
+   * Parameterized tests should not have empty datasets
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8998/javascript
+   */
+  'sonarjs/no-empty-parameterized-test-dataset'?: Linter.RuleEntry<[]>
   /**
    * Test files should contain at least one test case
    * @see https://sonarsource.github.io/rspec/#/rspec/S2187/javascript
@@ -5589,6 +5639,11 @@ export interface RuleOptions {
    */
   'sonarjs/no-mixed-content'?: Linter.RuleEntry<[]>
   /**
+   * Reactive state should not be unconditionally mutated inside Vue's "updated" lifecycle hook
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9163/javascript
+   */
+  'sonarjs/no-mutate-reactive-state-in-updated-hook'?: Linter.RuleEntry<[]>
+  /**
    * Assignments should not be made from within sub-expressions
    * @see https://sonarsource.github.io/rspec/#/rspec/S1121/javascript
    */
@@ -5618,6 +5673,11 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S4624/javascript
    */
   'sonarjs/no-nested-template-literals'?: Linter.RuleEntry<[]>
+  /**
+   * Playwright "networkidle" waits should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9332/javascript
+   */
+  'sonarjs/no-networkidle-wait'?: Linter.RuleEntry<[]>
   /**
    * OS commands should not rely on PATH resolution
    * @see https://sonarsource.github.io/rspec/#/rspec/S4036/javascript
@@ -5654,7 +5714,7 @@ export interface RuleOptions {
    */
   'sonarjs/no-redundant-optional'?: Linter.RuleEntry<[]>
   /**
-   * Unnecessary parentheses should be removed
+   * Redundant pairs of parentheses should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1110/javascript
    * @deprecated
    */
@@ -5817,6 +5877,16 @@ export interface RuleOptions {
    */
   'sonarjs/no-variable-usage-before-declaration'?: Linter.RuleEntry<[]>
   /**
+   * Vue components should not use the deprecated "vue-class-component" or "vue-property-decorator" libraries
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9145/javascript
+   */
+  'sonarjs/no-vue-class-component'?: Linter.RuleEntry<[]>
+  /**
+   * Vue components should not use mixins
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9150/javascript
+   */
+  'sonarjs/no-vue-mixins'?: Linter.RuleEntry<[]>
+  /**
    * Cipher algorithms should be robust
    * @see https://sonarsource.github.io/rspec/#/rspec/S5547/javascript
    */
@@ -5873,6 +5943,11 @@ export interface RuleOptions {
    */
   'sonarjs/post-message'?: Linter.RuleEntry<[]>
   /**
+   * Cypress assertions should be retryable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9162/javascript
+   */
+  'sonarjs/prefer-cypress-should'?: Linter.RuleEntry<[]>
+  /**
    * "default" clauses should be last
    * @see https://sonarsource.github.io/rspec/#/rspec/S4524/javascript
    */
@@ -5882,6 +5957,16 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S1488/javascript
    */
   'sonarjs/prefer-immediate-return'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over Axios utility methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9339/javascript
+   */
+  'sonarjs/prefer-native-axios-alternative'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over jQuery utility methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9144/javascript
+   */
+  'sonarjs/prefer-native-jquery-alternative'?: Linter.RuleEntry<[]>
   /**
    * Native APIs should be preferred over Lodash and Underscore.js methods
    * @see https://sonarsource.github.io/rspec/#/rspec/S8907/javascript
@@ -6023,6 +6108,11 @@ export interface RuleOptions {
    */
   'sonarjs/super-linear-regex'?: Linter.RuleEntry<[]>
   /**
+   * Synchronous exception assertions should receive synchronous callbacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9072/javascript
+   */
+  'sonarjs/synchronous-exception-assertions'?: Linter.RuleEntry<[]>
+  /**
    * Tests should not be registered asynchronously in suite callbacks
    * @see https://sonarsource.github.io/rspec/#/rspec/S8785/javascript
    */
@@ -6042,6 +6132,16 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S5958/javascript
    */
   'sonarjs/test-check-exception'?: Linter.RuleEntry<[]>
+  /**
+   * Testing Library disappearance waits should use non-throwing queries
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9153/javascript
+   */
+  'sonarjs/testing-library-prefer-query-by-disappearance'?: Linter.RuleEntry<[]>
+  /**
+   * Testing Library queries should match presence assertions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9027/javascript
+   */
+  'sonarjs/testing-library-query-assertion'?: Linter.RuleEntry<[]>
   /**
    * Track uses of "TODO" tags
    * @see https://sonarsource.github.io/rspec/#/rspec/S1135/javascript
@@ -6108,6 +6208,11 @@ export interface RuleOptions {
    * @see https://sonarsource.github.io/rspec/#/rspec/S117/javascript
    */
   'sonarjs/variable-name'?: Linter.RuleEntry<SonarjsVariableName>
+  /**
+   * vi.mock should be declared at module scope
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9169/javascript
+   */
+  'sonarjs/vitest-mock-at-module-scope'?: Linter.RuleEntry<[]>
   /**
    * "void" should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S3735/javascript
@@ -7883,6 +7988,11 @@ export interface RuleOptions {
    * @see https://typescript-eslint.io/rules/no-for-in-array
    */
   'ts/no-for-in-array'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow type operations that resolve to the "empty object" type
+   * @see https://typescript-eslint.io/rules/no-generated-empty-object-type
+   */
+  'ts/no-generated-empty-object-type'?: Linter.RuleEntry<[]>
   /**
    * Disallow the use of `eval()`-like functions
    * @see https://typescript-eslint.io/rules/no-implied-eval
@@ -10898,6 +11008,11 @@ export interface RuleOptions {
    */
   'vue/no-setup-props-reactivity-loss'?: Linter.RuleEntry<[]>
   /**
+   * disallow the use of event names that collide with native web event names
+   * @see https://eslint.vuejs.org/rules/no-shadow-native-events.html
+   */
+  'vue/no-shadow-native-events'?: Linter.RuleEntry<[]>
+  /**
    * enforce component's data property to be a function
    * @see https://eslint.vuejs.org/rules/no-shared-component-data.html
    */
@@ -12082,10 +12197,12 @@ type EslintCommentsDisableEnablePair = []|[{
 type EslintCommentsNoRestrictedDisable = string[]
 // ----- eslint-comments/no-use -----
 type EslintCommentsNoUse = []|[{
-  allow?: ("eslint" | "eslint-disable" | "eslint-disable-line" | "eslint-disable-next-line" | "eslint-enable" | "eslint-env" | "exported" | "global" | "globals")[]
+  additionalDirectives?: string[]
+  allow?: string[]
 }]
 // ----- eslint-comments/require-description -----
 type EslintCommentsRequireDescription = []|[{
+  additionalDirectives?: string[]
   ignore?: ("eslint" | "eslint-disable" | "eslint-disable-line" | "eslint-disable-next-line" | "eslint-enable" | "eslint-env" | "exported" | "global" | "globals")[]
 }]
 // ----- format/dprint -----
@@ -12610,6 +12727,8 @@ type JsdocNoUnnecessaryTypeAssertion = []|[{
   
   enableFixer?: boolean
   
+  preferConstToLiteralTuples?: boolean
+  
   treatAnyAsRedundant?: boolean
   
   typesToIgnore?: string[]
@@ -13005,6 +13124,31 @@ type JsdocTextEscaping = []|[{
   escapeHTML?: boolean
   
   escapeMarkdown?: boolean
+}]
+// ----- jsdoc/ts-ban-ts-comment -----
+type JsdocTsBanTsComment = []|[{
+  
+  minimumDescriptionLength?: number
+  
+  "ts-check"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
+  
+  "ts-expect-error"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
+  
+  "ts-ignore"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
+  
+  "ts-nocheck"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
 }]
 // ----- jsdoc/ts-method-signature-style -----
 type JsdocTsMethodSignatureStyle = []|[("method" | "property")]|[("method" | "property"), {
@@ -19693,6 +19837,7 @@ type ReactRefreshOnlyExportComponents = []|[{
   extraHOCs?: string[]
   allowExportNames?: string[]
   allowConstantExport?: boolean
+  allowCompoundComponents?: boolean
   checkJS?: boolean
 }]
 // ----- react/dom-no-unknown-property -----
@@ -24707,7 +24852,7 @@ type VueNoDeprecatedSlotAttribute = []|[{
 }]
 // ----- vue/no-dupe-keys -----
 type VueNoDupeKeys = []|[{
-  groups?: unknown[]
+  groups?: string[]
 }]
 // ----- vue/no-duplicate-attr-inheritance -----
 type VueNoDuplicateAttrInheritance = []|[{
@@ -24839,8 +24984,8 @@ type VueNoReservedComponentNames = []|[{
 }]
 // ----- vue/no-reserved-keys -----
 type VueNoReservedKeys = []|[{
-  reserved?: unknown[]
-  groups?: unknown[]
+  reserved?: string[]
+  groups?: string[]
 }]
 // ----- vue/no-reserved-props -----
 type VueNoReservedProps = []|[{
@@ -24929,7 +25074,7 @@ type VueNoTemplateTargetBlank = []|[{
 }]
 // ----- vue/no-undef-components -----
 type VueNoUndefComponents = []|[{
-  ignorePatterns?: unknown[]
+  ignorePatterns?: string[]
 }]
 // ----- vue/no-undef-directives -----
 type VueNoUndefDirectives = []|[{
@@ -25063,7 +25208,7 @@ type VueOperatorLinebreak = []|[(("after" | "before" | "none") | null)]|[(("afte
 }]
 // ----- vue/order-in-components -----
 type VueOrderInComponents = []|[{
-  order?: unknown[]
+  order?: (string | string[])[]
 }]
 // ----- vue/padding-line-between-blocks -----
 type VuePaddingLineBetweenBlocks = []|[("never" | "always")]
@@ -25152,8 +25297,8 @@ type VueSlotNameCasing = []|[("camelCase" | "kebab-case" | "singleword")]
 // ----- vue/sort-keys -----
 type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   caseSensitive?: boolean
-  ignoreChildrenOf?: unknown[]
-  ignoreGrandchildrenOf?: unknown[]
+  ignoreChildrenOf?: string[]
+  ignoreGrandchildrenOf?: string[]
   minKeys?: number
   natural?: boolean
   allowLineSeparatedGroups?: boolean
@@ -25213,7 +25358,7 @@ type VueValidVFor = []|[{
 }]
 // ----- vue/valid-v-on -----
 type VueValidVOn = []|[{
-  modifiers?: unknown[]
+  modifiers?: string[]
 }]
 // ----- vue/valid-v-slot -----
 type VueValidVSlot = []|[{
@@ -25460,4 +25605,4 @@ type Yoda = []|[("always" | "never")]|[("always" | "never"), {
   onlyEquality?: boolean
 }]
 // Names of all the configs
-export type ConfigNames = 'vinicunca/gitignore' | 'vinicunca/ignores' | 'vinicunca/javascript/setup' | 'vinicunca/javascript/rules' | 'vinicunca/eslint-comments/rules' | 'vinicunca/command/rules' | 'vinicunca/perfectionist/rules' | 'vinicunca/node/rules' | 'vinicunca/jsdoc/setup' | 'vinicunca/jsdoc/rules' | 'vinicunca/imports/rules' | 'vinicunca/e18e/rules' | 'vinicunca/unicorn/setup' | 'vinicunca/unicorn/rules' | 'antfu/jsx/setup' | 'vinicunca/typescript/setup' | 'vinicunca/typescript/parser' | 'vinicunca/typescript/type-aware-parser' | 'vinicunca/typescript/rules' | 'vinicunca/typescript/rules-type-aware' | 'vinicunca/typescript/erasable-syntax-only' | 'vinicunca/antislop/setup' | 'vinicunca/antislop/rules/universal' | 'vinicunca/antislop/rules/javascript' | 'vinicunca/stylistic/rules' | 'vinicunca/regexp/rules' | 'vinicunca/test/setup' | 'vinicunca/test/rules' | 'vinicunca/vue/setup' | 'vinicunca/vue/rules' | 'vinicunca/react/setup' | 'vinicunca/react/rules' | 'vinicunca/react/typescript' | 'vinicunca/react/type-aware-rules' | 'vinicunca/nextjs/setup' | 'vinicunca/nextjs/rules' | 'vinicunca/solid/setup' | 'vinicunca/solid/rules' | 'vinicunca/svelte/setup' | 'vinicunca/svelte/rules' | 'vinicunca/unocss' | 'vinicunca/astro/setup' | 'vinicunca/astro/rules' | 'vinicunca/jsonc/setup' | 'vinicunca/jsonc/rules' | 'vinicunca/sort/package-json' | 'vinicunca/sort/tsconfig' | 'vinicunca/pnpm/package-json' | 'vinicunca/pnpm/pnpm-workspace-yaml' | 'vinicunca/pnpm/pnpm-workspace-yaml-stylistic' | 'vinicunca/pnpm/pnpm-workspace-yaml-sort' | 'vinicunca/yaml/setup' | 'vinicunca/yaml/rules' | 'vinicunca/toml/setup' | 'vinicunca/toml/rules' | 'vinicunca/markdown/setup' | 'vinicunca/markdown/processor' | 'vinicunca/markdown/parser' | 'vinicunca/markdown/rules' | 'vinicunca/markdown/disables/markdown' | 'vinicunca/markdown/disables' | 'vinicunca/formatter/setup' | 'vinicunca/formatter/css' | 'vinicunca/formatter/scss' | 'vinicunca/formatter/less' | 'vinicunca/formatter/html' | 'vinicunca/formatter/xml' | 'vinicunca/formatter/svg' | 'vinicunca/formatter/markdown' | 'vinicunca/formatter/astro' | 'vinicunca/formatter/astro/disables' | 'vinicunca/formatter/graphql' | 'vinicunca/disables/scripts' | 'vinicunca/disables/cli' | 'vinicunca/disables/bin' | 'vinicunca/disables/dts' | 'vinicunca/disables/cjs' | 'vinicunca/disables/config-files'
+export type ConfigNames = 'vinicunca/gitignore' | 'vinicunca/ignores' | 'vinicunca/javascript/setup' | 'vinicunca/javascript/rules' | 'vinicunca/eslint-comments/rules' | 'vinicunca/command/rules' | 'vinicunca/perfectionist/rules' | 'vinicunca/node/rules' | 'vinicunca/jsdoc/setup' | 'vinicunca/jsdoc/rules' | 'vinicunca/imports/rules' | 'vinicunca/e18e/rules' | 'vinicunca/unicorn/setup' | 'vinicunca/unicorn/rules' | 'vinicunca/jsx/setup' | 'vinicunca/typescript/setup' | 'vinicunca/typescript/parser' | 'vinicunca/typescript/type-aware-parser' | 'vinicunca/typescript/rules' | 'vinicunca/typescript/rules-type-aware' | 'vinicunca/typescript/erasable-syntax-only' | 'vinicunca/antislop/setup' | 'vinicunca/antislop/rules/universal' | 'vinicunca/antislop/rules/javascript' | 'vinicunca/stylistic/rules' | 'vinicunca/regexp/rules' | 'vinicunca/test/setup' | 'vinicunca/test/rules' | 'vinicunca/vue/setup' | 'vinicunca/vue/rules' | 'vinicunca/react/setup' | 'vinicunca/react/rules' | 'vinicunca/react/typescript' | 'vinicunca/react/type-aware-rules' | 'vinicunca/nextjs/setup' | 'vinicunca/nextjs/rules' | 'vinicunca/solid/setup' | 'vinicunca/solid/rules' | 'vinicunca/svelte/setup' | 'vinicunca/svelte/rules' | 'vinicunca/unocss' | 'vinicunca/astro/setup' | 'vinicunca/astro/rules' | 'vinicunca/jsonc/setup' | 'vinicunca/jsonc/rules' | 'vinicunca/sort/package-json' | 'vinicunca/sort/tsconfig' | 'vinicunca/pnpm/package-json' | 'vinicunca/pnpm/pnpm-workspace-yaml' | 'vinicunca/pnpm/pnpm-workspace-yaml-stylistic' | 'vinicunca/pnpm/pnpm-workspace-yaml-sort' | 'vinicunca/yaml/setup' | 'vinicunca/yaml/rules' | 'vinicunca/toml/setup' | 'vinicunca/toml/rules' | 'vinicunca/markdown/setup' | 'vinicunca/markdown/processor' | 'vinicunca/markdown/parser' | 'vinicunca/markdown/rules' | 'vinicunca/markdown/disables/markdown' | 'vinicunca/markdown/disables' | 'vinicunca/formatter/setup' | 'vinicunca/formatter/css' | 'vinicunca/formatter/scss' | 'vinicunca/formatter/less' | 'vinicunca/formatter/html' | 'vinicunca/formatter/xml' | 'vinicunca/formatter/svg' | 'vinicunca/formatter/markdown' | 'vinicunca/formatter/astro' | 'vinicunca/formatter/astro/disables' | 'vinicunca/formatter/graphql' | 'vinicunca/disables/scripts' | 'vinicunca/disables/cli' | 'vinicunca/disables/bin' | 'vinicunca/disables/dts' | 'vinicunca/disables/cjs' | 'vinicunca/disables/config-files'
