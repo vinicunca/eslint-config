@@ -12,21 +12,10 @@ permissions:
 
 jobs:
   verify:
-    name: Build, lint, typecheck and test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-      - uses: pnpm/action-setup@v6
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      # Also generates the gitignored `src/typegen.d.ts`. The fixture tests
-      # import the package by name, which resolves to `dist/`
-      - run: pnpm build
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - run: pnpm vitest run
+    uses: vinicunca/workflows/.github/workflows/unit-test.yml@v1
+    with:
+      os-matrix: '"ubuntu-latest"'
+      node-versions: '22,24'
+      # Also generates the gitignored `src/typegen.d.ts` that typecheck needs.
+      # The test job always builds first: fixture tests import `dist/`
+      build-for-lint: true

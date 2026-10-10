@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-  # The reusable release workflow only builds and publishes, so gate it here
+  # The shared release workflow only builds and publishes, so gate it here
   verify:
     uses: ./.github/workflows/ci.yml
     permissions:
@@ -14,7 +14,7 @@ jobs:
 
   release:
     needs: verify
-    uses: sxzz/workflows/.github/workflows/release.yml@v1
+    uses: vinicunca/workflows/.github/workflows/release.yml@v1
     with:
       publish: true
     permissions:
