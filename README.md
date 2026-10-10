@@ -23,6 +23,8 @@ export default vinicuncaESLint();
 
 Requires ESLint `^10.0.0`. `vinicuncaESLint` is a **named** export. There is no default export and no CLI wizard.
 
+Upgrading from v5? Read the [v5 to v6 migration notes](https://vinicunca.dev/eslint/guides/migrating#upgrading-from-v5-to-v6).
+
 Antislop and SonarJS rules are enabled by default. Both plugins install with this package. To disable these rules:
 
 ```js
