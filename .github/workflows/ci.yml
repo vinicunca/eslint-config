@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   verify:
-    name: Lint, typecheck, test and build
+    name: Build, lint, typecheck and test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -24,9 +24,9 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      # `src/typegen.d.ts` is gitignored, generate it before type-aware steps
-      - run: pnpm typegen
+      # Also generates the gitignored `src/typegen.d.ts`. The fixture tests
+      # import the package by name, which resolves to `dist/`
+      - run: pnpm build
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm vitest run
-      - run: pnpm build
