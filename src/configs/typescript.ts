@@ -243,6 +243,7 @@ export async function typescript(
     ...erasableOnly
       ? [
           {
+            files,
             name: 'vinicunca/typescript/erasable-syntax-only',
             plugins: {
               'erasable-syntax-only': await interopDefault(import('eslint-plugin-erasable-syntax-only')),

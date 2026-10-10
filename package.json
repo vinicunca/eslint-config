@@ -68,13 +68,11 @@
     "@next/eslint-plugin-next": ">=15.0.0",
     "@prettier/plugin-xml": "^3.4.1",
     "astro-eslint-parser": "^1.0.2",
-    "eslint": "^9.39.1 || ^10.0.0",
+    "eslint": "^10.0.0",
     "eslint-plugin-astro": "^1.2.0",
     "eslint-plugin-jsx-a11y": ">=6.10.2",
     "eslint-plugin-react-refresh": "^0.5.0",
-    "eslint-plugin-slop": ">=0.1.1",
     "eslint-plugin-solid": "^0.14.3",
-    "eslint-plugin-sonarjs": ">=4.0.0",
     "eslint-plugin-svelte": ">=2.35.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "prettier-plugin-astro": "^0.14.0",
@@ -103,13 +101,7 @@
     "eslint-plugin-react-refresh": {
       "optional": true
     },
-    "eslint-plugin-slop": {
-      "optional": true
-    },
     "eslint-plugin-solid": {
-      "optional": true
-    },
-    "eslint-plugin-sonarjs": {
       "optional": true
     },
     "eslint-plugin-svelte": {
@@ -153,6 +145,8 @@
     "eslint-plugin-perfectionist": "catalog:prod",
     "eslint-plugin-pnpm": "catalog:prod",
     "eslint-plugin-regexp": "catalog:prod",
+    "eslint-plugin-slop": "catalog:prod",
+    "eslint-plugin-sonarjs": "catalog:prod",
     "eslint-plugin-toml": "catalog:prod",
     "eslint-plugin-unicorn": "catalog:prod",
     "eslint-plugin-unused-imports": "catalog:prod",
@@ -182,9 +176,7 @@
     "eslint-plugin-erasable-syntax-only": "catalog:peer",
     "eslint-plugin-jsx-a11y": "catalog:peer",
     "eslint-plugin-react-refresh": "catalog:peer",
-    "eslint-plugin-slop": "catalog:peer",
     "eslint-plugin-solid": "catalog:peer",
-    "eslint-plugin-sonarjs": "catalog:peer",
     "eslint-plugin-svelte": "catalog:peer",
     "eslint-plugin-vuejs-accessibility": "catalog:peer",
     "eslint-typegen": "catalog:dev",

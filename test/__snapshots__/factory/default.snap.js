@@ -405,6 +405,55 @@
     ],
   },
   {
+    "name": "vinicunca/antislop/setup",
+    "plugins": [
+      "slop",
+      "sonarjs",
+    ],
+  },
+  {
+    "ignores": [
+      "**/*.md/**",
+    ],
+    "name": "vinicunca/antislop/rules/universal",
+    "rules": [
+      "slop/no-em-dash",
+    ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
+    "name": "vinicunca/antislop/rules/javascript",
+    "rules": [
+      "slop/max-comment-length",
+      "slop/no-chained-type-assertions",
+      "slop/no-jargon",
+      "slop/no-trivial-functions",
+      "slop/no-trivial-type-aliases",
+      "slop/prefer-jsdoc",
+      "sonarjs/cognitive-complexity",
+      "sonarjs/no-all-duplicated-branches",
+      "sonarjs/no-collapsible-if",
+      "sonarjs/no-commented-code",
+      "sonarjs/no-dead-store",
+      "sonarjs/no-duplicated-branches",
+      "sonarjs/no-element-overwrite",
+      "sonarjs/no-empty-collection",
+      "sonarjs/no-gratuitous-expressions",
+      "sonarjs/no-identical-conditions",
+      "sonarjs/no-identical-expressions",
+      "sonarjs/no-identical-functions",
+      "sonarjs/no-invariant-returns",
+      "sonarjs/no-inverted-boolean-check",
+      "sonarjs/no-redundant-boolean",
+      "sonarjs/no-redundant-jump",
+      "sonarjs/no-unused-collection",
+      "sonarjs/no-use-of-empty-return-value",
+      "sonarjs/prefer-single-boolean-return",
+    ],
+  },
+  {
     "name": "vinicunca/stylistic/rules",
     "plugins": [
       "antfu",

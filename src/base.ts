@@ -85,7 +85,7 @@ export function vinicuncaESLint(
   ...userConfigs: Array<Awaitable<TypedFlatConfigItem | Array<TypedFlatConfigItem> | FlatConfigComposer<any, any> | Array<Linter.Config>>>
 ): FlatConfigComposer<TypedFlatConfigItem, ConfigNames> {
   const {
-    antislop: enableAntislop = false,
+    antislop: enableAntislop = true,
     astro: enableAstro = false,
     autoRenamePlugins = true,
     componentExts = [],
@@ -380,6 +380,7 @@ export function vinicuncaESLint(
     configs.push(
       markdown(
         {
+          ...resolveSubOptions(options, 'markdown'),
           componentExts,
           overrides: getOverrides(options, 'markdown'),
         },

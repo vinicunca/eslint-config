@@ -536,13 +536,12 @@ export interface OptionsConfig extends OptionsComponentExts, OptionsProjectType 
    * and [knip](https://github.com/webpro-nl/knip) to catch copy-paste duplication
    * and unused files, dependencies, and exports.
    *
-   * Requires installing:
-   * - `eslint-plugin-slop`
-   * - `eslint-plugin-sonarjs`
+   * Both plugins are installed automatically with this config.
+   * Set `antislop: false` to disable their rules.
    *
    * @experimental The enabled rule set is maintained in-house and may change
    * in any release without following semver.
-   * @default false
+   * @default true
    */
   antislop?: boolean | OptionsAntislop;
 

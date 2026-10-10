@@ -496,6 +496,11 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])ts",
+      "**/*.?([cm])tsx",
+      "**/*.vue",
+    ],
     "name": "vinicunca/typescript/erasable-syntax-only",
     "plugins": [
       "erasable-syntax-only",
@@ -516,23 +521,8 @@
     ],
   },
   {
-    "files": [
-      "**/*.?([cm])[jt]s?(x)",
-      "**/*.{c,le,sc}ss",
-      "**/*.json",
-      "**/*.json5",
-      "**/*.md",
-      "**/*.svelte?(.{js,ts})",
-      "**/*.vue",
-      "**/*.y?(a)ml",
-      "**/*.xml",
-      "**/*.htm?(l)",
-      "**/*.jsonc",
-      "**/*.toml",
-      "**/*.{g,graph}ql",
-    ],
     "ignores": [
-      "**/*.md/**/*.?([cm])[jt]s?(x)",
+      "**/*.md/**",
     ],
     "name": "vinicunca/antislop/rules/universal",
     "rules": [

@@ -1,8 +1,8 @@
 import type { OptionsAntislop, OptionsHasTypeScript, TypedFlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
-import { GLOB_ALL_SRC, GLOB_GRAPHQL, GLOB_JSONC, GLOB_MARKDOWN_CODE, GLOB_SRC, GLOB_TOML } from '../globs';
-import { ensurePackages, interopDefault } from '../utils';
+import { GLOB_MARKDOWN, GLOB_SRC } from '../globs';
+import { interopDefault } from '../utils';
 
 export async function antislop(
   options: OptionsAntislop & OptionsHasTypeScript = {},
@@ -13,11 +13,6 @@ export async function antislop(
     slop = true,
     sonarjs = true,
   } = options;
-
-  await ensurePackages([
-    ...slop ? ['eslint-plugin-slop'] : [],
-    ...sonarjs ? ['eslint-plugin-sonarjs'] : [],
-  ]);
 
   const [
     pluginSlop,
@@ -38,17 +33,15 @@ export async function antislop(
         ? { settings: { slop } }
         : {},
     },
-    // `no-em-dash` supports any language, so it's applied across all
-    // prose-bearing file types instead of being limited to JS/TS
+    // Apply to configured languages without making ESLint parse unsupported files.
     ...slop
       ? [{
-          files: [...GLOB_ALL_SRC, GLOB_JSONC, GLOB_TOML, GLOB_GRAPHQL],
           /**
            * Markdown code fences are already scanned as part of the raw
            * Markdown text, so exclude the virtual embedded-code files to
            * avoid reporting the same em dash twice
            */
-          ignores: [GLOB_MARKDOWN_CODE],
+          ignores: [`${GLOB_MARKDOWN}/**`],
           name: 'vinicunca/antislop/rules/universal',
           rules: {
             'slop/no-em-dash': ERROR,
