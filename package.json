@@ -2,7 +2,7 @@
   "name": "@vinicunca/eslint-config",
   "type": "module",
   "version": "6.0.0",
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.11.2",
   "description": "Vinicunca ESLint config",
   "author": {
     "name": "praburangki",
@@ -61,7 +61,7 @@
     "release": "bumpp",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks && skills-npm"
+    "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
     "@eslint-react/eslint-plugin": "^5.6.0",
@@ -188,7 +188,6 @@
     "prettier-plugin-astro": "catalog:peer",
     "prettier-plugin-slidev": "catalog:peer",
     "simple-git-hooks": "catalog:dev",
-    "skills-npm": "catalog:dev",
     "svelte": "catalog:peer",
     "svelte-eslint-parser": "catalog:peer",
     "tinyglobby": "catalog:dev",
@@ -215,14 +214,14 @@
     "*": "eslint --fix"
   },
   "inlinedDependencies": {
-    "@eslint-community/eslint-utils": "4.9.1",
-    "@typescript-eslint/scope-manager": "8.67.0",
-    "@typescript-eslint/types": "8.67.0",
-    "@typescript-eslint/utils": "8.67.0",
-    "@typescript-eslint/visitor-keys": "8.67.0",
-    "@vinicunca/perkakas": "1.16.0",
+    "@eslint-community/eslint-utils": "4.10.1",
+    "@typescript-eslint/scope-manager": "8.70.0",
+    "@typescript-eslint/types": "8.70.0",
+    "@typescript-eslint/utils": "8.70.0",
+    "@typescript-eslint/visitor-keys": "8.70.0",
+    "@vinicunca/perkakas": "1.18.0",
     "cached-factory": "0.3.0",
-    "eslint-plugin-erasable-syntax-only": "0.7.1",
+    "eslint-plugin-erasable-syntax-only": "0.7.2",
     "eslint-visitor-keys": [
       "3.4.3",
       "5.0.1"
