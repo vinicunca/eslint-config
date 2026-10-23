@@ -18,7 +18,9 @@ export async function svelte(
   const {
     indent = 2,
     quotes = 'single',
-  } = isBoolean(stylistic) ? {} : stylistic;
+  } = isBoolean(stylistic)
+    ? {}
+    : stylistic;
 
   await ensurePackages([
     'eslint-plugin-svelte',
@@ -59,13 +61,16 @@ export async function svelte(
 
       rules: {
         'no-undef': OFF, // incompatible with most recent (attribute-form) generic types RFC
-        'no-unused-vars': [ERROR, {
-          args: 'none',
-          caughtErrors: 'none',
-          ignoreRestSiblings: true,
-          vars: 'all',
-          varsIgnorePattern: '^(\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)',
-        }],
+        'no-unused-vars': [
+          ERROR,
+          {
+            args: 'none',
+            caughtErrors: 'none',
+            ignoreRestSiblings: true,
+            vars: 'all',
+            varsIgnorePattern: '^(\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)',
+          },
+        ],
 
         'svelte/comment-directive': ERROR,
         'svelte/no-at-debug-tags': WARN,
@@ -105,12 +110,22 @@ export async function svelte(
               'svelte/derived-has-same-inputs-outputs': ERROR,
               'svelte/html-closing-bracket-spacing': ERROR,
               // quotes only supports single and double quotes but in options we have backtick as well
-              'svelte/html-quotes': [ERROR, { prefer: quotes as any }],
-              'svelte/indent': [ERROR, {
-                alignAttributesVertically: true,
-                // eslint-disable-next-line no-nested-ternary
-                indent: isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2,
-              }],
+              'svelte/html-quotes': [
+                ERROR,
+                { prefer: quotes as any },
+              ],
+              'svelte/indent': [
+                ERROR,
+                {
+                  alignAttributesVertically: true,
+                  // eslint-disable-next-line no-nested-ternary
+                  indent: isNumber(indent)
+                    ? indent
+                    : indent === 'tab'
+                      ? 'tab'
+                      : 2,
+                },
+              ],
               'svelte/mustache-spacing': ERROR,
               'svelte/no-spaces-around-equal-signs-in-attribute': ERROR,
               'svelte/no-trailing-spaces': ERROR,

@@ -48,7 +48,9 @@ export async function solid(
           ecmaFeatures: {
             jsx: true,
           },
-          ...isTypeAware ? { project: tsconfigPath } : {},
+          ...isTypeAware
+            ? { project: tsconfigPath }
+            : {},
         },
         sourceType: 'module',
       },
@@ -58,12 +60,15 @@ export async function solid(
       rules: {
         // reactivity
         'solid/components-return-once': WARN,
-        'solid/event-handlers': [ERROR, {
+        'solid/event-handlers': [
+          ERROR,
+          {
           // if true, don't warn on ambiguously named event handlers like `onclick` or `onchange`
-          ignoreCase: false,
-          // if true, warn when spreading event handlers onto JSX. Enable for Solid < v1.6.
-          warnOnSpread: false,
-        }],
+            ignoreCase: false,
+            // if true, warn when spreading event handlers onto JSX. Enable for Solid < v1.6.
+            warnOnSpread: false,
+          },
+        ],
         // these rules are mostly style suggestions
         'solid/imports': ERROR,
         // identifier usage is important
@@ -73,17 +78,28 @@ export async function solid(
         'solid/jsx-uses-vars': ERROR,
         'solid/no-destructure': ERROR,
         // security problems
-        'solid/no-innerhtml': [ERROR, { allowStatic: true }],
+        'solid/no-innerhtml': [
+          ERROR,
+          { allowStatic: true },
+        ],
         'solid/no-react-deps': ERROR,
         'solid/no-react-specific-props': ERROR,
         'solid/no-unknown-namespaces': ERROR,
         'solid/prefer-for': ERROR,
         'solid/reactivity': WARN,
         'solid/self-closing-comp': ERROR,
-        'solid/style-prop': [ERROR, { styleProps: ['style', 'css'] }],
+        'solid/style-prop': [
+          ERROR,
+          {
+            styleProps: ['style', 'css'],
+          },
+        ],
         ...typescript
           ? {
-              'solid/jsx-no-undef': [ERROR, { typescriptEnabled: true }],
+              'solid/jsx-no-undef': [
+                ERROR,
+                { typescriptEnabled: true },
+              ],
               'solid/no-unknown-namespaces': OFF,
             }
           : {},

@@ -47,7 +47,13 @@ describe('erasableOnly scope', () => {
       markdown: true,
     });
 
-    await Promise.all(['example.ts', 'example.tsx', 'example.vue', 'example.astro/0.ts', 'example.md/0.ts'].map(async (filePath) => {
+    await Promise.all([
+      'example.ts',
+      'example.tsx',
+      'example.vue',
+      'example.astro/0.ts',
+      'example.md/0.ts',
+    ].map(async (filePath) => {
       const config = await eslint.calculateConfigForFile(filePath);
       expect(config.rules['erasable-syntax-only/enums']).toEqual([2]);
     }));
@@ -63,7 +69,10 @@ describe('erasableOnly scope', () => {
   });
 
   it('respects a custom TypeScript file selector', async () => {
-    const configs = await typescript({ erasableOnly: true, files: ['scripts/**/*.ts'] });
+    const configs = await typescript({
+      erasableOnly: true,
+      files: ['scripts/**/*.ts'],
+    });
     const eslint = new ESLint({ overrideConfigFile: true, overrideConfig: configs as any });
     const included = await eslint.calculateConfigForFile('scripts/example.ts');
     expect(included.rules['erasable-syntax-only/enums']).toEqual([2]);
@@ -74,7 +83,12 @@ describe('erasableOnly scope', () => {
 
 describe('antislop defaults', () => {
   it('enables Slop and SonarJS in the default factory config', async () => {
-    const configs = await vinicuncaESLint({ gitignore: false, isInEditor: false, typescript: false, vue: false });
+    const configs = await vinicuncaESLint({
+      gitignore: false,
+      isInEditor: false,
+      typescript: false,
+      vue: false,
+    });
     const eslint = new ESLint({ overrideConfigFile: true, overrideConfig: configs as any });
     const config = await eslint.calculateConfigForFile('example.js');
     expect(config.plugins.slop).toBeDefined();
@@ -86,12 +100,18 @@ describe('antislop defaults', () => {
     expect(result.messages.some((message) => message.ruleId === 'sonarjs/no-identical-conditions')).toBe(true);
 
     const [markdownResult] = await eslint.lintText('# Example\n\nText with an em dash \u2014 here.\n', { filePath: 'example.md' });
-    expect(markdownResult.messages.some((message) => message.ruleId === 'slop/no-em-dash')).toBe(true);
+    expect(markdownResult.messages.some((message) => message.ruleId === 'slop/no-em-dash')).toBe(false);
 
     const [fencedCssResult] = await eslint.lintText('# Example\n\n```css\n.example { color: red; }\n```\n', { filePath: 'example.md' });
     expect(fencedCssResult.fatalErrorCount).toBe(0);
 
-    await Promise.all(['example.css', 'example.html', 'example.xml', 'example.graphql', 'example.svelte'].map(async (filePath) => {
+    await Promise.all([
+      'example.css',
+      'example.html',
+      'example.xml',
+      'example.graphql',
+      'example.svelte',
+    ].map(async (filePath) => {
       expect(await eslint.calculateConfigForFile(filePath)).toBeUndefined();
     }));
   });

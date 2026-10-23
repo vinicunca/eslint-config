@@ -56,13 +56,9 @@ export async function stylistic(
       rules: {
         ...config.rules,
 
-        ...experimental
-          ? {}
-          : {
-              'antfu/consistent-list-newline': ERROR,
-            },
-
         'antfu/consistent-chaining': ERROR,
+        'antfu/consistent-list-newline': ERROR,
+        'antfu/reasonable-newline': 'error',
         'antfu/top-level-function': ERROR,
 
         'curly': [ERROR, 'all'],
@@ -79,19 +75,31 @@ export async function stylistic(
 
         'style/function-call-spacing': [ERROR, NEVER],
 
-        'style/generator-star-spacing': [ERROR, { after: true, before: false }],
+        'style/generator-star-spacing': [
+          ERROR,
+          { after: true, before: false },
+        ],
 
         'style/member-delimiter-style': [ERROR],
 
-        'style/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
+        'style/object-curly-newline': [
+          ERROR,
+          { consistent: true, multiline: true },
+        ],
 
         'style/object-curly-spacing': [ERROR, ALWAYS],
 
-        'style/object-property-newline': [ERROR, { allowAllPropertiesOnSameLine: true }],
+        'style/object-property-newline': [
+          ERROR,
+          { allowAllPropertiesOnSameLine: true },
+        ],
 
         'style/operator-linebreak': [ERROR, 'before'],
 
-        'style/padded-blocks': [ERROR, { blocks: NEVER, classes: NEVER, switches: NEVER }],
+        'style/padded-blocks': [
+          ERROR,
+          { blocks: NEVER, classes: NEVER, switches: NEVER },
+        ],
 
         'style/quote-props': [ERROR, 'consistent-as-needed'],
 
@@ -99,11 +107,20 @@ export async function stylistic(
 
         'style/rest-spread-spacing': [ERROR, NEVER],
 
-        'style/semi': [ERROR, semi ? ALWAYS : NEVER],
+        'style/semi': [
+          ERROR,
+          semi ? ALWAYS : NEVER,
+        ],
 
-        'style/semi-spacing': [ERROR, { after: true, before: false }],
+        'style/semi-spacing': [
+          ERROR,
+          { after: true, before: false },
+        ],
 
-        'style/yield-star-spacing': ['error', { after: true, before: false }],
+        'style/yield-star-spacing': [
+          'error',
+          { after: true, before: false },
+        ],
 
         ...overrides,
       },

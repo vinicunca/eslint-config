@@ -17,7 +17,9 @@ export async function toml(
 
   const {
     indent = 2,
-  } = isBoolean(stylistic) ? {} : stylistic;
+  } = isBoolean(stylistic)
+    ? {}
+    : stylistic;
 
   const [
     pluginToml,
@@ -62,8 +64,16 @@ export async function toml(
               'toml/array-bracket-newline': ERROR,
               'toml/array-bracket-spacing': ERROR,
               'toml/array-element-newline': ERROR,
-              // eslint-disable-next-line no-nested-ternary
-              'toml/indent': [ERROR, isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2],
+
+              'toml/indent': [
+                ERROR,
+                // eslint-disable-next-line no-nested-ternary
+                isNumber(indent)
+                  ? indent
+                  : indent === 'tab'
+                    ? 'tab'
+                    : 2,
+              ],
               'toml/inline-table-curly-spacing': ERROR,
               'toml/key-spacing': ERROR,
               'toml/padding-line-between-pairs': ERROR,

@@ -17,7 +17,9 @@ export async function jsonc(
 
   const {
     indent = 2,
-  } = isBoolean(stylistic) ? {} : stylistic;
+  } = isBoolean(stylistic)
+    ? {}
+    : stylistic;
 
   const pluginJsonc = await interopDefault(import('eslint-plugin-jsonc'));
 
@@ -98,16 +100,32 @@ export async function jsonc(
 
               'jsonc/comma-style': [ERROR, 'last'],
 
-              // eslint-disable-next-line no-nested-ternary
-              'jsonc/indent': [ERROR, isNumber(indent) ? indent : indent === 'tab' ? 'tab' : 2],
+              'jsonc/indent': [
+                ERROR,
+                // eslint-disable-next-line no-nested-ternary
+                isNumber(indent)
+                  ? indent
+                  : indent === 'tab'
+                    ? 'tab'
+                    : 2,
+              ],
 
-              'jsonc/key-spacing': [ERROR, { afterColon: true, beforeColon: false }],
+              'jsonc/key-spacing': [
+                ERROR,
+                { afterColon: true, beforeColon: false },
+              ],
 
-              'jsonc/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
+              'jsonc/object-curly-newline': [
+                ERROR,
+                { consistent: true, multiline: true },
+              ],
 
               'jsonc/object-curly-spacing': [ERROR, 'always'],
 
-              'jsonc/object-property-newline': [ERROR, { allowMultiplePropertiesPerLine: true }],
+              'jsonc/object-property-newline': [
+                ERROR,
+                { allowMultiplePropertiesPerLine: true },
+              ],
 
               'jsonc/quote-props': ERROR,
 

@@ -32,7 +32,10 @@ export async function imports(
 
         ...stylistic
           ? {
-              'import/newline-after-import': ['error', { count: 1 }],
+              'import/newline-after-import': [
+                'error',
+                { count: 1 },
+              ],
             }
           : {},
 

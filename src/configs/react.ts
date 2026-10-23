@@ -158,14 +158,16 @@ export async function react(
     },
 
     ...isTypeAware
-      ? [{
-          files: filesTypeAware,
-          ignores: ignoresTypeAware,
-          name: 'vinicunca/react/type-aware-rules',
-          rules: {
-            ...typeAwareRules,
+      ? [
+          {
+            files: filesTypeAware,
+            ignores: ignoresTypeAware,
+            name: 'vinicunca/react/type-aware-rules',
+            rules: {
+              ...typeAwareRules,
+            },
           },
-        }]
+        ]
       : [],
   ];
 }

@@ -18,19 +18,29 @@ export async function antislop(
     pluginSlop,
     pluginSonarjs,
   ] = await Promise.all([
-    slop ? interopDefault(import('eslint-plugin-slop')) : undefined,
-    sonarjs ? interopDefault(import('eslint-plugin-sonarjs')) : undefined,
+    slop
+      ? interopDefault(import('eslint-plugin-slop'))
+      : undefined,
+    sonarjs
+      ? interopDefault(import('eslint-plugin-sonarjs'))
+      : undefined,
   ]);
 
   return [
     {
       name: 'vinicunca/antislop/setup',
       plugins: {
-        ...slop ? { slop: pluginSlop } : {},
-        ...sonarjs ? { sonarjs: pluginSonarjs } : {},
+        ...slop
+          ? { slop: pluginSlop }
+          : {},
+        ...sonarjs
+          ? { sonarjs: pluginSonarjs }
+          : {},
       },
       ...typeof slop === 'object'
-        ? { settings: { slop } }
+        ? {
+            settings: { slop },
+          }
         : {},
     },
     {
@@ -53,7 +63,9 @@ export async function antislop(
           ? {
               ...cognitiveComplexity === false
                 ? {}
-                : { 'sonarjs/cognitive-complexity': [ERROR, cognitiveComplexity] as const },
+                : {
+                    'sonarjs/cognitive-complexity': [ERROR, cognitiveComplexity] as const,
+                  },
               'sonarjs/no-all-duplicated-branches': ERROR,
               'sonarjs/no-collapsible-if': ERROR,
               'sonarjs/no-commented-code': ERROR,

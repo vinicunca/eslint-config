@@ -29,7 +29,12 @@ export async function perfectionist(options: OptionsOverrides): Promise<Array<Ty
           {
             groups: [
               'type-import',
-              ['type-parent', 'type-sibling', 'type-index', 'type-internal'],
+              [
+                'type-parent',
+                'type-sibling',
+                'type-index',
+                'type-internal',
+              ],
 
               'value-builtin',
               'value-external',

@@ -86,13 +86,16 @@ export async function pnpm(
         pnpm: pluginPnpm,
       },
       rules: {
-        'pnpm/yaml-enforce-settings': [ERROR, {
-          settings: {
-            minimumReleaseAgeExcludePrune: true,
-            shellEmulator: true,
-            trustPolicy: 'no-downgrade',
+        'pnpm/yaml-enforce-settings': [
+          ERROR,
+          {
+            settings: {
+              minimumReleaseAgeExcludePrune: true,
+              shellEmulator: true,
+              trustPolicy: 'no-downgrade',
+            },
           },
-        }],
+        ],
         'pnpm/yaml-no-duplicate-catalog-item': ERROR,
         'pnpm/yaml-no-unused-catalog-item': ERROR,
       },

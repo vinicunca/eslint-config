@@ -412,21 +412,11 @@
     ],
   },
   {
-    "ignores": [
-      "**/*.md/**",
-    ],
-    "name": "vinicunca/antislop/rules/universal",
-    "rules": [
-      "slop/no-em-dash",
-    ],
-  },
-  {
     "files": [
       "**/*.?([cm])[jt]s?(x)",
     ],
     "name": "vinicunca/antislop/rules/javascript",
     "rules": [
-      "slop/max-comment-length",
       "slop/no-chained-type-assertions",
       "slop/no-jargon",
       "slop/no-trivial-functions",
@@ -525,8 +515,9 @@
       "style/jsx-quotes",
       "style/jsx-tag-spacing",
       "style/jsx-wrap-multilines",
-      "antfu/consistent-list-newline",
       "antfu/consistent-chaining",
+      "antfu/consistent-list-newline",
+      "antfu/reasonable-newline",
       "antfu/top-level-function",
       "curly",
       "style/array-bracket-newline",

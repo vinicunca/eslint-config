@@ -1,9 +1,5 @@
 ignoreWorkspaceRootCheck: true
-
-minimumReleaseAgeExcludePrune: true
-minimumReleaseAgeExclude:
-  - eslint-plugin-pnpm@1.9.1
-  - pnpm-workspace-yaml@1.9.1
+minimumReleaseAge: 0
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
@@ -36,7 +32,7 @@ catalogs:
     '@types/eslint-plugin-jsx-a11y': ^6.10.1
     '@types/node': ^26.6.5
     '@vinicunca/perkakas': ^1.18.0
-    baseline-browser-mapping: ^2.11.30
+    baseline-browser-mapping: ^2.11.31
     bumpp: ^12.3.0
     eslint-typegen: ^2.3.1
     jiti: ^2.7.0
@@ -54,7 +50,7 @@ catalogs:
     find-up-simple: ^1.0.1
   peer:
     '@eslint-community/eslint-utils': ^4.10.1
-    '@eslint-react/eslint-plugin': ^5.28.4
+    '@eslint-react/eslint-plugin': ^5.28.6
     '@next/eslint-plugin-next': ^16.4.2
     '@prettier/plugin-xml': ^3.4.2
     '@typescript-eslint/types': ^8.72.0
@@ -71,7 +67,7 @@ catalogs:
     prettier-plugin-astro: ^1.1.1
     prettier-plugin-slidev: ^1.0.5
     svelte: ^5.57.2
-    svelte-eslint-parser: ^1.9.0
+    svelte-eslint-parser: ^1.10.0
     vue: ^3.5.44
   prod:
     '@antfu/install-pkg': ^2.1.0
@@ -83,15 +79,15 @@ catalogs:
     '@typescript-eslint/eslint-plugin': ^8.72.0
     '@typescript-eslint/parser': ^8.72.0
     '@unocss/eslint-plugin': ^66.11.0
-    '@vitest/eslint-plugin': ^1.6.27
+    '@vitest/eslint-plugin': ^1.6.28
     eslint-config-flat-gitignore: ^2.4.0
     eslint-flat-config-utils: ^3.2.0
     eslint-merge-processors: ^2.0.0
-    eslint-plugin-antfu: ^3.2.3
+    eslint-plugin-antfu: ^3.3.1
     eslint-plugin-command: ^4.0.0
     eslint-plugin-format: ^2.0.1
     eslint-plugin-import-lite: ^0.6.0
-    eslint-plugin-jsdoc: ^65.4.0
+    eslint-plugin-jsdoc: ^65.4.1
     eslint-plugin-jsonc: ^3.4.2
     eslint-plugin-n: ^18.5.0
     eslint-plugin-no-only-tests: ^3.4.0

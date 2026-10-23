@@ -65,31 +65,43 @@ export async function javascript(
 
         'antfu/no-top-level-await': ERROR,
 
-        'array-callback-return': [ERROR, { checkForEach: true }],
+        'array-callback-return': [
+          ERROR,
+          { checkForEach: true },
+        ],
 
         'block-scoped-var': ERROR,
 
-        'camelcase': [ERROR, {
-          allow: ['^UNSAFE_'],
-          ignoreGlobals: true,
-          properties: NEVER,
-        }],
+        'camelcase': [
+          ERROR,
+          {
+            allow: ['^UNSAFE_'],
+            ignoreGlobals: true,
+            properties: NEVER,
+          },
+        ],
 
         'constructor-super': ERROR,
 
         'default-case-last': ERROR,
 
-        'dot-notation': [ERROR, { allowKeywords: true }],
+        'dot-notation': [
+          ERROR,
+          { allowKeywords: true },
+        ],
 
         'eqeqeq': [ERROR, 'smart'],
 
         'for-direction': ERROR,
 
-        'new-cap': [ERROR, {
-          capIsNew: false,
-          newIsCap: true,
-          properties: true,
-        }],
+        'new-cap': [
+          ERROR,
+          {
+            capIsNew: false,
+            newIsCap: true,
+            properties: true,
+          },
+        ],
 
         'no-alert': WARN,
 
@@ -109,17 +121,23 @@ export async function javascript(
 
         'no-cond-assign': [ERROR, ALWAYS],
 
-        'no-console': [ERROR, {
-          allow: [WARN, ERROR],
-        }],
+        'no-console': [
+          ERROR,
+          {
+            allow: [WARN, ERROR],
+          },
+        ],
 
         'no-const-assign': ERROR,
 
         'no-constant-binary-expression': ERROR,
 
-        'no-constant-condition': [ERROR, {
-          checkLoops: false,
-        }],
+        'no-constant-condition': [
+          ERROR,
+          {
+            checkLoops: false,
+          },
+        ],
 
         'no-constructor-return': ERROR,
 
@@ -139,9 +157,12 @@ export async function javascript(
 
         'no-duplicate-case': ERROR,
 
-        'no-empty': [ERROR, {
-          allowEmptyCatch: true,
-        }],
+        'no-empty': [
+          ERROR,
+          {
+            allowEmptyCatch: true,
+          },
+        ],
 
         'no-empty-character-class': ERROR,
 
@@ -173,7 +194,10 @@ export async function javascript(
 
         'no-iterator': ERROR,
 
-        'no-labels': [ERROR, { allowLoop: false, allowSwitch: false }],
+        'no-labels': [
+          ERROR,
+          { allowLoop: false, allowSwitch: false },
+        ],
 
         'no-lone-blocks': ERROR,
 
@@ -207,9 +231,12 @@ export async function javascript(
 
         'no-prototype-builtins': ERROR,
 
-        'no-redeclare': [ERROR, {
-          builtinGlobals: false,
-        }],
+        'no-redeclare': [
+          ERROR,
+          {
+            builtinGlobals: false,
+          },
+        ],
 
         'no-regex-spaces': ERROR,
 
@@ -258,9 +285,12 @@ export async function javascript(
 
         'no-return-assign': [ERROR, ALWAYS],
 
-        'no-self-assign': [ERROR, {
-          props: true,
-        }],
+        'no-self-assign': [
+          ERROR,
+          {
+            props: true,
+          },
+        ],
 
         'no-self-compare': ERROR,
 
@@ -284,9 +314,12 @@ export async function javascript(
 
         'no-unmodified-loop-condition': ERROR,
 
-        'no-unneeded-ternary': [ERROR, {
-          defaultAssignment: false,
-        }],
+        'no-unneeded-ternary': [
+          ERROR,
+          {
+            defaultAssignment: false,
+          },
+        ],
 
         'no-unreachable': ERROR,
 
@@ -296,24 +329,33 @@ export async function javascript(
 
         'no-unsafe-negation': ERROR,
 
-        'no-unused-expressions': [ERROR, {
-          allowShortCircuit: true,
-          allowTaggedTemplates: true,
-          allowTernary: true,
-        }],
+        'no-unused-expressions': [
+          ERROR,
+          {
+            allowShortCircuit: true,
+            allowTaggedTemplates: true,
+            allowTernary: true,
+          },
+        ],
 
-        'no-unused-vars': [ERROR, {
-          args: 'none',
-          caughtErrors: 'none',
-          ignoreRestSiblings: true,
-          vars: 'all',
-        }],
+        'no-unused-vars': [
+          ERROR,
+          {
+            args: 'none',
+            caughtErrors: 'none',
+            ignoreRestSiblings: true,
+            vars: 'all',
+          },
+        ],
 
-        'no-use-before-define': [ERROR, {
-          classes: false,
-          functions: false,
-          variables: true,
-        }],
+        'no-use-before-define': [
+          ERROR,
+          {
+            classes: false,
+            functions: false,
+            variables: true,
+          },
+        ],
 
         'no-useless-backreference': ERROR,
 
@@ -333,14 +375,21 @@ export async function javascript(
 
         'no-with': ERROR,
 
-        'object-shorthand': [ERROR, ALWAYS, {
-          avoidQuotes: true,
-          ignoreConstructors: false,
-        }],
+        'object-shorthand': [
+          ERROR,
+          ALWAYS,
+          {
+            avoidQuotes: true,
+            ignoreConstructors: false,
+          },
+        ],
 
-        'one-var': [ERROR, {
-          initialized: NEVER,
-        }],
+        'one-var': [
+          ERROR,
+          {
+            initialized: NEVER,
+          },
+        ],
 
         'prefer-arrow-callback': [
           ERROR,
@@ -362,9 +411,12 @@ export async function javascript(
 
         'prefer-promise-reject-errors': ERROR,
 
-        'prefer-regex-literals': [ERROR, {
-          disallowRedundantWrapping: true,
-        }],
+        'prefer-regex-literals': [
+          ERROR,
+          {
+            disallowRedundantWrapping: true,
+          },
+        ],
 
         'prefer-rest-params': ERROR,
 
@@ -378,22 +430,31 @@ export async function javascript(
 
         'unused-imports/no-unused-imports': isInEditor ? WARN : ERROR,
 
-        'unused-imports/no-unused-vars': [WARN, {
-          args: 'after-used',
-          argsIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-          vars: 'all',
-          varsIgnorePattern: '^_',
-        }],
+        'unused-imports/no-unused-vars': [
+          WARN,
+          {
+            args: 'after-used',
+            argsIgnorePattern: '^_',
+            ignoreRestSiblings: true,
+            vars: 'all',
+            varsIgnorePattern: '^_',
+          },
+        ],
 
-        'use-isnan': [ERROR, {
-          enforceForIndexOf: true,
-          enforceForSwitchCase: true,
-        }],
+        'use-isnan': [
+          ERROR,
+          {
+            enforceForIndexOf: true,
+            enforceForSwitchCase: true,
+          },
+        ],
 
-        'valid-typeof': [ERROR, {
-          requireStringLiterals: true,
-        }],
+        'valid-typeof': [
+          ERROR,
+          {
+            requireStringLiterals: true,
+          },
+        ],
 
         'vars-on-top': ERROR,
 

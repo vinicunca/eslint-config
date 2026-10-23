@@ -30,7 +30,9 @@ export async function vue(
   const {
     braceStyle = 'stroustrup',
     indent = 2,
-  } = isBoolean(stylistic) ? {} : stylistic;
+  } = isBoolean(stylistic)
+    ? {}
+    : stylistic;
 
   if (a11y) {
     await ensurePackages([
@@ -47,7 +49,11 @@ export async function vue(
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
     interopDefault(import('eslint-processor-vue-blocks')),
-    ...a11y ? [interopDefault(import('eslint-plugin-vuejs-accessibility'))] : [],
+    ...a11y
+      ? [
+          interopDefault(import('eslint-plugin-vuejs-accessibility')),
+        ]
+      : [],
   ] as const);
 
   return [
@@ -77,7 +83,9 @@ export async function vue(
 
       plugins: {
         vue: pluginVue,
-        ...a11y ? { 'vue-a11y': pluginVueA11y } : {},
+        ...a11y
+          ? { 'vue-a11y': pluginVueA11y }
+          : {},
       },
     },
 
@@ -117,17 +125,29 @@ export async function vue(
       rules: {
         ...pluginVue.configs.base.rules as any,
 
-        ...pluginVue.configs['flat/essential'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
-        ...pluginVue.configs['flat/strongly-recommended'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
-        ...pluginVue.configs['flat/recommended'].map((c) => c.rules).reduce((acc, c) => ({ ...acc, ...c }), {}) as any,
+        ...pluginVue.configs['flat/essential'].map((c) => c.rules).reduce((acc, c) => ({
+          ...acc,
+          ...c,
+        }), {}) as any,
+        ...pluginVue.configs['flat/strongly-recommended'].map((c) => c.rules).reduce((acc, c) => ({
+          ...acc,
+          ...c,
+        }), {}) as any,
+        ...pluginVue.configs['flat/recommended'].map((c) => c.rules).reduce((acc, c) => ({
+          ...acc,
+          ...c,
+        }), {}) as any,
 
         'antfu/no-top-level-await': OFF,
         'node/prefer-global/process': OFF,
         'ts/explicit-function-return-type': OFF,
 
-        'vue/block-order': [ERROR, {
-          order: ['script', 'template', 'style'],
-        }],
+        'vue/block-order': [
+          ERROR,
+          {
+            order: ['script', 'template', 'style'],
+          },
+        ],
 
         'vue/component-name-in-template-casing': [ERROR, 'PascalCase'],
 
@@ -146,13 +166,24 @@ export async function vue(
           },
         ],
 
-        'vue/define-macros-order': [ERROR, {
-          order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
-        }],
+        'vue/define-macros-order': [
+          ERROR,
+          {
+            order: [
+              'defineOptions',
+              'defineProps',
+              'defineEmits',
+              'defineSlots',
+            ],
+          },
+        ],
 
         'vue/dot-location': [ERROR, 'property'],
 
-        'vue/dot-notation': [ERROR, { allowKeywords: true }],
+        'vue/dot-notation': [
+          ERROR,
+          { allowKeywords: true },
+        ],
 
         'vue/eqeqeq': [ERROR, 'smart'],
 
@@ -196,10 +227,14 @@ export async function vue(
 
         'vue/no-v-text-v-html-on-component': OFF,
 
-        'vue/object-shorthand': [ERROR, ALWAYS, {
-          avoidQuotes: true,
-          ignoreConstructors: false,
-        }],
+        'vue/object-shorthand': [
+          ERROR,
+          ALWAYS,
+          {
+            avoidQuotes: true,
+            ignoreConstructors: false,
+          },
+        ],
 
         'vue/prefer-import-from-vue': OFF,
 
@@ -215,59 +250,91 @@ export async function vue(
 
         'vue/space-infix-ops': ERROR,
 
-        'vue/space-unary-ops': [ERROR, {
-          nonwords: false,
-          words: true,
-        }],
+        'vue/space-unary-ops': [
+          ERROR,
+          {
+            nonwords: false,
+            words: true,
+          },
+        ],
 
         ...stylistic
           ? {
               'vue/array-bracket-spacing': [ERROR, NEVER],
 
-              'vue/arrow-spacing': [ERROR, {
-                after: true,
-                before: true,
-              }],
+              'vue/arrow-spacing': [
+                ERROR,
+                {
+                  after: true,
+                  before: true,
+                },
+              ],
 
               'vue/block-spacing': [ERROR, ALWAYS],
 
-              'vue/block-tag-newline': [ERROR, {
-                multiline: ALWAYS,
-                singleline: ALWAYS,
-              }],
+              'vue/block-tag-newline': [
+                ERROR,
+                {
+                  multiline: ALWAYS,
+                  singleline: ALWAYS,
+                },
+              ],
 
-              'vue/brace-style': [ERROR, braceStyle, { allowSingleLine: true }],
+              'vue/brace-style': [
+                ERROR,
+                braceStyle,
+                { allowSingleLine: true },
+              ],
 
               'vue/comma-dangle': [ERROR, 'always-multiline'],
 
-              'vue/comma-spacing': [ERROR, {
-                after: true,
-                before: false,
-              }],
+              'vue/comma-spacing': [
+                ERROR,
+                {
+                  after: true,
+                  before: false,
+                },
+              ],
 
               'vue/comma-style': [ERROR, 'last'],
 
-              'vue/html-comment-content-spacing': [ERROR, ALWAYS, {
-                exceptions: ['-'],
-              }],
+              'vue/html-comment-content-spacing': [
+                ERROR,
+                ALWAYS,
+                {
+                  exceptions: ['-'],
+                },
+              ],
 
-              'vue/key-spacing': [ERROR, {
-                afterColon: true,
-                beforeColon: false,
-              }],
+              'vue/key-spacing': [
+                ERROR,
+                {
+                  afterColon: true,
+                  beforeColon: false,
+                },
+              ],
 
-              'vue/keyword-spacing': [ERROR, {
-                after: true,
-                before: true,
-              }],
+              'vue/keyword-spacing': [
+                ERROR,
+                {
+                  after: true,
+                  before: true,
+                },
+              ],
 
-              'vue/object-curly-newline': [ERROR, { consistent: true, multiline: true }],
+              'vue/object-curly-newline': [
+                ERROR,
+                { consistent: true, multiline: true },
+              ],
 
               'vue/object-curly-spacing': [ERROR, ALWAYS],
 
-              'vue/object-property-newline': [ERROR, {
-                allowAllPropertiesOnSameLine: true,
-              }],
+              'vue/object-property-newline': [
+                ERROR,
+                {
+                  allowAllPropertiesOnSameLine: true,
+                },
+              ],
 
               'vue/operator-linebreak': [ERROR, 'before'],
 

@@ -128,7 +128,9 @@ export function vinicuncaESLint(
       : {};
 
   if (stylisticOptions && !('jsx' in stylisticOptions)) {
-    stylisticOptions.jsx = typeof enableJsx === 'object' ? true : enableJsx;
+    stylisticOptions.jsx = typeof enableJsx === 'object'
+      ? true
+      : enableJsx;
   }
 
   const configs: Array<Awaitable<Array<TypedFlatConfigItem>>> = [];
@@ -136,23 +138,29 @@ export function vinicuncaESLint(
   if (enableGitignore) {
     if (!isBoolean(enableGitignore)) {
       configs.push(
-        interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
-          name: 'vinicunca/gitignore',
-          ...enableGitignore,
-        })]),
+        interopDefault(import('eslint-config-flat-gitignore')).then((r) => [
+          r({
+            name: 'vinicunca/gitignore',
+            ...enableGitignore,
+          }),
+        ]),
       );
     } else {
       configs.push(
-        interopDefault(import('eslint-config-flat-gitignore')).then((r) => [r({
-          name: 'vinicunca/gitignore',
-          strict: false,
-        })]),
+        interopDefault(import('eslint-config-flat-gitignore')).then((r) => [
+          r({
+            name: 'vinicunca/gitignore',
+            strict: false,
+          }),
+        ]),
       );
     }
   }
 
   const typescriptOptions = resolveSubOptions(options, 'typescript');
-  const tsconfigPath = 'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined;
+  const tsconfigPath = 'tsconfigPath' in typescriptOptions
+    ? typescriptOptions.tsconfigPath
+    : undefined;
 
   configs.push(
     ignores(userIgnores, !enableTypeScript),
@@ -202,14 +210,18 @@ export function vinicuncaESLint(
     configs.push(
       e18e({
         isInEditor,
-        ...enableE18e === true ? {} : enableE18e,
+        ...enableE18e === true
+          ? {}
+          : enableE18e,
       }),
     );
   }
 
   if (enableUnicorn) {
     configs.push(
-      unicorn(enableUnicorn === true ? {} : enableUnicorn),
+      unicorn(enableUnicorn === true
+        ? {}
+        : enableUnicorn),
     );
   }
 
@@ -218,7 +230,9 @@ export function vinicuncaESLint(
   }
 
   if (enableJsx) {
-    configs.push(jsx(enableJsx === true ? {} : enableJsx));
+    configs.push(jsx(enableJsx === true
+      ? {}
+      : enableJsx));
   }
 
   if (enableTypeScript) {
@@ -253,7 +267,9 @@ export function vinicuncaESLint(
 
   if (enableRegexp) {
     configs.push(
-      regexp(isBoolean(enableRegexp) ? {} : enableRegexp),
+      regexp(isBoolean(enableRegexp)
+        ? {}
+        : enableRegexp),
     );
   }
 
@@ -392,7 +408,9 @@ export function vinicuncaESLint(
     configs.push(
       formatters(
         options.formatters,
-        isBoolean(stylisticOptions) ? {} : stylisticOptions,
+        isBoolean(stylisticOptions)
+          ? {}
+          : stylisticOptions,
       ),
     );
   }

@@ -53,7 +53,10 @@ export async function test(
 
         'sonarjs/no-duplicate-string': OFF,
 
-        'test/consistent-test-it': [ERROR, { fn: 'it', withinDescribe: 'it' }],
+        'test/consistent-test-it': [
+          ERROR,
+          { fn: 'it', withinDescribe: 'it' },
+        ],
         'test/no-identical-title': ERROR,
         'test/no-import-node-test': ERROR,
         'test/no-only-tests': isInEditor ? WARN : ERROR,
