@@ -1,7 +1,7 @@
 import type { OptionsAntislop, OptionsHasTypeScript, TypedFlatConfigItem } from '../types';
 
 import { ERROR } from '../flags';
-import { GLOB_MARKDOWN, GLOB_SRC } from '../globs';
+import { GLOB_SRC } from '../globs';
 import { interopDefault } from '../utils';
 
 export async function antislop(
@@ -33,28 +33,12 @@ export async function antislop(
         ? { settings: { slop } }
         : {},
     },
-    // Apply to configured languages without making ESLint parse unsupported files.
-    ...slop
-      ? [{
-          /**
-           * Markdown code fences are already scanned as part of the raw
-           * Markdown text, so exclude the virtual embedded-code files to
-           * avoid reporting the same em dash twice
-           */
-          ignores: [`${GLOB_MARKDOWN}/**`],
-          name: 'vinicunca/antislop/rules/universal',
-          rules: {
-            'slop/no-em-dash': ERROR,
-          },
-        } as TypedFlatConfigItem]
-      : [],
     {
       files: [GLOB_SRC],
       name: 'vinicunca/antislop/rules/javascript',
       rules: {
         ...slop
           ? {
-              'slop/max-comment-length': ERROR,
               'slop/no-chained-type-assertions': ERROR,
               'slop/no-jargon': ERROR,
               'slop/no-trivial-functions': ERROR,
