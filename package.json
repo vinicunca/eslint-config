@@ -2,7 +2,7 @@
   "name": "@vinicunca/eslint-config",
   "type": "module",
   "version": "6.0.1",
-  "packageManager": "pnpm@12.11.2",
+  "packageManager": "pnpm@12.15.0",
   "description": "Vinicunca ESLint config",
   "author": {
     "name": "praburangki",
@@ -180,7 +180,6 @@
     "eslint-plugin-svelte": "catalog:peer",
     "eslint-plugin-vuejs-accessibility": "catalog:peer",
     "eslint-typegen": "catalog:dev",
-    "execa": "catalog:dev",
     "find-up-simple": "catalog:inline",
     "jiti": "catalog:dev",
     "lint-staged": "catalog:dev",
@@ -203,7 +202,6 @@
     "@eslint-community/eslint-utils": "catalog:peer",
     "@typescript-eslint/types": "catalog:peer",
     "@typescript-eslint/utils": "catalog:peer",
-    "chokidar": "catalog:dev",
     "eslint": "catalog:peer",
     "tsx": "catalog:dev"
   },
