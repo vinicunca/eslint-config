@@ -78,7 +78,7 @@ const fn = (): string => {
 
 log(car1, car2, favoriteFruit, numericValue, fn())
 
-/** Generator */
+// Generator
 export function* generator1() {
   let id = 0;
   while (id < 100) {

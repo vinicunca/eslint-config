@@ -10,7 +10,7 @@ class Person {
 		this.age = age;
 	}
 
-	/** Define a method within the class */
+	// Define a method within the class
 	sayHello() {
 		log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
 	}
@@ -54,9 +54,7 @@ try {
 // Use a ternary conditional operator
 const isEven = (num) => num % 2 === 0;
 const number = 7;
-log(`${number} is ${isEven(number)
-	? "even"
-	: "odd"}.`);
+log(`${number} is ${isEven(number) ? "even" : "odd"}.`);
 
 // Use a callback function with setTimeout for asynchronous code
 setTimeout(() => {
