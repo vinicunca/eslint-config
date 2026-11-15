@@ -88,7 +88,7 @@ export async function typescript(
 
   function makeParser(
     { files, ignores, typeAware }:
-    { files: Array<string>; ignores?: Array<string>; typeAware: boolean },
+      { files: Array<string>; ignores?: Array<string>; typeAware: boolean },
   ): TypedFlatConfigItem {
     return {
       files,

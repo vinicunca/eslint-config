@@ -299,7 +299,9 @@ export interface OptionsStylistic {
 }
 
 export interface StylisticConfig
-  extends Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi' | 'experimental' | 'braceStyle'> {
+  // `Partial` keeps these optional even if the plugin's types fail to resolve
+  // (`@stylistic/eslint-plugin@6.0.0` points `types` at a missing `.d.ts`)
+  extends Partial<Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi' | 'experimental' | 'braceStyle'>> {
 }
 
 export interface OptionsOverrides {
