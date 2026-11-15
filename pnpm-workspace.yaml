@@ -16,9 +16,6 @@ shellEmulator: true
 packages:
   - fixtures/*
 
-patchedDependencies:
-  '@stylistic/eslint-plugin@6.0.0': patches/@stylistic__eslint-plugin@6.0.0.patch
-
 allowBuilds:
   esbuild: true
   simple-git-hooks: true
@@ -78,7 +75,7 @@ catalogs:
     '@e18e/eslint-plugin': ^0.8.1
     '@eslint-community/eslint-plugin-eslint-comments': ^4.8.1
     '@eslint/markdown': ^8.0.3
-    '@stylistic/eslint-plugin': ^6.0.0
+    '@stylistic/eslint-plugin': ^5.10.0
     '@typescript-eslint/eslint-plugin': ^8.72.2
     '@typescript-eslint/parser': ^8.72.2
     '@unocss/eslint-plugin': ^66.13.0
