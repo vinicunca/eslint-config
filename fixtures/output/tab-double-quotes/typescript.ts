@@ -44,6 +44,7 @@ const car1: Car = { make: "Toyota" };
 const car2: Car = {
 	make: "Ford",
 	model: "Focus",
+
 };
 
 // Use union types

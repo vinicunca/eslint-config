@@ -6328,19 +6328,16 @@ export interface RuleOptions {
   /**
    * Enforce linebreaks after opening and before closing array brackets
    * @see https://eslint.style/rules/array-bracket-newline
-   * @deprecated
    */
   'style/array-bracket-newline'?: Linter.RuleEntry<StyleArrayBracketNewline>
   /**
    * Enforce consistent spacing inside array brackets
    * @see https://eslint.style/rules/array-bracket-spacing
-   * @deprecated
    */
   'style/array-bracket-spacing'?: Linter.RuleEntry<StyleArrayBracketSpacing>
   /**
    * Enforce line breaks after each array element
    * @see https://eslint.style/rules/array-element-newline
-   * @deprecated
    */
   'style/array-element-newline'?: Linter.RuleEntry<StyleArrayElementNewline>
   /**
@@ -6404,9 +6401,13 @@ export interface RuleOptions {
    */
   'style/exp-jsx-props-style'?: Linter.RuleEntry<StyleExpJsxPropsStyle>
   /**
+   * Enforce consistent spacing and line break styles inside brackets.
+   * @see https://eslint.style/rules/list-style
+   */
+  'style/exp-list-style'?: Linter.RuleEntry<StyleExpListStyle>
+  /**
    * Enforce line breaks between arguments of a function call
    * @see https://eslint.style/rules/function-call-argument-newline
-   * @deprecated
    */
   'style/function-call-argument-newline'?: Linter.RuleEntry<StyleFunctionCallArgumentNewline>
   /**
@@ -6417,7 +6418,6 @@ export interface RuleOptions {
   /**
    * Enforce consistent line breaks inside function parentheses
    * @see https://eslint.style/rules/function-paren-newline
-   * @deprecated
    */
   'style/function-paren-newline'?: Linter.RuleEntry<StyleFunctionParenNewline>
   /**
@@ -6486,6 +6486,12 @@ export interface RuleOptions {
    */
   'style/jsx-function-call-newline'?: Linter.RuleEntry<StyleJsxFunctionCallNewline>
   /**
+   * Enforce JSX indentation. Deprecated, use `indent` rule instead.
+   * @see https://eslint.style/rules/jsx-indent
+   * @deprecated
+   */
+  'style/jsx-indent'?: Linter.RuleEntry<StyleJsxIndent>
+  /**
    * Enforce props indentation in JSX
    * @see https://eslint.style/rules/jsx-indent-props
    */
@@ -6511,6 +6517,12 @@ export interface RuleOptions {
    */
   'style/jsx-pascal-case'?: Linter.RuleEntry<StyleJsxPascalCase>
   /**
+   * Disallow multiple spaces between inline JSX props. Deprecated, use `no-multi-spaces` rule instead.
+   * @see https://eslint.style/rules/jsx-props-no-multi-spaces
+   * @deprecated
+   */
+  'style/jsx-props-no-multi-spaces'?: Linter.RuleEntry<[]>
+  /**
    * Enforce the consistent use of either double or single quotes in JSX attributes
    * @see https://eslint.style/rules/jsx-quotes
    */
@@ -6521,15 +6533,11 @@ export interface RuleOptions {
    */
   'style/jsx-self-closing-comp'?: Linter.RuleEntry<StyleJsxSelfClosingComp>
   /**
-   * Enforce shorthand for boolean JSX attributes.
-   * @see https://eslint.style/rules/jsx-shorthand-boolean
+   * Enforce props alphabetical sorting
+   * @see https://eslint.style/rules/jsx-sort-props
+   * @deprecated
    */
-  'style/jsx-shorthand-boolean'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce shorthand fragment syntax.
-   * @see https://eslint.style/rules/jsx-shorthand-fragment
-   */
-  'style/jsx-shorthand-fragment'?: Linter.RuleEntry<[]>
+  'style/jsx-sort-props'?: Linter.RuleEntry<StyleJsxSortProps>
   /**
    * Enforce whitespace in and around the JSX opening and closing brackets
    * @see https://eslint.style/rules/jsx-tag-spacing
@@ -6570,11 +6578,6 @@ export interface RuleOptions {
    * @see https://eslint.style/rules/lines-between-class-members
    */
   'style/lines-between-class-members'?: Linter.RuleEntry<StyleLinesBetweenClassMembers>
-  /**
-   * Enforce consistent spacing and line break styles inside brackets.
-   * @see https://eslint.style/rules/list-style
-   */
-  'style/list-style'?: Linter.RuleEntry<StyleListStyle>
   /**
    * Enforce a maximum line length
    * @see https://eslint.style/rules/max-len
@@ -6673,19 +6676,16 @@ export interface RuleOptions {
   /**
    * Enforce consistent line breaks after opening and before closing braces
    * @see https://eslint.style/rules/object-curly-newline
-   * @deprecated
    */
   'style/object-curly-newline'?: Linter.RuleEntry<StyleObjectCurlyNewline>
   /**
    * Enforce consistent spacing inside braces
    * @see https://eslint.style/rules/object-curly-spacing
-   * @deprecated
    */
   'style/object-curly-spacing'?: Linter.RuleEntry<StyleObjectCurlySpacing>
   /**
    * Enforce placing object properties on separate lines
    * @see https://eslint.style/rules/object-property-newline
-   * @deprecated
    */
   'style/object-property-newline'?: Linter.RuleEntry<StyleObjectPropertyNewline>
   /**
@@ -6792,7 +6792,7 @@ export interface RuleOptions {
    * Enforces consistent spacing inside TypeScript type generics
    * @see https://eslint.style/rules/type-generic-spacing
    */
-  'style/type-generic-spacing'?: Linter.RuleEntry<StyleTypeGenericSpacing>
+  'style/type-generic-spacing'?: Linter.RuleEntry<[]>
   /**
    * Expect space before the type declaration in the named tuple
    * @see https://eslint.style/rules/type-named-tuple-spacing
@@ -21313,7 +21313,7 @@ type StyleCurlyNewline = []|[(("always" | "never") | {
 // ----- style/dot-location -----
 type StyleDotLocation = []|[("object" | "property")]
 // ----- style/eol-last -----
-type StyleEolLast = []|[("always" | "never")]
+type StyleEolLast = []|[("always" | "never" | "unix" | "windows")]
 // ----- style/exp-jsx-props-style -----
 type StyleExpJsxPropsStyle = []|[{
   singleLine?: {
@@ -21324,6 +21324,51 @@ type StyleExpJsxPropsStyle = []|[{
     maxItemsPerLine?: number
   }
 }]
+// ----- style/exp-list-style -----
+type StyleExpListStyle = []|[{
+  singleLine?: _StyleExpListStyle_SingleLineConfig
+  multiLine?: _StyleExpListStyle_MultiLineConfig
+  overrides?: {
+    "()"?: (_StyleExpListStyle_BaseConfig | "off")
+    "[]"?: (_StyleExpListStyle_BaseConfig | "off")
+    "{}"?: (_StyleExpListStyle_BaseConfig | "off")
+    "<>"?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrayExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrayPattern?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrowFunctionExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    CallExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ExportNamedDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    FunctionDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    FunctionExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    IfStatement?: (_StyleExpListStyle_BaseConfig | "off")
+    ImportAttributes?: (_StyleExpListStyle_BaseConfig | "off")
+    ImportDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    JSONArrayExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    JSONObjectExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    NewExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ObjectExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ObjectPattern?: (_StyleExpListStyle_BaseConfig | "off")
+    TSDeclareFunction?: (_StyleExpListStyle_BaseConfig | "off")
+    TSEnumBody?: (_StyleExpListStyle_BaseConfig | "off")
+    TSFunctionType?: (_StyleExpListStyle_BaseConfig | "off")
+    TSInterfaceBody?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTupleType?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeLiteral?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeParameterDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeParameterInstantiation?: (_StyleExpListStyle_BaseConfig | "off")
+  }
+}]
+interface _StyleExpListStyle_SingleLineConfig {
+  spacing?: ("always" | "never")
+  maxItems?: number
+}
+interface _StyleExpListStyle_MultiLineConfig {
+  minItems?: number
+}
+interface _StyleExpListStyle_BaseConfig {
+  singleLine?: _StyleExpListStyle_SingleLineConfig
+  multiline?: _StyleExpListStyle_MultiLineConfig
+}
 // ----- style/function-call-argument-newline -----
 type StyleFunctionCallArgumentNewline = []|[("always" | "never" | "consistent")]
 // ----- style/function-call-spacing -----
@@ -21398,10 +21443,10 @@ type StyleIndent = []|[("tab" | number)]|[("tab" | number), {
     AwaitExpression?: boolean
     NewExpression?: boolean
   })
+  offsetTernaryExpressionsOffsetCallExpressions?: boolean
   ignoredNodes?: string[]
   ignoreComments?: boolean
   tabLength?: number
-  jsx?: (number | "half")
 }]
 // ----- style/indent-binary-ops -----
 type StyleIndentBinaryOps = []|[(number | "tab")]
@@ -21478,6 +21523,11 @@ type StyleJsxEqualsSpacing = []|[("always" | "never")]
 type StyleJsxFirstPropNewLine = []|[("always" | "never" | "multiline" | "multiline-multiprop" | "multiprop")]
 // ----- style/jsx-function-call-newline -----
 type StyleJsxFunctionCallNewline = []|[("always" | "multiline")]
+// ----- style/jsx-indent -----
+type StyleJsxIndent = []|[("tab" | number)]|[("tab" | number), {
+  checkAttributes?: boolean
+  indentLogicalExpressions?: boolean
+}]
 // ----- style/jsx-indent-props -----
 type StyleJsxIndentProps = []|[(("tab" | "first") | number | {
   indentMode?: (("tab" | "first") | number)
@@ -21515,6 +21565,18 @@ type StyleJsxQuotes = []|[("prefer-single" | "prefer-double")]
 type StyleJsxSelfClosingComp = []|[{
   component?: boolean
   html?: boolean
+}]
+// ----- style/jsx-sort-props -----
+type StyleJsxSortProps = []|[{
+  callbacksLast?: boolean
+  shorthandFirst?: boolean
+  shorthandLast?: boolean
+  multiline?: ("ignore" | "first" | "last")
+  ignoreCase?: boolean
+  noSortAlphabetically?: boolean
+  reservedFirst?: (string[] | boolean)
+  reservedLast?: string[]
+  locale?: string
 }]
 // ----- style/jsx-tag-spacing -----
 type StyleJsxTagSpacing = []|[{
@@ -21888,6 +21950,7 @@ type StyleKeywordSpacing = []|[{
 type StyleLineCommentPosition = []|[(("above" | "beside") | {
   position?: ("above" | "beside")
   ignorePattern?: string
+  applyDefaultPatterns?: boolean
   applyDefaultIgnorePatterns?: boolean
 })]
 // ----- style/linebreak-style -----
@@ -21945,53 +22008,6 @@ type StyleLinesBetweenClassMembers = []|[({
   exceptAfterSingleLine?: boolean
   exceptAfterOverload?: boolean
 }]
-// ----- style/list-style -----
-type StyleListStyle = []|[{
-  empty?: ("ignore" | "always" | "never")
-  singleLine?: _StyleListStyle_SingleLineConfig
-  multiLine?: _StyleListStyle_MultiLineConfig
-  overrides?: {
-    "()"?: (_StyleListStyle_BaseConfig | "off")
-    "[]"?: (_StyleListStyle_BaseConfig | "off")
-    "{}"?: (_StyleListStyle_BaseConfig | "off")
-    "<>"?: (_StyleListStyle_BaseConfig | "off")
-    ArrayExpression?: (_StyleListStyle_BaseConfig | "off")
-    ArrayPattern?: (_StyleListStyle_BaseConfig | "off")
-    ArrowFunctionExpression?: (_StyleListStyle_BaseConfig | "off")
-    CallExpression?: (_StyleListStyle_BaseConfig | "off")
-    ExportNamedDeclaration?: (_StyleListStyle_BaseConfig | "off")
-    FunctionDeclaration?: (_StyleListStyle_BaseConfig | "off")
-    FunctionExpression?: (_StyleListStyle_BaseConfig | "off")
-    IfStatement?: (_StyleListStyle_BaseConfig | "off")
-    ImportAttributes?: (_StyleListStyle_BaseConfig | "off")
-    ImportDeclaration?: (_StyleListStyle_BaseConfig | "off")
-    JSONArrayExpression?: (_StyleListStyle_BaseConfig | "off")
-    JSONObjectExpression?: (_StyleListStyle_BaseConfig | "off")
-    NewExpression?: (_StyleListStyle_BaseConfig | "off")
-    ObjectExpression?: (_StyleListStyle_BaseConfig | "off")
-    ObjectPattern?: (_StyleListStyle_BaseConfig | "off")
-    TSDeclareFunction?: (_StyleListStyle_BaseConfig | "off")
-    TSEnumBody?: (_StyleListStyle_BaseConfig | "off")
-    TSFunctionType?: (_StyleListStyle_BaseConfig | "off")
-    TSInterfaceBody?: (_StyleListStyle_BaseConfig | "off")
-    TSTupleType?: (_StyleListStyle_BaseConfig | "off")
-    TSTypeLiteral?: (_StyleListStyle_BaseConfig | "off")
-    TSTypeParameterDeclaration?: (_StyleListStyle_BaseConfig | "off")
-    TSTypeParameterInstantiation?: (_StyleListStyle_BaseConfig | "off")
-  }
-}]
-interface _StyleListStyle_SingleLineConfig {
-  spacing?: ("always" | "never")
-  maxItems?: number
-}
-interface _StyleListStyle_MultiLineConfig {
-  minItems?: number
-}
-interface _StyleListStyle_BaseConfig {
-  empty?: ("ignore" | "always" | "never")
-  singleLine?: _StyleListStyle_SingleLineConfig
-  multiLine?: _StyleListStyle_MultiLineConfig
-}
 // ----- style/max-len -----
 type StyleMaxLen = []|[({
   code?: number
@@ -22137,7 +22153,7 @@ type StyleNoMixedOperators = []|[{
   allowSamePrecedence?: boolean
 }]
 // ----- style/no-mixed-spaces-and-tabs -----
-type StyleNoMixedSpacesAndTabs = []|["smart-tabs"]
+type StyleNoMixedSpacesAndTabs = []|[("smart-tabs" | boolean)]
 // ----- style/no-multi-spaces -----
 type StyleNoMultiSpaces = []|[{
   exceptions?: {
@@ -22276,11 +22292,11 @@ type StyleQuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent
   numbers?: boolean
 }])
 // ----- style/quotes -----
-type StyleQuotes = []|[("single" | "double" | "backtick")]|[("single" | "double" | "backtick"), {
+type StyleQuotes = []|[("single" | "double" | "backtick")]|[("single" | "double" | "backtick"), ("avoid-escape" | {
   avoidEscape?: boolean
-  allowTemplateLiterals?: ("never" | "avoidEscape" | "always")
+  allowTemplateLiterals?: (boolean | ("never" | "avoidEscape" | "always"))
   ignoreStringLiterals?: boolean
-}]
+})]
 // ----- style/rest-spread-spacing -----
 type StyleRestSpreadSpacing = []|[("always" | "never")]
 // ----- style/semi -----
@@ -22318,7 +22334,6 @@ type StyleSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {
 // ----- style/space-infix-ops -----
 type StyleSpaceInfixOps = []|[{
   int32Hint?: boolean
-  ignoreOperators?: string[]
   ignoreTypes?: boolean
 }]
 // ----- style/space-unary-ops -----
@@ -22358,22 +22373,17 @@ type StyleTypeAnnotationSpacing = []|[{
   after?: boolean
   overrides?: {
     colon?: _StyleTypeAnnotationSpacing_SpacingConfig
-    variable?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
-    parameter?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
-    property?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
-    returnType?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
-    questionMark?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
+    arrow?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
+    variable?: _StyleTypeAnnotationSpacing_SpacingConfig
+    parameter?: _StyleTypeAnnotationSpacing_SpacingConfig
+    property?: _StyleTypeAnnotationSpacing_SpacingConfig
+    returnType?: _StyleTypeAnnotationSpacing_SpacingConfig
   }
 }]
 interface _StyleTypeAnnotationSpacing_SpacingConfig {
   before?: boolean
   after?: boolean
 }
-// ----- style/type-generic-spacing -----
-type StyleTypeGenericSpacing = []|[{
-  before?: boolean
-  after?: boolean
-}]
 // ----- style/wrap-iife -----
 type StyleWrapIife = []|[("outside" | "inside" | "any")]|[("outside" | "inside" | "any"), {
   functionPrototypeMethods?: boolean
@@ -26186,7 +26196,6 @@ type VueSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {
 // ----- vue/space-infix-ops -----
 type VueSpaceInfixOps = []|[{
   int32Hint?: boolean
-  ignoreOperators?: string[]
   ignoreTypes?: boolean
 }]
 // ----- vue/space-unary-ops -----

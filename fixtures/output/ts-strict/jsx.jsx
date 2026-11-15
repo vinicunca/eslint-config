@@ -2,12 +2,7 @@ import React from 'react';
 
 const PATTERN = /\.\d+/g;
 
-export function HelloWorld({
-  greeting = 'hello',
-  greeted = '"World"',
-  silent = false,
-  onMouseOver,
-}) {
+export function HelloWorld({ greeting = 'hello', greeted = '"World"', silent = false, onMouseOver }) {
   const [num] = React.useState(() => Math
     .floor(Math.random() * 1e+7)
     .toString()
